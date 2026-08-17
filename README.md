@@ -10,6 +10,8 @@ privada para clientes y colaboradores.
 - Versión: `0.1.1`
 - Alcance inmediato: definir y construir el MVP de LATTICCE.com
 
+La primera prueba pública es una página estática `Hola mundo` en `index.html`.
+
 ## Arquitectura aprobada como punto de partida
 
 - Next.js + React + TypeScript
