@@ -168,7 +168,7 @@ export default function HomeExperience() {
         <div className={styles.sectionLabel} data-home-reveal><span>00</span><p>Principio</p></div>
         <div className={styles.manifestoCopy} data-home-reveal>
           <p className={styles.kicker}>No hacemos piezas aisladas</p>
-          <h2 id="manifesto-title">LATTICCE conecta <em>disciplinas distintas</em> para responder a una misma intención. Cada nodo conserva una <em>mirada propia</em>; juntos forman una estructura capaz de pensar, producir y evolucionar.</h2>
+          <h2 id="manifesto-title">Conectamos <em>disciplinas distintas</em> para responder a una misma intención. Cada nodo conserva una <em>mirada propia</em>, pero juntos forman una estructura capaz de pensar, producir y evolucionar.</h2>
           <div className={styles.manifestoDetail}>
             <p>Construimos relaciones entre ideas, materia y tiempo.</p>
             <span>Una red, no una colección.</span>
