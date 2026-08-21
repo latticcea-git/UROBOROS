@@ -32,9 +32,15 @@ export default function SiteMenu({ links, homeHref }: SiteMenuProps) {
         <nav className="global-menu-panel" id="site-menu-panel" aria-label="Navegación principal">
           <div className="global-menu-topline"><span>Índice</span><span>LATTICCE / 00</span></div>
           {links.map((link, index) => (
-            <Link href={link.href} onClick={close} key={link.label}>
-              <span>{String(index).padStart(2, "0")}</span>{link.label}
-            </Link>
+            link.href.startsWith("/UROBOROS/") ? (
+              <a href={link.href} onClick={close} key={link.label}>
+                <span>{String(index).padStart(2, "0")}</span>{link.label}
+              </a>
+            ) : (
+              <Link href={link.href} onClick={close} key={link.label}>
+                <span>{String(index).padStart(2, "0")}</span>{link.label}
+              </Link>
+            )
           ))}
         </nav>
       )}

@@ -295,7 +295,7 @@ export default function StudioPage() {
           { label: "DESIGN", href: "#servicios" },
           { label: "AGENCY", href: "#proceso" },
           { label: "TIME", href: "#proceso" },
-          { label: "PORTFOLIO", href: "#proyectos" },
+          { label: "BOOK", href: "#proyectos" },
           { label: "BLOG", href: "#cotizar" },
         ]}
       />

@@ -124,7 +124,7 @@ export default function HomeExperience() {
           { label: "DESIGN", href: "#ecosistema" },
           { label: "AGENCY", href: "#ecosistema" },
           { label: "TIME", href: "#metodo" },
-          { label: "PORTFOLIO", href: "#ecosistema" },
+          { label: "BOOK", href: "#ecosistema" },
           { label: "BLOG", href: "#contacto" },
         ]}
       />
