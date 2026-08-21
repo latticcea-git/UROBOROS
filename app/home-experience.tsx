@@ -130,7 +130,7 @@ export default function HomeExperience() {
     <main className={styles.homeRoot}>
       <header className={styles.header}>
         <Link className={styles.logo} href="#inicio" aria-label="LATTICCE, ir al inicio">
-          <Image src="/assets/logos/LTT_LOGO_FX_POS.svg" width={246} height={47} alt="LATTICCE" priority />
+          <Image src="/UROBOROS/assets/logos/LTT_LOGO_FX_POS.svg" width={246} height={47} alt="LATTICCE" priority />
         </Link>
 
         <nav className={styles.desktopNav} aria-label="Navegación principal">
@@ -272,7 +272,7 @@ export default function HomeExperience() {
 
       <footer className={styles.footer}>
         <Link className={styles.footerLogo} href="#inicio" aria-label="Volver al inicio">
-          <Image src="/assets/logos/LTT_LOGO_FX_POS.svg" width={198} height={38} alt="LATTICCE" />
+          <Image src="/UROBOROS/assets/logos/LTT_LOGO_FX_POS.svg" width={198} height={38} alt="LATTICCE" />
         </Link>
         <p>Sistema creativo independiente</p>
         <div className={styles.footerNodes}>

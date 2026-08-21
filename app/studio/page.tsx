@@ -11,7 +11,7 @@ const services = [
     title: "Producción de video",
     description: "Piezas comerciales y editoriales que convierten una idea en una experiencia visible.",
     className: "service-video",
-    image: "/assets/images/studio/video.png",
+    image: "/UROBOROS/assets/images/studio/video.png",
   },
   {
     id: "photo",
@@ -19,7 +19,7 @@ const services = [
     title: "Sesión fotográfica",
     description: "Imágenes dirigidas con precisión para campañas, retrato, producto y contenido de marca.",
     className: "service-photo",
-    image: "/assets/images/studio/photo.png",
+    image: "/UROBOROS/assets/images/studio/photo.png",
   },
   {
     id: "videoclips",
@@ -27,7 +27,7 @@ const services = [
     title: "Videoclips",
     description: "Imágenes con pulso musical, dirección de arte y una identidad que se mueve.",
     className: "service-videoclips",
-    image: "/assets/images/studio/videoclips.png",
+    image: "/UROBOROS/assets/images/studio/videoclips.png",
   },
   {
     id: "events",
@@ -35,7 +35,7 @@ const services = [
     title: "Cobertura de eventos",
     description: "Documentación sensible del espacio, las personas y los momentos que construyen una experiencia.",
     className: "service-events",
-    image: "/assets/images/studio/events.png",
+    image: "/UROBOROS/assets/images/studio/events.png",
   },
   {
     id: "food",
@@ -43,7 +43,7 @@ const services = [
     title: "Food styling",
     description: "Producto, proceso, detalle e interacción para volver tangible el carácter de cada propuesta.",
     className: "service-food",
-    image: "/assets/images/studio/food.png",
+    image: "/UROBOROS/assets/images/studio/food.png",
   },
   {
     id: "architecture",
@@ -51,7 +51,7 @@ const services = [
     title: "Arquitectura",
     description: "Fotografía y video que revelan proporción, materialidad, recorrido y vida dentro del espacio.",
     className: "service-architecture",
-    image: "/assets/images/studio/architecture.png",
+    image: "/UROBOROS/assets/images/studio/architecture.png",
   },
 ];
 
@@ -289,7 +289,7 @@ export default function StudioPage() {
       <header className="site-header">
         <a className="brand-link" href="#inicio" aria-label="LATTICCE, ir al inicio">
           <Image
-            src="/assets/logos/LTT_LOGO_FX_POS.svg"
+            src="/UROBOROS/assets/logos/LTT_LOGO_FX_POS.svg"
             width={205}
             height={44}
             alt="LATTICCE"
@@ -332,7 +332,7 @@ export default function StudioPage() {
           <p className="eyebrow">Realidad dirigida</p>
           <h1 className="hero-studio-title">
             <Image
-              src="/assets/logos/LTT_LOGO_FX_POS_STUDIO.svg"
+              src="/UROBOROS/assets/logos/LTT_LOGO_FX_POS_STUDIO.svg"
               width={640}
               height={165}
               alt="LATTICCE Studio"
@@ -532,7 +532,7 @@ export default function StudioPage() {
 
         <footer className="site-footer section-pad">
           <a className="footer-brand" href="#inicio" aria-label="Volver al inicio">
-            <Image src="/assets/logos/LTT_LOGO_FX_POS.svg" width={190} height={42} alt="LATTICCE" loading="eager" />
+            <Image src="/UROBOROS/assets/logos/LTT_LOGO_FX_POS.svg" width={190} height={42} alt="LATTICCE" loading="eager" />
           </a>
           <p>Realidad, personas, procesos, espacios y luz.</p>
           <div className="footer-progress" aria-hidden="true">

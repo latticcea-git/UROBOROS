@@ -213,7 +213,7 @@ button { color: inherit; }
     radial-gradient(ellipse at 58% 49%, rgba(224, 220, 205, 0.13), transparent 18%),
     linear-gradient(115deg, transparent 19%, rgba(255, 255, 255, 0.07) 19.2%, transparent 19.5%),
     linear-gradient(150deg, transparent 58%, rgba(255, 255, 255, 0.08) 58.2%, transparent 58.5%),
-    url("/assets/images/studio-hero.png") center / cover no-repeat,
+    url("/UROBOROS/assets/images/studio-hero.png") center / cover no-repeat,
     #0b0b0b;
 }
 
@@ -446,7 +446,7 @@ button { color: inherit; }
 .process-heading h2 { margin-top: 1rem; font-size: clamp(3rem, 5vw, 5.5rem); }
 .process-list { border-top: 1px solid var(--line-strong); }
 .process-list article { position: relative; display: grid; grid-template-columns: 4rem 1fr 1.3fr; gap: 1rem; align-items: center; min-height: 8rem; overflow: hidden; border-bottom: 1px solid var(--line); }
-.process-list article:nth-child(2)::after { position: absolute; top: 0; right: 0; bottom: 0; width: 35%; z-index: 0; content: ""; opacity: .28; background: linear-gradient(90deg, var(--black), transparent), url("/assets/images/studio/planning.png") center / cover no-repeat; }
+.process-list article:nth-child(2)::after { position: absolute; top: 0; right: 0; bottom: 0; width: 35%; z-index: 0; content: ""; opacity: .28; background: linear-gradient(90deg, var(--black), transparent), url("/UROBOROS/assets/images/studio/planning.png") center / cover no-repeat; }
 .process-list article > * { position: relative; z-index: 1; }
 .process-list p { margin: 0; color: #777771; font-size: 0.62rem; }
 .process-list h3 { margin: 0; font-family: Georgia, "Times New Roman", serif; font-size: clamp(1.6rem, 2.6vw, 2.7rem); font-weight: 400; }
@@ -459,7 +459,7 @@ button { color: inherit; }
   overflow: hidden;
   background:
     linear-gradient(180deg, transparent 52%, rgba(3,3,3,.7)),
-    url("/assets/images/studio-project.png") center / cover no-repeat,
+    url("/UROBOROS/assets/images/studio-project.png") center / cover no-repeat,
     radial-gradient(circle at 52% 58%, #8b6947, #251b12 18%, #070707 55%);
 }
 .project-visual::after { position: absolute; inset: 7%; content: ""; border: 1px solid rgba(255,255,255,.15); }
