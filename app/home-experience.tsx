@@ -11,49 +11,30 @@ const nodes = [
     index: "01",
     name: "Agency",
     line: "Ideas que se vuelven sistemas.",
-    description: "Estrategia, campañas y experiencias digitales construidas como mundos coherentes.",
-    href: "/agency",
     tone: "agency",
   },
   {
     index: "02",
-    name: "Design",
-    line: "La materia encuentra su forma.",
-    description: "Identidad, objetos y lenguajes visuales donde concepto y ejecución son inseparables.",
-    href: "/design",
-    tone: "design",
+    name: "Studio",
+    line: "La realidad, dirigida.",
+    tone: "studio",
   },
   {
     index: "03",
-    name: "Studio",
-    line: "La realidad, dirigida.",
-    description: "Fotografía y video comercial construidos desde las personas, el producto y la luz.",
-    href: "/studio",
-    tone: "studio",
-    live: true,
-  },
-  {
-    index: "04",
     name: "Sound",
     line: "Lo invisible toma cuerpo.",
-    description: "Identidad sonora, música y diseño de audio que hacen perceptible una idea.",
-    href: "/sound",
     tone: "sound",
   },
   {
-    index: "05",
-    name: "Films",
-    line: "El tiempo sostiene la imagen.",
-    description: "Cine y narrativas audiovisuales donde paisaje, arquitectura y silencio construyen escala.",
-    href: "/films",
-    tone: "films",
+    index: "04",
+    name: "Design",
+    line: "La materia encuentra su forma.",
+    tone: "design",
   },
   {
-    index: "06",
+    index: "05",
     name: "Time",
     line: "Lo vivido deja una huella.",
-    description: "Memoria editorial, archivo y fotografía física para conservar lo que no debe desaparecer.",
-    href: "/time",
     tone: "time",
   },
 ] as const;
@@ -123,7 +104,7 @@ export default function HomeExperience() {
           { label: "SOUND", href: "#ecosistema" },
           { label: "DESIGN", href: "#ecosistema" },
           { label: "AGENCY", href: "#ecosistema" },
-          { label: "TIME", href: "#metodo" },
+          { label: "TIME", href: "#ecosistema" },
           { label: "BOOK", href: "#ecosistema" },
           { label: "BLOG", href: "#contacto" },
         ]}
@@ -161,7 +142,7 @@ export default function HomeExperience() {
             <a href="#ecosistema">Entrar al sistema <span aria-hidden="true">↓</span></a>
           </div>
         </div>
-        <span className={styles.heroIndex}>00 / 06</span>
+        <span className={styles.heroIndex}>00 / 05</span>
       </section>
 
       <section className={styles.manifesto} aria-labelledby="manifesto-title">
@@ -176,38 +157,18 @@ export default function HomeExperience() {
         </div>
       </section>
 
-      <section className={styles.ecosystem} id="ecosistema" aria-labelledby="ecosystem-title">
-        <div className={styles.ecosystemHeading} data-home-reveal>
-          <div className={styles.sectionLabel}><span>01</span><p>Ecosistema</p></div>
-          <h2 id="ecosystem-title">Seis nodos.<br />Una sola estructura.</h2>
-          <p>Cada disciplina abre una forma distinta de observar y producir. El sistema comienza donde el proyecto lo necesita.</p>
-        </div>
-
+      <section className={styles.ecosystem} id="ecosistema" aria-label="Nodos LATTICCE">
         <div className={styles.nodeList}>
-          {nodes.map((node) => {
-            const isLive = "live" in node && node.live;
-            const content = (
-              <>
+          {nodes.map((node) => (
+            <article className={`${styles.node} ${styles[node.tone]}`} key={node.name} data-home-reveal tabIndex={0}>
               <span className={styles.nodeIndex}>{node.index}</span>
               <div className={styles.nodeName}>
                 <h3>{node.name}</h3>
                 <p>{node.line}</p>
               </div>
-              <p className={styles.nodeDescription}>{node.description}</p>
-              <span className={styles.nodeStatus}>{isLive ? "Entrar" : "En desarrollo"} <i aria-hidden="true">{isLive ? "↗" : "·"}</i></span>
-              </>
-            );
-
-            return isLive ? (
-              <Link className={`${styles.node} ${styles[node.tone]} ${styles.nodeLive}`} href={node.href} key={node.name} data-home-reveal>
-                {content}
-              </Link>
-            ) : (
-              <article className={`${styles.node} ${styles[node.tone]} ${styles.nodePending}`} key={node.name} data-home-reveal>
-                {content}
-              </article>
-            );
-          })}
+              <span className={styles.nodePrompt} aria-hidden="true">Explorar <i>↗</i></span>
+            </article>
+          ))}
         </div>
       </section>
 
@@ -253,9 +214,7 @@ export default function HomeExperience() {
         </Link>
         <p>Sistema creativo independiente</p>
         <div className={styles.footerNodes}>
-          {nodes.map((node) => "live" in node && node.live
-            ? <Link href={node.href} key={node.name}>{node.name}</Link>
-            : <span key={node.name}>{node.name}</span>)}
+          {nodes.map((node) => <span key={node.name}>{node.name}</span>)}
         </div>
         <span>© 2026 LATTICCE</span>
       </footer>
