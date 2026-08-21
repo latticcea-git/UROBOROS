@@ -287,9 +287,9 @@ export default function StudioPage() {
   return (
     <main>
       <SiteMenu
-        homeHref="/UROBOROS/#inicio"
+        homeHref="/#inicio"
         links={[
-          { label: "HOME", href: "/UROBOROS/#inicio" },
+          { label: "HOME", href: "/#inicio" },
           { label: "STUDIO", href: "#inicio" },
           { label: "SOUND", href: "#servicios" },
           { label: "DESIGN", href: "#servicios" },

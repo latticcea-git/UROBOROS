@@ -119,7 +119,7 @@ export default function HomeExperience() {
         homeHref="#inicio"
         links={[
           { label: "HOME", href: "#inicio" },
-          { label: "STUDIO", href: "/UROBOROS/studio#inicio" },
+          { label: "STUDIO", href: "/studio#inicio" },
           { label: "SOUND", href: "#ecosistema" },
           { label: "DESIGN", href: "#ecosistema" },
           { label: "AGENCY", href: "#ecosistema" },
