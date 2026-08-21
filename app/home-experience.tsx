@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import styles from "./home.module.css";
+import SiteMenu from "./site-menu";
 
 const nodes = [
   {
@@ -65,7 +66,6 @@ const method = [
 ] as const;
 
 export default function HomeExperience() {
-  const [menuOpen, setMenuOpen] = useState(false);
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
@@ -93,17 +93,6 @@ export default function HomeExperience() {
   }, []);
 
   useEffect(() => {
-    if (!menuOpen) return;
-
-    const closeOnEscape = (event: KeyboardEvent) => {
-      if (event.key === "Escape") setMenuOpen(false);
-    };
-
-    window.addEventListener("keydown", closeOnEscape);
-    return () => window.removeEventListener("keydown", closeOnEscape);
-  }, [menuOpen]);
-
-  useEffect(() => {
     let frame = 0;
     const update = () => {
       frame = 0;
@@ -124,43 +113,21 @@ export default function HomeExperience() {
     };
   }, []);
 
-  const closeMenu = () => setMenuOpen(false);
-
   return (
     <main className={styles.homeRoot}>
-      <header className={styles.header}>
-        <Link className={styles.logo} href="#inicio" aria-label="LATTICCE, ir al inicio">
-          <Image src="/UROBOROS/assets/logos/LTT_LOGO_FX_POS.svg" width={246} height={47} alt="LATTICCE" priority />
-        </Link>
-
-        <nav className={styles.desktopNav} aria-label="Navegación principal">
-          <a href="#ecosistema">Ecosistema</a>
-          <a href="#metodo">Método</a>
-          <a href="#contacto">Contacto</a>
-        </nav>
-
-        <button
-          className={styles.menuButton}
-          type="button"
-          aria-label={menuOpen ? "Cerrar menú" : "Abrir menú"}
-          aria-expanded={menuOpen}
-          aria-controls="latticce-menu"
-          onClick={() => setMenuOpen((open) => !open)}
-        >
-          <span>{menuOpen ? "Cerrar" : "Menú"}</span>
-          <i aria-hidden="true">{menuOpen ? "×" : "+"}</i>
-        </button>
-
-        {menuOpen && (
-          <div className={styles.menuPanel} id="latticce-menu">
-            <div className={styles.menuTopline}><span>Índice</span><span>LAT / 00</span></div>
-            <a href="#inicio" onClick={closeMenu}><span>00</span>Inicio</a>
-            <a href="#ecosistema" onClick={closeMenu}><span>01</span>Ecosistema</a>
-            <a href="#metodo" onClick={closeMenu}><span>02</span>Método</a>
-            <a href="#contacto" onClick={closeMenu}><span>03</span>Contacto</a>
-          </div>
-        )}
-      </header>
+      <SiteMenu
+        homeHref="#inicio"
+        links={[
+          { label: "HOME", href: "#inicio" },
+          { label: "STUDIO", href: "/UROBOROS/studio#inicio" },
+          { label: "SOUND", href: "#ecosistema" },
+          { label: "DESIGN", href: "#ecosistema" },
+          { label: "AGENCY", href: "#ecosistema" },
+          { label: "TIME", href: "#metodo" },
+          { label: "PORTFOLIO", href: "#ecosistema" },
+          { label: "BLOG", href: "#contacto" },
+        ]}
+      />
 
       <div className={styles.progress} aria-hidden="true">
         <i style={{ transform: `scaleX(${progress})` }} />

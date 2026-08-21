@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import SiteMenu from "../site-menu";
 import { FormEvent, useEffect, useMemo, useRef, useState } from "react";
 import type { CSSProperties } from "react";
 
@@ -87,7 +88,6 @@ const initialQuote: QuoteData = {
 };
 
 export default function StudioPage() {
-  const [menuOpen, setMenuOpen] = useState(false);
   const [reelOpen, setReelOpen] = useState(false);
   const [activeService, setActiveService] = useState<(typeof services)[number] | null>(null);
   const [step, setStep] = useState(1);
@@ -286,38 +286,19 @@ export default function StudioPage() {
 
   return (
     <main>
-      <header className="site-header">
-        <a className="brand-link" href="#inicio" aria-label="LATTICCE, ir al inicio">
-          <Image
-            src="/UROBOROS/assets/logos/LTT_LOGO_FX_POS.svg"
-            width={205}
-            height={44}
-            alt="LATTICCE"
-            preload
-          />
-        </a>
-
-        <button
-          className="menu-button"
-          type="button"
-          aria-label={menuOpen ? "Cerrar menú" : "Abrir menú"}
-          aria-expanded={menuOpen}
-          aria-controls="mobile-menu"
-          onClick={() => setMenuOpen((value) => !value)}
-        >
-          <span>Menú</span><i aria-hidden="true">{menuOpen ? "×" : "+"}</i>
-        </button>
-
-        {menuOpen && (
-          <div id="mobile-menu" className="mobile-menu">
-            <a href="#inicio" onClick={() => setMenuOpen(false)}>Inicio</a>
-            <a href="#servicios" onClick={() => setMenuOpen(false)}>Servicios</a>
-            <a href="#proceso" onClick={() => setMenuOpen(false)}>Proceso</a>
-            <a href="#proyectos" onClick={() => setMenuOpen(false)}>Proyectos</a>
-            <a href="#cotizar" onClick={() => setMenuOpen(false)}>Cotizar</a>
-          </div>
-        )}
-      </header>
+      <SiteMenu
+        homeHref="/UROBOROS/#inicio"
+        links={[
+          { label: "HOME", href: "/UROBOROS/#inicio" },
+          { label: "STUDIO", href: "#inicio" },
+          { label: "SOUND", href: "#servicios" },
+          { label: "DESIGN", href: "#servicios" },
+          { label: "AGENCY", href: "#proceso" },
+          { label: "TIME", href: "#proceso" },
+          { label: "PORTFOLIO", href: "#proyectos" },
+          { label: "BLOG", href: "#cotizar" },
+        ]}
+      />
 
       <div className="site-horizontal" ref={siteHorizontalSectionRef}>
         <div className="site-horizontal-sticky">
