@@ -139,6 +139,16 @@ export default function HomeExperience() {
           <div className={styles.aperture} />
           <div className={styles.beam} />
         </div>
+        <div className={styles.heroObelisk} aria-hidden="true">
+          <Image
+            src="/UROBOROS/assets/images/obelisco.png"
+            width={939}
+            height={1675}
+            alt=""
+            priority
+            sizes="(max-width: 620px) 46vw, (max-width: 900px) 38vw, 30vw"
+          />
+        </div>
         <div className={styles.heroMeta}>
           <span>Creative system</span>
           <span>Mexico · 19.4326° N</span>

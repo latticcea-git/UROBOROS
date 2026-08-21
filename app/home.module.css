@@ -99,6 +99,17 @@
   background: linear-gradient(90deg, rgba(3,3,3,.98) 0, rgba(3,3,3,.72) 34%, transparent 67%), linear-gradient(0deg, rgba(3,3,3,.92), transparent 45%);
 }
 .heroScene { position: absolute; inset: 0; z-index: -2; perspective: 1000px; }
+.heroObelisk {
+  position: absolute;
+  right: clamp(1rem, 5vw, 6.25rem);
+  bottom: clamp(-2.5rem, -3vw, -1rem);
+  z-index: 1;
+  width: clamp(15rem, 29vw, 31rem);
+  pointer-events: none;
+  transform-origin: 54% 72%;
+  animation: obeliskEnter 1.35s cubic-bezier(.2,.75,.2,1) .16s both, obeliskFloat 7.5s ease-in-out 1.55s infinite;
+}
+.heroObelisk img { display: block; width: 100%; height: auto; filter: drop-shadow(0 2rem 3.5rem rgba(0,0,0,.48)); }
 .monolith {
   position: absolute;
   top: 7%;
@@ -114,7 +125,7 @@
 .aperture { position: absolute; top: 26%; right: 18%; width: min(15vw, 12rem); aspect-ratio: 1; border: 1px solid rgba(255,255,255,.22); border-radius: 50%; box-shadow: 0 0 7rem rgba(232,238,240,.16), inset 0 0 3rem rgba(255,255,255,.08); }
 .beam { position: absolute; top: 17%; right: 22%; width: 1px; height: 74%; background: linear-gradient(transparent, rgba(255,255,255,.7), transparent); box-shadow: 0 0 4rem 1rem rgba(213,225,228,.16); transform: rotate(29deg); transform-origin: top; }
 .heroMeta { position: absolute; top: 7.5rem; right: var(--home-pad); display: flex; gap: 2.5rem; color: #696a66; }
-.heroCopy { position: relative; width: min(69rem, 86vw); }
+.heroCopy { position: relative; z-index: 2; width: min(69rem, 86vw); }
 .kicker { color: #a5a6a1; font-size: .62rem; font-weight: 600; letter-spacing: .17em; text-transform: uppercase; }
 .hero h1 {
   max-width: 10.5ch;
@@ -131,6 +142,8 @@
 .heroFoot a { justify-self: start; padding-bottom: .45rem; border-bottom: 1px solid var(--home-line-strong); font-size: .61rem; letter-spacing: .13em; text-transform: uppercase; }
 .heroFoot a span { display: inline-block; margin-left: 1.3rem; }
 .heroIndex { position: absolute; right: var(--home-pad); bottom: 3.5rem; color: #646561; }
+@keyframes obeliskEnter { from { opacity: 0; transform: translate3d(1.8rem, 2rem, 0) scale(.93); } to { opacity: 1; transform: translate3d(0, 0, 0) scale(1); } }
+@keyframes obeliskFloat { 0%, 100% { transform: translate3d(0, 0, 0) rotate(-.35deg); } 50% { transform: translate3d(-.6rem, -1rem, 0) rotate(.4deg); } }
 
 .manifesto { display: grid; grid-template-columns: .28fr 1fr; gap: 7vw; padding: clamp(7rem, 13vw, 14rem) var(--home-pad); }
 .sectionLabel { display: grid; grid-template-columns: 2.4rem 1fr; height: fit-content; color: #747570; }
@@ -223,6 +236,7 @@
   .heroMeta { display: none; }
   .hero::after { background: linear-gradient(90deg, rgba(3,3,3,.95), rgba(3,3,3,.3)), linear-gradient(0deg, rgba(3,3,3,.95), transparent 52%); }
   .monolith { right: -6%; width: 56vw; opacity: .85; }
+  .heroObelisk { right: clamp(.25rem, 2vw, 1.5rem); bottom: -1.5rem; width: clamp(13rem, 37vw, 20rem); }
   .hero h1 { font-size: clamp(4rem, 13vw, 7rem); }
   .manifesto, .contact { grid-template-columns: 1fr; gap: 4rem; }
   .ecosystemHeading { grid-template-columns: 1fr 2fr; }
@@ -242,6 +256,7 @@
   .heroFoot { grid-template-columns: 1fr; gap: 1.5rem; }
   .heroIndex { display: none; }
   .monolith { top: 13%; right: -28%; width: 89vw; height: 63%; opacity: .65; }
+  .heroObelisk { right: -.8rem; bottom: -.5rem; width: min(15.5rem, 47vw); opacity: .92; }
   .aperture { right: 10%; width: 34vw; }
   .manifestoDetail { grid-template-columns: 1fr; gap: 1rem; }
   .ecosystemHeading { grid-template-columns: 1fr; }
@@ -261,4 +276,5 @@
 
 @media (prefers-reduced-motion: reduce) {
   .homeRoot *, .homeRoot *::before, .homeRoot *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; }
+  .heroObelisk { animation: none; }
 }
