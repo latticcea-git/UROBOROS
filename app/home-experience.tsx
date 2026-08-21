@@ -185,7 +185,11 @@ export default function HomeExperience() {
         </div>
         <div className={styles.methodIntro} data-home-reveal>
           <div className={styles.sectionLabel}><span>02</span><p>Método</p></div>
-          <h2 id="method-title">Pensar como sistema.<br /><em>Trabajar con precisión.</em></h2>
+          <h2 id="method-title">
+            <span className={styles.methodTitleSquare}>Pensar</span>
+            <span className={styles.methodTitleConnector}>como</span>
+            <em>Sistema.</em>
+          </h2>
         </div>
         <div className={styles.methodList}>
           {method.map(([index, name, description]) => (
