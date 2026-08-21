@@ -101,10 +101,10 @@
 .heroScene { position: absolute; inset: 0; z-index: -2; perspective: 1000px; }
 .heroObelisk {
   position: absolute;
-  right: clamp(1rem, 5vw, 6.25rem);
+  right: clamp(3rem, 12vw, 14rem);
   bottom: clamp(-2.5rem, -3vw, -1rem);
   z-index: 1;
-  width: clamp(15rem, 29vw, 31rem);
+  width: clamp(19rem, 38vw, 39rem);
   pointer-events: none;
   transform-origin: 54% 72%;
   animation: obeliskEnter 1.35s cubic-bezier(.2,.75,.2,1) .16s both, obeliskFloat 7.5s ease-in-out 1.55s infinite;
@@ -236,7 +236,7 @@
   .heroMeta { display: none; }
   .hero::after { background: linear-gradient(90deg, rgba(3,3,3,.95), rgba(3,3,3,.3)), linear-gradient(0deg, rgba(3,3,3,.95), transparent 52%); }
   .monolith { right: -6%; width: 56vw; opacity: .85; }
-  .heroObelisk { right: clamp(.25rem, 2vw, 1.5rem); bottom: -1.5rem; width: clamp(13rem, 37vw, 20rem); }
+  .heroObelisk { right: clamp(2rem, 8vw, 5rem); bottom: -1.5rem; width: clamp(16rem, 47vw, 25rem); }
   .hero h1 { font-size: clamp(4rem, 13vw, 7rem); }
   .manifesto, .contact { grid-template-columns: 1fr; gap: 4rem; }
   .ecosystemHeading { grid-template-columns: 1fr 2fr; }
@@ -256,7 +256,7 @@
   .heroFoot { grid-template-columns: 1fr; gap: 1.5rem; }
   .heroIndex { display: none; }
   .monolith { top: 13%; right: -28%; width: 89vw; height: 63%; opacity: .65; }
-  .heroObelisk { right: -.8rem; bottom: -.5rem; width: min(15.5rem, 47vw); opacity: .92; }
+  .heroObelisk { right: 8vw; bottom: -.5rem; width: min(18rem, 58vw); opacity: .96; }
   .aperture { right: 10%; width: 34vw; }
   .manifestoDetail { grid-template-columns: 1fr; gap: 1rem; }
   .ecosystemHeading { grid-template-columns: 1fr; }
