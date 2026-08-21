@@ -6,11 +6,24 @@ privada para clientes y colaboradores.
 
 ## Estado
 
-- Etapa: fundación
+- Etapa: MVP público en construcción
 - Versión: `0.1.1`
 - Alcance inmediato: definir y construir el MVP de LATTICCE.com
+- Primer nodo en desarrollo: página independiente de LATTICCE Studio en `/studio`
 
-La primera prueba pública es una página estática `Hola mundo` en `index.html`.
+La primera experiencia funcional incluye dirección visual, servicios, proceso,
+caso provisional y un cotizador que prepara la solicitud para WhatsApp. El
+contenido audiovisual sigue marcado como borrador hasta sustituirlo por assets
+definitivos.
+
+## Desarrollo local
+
+```bash
+npm install
+npm run dev
+```
+
+La página de Studio se abre en `http://localhost:3000/studio`.
 
 ## Arquitectura aprobada como punto de partida
 

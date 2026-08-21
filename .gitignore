@@ -1,4 +1,5 @@
 node_modules/
+.pnpm-store/
 .next/
 .turbo/
 coverage/
@@ -7,3 +8,4 @@ coverage/
 !.env.example
 .DS_Store
 *.log
+LATTICCE-site-final-*.zip
