@@ -180,6 +180,9 @@ export default function HomeExperience() {
       </section>
 
       <section className={styles.method} id="metodo" aria-labelledby="method-title">
+        <div className={styles.luminautta} aria-hidden="true">
+          <Image src="/UROBOROS/assets/images/luminautta.png" width={1024} height={1536} alt="" sizes="(max-width: 620px) 95vw, (max-width: 900px) 70vw, 34vw" />
+        </div>
         <div className={styles.methodIntro} data-home-reveal>
           <div className={styles.sectionLabel}><span>02</span><p>Método</p></div>
           <h2 id="method-title">Pensar como sistema.<br /><em>Trabajar con precisión.</em></h2>

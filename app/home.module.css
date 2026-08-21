@@ -211,7 +211,10 @@
 .interlude h2 { position: relative; max-width: none; margin: 1.5rem 0; font-size: clamp(4.2rem, 10vw, 11rem); }
 .interlude > span { color: #62635f; font-size: .55rem; letter-spacing: .15em; text-transform: uppercase; }
 
-.method { display: grid; grid-template-columns: .85fr 1fr; gap: 8vw; padding: clamp(7rem, 12vw, 13rem) var(--home-pad); border-top: 1px solid var(--home-line); }
+.method { position: relative; isolation: isolate; display: grid; grid-template-columns: .85fr 1fr; gap: 8vw; overflow: hidden; padding: clamp(7rem, 12vw, 13rem) var(--home-pad); border-top: 1px solid var(--home-line); }
+.luminautta { position: absolute; top: 50%; left: clamp(-8rem, -5vw, -2rem); z-index: -1; width: clamp(19rem, 34vw, 36rem); opacity: .54; pointer-events: none; transform: translateY(-48%); }
+.luminautta img { display: block; width: 100%; height: auto; mix-blend-mode: screen; filter: contrast(1.08) brightness(.9) drop-shadow(0 1.5rem 3rem rgba(255,255,255,.14)); transform-origin: 42% 52%; }
+.methodIntro, .methodList { position: relative; z-index: 1; }
 .methodIntro h2 { margin-top: 4rem; font-size: clamp(3.5rem, 5.4vw, 6rem); }
 .methodList { border-top: 1px solid var(--home-line-strong); }
 .methodList article { display: grid; grid-template-columns: 3rem .65fr 1fr; gap: 2rem; align-items: center; min-height: 9.5rem; border-bottom: 1px solid var(--home-line); }
@@ -248,6 +251,7 @@
   .nodeList { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .node { min-height: clamp(17rem, 43vw, 23rem); }
   .method { grid-template-columns: 1fr; }
+  .luminautta { top: 5rem; left: -7rem; width: min(30rem, 70vw); opacity: .32; transform: none; }
   .footer { grid-template-columns: 1fr auto; }
   .footer > p, .footerNodes { display: none; }
 }
@@ -269,6 +273,7 @@
   .node::before { opacity: .16; transform: scale(1); }
   .interlude { min-height: 78svh; }
   .interludeLight { width: 45vw; }
+  .luminautta { top: 5.5rem; left: -8rem; width: min(27rem, 95vw); opacity: .25; }
   .methodList article { grid-template-columns: 2rem 1fr; gap: 1rem; padding: 1.5rem 0; }
   .methodList p { grid-column: 2; }
   .contact::after { right: -30%; width: 80vw; }
