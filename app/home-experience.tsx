@@ -179,17 +179,9 @@ export default function HomeExperience() {
         <span>LATTICCE / 2026</span>
       </section>
 
-      <section className={styles.method} id="metodo" aria-labelledby="method-title">
+      <section className={styles.method} id="metodo" aria-label="Método">
         <div className={styles.luminautta} aria-hidden="true">
           <Image src="/UROBOROS/assets/images/luminautta.png" width={1024} height={1536} alt="" sizes="(max-width: 620px) 95vw, (max-width: 900px) 70vw, 34vw" />
-        </div>
-        <div className={styles.methodIntro} data-home-reveal>
-          <div className={styles.sectionLabel}><span>02</span><p>Método</p></div>
-          <h2 id="method-title">
-            <span className={styles.methodTitleSquare}>Pensar</span>
-            <span className={styles.methodTitleConnector}>como</span>
-            <em>Sistema.</em>
-          </h2>
         </div>
         <div className={styles.methodList}>
           {method.map(([index, name, description]) => (
