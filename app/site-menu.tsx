@@ -15,9 +15,15 @@ export default function SiteMenu({ links, homeHref }: SiteMenuProps) {
 
   return (
     <header className="global-menu-header">
-      <Link className="global-menu-logo" href={homeHref} onClick={close} aria-label="LATTICCE, ir al inicio">
-        <Image src="/UROBOROS/assets/logos/LTT_LOGO_FX_POS.svg" width={246} height={47} alt="LATTICCE" priority />
-      </Link>
+      {homeHref.startsWith("/UROBOROS/") ? (
+        <a className="global-menu-logo" href={homeHref} onClick={close} aria-label="LATTICCE, ir al inicio">
+          <Image src="/UROBOROS/assets/logos/LTT_LOGO_FX_POS.svg" width={246} height={47} alt="LATTICCE" priority />
+        </a>
+      ) : (
+        <Link className="global-menu-logo" href={homeHref} onClick={close} aria-label="LATTICCE, ir al inicio">
+          <Image src="/UROBOROS/assets/logos/LTT_LOGO_FX_POS.svg" width={246} height={47} alt="LATTICCE" priority />
+        </Link>
+      )}
       <button
         className="global-menu-trigger"
         type="button"

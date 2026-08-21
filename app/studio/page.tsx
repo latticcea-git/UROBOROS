@@ -287,7 +287,7 @@ export default function StudioPage() {
   return (
     <main>
       <SiteMenu
-        homeHref="/#inicio"
+        homeHref="/UROBOROS/#inicio"
         links={[
           { label: "HOME", href: "/#inicio" },
           { label: "STUDIO", href: "#inicio" },
@@ -512,7 +512,7 @@ export default function StudioPage() {
         </div>
 
         <footer className="site-footer section-pad">
-          <a className="footer-brand" href="#inicio" aria-label="Volver al inicio">
+          <a className="footer-brand" href="/UROBOROS/#inicio" aria-label="Volver al inicio">
             <Image src="/UROBOROS/assets/logos/LTT_LOGO_FX_POS.svg" width={190} height={42} alt="LATTICCE" loading="eager" />
           </a>
           <p>Realidad, personas, procesos, espacios y luz.</p>
