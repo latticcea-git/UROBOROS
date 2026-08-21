@@ -157,6 +157,7 @@
   letter-spacing: -.06em;
   line-height: .9;
 }
+.manifestoCopy h2 { max-width: 18ch; font-size: clamp(2.8rem, 5.8vw, 6.7rem); }
 .manifestoCopy h2 em, .methodIntro h2 em, .contact h2 em, .interlude h2 em { color: #757671; font-weight: 400; }
 .manifestoDetail { display: grid; grid-template-columns: 1fr auto; gap: 5rem; width: min(53rem, 100%); margin: 4rem 0 0 auto; padding-top: 1.2rem; border-top: 1px solid var(--home-line); }
 .manifestoDetail p { max-width: 34rem; margin: 0; color: #999a95; font-size: .84rem; }
