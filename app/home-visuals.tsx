@@ -158,7 +158,7 @@ export function LightNucleus({ active }: ActiveVisualProps) {
     if (!canvas || !context) return;
 
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const pointer = { x: 0.5, y: 0.5, energy: 0 };
+    const pointer = { x: 0.5, y: 0.5, targetX: 0.5, targetY: 0.5, energy: 0, inside: false };
     let frame = 0;
     let lastX = window.innerWidth / 2;
     let lastY = window.innerHeight / 2;
@@ -168,9 +168,13 @@ export function LightNucleus({ active }: ActiveVisualProps) {
       const rect = canvas.getBoundingClientRect();
       const now = performance.now();
       const elapsed = Math.max(16, now - lastTime);
-      pointer.x = (event.clientX - rect.left) / Math.max(1, rect.width);
-      pointer.y = (event.clientY - rect.top) / Math.max(1, rect.height);
-      pointer.energy = Math.min(1, pointer.energy + Math.hypot(event.clientX - lastX, event.clientY - lastY) / elapsed * 0.2);
+      const localX = (event.clientX - rect.left) / Math.max(1, rect.width);
+      const localY = (event.clientY - rect.top) / Math.max(1, rect.height);
+      pointer.inside = localX >= 0 && localX <= 1 && localY >= 0 && localY <= 1;
+      pointer.targetX = Math.max(0, Math.min(1, localX));
+      pointer.targetY = Math.max(0, Math.min(1, localY));
+      const velocity = Math.hypot(event.clientX - lastX, event.clientY - lastY) / elapsed;
+      pointer.energy = Math.min(1, pointer.energy + velocity * (pointer.inside ? 0.32 : 0.08));
       lastX = event.clientX;
       lastY = event.clientY;
       lastTime = now;
@@ -178,48 +182,131 @@ export function LightNucleus({ active }: ActiveVisualProps) {
 
     const draw = (now: number) => {
       const { width, height } = sizeCanvas(canvas, context);
-      const time = reduceMotion ? 1 : now * 0.00042;
-      pointer.energy *= 0.95;
-      const pulse = 0.96 + Math.sin(time * (3.2 + pointer.energy * 8)) * (0.035 + pointer.energy * 0.065);
-      const cx = width * (0.5 + (pointer.x - 0.5) * 0.055);
-      const cy = height * (0.5 + (pointer.y - 0.5) * 0.055);
-      const radius = Math.min(width, height) * 0.27 * pulse;
+      const time = reduceMotion ? 1.4 : now * 0.00034;
+      pointer.x += (pointer.targetX - pointer.x) * 0.075;
+      pointer.y += (pointer.targetY - pointer.y) * 0.075;
+      pointer.energy *= 0.958;
+
+      const pulse = 1 + Math.sin(time * (4.1 + pointer.energy * 5.5)) * (0.022 + pointer.energy * 0.045);
+      const cx = width * (0.5 + (pointer.x - 0.5) * 0.042);
+      const cy = height * (0.5 + (pointer.y - 0.5) * 0.042);
+      const radius = Math.min(width, height) * 0.335 * pulse;
+      const pointerAngle = Math.atan2(pointer.y - 0.5, pointer.x - 0.5);
+
+      const angularDistance = (a: number, b: number) => {
+        const delta = Math.atan2(Math.sin(a - b), Math.cos(a - b));
+        return Math.abs(delta);
+      };
+
+      const membraneRadius = (angle: number, layer = 0) => {
+        const breathing =
+          Math.sin(angle * 2 + time * 1.6) * 0.044 +
+          Math.cos(angle * 3 - time * 1.12) * 0.031 +
+          Math.sin(angle * 5 + time * 0.74) * 0.018;
+        const agitation = Math.sin(angle * 9 - time * 4.8) * pointer.energy * 0.02;
+        const tug = pointer.inside
+          ? Math.exp(-Math.pow(angularDistance(angle, pointerAngle) / 0.52, 2)) * (0.032 + pointer.energy * 0.08)
+          : 0;
+        return radius * (1 + breathing + agitation + tug + layer);
+      };
+
+      const membranePath = (layer = 0) => {
+        const path = new Path2D();
+        const segments = 180;
+        for (let segment = 0; segment <= segments; segment += 1) {
+          const angle = (segment / segments) * Math.PI * 2;
+          const r = membraneRadius(angle, layer);
+          const x = Math.cos(angle) * r * 1.035;
+          const y = Math.sin(angle) * r * 0.94;
+          if (segment === 0) path.moveTo(x, y);
+          else path.lineTo(x, y);
+        }
+        path.closePath();
+        return path;
+      };
 
       context.clearRect(0, 0, width, height);
       context.save();
       context.translate(cx, cy);
       context.globalCompositeOperation = "screen";
 
-      for (let fiber = 0; fiber < 84; fiber += 1) {
-        const phase = fiber * 0.77;
-        const tilt = Math.sin(fiber * 1.91) * 0.46;
-        const path = new Path2D();
-        const segments = 58;
+      const halo = context.createRadialGradient(0, 0, radius * 0.5, 0, 0, radius * 1.42);
+      halo.addColorStop(0, "rgba(118,130,129,.025)");
+      halo.addColorStop(0.72, `rgba(176,194,193,${0.025 + pointer.energy * 0.025})`);
+      halo.addColorStop(1, "rgba(0,0,0,0)");
+      context.fillStyle = halo;
+      context.fillRect(-width / 2, -height / 2, width, height);
 
-        for (let segment = 0; segment <= segments; segment += 1) {
-          const angle = (segment / segments) * Math.PI * 2;
-          const distortion =
-            Math.sin(angle * 3 + phase + time * (1.1 + pointer.energy * 2.8)) * 0.12 +
-            Math.cos(angle * 5 - phase * 0.4 - time * 0.8) * 0.055;
-          const r = radius * (0.72 + distortion + fiber / 84 * 0.28);
-          const x = Math.cos(angle + phase * 0.018) * r;
-          const y = Math.sin(angle) * r * (0.6 + tilt * 0.2);
-          if (segment === 0) path.moveTo(x, y);
-          else path.lineTo(x, y);
-        }
-        path.closePath();
-        context.strokeStyle = `rgba(220, 226, 223, ${0.038 + (fiber % 9 === 0 ? 0.095 : 0.026) + pointer.energy * 0.045})`;
-        context.lineWidth = fiber % 9 === 0 ? 1.1 : 0.45;
-        context.stroke(path);
+      const body = membranePath();
+      context.save();
+      context.clip(body);
+
+      const interior = context.createRadialGradient(
+        radius * (pointer.x - 0.5) * 0.16,
+        radius * (pointer.y - 0.5) * 0.16,
+        radius * 0.04,
+        0,
+        0,
+        radius * 1.12,
+      );
+      interior.addColorStop(0, `rgba(228,235,232,${0.15 + pointer.energy * 0.08})`);
+      interior.addColorStop(0.46, "rgba(69,78,78,.095)");
+      interior.addColorStop(0.76, "rgba(24,29,30,.16)");
+      interior.addColorStop(1, "rgba(205,215,211,.04)");
+      context.fillStyle = interior;
+      context.fillRect(-radius * 1.2, -radius * 1.2, radius * 2.4, radius * 2.4);
+
+      for (let fiber = 0; fiber < 72; fiber += 1) {
+        const progress = fiber / 71;
+        const y = (progress - 0.5) * radius * 1.75;
+        const halfWidth = Math.sqrt(Math.max(0, 1 - Math.pow(y / (radius * 0.94), 2))) * radius * 1.02;
+        const drift = Math.sin(fiber * 1.73 + time * 1.5) * radius * 0.035;
+        const bend = Math.cos(fiber * 0.91 - time * 1.1) * radius * (0.055 + pointer.energy * 0.04);
+        const fiberPath = new Path2D();
+        fiberPath.moveTo(-halfWidth, y + drift);
+        fiberPath.bezierCurveTo(
+          -halfWidth * 0.32,
+          y - bend,
+          halfWidth * 0.28,
+          y + bend + (pointer.y - 0.5) * radius * 0.08,
+          halfWidth,
+          y - drift,
+        );
+        context.strokeStyle = `rgba(${fiber % 7 === 0 ? "164,184,190" : "205,214,211"},${0.023 + (fiber % 8 === 0 ? 0.063 : 0.014) + pointer.energy * 0.02})`;
+        context.lineWidth = fiber % 8 === 0 ? 0.9 : 0.42;
+        context.stroke(fiberPath);
       }
 
-      const core = context.createRadialGradient(0, 0, 0, 0, 0, radius * 1.6);
-      core.addColorStop(0, `rgba(245,248,246,${0.24 + pointer.energy * 0.14})`);
-      core.addColorStop(0.18, "rgba(177,185,181,.11)");
-      core.addColorStop(0.48, "rgba(91,99,96,.03)");
-      core.addColorStop(1, "rgba(0,0,0,0)");
-      context.fillStyle = core;
-      context.fillRect(-width / 2, -height / 2, width, height);
+      for (let ray = 0; ray < 34; ray += 1) {
+        const angle = (ray / 34) * Math.PI * 2 + Math.sin(ray * 2.4) * 0.08;
+        const rayPath = new Path2D();
+        rayPath.moveTo(Math.cos(angle + 0.18) * radius * 0.1, Math.sin(angle + 0.18) * radius * 0.08);
+        rayPath.quadraticCurveTo(
+          Math.cos(angle + time * 0.3) * radius * 0.44,
+          Math.sin(angle - time * 0.2) * radius * 0.38,
+          Math.cos(angle) * radius,
+          Math.sin(angle) * radius * 0.92,
+        );
+        context.strokeStyle = `rgba(221,226,223,${0.03 + pointer.energy * 0.022})`;
+        context.lineWidth = 0.42;
+        context.stroke(rayPath);
+      }
+      context.restore();
+
+      for (let rim = 9; rim >= 0; rim -= 1) {
+        const rimPath = membranePath((rim - 4.5) * 0.0019);
+        const alpha = 0.028 + (9 - rim) * 0.012 + pointer.energy * 0.012;
+        const color = rim % 3 === 0 ? `158,180,190` : rim % 3 === 1 ? `220,203,178` : `222,229,226`;
+        context.strokeStyle = `rgba(${color},${alpha})`;
+        context.lineWidth = rim === 0 ? 1.15 : 0.5;
+        context.stroke(rimPath);
+      }
+
+      context.shadowColor = `rgba(218,229,225,${0.18 + pointer.energy * 0.12})`;
+      context.shadowBlur = 20 + pointer.energy * 18;
+      context.strokeStyle = `rgba(236,240,237,${0.34 + pointer.energy * 0.12})`;
+      context.lineWidth = 0.75;
+      context.stroke(body);
       context.restore();
 
       if (active && !reduceMotion && document.visibilityState === "visible") {

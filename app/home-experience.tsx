@@ -251,7 +251,7 @@ export default function HomeExperience() {
         <div className={styles.manifestoLayout}>
           <div className={styles.manifestoText}>
             <p className={styles.kicker}>Una red, no una colección</p>
-            <h2 id="manifesto-title">Manifiesto</h2>
+            <h2 id="manifesto-title">MANIFIESTTO</h2>
             <ManifestoLoop active={activeScene === 1} />
           </div>
           <div className={styles.nucleusWrap} data-local-interactive="true">
