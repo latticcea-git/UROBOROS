@@ -163,6 +163,11 @@ export function LightNucleus({ active }: ActiveVisualProps) {
     let lastX = window.innerWidth / 2;
     let lastY = window.innerHeight / 2;
     let lastTime = performance.now();
+    let previousFrameTime = performance.now();
+    let motionTime = 1.4;
+    let pulsePhase = 0;
+    let smoothEnergy = 0;
+    let pointerPresence = 0;
 
     const onPointerMove = (event: PointerEvent) => {
       const rect = canvas.getBoundingClientRect();
@@ -171,10 +176,10 @@ export function LightNucleus({ active }: ActiveVisualProps) {
       const localX = (event.clientX - rect.left) / Math.max(1, rect.width);
       const localY = (event.clientY - rect.top) / Math.max(1, rect.height);
       pointer.inside = localX >= 0 && localX <= 1 && localY >= 0 && localY <= 1;
-      pointer.targetX = Math.max(0, Math.min(1, localX));
-      pointer.targetY = Math.max(0, Math.min(1, localY));
+      pointer.targetX = pointer.inside ? Math.max(0, Math.min(1, localX)) : 0.5;
+      pointer.targetY = pointer.inside ? Math.max(0, Math.min(1, localY)) : 0.5;
       const velocity = Math.hypot(event.clientX - lastX, event.clientY - lastY) / elapsed;
-      pointer.energy = Math.min(1, pointer.energy + velocity * (pointer.inside ? 0.32 : 0.08));
+      if (pointer.inside) pointer.energy = Math.min(1, pointer.energy + velocity * 0.22);
       lastX = event.clientX;
       lastY = event.clientY;
       lastTime = now;
@@ -182,12 +187,18 @@ export function LightNucleus({ active }: ActiveVisualProps) {
 
     const draw = (now: number) => {
       const { width, height } = sizeCanvas(canvas, context);
-      const time = reduceMotion ? 1.4 : now * 0.00034;
-      pointer.x += (pointer.targetX - pointer.x) * 0.075;
-      pointer.y += (pointer.targetY - pointer.y) * 0.075;
-      pointer.energy *= 0.958;
+      const deltaSeconds = reduceMotion ? 0 : Math.min(0.05, Math.max(0, (now - previousFrameTime) / 1000));
+      previousFrameTime = now;
+      pointer.energy *= Math.pow(0.958, deltaSeconds * 60);
+      smoothEnergy += (pointer.energy - smoothEnergy) * Math.min(1, deltaSeconds * 7);
+      pointerPresence += ((pointer.inside ? 1 : 0) - pointerPresence) * Math.min(1, deltaSeconds * 6);
+      pointer.x += (pointer.targetX - pointer.x) * Math.min(1, deltaSeconds * 5.2);
+      pointer.y += (pointer.targetY - pointer.y) * Math.min(1, deltaSeconds * 5.2);
+      motionTime += deltaSeconds * (0.34 + smoothEnergy * 0.12);
+      pulsePhase += deltaSeconds * (1.35 + smoothEnergy * 2.15);
 
-      const pulse = 1 + Math.sin(time * (4.1 + pointer.energy * 5.5)) * (0.022 + pointer.energy * 0.045);
+      const time = reduceMotion ? 1.4 : motionTime;
+      const pulse = 1 + Math.sin(pulsePhase) * (0.018 + smoothEnergy * 0.028);
       const cx = width * (0.5 + (pointer.x - 0.5) * 0.042);
       const cy = height * (0.5 + (pointer.y - 0.5) * 0.042);
       const radius = Math.min(width, height) * 0.335 * pulse;
@@ -203,16 +214,17 @@ export function LightNucleus({ active }: ActiveVisualProps) {
           Math.sin(angle * 2 + time * 1.6) * 0.044 +
           Math.cos(angle * 3 - time * 1.12) * 0.031 +
           Math.sin(angle * 5 + time * 0.74) * 0.018;
-        const agitation = Math.sin(angle * 9 - time * 4.8) * pointer.energy * 0.02;
-        const tug = pointer.inside
-          ? Math.exp(-Math.pow(angularDistance(angle, pointerAngle) / 0.52, 2)) * (0.032 + pointer.energy * 0.08)
-          : 0;
+        const agitation = Math.sin(angle * 9 - time * 4.8) * smoothEnergy * 0.016;
+        const tug =
+          Math.exp(-Math.pow(angularDistance(angle, pointerAngle) / 0.52, 2)) *
+          pointerPresence *
+          (0.024 + smoothEnergy * 0.06);
         return radius * (1 + breathing + agitation + tug + layer);
       };
 
       const membranePath = (layer = 0) => {
         const path = new Path2D();
-        const segments = 180;
+        const segments = 132;
         for (let segment = 0; segment <= segments; segment += 1) {
           const angle = (segment / segments) * Math.PI * 2;
           const r = membraneRadius(angle, layer);
@@ -232,7 +244,7 @@ export function LightNucleus({ active }: ActiveVisualProps) {
 
       const halo = context.createRadialGradient(0, 0, radius * 0.5, 0, 0, radius * 1.42);
       halo.addColorStop(0, "rgba(118,130,129,.025)");
-      halo.addColorStop(0.72, `rgba(176,194,193,${0.025 + pointer.energy * 0.025})`);
+      halo.addColorStop(0.72, `rgba(176,194,193,${0.025 + smoothEnergy * 0.02})`);
       halo.addColorStop(1, "rgba(0,0,0,0)");
       context.fillStyle = halo;
       context.fillRect(-width / 2, -height / 2, width, height);
@@ -249,19 +261,19 @@ export function LightNucleus({ active }: ActiveVisualProps) {
         0,
         radius * 1.12,
       );
-      interior.addColorStop(0, `rgba(228,235,232,${0.15 + pointer.energy * 0.08})`);
+      interior.addColorStop(0, `rgba(228,235,232,${0.15 + smoothEnergy * 0.06})`);
       interior.addColorStop(0.46, "rgba(69,78,78,.095)");
       interior.addColorStop(0.76, "rgba(24,29,30,.16)");
       interior.addColorStop(1, "rgba(205,215,211,.04)");
       context.fillStyle = interior;
       context.fillRect(-radius * 1.2, -radius * 1.2, radius * 2.4, radius * 2.4);
 
-      for (let fiber = 0; fiber < 72; fiber += 1) {
-        const progress = fiber / 71;
+      for (let fiber = 0; fiber < 54; fiber += 1) {
+        const progress = fiber / 53;
         const y = (progress - 0.5) * radius * 1.75;
         const halfWidth = Math.sqrt(Math.max(0, 1 - Math.pow(y / (radius * 0.94), 2))) * radius * 1.02;
         const drift = Math.sin(fiber * 1.73 + time * 1.5) * radius * 0.035;
-        const bend = Math.cos(fiber * 0.91 - time * 1.1) * radius * (0.055 + pointer.energy * 0.04);
+        const bend = Math.cos(fiber * 0.91 - time * 1.1) * radius * (0.055 + smoothEnergy * 0.032);
         const fiberPath = new Path2D();
         fiberPath.moveTo(-halfWidth, y + drift);
         fiberPath.bezierCurveTo(
@@ -272,13 +284,13 @@ export function LightNucleus({ active }: ActiveVisualProps) {
           halfWidth,
           y - drift,
         );
-        context.strokeStyle = `rgba(${fiber % 7 === 0 ? "164,184,190" : "205,214,211"},${0.023 + (fiber % 8 === 0 ? 0.063 : 0.014) + pointer.energy * 0.02})`;
+        context.strokeStyle = `rgba(${fiber % 7 === 0 ? "164,184,190" : "205,214,211"},${0.025 + (fiber % 8 === 0 ? 0.066 : 0.016) + smoothEnergy * 0.016})`;
         context.lineWidth = fiber % 8 === 0 ? 0.9 : 0.42;
         context.stroke(fiberPath);
       }
 
-      for (let ray = 0; ray < 34; ray += 1) {
-        const angle = (ray / 34) * Math.PI * 2 + Math.sin(ray * 2.4) * 0.08;
+      for (let ray = 0; ray < 24; ray += 1) {
+        const angle = (ray / 24) * Math.PI * 2 + Math.sin(ray * 2.4) * 0.08;
         const rayPath = new Path2D();
         rayPath.moveTo(Math.cos(angle + 0.18) * radius * 0.1, Math.sin(angle + 0.18) * radius * 0.08);
         rayPath.quadraticCurveTo(
@@ -287,24 +299,24 @@ export function LightNucleus({ active }: ActiveVisualProps) {
           Math.cos(angle) * radius,
           Math.sin(angle) * radius * 0.92,
         );
-        context.strokeStyle = `rgba(221,226,223,${0.03 + pointer.energy * 0.022})`;
+        context.strokeStyle = `rgba(221,226,223,${0.032 + smoothEnergy * 0.018})`;
         context.lineWidth = 0.42;
         context.stroke(rayPath);
       }
       context.restore();
 
-      for (let rim = 9; rim >= 0; rim -= 1) {
-        const rimPath = membranePath((rim - 4.5) * 0.0019);
-        const alpha = 0.028 + (9 - rim) * 0.012 + pointer.energy * 0.012;
+      for (let rim = 6; rim >= 0; rim -= 1) {
+        const rimPath = membranePath((rim - 3) * 0.0024);
+        const alpha = 0.034 + (6 - rim) * 0.016 + smoothEnergy * 0.009;
         const color = rim % 3 === 0 ? `158,180,190` : rim % 3 === 1 ? `220,203,178` : `222,229,226`;
         context.strokeStyle = `rgba(${color},${alpha})`;
         context.lineWidth = rim === 0 ? 1.15 : 0.5;
         context.stroke(rimPath);
       }
 
-      context.shadowColor = `rgba(218,229,225,${0.18 + pointer.energy * 0.12})`;
-      context.shadowBlur = 20 + pointer.energy * 18;
-      context.strokeStyle = `rgba(236,240,237,${0.34 + pointer.energy * 0.12})`;
+      context.shadowColor = `rgba(218,229,225,${0.18 + smoothEnergy * 0.09})`;
+      context.shadowBlur = 20 + smoothEnergy * 12;
+      context.strokeStyle = `rgba(236,240,237,${0.34 + smoothEnergy * 0.09})`;
       context.lineWidth = 0.75;
       context.stroke(body);
       context.restore();
