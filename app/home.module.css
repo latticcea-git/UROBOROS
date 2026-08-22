@@ -250,8 +250,12 @@
 .node:hover, .node:focus-visible, .nodeSelected { z-index: 4; border-color: var(--node-accent); box-shadow: inset 0 0 0 1px var(--node-accent), 0 2rem 5rem var(--node-glow); color: var(--home-paper); transform: translate3d(0, -.5rem, 3rem) scale(1.025); animation-play-state: paused; }
 .node:hover::before, .node:focus-visible::before, .nodeSelected::before { filter: saturate(1) contrast(1.02); opacity: .76; transform: scale(1); animation-play-state: paused; }
 .node:hover::after, .node:focus-visible::after, .nodeSelected::after { background: linear-gradient(180deg, rgba(3,3,3,.54), rgba(3,3,3,.16) 52%, rgba(3,3,3,.72)), linear-gradient(120deg, color-mix(in srgb, var(--node-accent) 34%, transparent), transparent 64%); }
-.isSelectingNode .node:not(.nodeSelected) { opacity: 0; filter: blur(.65rem); transform: scale(.72); }
-.isSelectingNode .nodeSelected { z-index: 20; opacity: 1; transform: scale(3.2); }
+.isSelectingNode .nodesHeader,
+.isSelectingNode .scene[id="ecosistema"] > .sceneLabel { opacity: 0; translate: 0 -1rem; transition: opacity 320ms ease, translate 520ms cubic-bezier(.16,1,.3,1); }
+.isSelectingNode .node { opacity: 0; filter: blur(.35rem); pointer-events: none; transform: translate3d(0, 1.5rem, 0) scale(.96); }
+.isSelectingNode .nodeSelected { z-index: 20; transform: translate3d(0, -.8rem, 0) scale(.985); }
+.homeRoot[data-agency-entering="true"] { animation: home-system-offline 520ms cubic-bezier(.55,0,.3,1) both; }
+@keyframes home-system-offline { to { opacity: 0; filter: blur(.8rem); transform: scale(.97); } }
 @keyframes nodeFloat { 0%, 100% { translate: 0 0; } 50% { translate: 0 -.55rem; } }
 @keyframes nodeReveal { 0%, 12%, 100% { opacity: .08; } 20%, 31% { opacity: .56; } 40% { opacity: .12; } }
 .agency { --node-accent: #3978ff; --node-glow: rgba(57,120,255,.25); }
@@ -369,7 +373,7 @@
   .nodePrompt { font-size: 0; }
   .nodePrompt i { width: 1.6rem; font-size: .66rem; }
   .node::before { opacity: .16; animation-duration: 11s; }
-  .isSelectingNode .nodeSelected { transform: scale(5); }
+  .isSelectingNode .nodeSelected { transform: translate3d(0, -.4rem, 0) scale(.98); }
 
   .scene[id="intencion"] h2 { font-size: clamp(3.7rem, 16vw, 5.8rem); }
   .intentionLight { width: 48vw; }

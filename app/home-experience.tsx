@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
+import AgencyIntro from "./agency-intro";
 import styles from "./home.module.css";
 import { BlackSea, ClassicalStructure, LightNucleus, ManifestoLoop } from "./home-visuals";
 import SiteMenu from "./site-menu";
@@ -35,6 +36,7 @@ export default function HomeExperience() {
   const [transitioning, setTransitioning] = useState(false);
   const [flash, setFlash] = useState(false);
   const [selectedNode, setSelectedNode] = useState<string | null>(null);
+  const [agencyIntro, setAgencyIntro] = useState(false);
   const activeRef = useRef(0);
   const lockedRef = useRef(false);
   const wheelDeltaRef = useRef(0);
@@ -186,11 +188,30 @@ export default function HomeExperience() {
     if (didSwipeRef.current || lockedRef.current) return;
     lockedRef.current = true;
     setSelectedNode(name);
-    window.setTimeout(() => router.push(href), 720);
+    if (name === "Agency") {
+      setAgencyIntro(true);
+      return;
+    }
+    window.setTimeout(() => router.push(href), 520);
   };
 
+  const cancelAgencyIntro = useCallback(() => {
+    setAgencyIntro(false);
+    setSelectedNode(null);
+    lockedRef.current = false;
+  }, []);
+
+  const completeAgencyIntro = useCallback(() => {
+    router.push("/agency", { scroll: false });
+  }, [router]);
+
   return (
-    <main className={`${styles.homeRoot} ${transitioning ? styles.isTransitioning : ""} ${selectedNode ? styles.isSelectingNode : ""}`}>
+    <>
+      <main
+        className={`${styles.homeRoot} ${transitioning ? styles.isTransitioning : ""} ${selectedNode ? styles.isSelectingNode : ""}`}
+        data-agency-entering={agencyIntro ? "true" : "false"}
+        inert={agencyIntro || undefined}
+      >
       <SiteMenu
         homeHref="#inicio"
         onNavigate={handleMenuNavigate}
@@ -336,6 +357,8 @@ export default function HomeExperience() {
         <span>{activeScene === sceneAnchors.length - 1 ? "Scroll para volver" : "Scroll para avanzar"}</span>
         <i />
       </div>
-    </main>
+      </main>
+      {agencyIntro && <AgencyIntro onCancel={cancelAgencyIntro} onComplete={completeAgencyIntro} />}
+    </>
   );
 }
