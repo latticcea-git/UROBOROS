@@ -7,6 +7,12 @@ type ActiveVisualProps = {
   active: boolean;
 };
 
+type BlackSeaProps = ActiveVisualProps & {
+  presence?: number;
+  tempo?: number;
+  horizon?: number;
+};
+
 const manifestoParagraphs = [
   <>No creemos en disciplinas aisladas.<br />Creemos en ideas que necesitan distintas formas para existir.</>,
   <>Cada nodo conserva una mirada propia.<br />Juntos construyen una estructura capaz de pensar, producir y evolucionar alrededor de una misma intención.</>,
@@ -34,7 +40,7 @@ function sizeCanvas(canvas: HTMLCanvasElement, context: CanvasRenderingContext2D
   return { width: rect.width, height: rect.height };
 }
 
-export function BlackSea({ active }: ActiveVisualProps) {
+export function BlackSea({ active, presence = 0.7, tempo = 1, horizon = 0 }: BlackSeaProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
@@ -63,12 +69,10 @@ export function BlackSea({ active }: ActiveVisualProps) {
 
     const draw = (now: number) => {
       const { width, height } = sizeCanvas(canvas, context);
-      const time = reduceMotion ? 0.8 : now * 0.00016;
+      const time = reduceMotion ? 0.8 : now * 0.00016 * tempo;
       pointer.energy *= 0.965;
 
       context.clearRect(0, 0, width, height);
-      context.fillStyle = "#020202";
-      context.fillRect(0, 0, width, height);
 
       const atmosphere = context.createRadialGradient(
         width * pointer.x,
@@ -78,8 +82,8 @@ export function BlackSea({ active }: ActiveVisualProps) {
         height * pointer.y,
         width * 0.72,
       );
-      atmosphere.addColorStop(0, `rgba(78, 82, 82, ${0.045 + pointer.energy * 0.035})`);
-      atmosphere.addColorStop(0.38, "rgba(19, 21, 21, .035)");
+      atmosphere.addColorStop(0, `rgba(86, 92, 91, ${(0.075 + pointer.energy * 0.045) * presence})`);
+      atmosphere.addColorStop(0.38, `rgba(28, 32, 31, ${0.052 * presence})`);
       atmosphere.addColorStop(1, "rgba(0, 0, 0, 0)");
       context.fillStyle = atmosphere;
       context.fillRect(0, 0, width, height);
@@ -89,8 +93,8 @@ export function BlackSea({ active }: ActiveVisualProps) {
 
       for (let row = 0; row < rows; row += 1) {
         const depth = row / Math.max(1, rows - 1);
-        const baseY = height * (0.02 + depth * 1.02);
-        const amplitude = height * (0.018 + depth * 0.038);
+        const baseY = height * (0.02 + horizon + depth * 1.02);
+        const amplitude = height * (0.021 + depth * 0.045) * (0.82 + presence * 0.22);
         const path = new Path2D();
 
         for (let point = 0; point <= points; point += 1) {
@@ -108,7 +112,7 @@ export function BlackSea({ active }: ActiveVisualProps) {
           else path.lineTo(x, y);
         }
 
-        const ridge = 0.016 + depth * 0.072 + pointer.energy * 0.018;
+        const ridge = (0.022 + depth * 0.095 + pointer.energy * 0.022) * presence;
         context.strokeStyle = `rgba(203, 207, 205, ${ridge})`;
         context.lineWidth = 0.45 + depth * 1.05;
         context.stroke(path);
@@ -116,9 +120,9 @@ export function BlackSea({ active }: ActiveVisualProps) {
         if (row % 3 === 0) {
           context.save();
           context.globalCompositeOperation = "screen";
-          context.strokeStyle = `rgba(112, 118, 116, ${0.012 + depth * 0.025})`;
+          context.strokeStyle = `rgba(126, 134, 131, ${(0.016 + depth * 0.036) * presence})`;
           context.lineWidth = 3 + depth * 7;
-          context.shadowColor = "rgba(211, 218, 214, .06)";
+          context.shadowColor = `rgba(211, 218, 214, ${0.085 * presence})`;
           context.shadowBlur = 16;
           context.stroke(path);
           context.restore();
@@ -126,10 +130,10 @@ export function BlackSea({ active }: ActiveVisualProps) {
       }
 
       const shade = context.createLinearGradient(0, 0, width, height);
-      shade.addColorStop(0, "rgba(0,0,0,.9)");
-      shade.addColorStop(0.4, "rgba(0,0,0,.18)");
-      shade.addColorStop(0.72, "rgba(0,0,0,.48)");
-      shade.addColorStop(1, "rgba(0,0,0,.92)");
+      shade.addColorStop(0, `rgba(0,0,0,${0.36 + (1 - presence) * 0.22})`);
+      shade.addColorStop(0.4, `rgba(0,0,0,${0.04 + (1 - presence) * 0.08})`);
+      shade.addColorStop(0.72, `rgba(0,0,0,${0.16 + (1 - presence) * 0.11})`);
+      shade.addColorStop(1, `rgba(0,0,0,${0.48 + (1 - presence) * 0.18})`);
       context.fillStyle = shade;
       context.fillRect(0, 0, width, height);
 
@@ -138,13 +142,13 @@ export function BlackSea({ active }: ActiveVisualProps) {
       }
     };
 
-    window.addEventListener("pointermove", onPointerMove, { passive: true });
+    if (active) window.addEventListener("pointermove", onPointerMove, { passive: true });
     draw(performance.now());
     return () => {
       window.cancelAnimationFrame(frame);
-      window.removeEventListener("pointermove", onPointerMove);
+      if (active) window.removeEventListener("pointermove", onPointerMove);
     };
-  }, [active]);
+  }, [active, horizon, presence, tempo]);
 
   return <canvas ref={canvasRef} className={styles.seaCanvas} aria-hidden="true" />;
 }

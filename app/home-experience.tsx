@@ -228,7 +228,7 @@ export default function HomeExperience() {
       {flash && <div className={styles.sceneFlash} aria-hidden="true" />}
 
       <section {...sceneProps(0)} id="inicio" aria-labelledby="hero-title">
-        <BlackSea active={activeScene === 0} />
+        <BlackSea active={activeScene === 0} presence={0.96} tempo={1} horizon={-0.01} />
         <div className={styles.heroShade} aria-hidden="true" />
         <div className={styles.heroObelisk} aria-hidden="true">
           <Image src="/UROBOROS/assets/images/obelisco.png" width={939} height={1675} alt="" loading="eager" fetchPriority="high" sizes="(max-width: 620px) 54vw, (max-width: 900px) 42vw, 31vw" />
@@ -246,6 +246,7 @@ export default function HomeExperience() {
       </section>
 
       <section {...sceneProps(1)} id="manifiesto" aria-labelledby="manifesto-title">
+        <BlackSea active={activeScene === 1} presence={0.34} tempo={0.48} horizon={0.08} />
         <div className={styles.manifestoAtmosphere} aria-hidden="true" />
         <div className={styles.sceneLabel}><span>01</span><p>Manifiesto</p></div>
         <div className={styles.manifestoLayout}>
@@ -262,6 +263,7 @@ export default function HomeExperience() {
       </section>
 
       <section {...sceneProps(2)} id="ecosistema" aria-labelledby="nodes-title">
+        <BlackSea active={activeScene === 2} presence={0.94} tempo={1.02} horizon={0.025} />
         <div className={styles.nodesAtmosphere} aria-hidden="true" />
         <div className={styles.sceneLabel}><span>02</span><p>Ecosistema</p></div>
         <div className={styles.nodesHeader}>
@@ -287,6 +289,7 @@ export default function HomeExperience() {
       </section>
 
       <section {...sceneProps(3)} id="intencion" aria-labelledby="intention-title">
+        <BlackSea active={activeScene === 3} presence={0.22} tempo={0.34} horizon={0.12} />
         <div className={styles.intentionLight} aria-hidden="true" />
         <p className={styles.intentionLead}>La forma cambia.</p>
         <h2 id="intention-title">La intención<br /><em>permanece.</em></h2>
@@ -294,6 +297,7 @@ export default function HomeExperience() {
       </section>
 
       <section {...sceneProps(4)} id="metodo" aria-labelledby="pillars-title">
+        <BlackSea active={activeScene === 4} presence={0.4} tempo={0.56} horizon={0.06} />
         <div className={styles.sceneLabel}><span>04</span><p>Método</p></div>
         <ClassicalStructure />
         <div className={styles.pillarsCopy}>
@@ -310,6 +314,7 @@ export default function HomeExperience() {
       </section>
 
       <section {...sceneProps(5)} id="contacto" aria-labelledby="contact-title">
+        <BlackSea active={activeScene === 5} presence={0.16} tempo={0.24} horizon={0.14} />
         <div className={styles.contactAtmosphere} aria-hidden="true" />
         <div className={styles.sceneLabel}><span>05</span><p>Contacto</p></div>
         <div className={styles.contactCopy}>
