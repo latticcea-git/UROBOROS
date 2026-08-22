@@ -24,6 +24,12 @@ body {
   line-height: 1.5;
 }
 
+body:has(.homeRoot) {
+  height: 100svh;
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+
 body::before {
   position: fixed;
   inset: 0;

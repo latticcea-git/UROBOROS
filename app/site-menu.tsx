@@ -7,21 +7,25 @@ import { useState } from "react";
 type SiteMenuProps = {
   links: Array<{ label: string; href: string }>;
   homeHref: string;
+  onNavigate?: (href: string) => void;
 };
 
-export default function SiteMenu({ links, homeHref }: SiteMenuProps) {
+export default function SiteMenu({ links, homeHref, onNavigate }: SiteMenuProps) {
   const [open, setOpen] = useState(false);
-  const close = () => setOpen(false);
+  const close = (href?: string) => {
+    setOpen(false);
+    if (href) onNavigate?.(href);
+  };
 
   return (
     <header className="global-menu-header">
       {homeHref.startsWith("/UROBOROS/") ? (
-        <a className="global-menu-logo" href={homeHref} onClick={close} aria-label="LATTICCE, ir al inicio">
-          <Image src="/UROBOROS/assets/logos/LTT_LOGO_FX_POS.svg" width={246} height={47} alt="LATTICCE" priority />
+        <a className="global-menu-logo" href={homeHref} onClick={() => close(homeHref)} aria-label="LATTICCE, ir al inicio">
+          <Image src="/UROBOROS/assets/logos/LTT_LOGO_FX_POS.svg" width={246} height={47} alt="LATTICCE" loading="eager" fetchPriority="high" />
         </a>
       ) : (
-        <Link className="global-menu-logo" href={homeHref} onClick={close} aria-label="LATTICCE, ir al inicio">
-          <Image src="/UROBOROS/assets/logos/LTT_LOGO_FX_POS.svg" width={246} height={47} alt="LATTICCE" priority />
+        <Link className="global-menu-logo" href={homeHref} onClick={() => close(homeHref)} aria-label="LATTICCE, ir al inicio">
+          <Image src="/UROBOROS/assets/logos/LTT_LOGO_FX_POS.svg" width={246} height={47} alt="LATTICCE" loading="eager" fetchPriority="high" />
         </Link>
       )}
       <button
@@ -39,11 +43,11 @@ export default function SiteMenu({ links, homeHref }: SiteMenuProps) {
           <div className="global-menu-topline"><span>Índice</span><span>LATTICCE / 00</span></div>
           {links.map((link, index) => (
             link.href.startsWith("/UROBOROS/") ? (
-              <a href={link.href} onClick={close} key={link.label}>
+              <a href={link.href} onClick={() => close(link.href)} key={link.label}>
                 <span>{String(index).padStart(2, "0")}</span>{link.label}
               </a>
             ) : (
-              <Link href={link.href} onClick={close} key={link.label}>
+              <Link href={link.href} onClick={() => close(link.href)} key={link.label}>
                 <span>{String(index).padStart(2, "0")}</span>{link.label}
               </Link>
             )

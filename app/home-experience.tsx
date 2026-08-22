@@ -2,107 +2,198 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import { useCallback, useEffect, useRef, useState } from "react";
 import styles from "./home.module.css";
+import { BlackSea, ClassicalStructure, LightNucleus, ManifestoLoop } from "./home-visuals";
 import SiteMenu from "./site-menu";
 
 const nodes = [
-  {
-    index: "01",
-    name: "Agency",
-    line: "Ideas que se vuelven sistemas.",
-    tone: "agency",
-    href: "/agency",
-  },
-  {
-    index: "02",
-    name: "Studio",
-    line: "La realidad, dirigida.",
-    tone: "studio",
-    href: "/studio",
-  },
-  {
-    index: "03",
-    name: "Sound",
-    line: "Lo invisible toma cuerpo.",
-    tone: "sound",
-    href: "/sound",
-  },
-  {
-    index: "04",
-    name: "Design",
-    line: "La materia encuentra su forma.",
-    tone: "design",
-    href: "/design",
-  },
-  {
-    index: "05",
-    name: "Time",
-    line: "Lo vivido deja una huella.",
-    tone: "time",
-    href: "/time",
-  },
+  { index: "01", name: "Agency", line: "Ideas que se vuelven sistemas.", tone: "agency", href: "/agency" },
+  { index: "02", name: "Studio", line: "La realidad, dirigida.", tone: "studio", href: "/studio" },
+  { index: "03", name: "Sound", line: "Lo invisible toma cuerpo.", tone: "sound", href: "/sound" },
+  { index: "04", name: "Design", line: "La materia encuentra su forma.", tone: "design", href: "/design" },
+  { index: "05", name: "Time", line: "Lo vivido deja una huella.", tone: "time", href: "/time" },
 ] as const;
 
-const method = [
+const pillars = [
   ["01", "Escuchar", "Entender el contexto antes de decidir la forma."],
   ["02", "Conectar", "Reunir las disciplinas que la idea realmente necesita."],
   ["03", "Construir", "Convertir estrategia, materia y tiempo en una experiencia."],
   ["04", "Permanecer", "Crear sistemas capaces de crecer sin perder identidad."],
 ] as const;
 
+const sceneAnchors = ["inicio", "manifiesto", "ecosistema", "intencion", "metodo", "contacto"] as const;
+const sceneNames = ["Inicio", "Manifiesto", "Escoge tu nodo", "La intención permanece", "Nuestros Pilares", "Contacto"] as const;
+const transitionDuration = 1050;
+
 export default function HomeExperience() {
-  const [progress, setProgress] = useState(0);
+  const router = useRouter();
+  const [activeScene, setActiveScene] = useState(0);
+  const [previousScene, setPreviousScene] = useState<number | null>(null);
+  const [direction, setDirection] = useState<1 | -1>(1);
+  const [transitioning, setTransitioning] = useState(false);
+  const [flash, setFlash] = useState(false);
+  const [selectedNode, setSelectedNode] = useState<string | null>(null);
+  const activeRef = useRef(0);
+  const lockedRef = useRef(false);
+  const wheelDeltaRef = useRef(0);
+  const wheelResetRef = useRef<number | null>(null);
+  const transitionTimerRef = useRef<number | null>(null);
+  const touchRef = useRef({ x: 0, y: 0, local: false });
+  const didSwipeRef = useRef(false);
+
+  const moveTo = useCallback((target: number) => {
+    const current = activeRef.current;
+    const next = Math.max(0, Math.min(sceneAnchors.length - 1, target));
+    if (next === current || lockedRef.current) return;
+
+    const nextDirection = next > current ? 1 : -1;
+    lockedRef.current = true;
+    activeRef.current = next;
+    setDirection(nextDirection);
+    setPreviousScene(current);
+    setActiveScene(next);
+    setTransitioning(true);
+    setFlash((current === 3 && next === 4) || (current === 4 && next === 3));
+    wheelDeltaRef.current = 0;
+
+    window.history.replaceState(null, "", `#${sceneAnchors[next]}`);
+    transitionTimerRef.current = window.setTimeout(() => {
+      setPreviousScene(null);
+      setTransitioning(false);
+      setFlash(false);
+      lockedRef.current = false;
+    }, transitionDuration);
+  }, []);
 
   useEffect(() => {
-    const elements = Array.from(document.querySelectorAll<HTMLElement>("[data-home-reveal]"));
-    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-    if (reduceMotion) {
-      elements.forEach((element) => element.setAttribute("data-visible", "true"));
-      return;
+    const hash = window.location.hash.replace("#", "");
+    const initial = sceneAnchors.indexOf(hash as (typeof sceneAnchors)[number]);
+    if (initial > 0) {
+      activeRef.current = initial;
+      setActiveScene(initial);
     }
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) return;
-          entry.target.setAttribute("data-visible", "true");
-          observer.unobserve(entry.target);
-        });
-      },
-      { threshold: 0.14, rootMargin: "0px 0px -8%" },
-    );
-
-    elements.forEach((element) => observer.observe(element));
-    return () => observer.disconnect();
+    return () => {
+      if (wheelResetRef.current) window.clearTimeout(wheelResetRef.current);
+      if (transitionTimerRef.current) window.clearTimeout(transitionTimerRef.current);
+    };
   }, []);
 
   useEffect(() => {
-    let frame = 0;
-    const update = () => {
-      frame = 0;
-      const distance = document.documentElement.scrollHeight - window.innerHeight;
-      setProgress(distance > 0 ? Math.min(1, window.scrollY / distance) : 0);
-    };
-    const requestUpdate = () => {
-      if (!frame) frame = window.requestAnimationFrame(update);
+    const onWheel = (event: WheelEvent) => {
+      const target = event.target as HTMLElement | null;
+      if (target?.closest("[data-manifesto-scroll='true'], .global-menu-panel")) return;
+      event.preventDefault();
+      if (lockedRef.current) return;
+
+      wheelDeltaRef.current += event.deltaY;
+      if (wheelResetRef.current) window.clearTimeout(wheelResetRef.current);
+      wheelResetRef.current = window.setTimeout(() => { wheelDeltaRef.current = 0; }, 180);
+
+      if (Math.abs(wheelDeltaRef.current) >= 64) {
+        moveTo(activeRef.current + (wheelDeltaRef.current > 0 ? 1 : -1));
+      }
     };
 
-    update();
-    window.addEventListener("scroll", requestUpdate, { passive: true });
-    window.addEventListener("resize", requestUpdate);
-    return () => {
-      if (frame) window.cancelAnimationFrame(frame);
-      window.removeEventListener("scroll", requestUpdate);
-      window.removeEventListener("resize", requestUpdate);
+    const onTouchStart = (event: TouchEvent) => {
+      const touch = event.touches[0];
+      const target = event.target as HTMLElement | null;
+      touchRef.current = {
+        x: touch?.clientX ?? 0,
+        y: touch?.clientY ?? 0,
+        local: Boolean(target?.closest("[data-manifesto-scroll='true'], [data-local-interactive='true'], .global-menu-panel")),
+      };
+      didSwipeRef.current = false;
     };
-  }, []);
+
+    const onTouchMove = (event: TouchEvent) => {
+      if (touchRef.current.local) return;
+      const touch = event.touches[0];
+      if (!touch) return;
+      const deltaX = touch.clientX - touchRef.current.x;
+      const deltaY = touch.clientY - touchRef.current.y;
+      if (Math.abs(deltaY) > Math.abs(deltaX) && Math.abs(deltaY) > 8) event.preventDefault();
+    };
+
+    const onTouchEnd = (event: TouchEvent) => {
+      if (touchRef.current.local || lockedRef.current) return;
+      const touch = event.changedTouches[0];
+      if (!touch) return;
+      const deltaX = touch.clientX - touchRef.current.x;
+      const deltaY = touch.clientY - touchRef.current.y;
+      if (Math.abs(deltaY) > 52 && Math.abs(deltaY) > Math.abs(deltaX) * 1.15) {
+        didSwipeRef.current = true;
+        moveTo(activeRef.current + (deltaY < 0 ? 1 : -1));
+        window.setTimeout(() => { didSwipeRef.current = false; }, 320);
+      }
+    };
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      const target = event.target as HTMLElement | null;
+      if (target?.closest("[data-manifesto-scroll='true'], input, textarea, select")) return;
+      if (["ArrowDown", "PageDown", " "].includes(event.key)) {
+        event.preventDefault();
+        moveTo(activeRef.current + 1);
+      } else if (["ArrowUp", "PageUp"].includes(event.key)) {
+        event.preventDefault();
+        moveTo(activeRef.current - 1);
+      } else if (event.key === "Home") {
+        event.preventDefault();
+        moveTo(0);
+      } else if (event.key === "End") {
+        event.preventDefault();
+        moveTo(sceneAnchors.length - 1);
+      }
+    };
+
+    window.addEventListener("wheel", onWheel, { passive: false });
+    window.addEventListener("touchstart", onTouchStart, { passive: true });
+    window.addEventListener("touchmove", onTouchMove, { passive: false });
+    window.addEventListener("touchend", onTouchEnd, { passive: true });
+    window.addEventListener("keydown", onKeyDown);
+    return () => {
+      window.removeEventListener("wheel", onWheel);
+      window.removeEventListener("touchstart", onTouchStart);
+      window.removeEventListener("touchmove", onTouchMove);
+      window.removeEventListener("touchend", onTouchEnd);
+      window.removeEventListener("keydown", onKeyDown);
+    };
+  }, [moveTo]);
+
+  const sceneClass = (index: number) => {
+    if (index === activeScene) return `${styles.scene} ${styles.sceneActive}`;
+    if (index === previousScene) return `${styles.scene} ${styles.sceneLeaving}`;
+    return `${styles.scene} ${styles.sceneHidden}`;
+  };
+
+  const sceneProps = (index: number) => ({
+    className: sceneClass(index),
+    "data-direction": direction,
+    "aria-hidden": activeScene !== index,
+    inert: activeScene !== index,
+  });
+
+  const handleMenuNavigate = (href: string) => {
+    if (!href.startsWith("#")) return;
+    const index = sceneAnchors.indexOf(href.slice(1) as (typeof sceneAnchors)[number]);
+    if (index >= 0) moveTo(index);
+  };
+
+  const selectNode = (event: React.MouseEvent<HTMLAnchorElement>, name: string, href: string) => {
+    event.preventDefault();
+    if (didSwipeRef.current || lockedRef.current) return;
+    lockedRef.current = true;
+    setSelectedNode(name);
+    window.setTimeout(() => router.push(href), 720);
+  };
 
   return (
-    <main className={styles.homeRoot}>
+    <main className={`${styles.homeRoot} ${transitioning ? styles.isTransitioning : ""} ${selectedNode ? styles.isSelectingNode : ""}`}>
       <SiteMenu
         homeHref="#inicio"
+        onNavigate={handleMenuNavigate}
         links={[
           { label: "HOME", href: "#inicio" },
           { label: "STUDIO", href: "/studio#inicio" },
@@ -115,113 +206,131 @@ export default function HomeExperience() {
         ]}
       />
 
-      <div className={styles.progress} aria-hidden="true">
-        <i style={{ transform: `scaleX(${progress})` }} />
+      <div className={styles.sceneProgress} aria-hidden="true">
+        <i style={{ transform: `scaleX(${activeScene / (sceneAnchors.length - 1)})` }} />
       </div>
 
-      <section className={styles.hero} id="inicio" aria-labelledby="hero-title">
-        <div className={styles.heroScene} aria-hidden="true">
-          <div className={styles.monolith} />
-          <div className={styles.aperture} />
-          <div className={styles.beam} />
-        </div>
+      <nav className={styles.sceneRail} aria-label="Secciones del Home">
+        {sceneNames.map((name, index) => (
+          <button
+            type="button"
+            key={name}
+            className={index === activeScene ? styles.railActive : ""}
+            onClick={() => moveTo(index)}
+            aria-label={`Ir a ${name}`}
+            aria-current={index === activeScene ? "step" : undefined}
+          >
+            <span>{String(index).padStart(2, "0")}</span><i />
+          </button>
+        ))}
+      </nav>
+
+      {flash && <div className={styles.sceneFlash} aria-hidden="true" />}
+
+      <section {...sceneProps(0)} id="inicio" aria-labelledby="hero-title">
+        <BlackSea active={activeScene === 0} />
+        <div className={styles.heroShade} aria-hidden="true" />
         <div className={styles.heroObelisk} aria-hidden="true">
-          <Image
-            src="/UROBOROS/assets/images/obelisco.png"
-            width={939}
-            height={1675}
-            alt=""
-            priority
-            sizes="(max-width: 620px) 46vw, (max-width: 900px) 38vw, 30vw"
-          />
+          <Image src="/UROBOROS/assets/images/obelisco.png" width={939} height={1675} alt="" loading="eager" fetchPriority="high" sizes="(max-width: 620px) 54vw, (max-width: 900px) 42vw, 31vw" />
         </div>
-        <div className={styles.heroMeta}>
-          <span>Creative system</span>
-          <span>Mexico · 19.4326° N</span>
-        </div>
+        <div className={styles.heroMeta}><span>Creative system</span><span>Mexico · 19.4326° N</span></div>
         <div className={styles.heroCopy}>
           <p className={styles.kicker}>LATTICCE / Sistema creativo independiente</p>
           <h1 id="hero-title">Una idea.<br /><em>Muchas formas</em><br />de hacerla real.</h1>
           <div className={styles.heroFoot}>
             <p>Estrategia, diseño, imagen, sonido, cine y memoria trabajando como un solo organismo.</p>
-            <a href="#ecosistema">Entrar al sistema <span aria-hidden="true">↓</span></a>
+            <button type="button" onClick={() => moveTo(1)}>Entrar al sistema <span aria-hidden="true">↓</span></button>
           </div>
         </div>
-        <span className={styles.heroIndex}>00 / 05</span>
+        <span className={styles.sceneIndex}>00 / 05</span>
       </section>
 
-      <section className={styles.manifesto} aria-labelledby="manifesto-title">
-        <div className={styles.sectionLabel} data-home-reveal><span>00</span><p>Principio</p></div>
-        <div className={styles.manifestoCopy} data-home-reveal>
-          <p className={styles.kicker}>No hacemos piezas aisladas</p>
-          <h2 id="manifesto-title">Conectamos <em>disciplinas distintas</em> para responder a una misma intención. Cada nodo conserva una <em>mirada propia</em>, pero juntos forman una estructura capaz de pensar, producir y evolucionar.</h2>
-          <div className={styles.manifestoDetail}>
-            <p>Construimos relaciones entre ideas, materia y tiempo.</p>
-            <span>Una red, no una colección.</span>
+      <section {...sceneProps(1)} id="manifiesto" aria-labelledby="manifesto-title">
+        <div className={styles.manifestoAtmosphere} aria-hidden="true" />
+        <div className={styles.sceneLabel}><span>01</span><p>Manifiesto</p></div>
+        <div className={styles.manifestoLayout}>
+          <div className={styles.manifestoText}>
+            <p className={styles.kicker}>Una red, no una colección</p>
+            <h2 id="manifesto-title">Manifiesto</h2>
+            <ManifestoLoop active={activeScene === 1} />
+          </div>
+          <div className={styles.nucleusWrap} data-local-interactive="true">
+            <LightNucleus active={activeScene === 1} />
+            <span>Luminautta / núcleo latente</span>
           </div>
         </div>
       </section>
 
-      <section className={styles.ecosystem} id="ecosistema" aria-label="Nodos LATTICCE">
+      <section {...sceneProps(2)} id="ecosistema" aria-labelledby="nodes-title">
+        <div className={styles.nodesAtmosphere} aria-hidden="true" />
+        <div className={styles.sceneLabel}><span>02</span><p>Ecosistema</p></div>
+        <div className={styles.nodesHeader}>
+          <p className={styles.kicker}>Cinco miradas / una intención</p>
+          <h2 id="nodes-title">Escoge tu <em>nodo</em></h2>
+        </div>
         <div className={styles.nodeList}>
-          {nodes.map((node) => (
-            <Link className={`${styles.node} ${styles[node.tone]}`} key={node.name} data-home-reveal href={node.href} aria-label={`Explorar LATTICCE ${node.name}`}>
+          {nodes.map((node, index) => (
+            <Link
+              className={`${styles.node} ${styles[node.tone]} ${selectedNode === node.name ? styles.nodeSelected : ""}`}
+              style={{ "--node-order": index } as React.CSSProperties}
+              key={node.name}
+              href={node.href}
+              onClick={(event) => selectNode(event, node.name, node.href)}
+              aria-label={`Explorar LATTICCE ${node.name}`}
+            >
               <span className={styles.nodeIndex}>{node.index}</span>
-              <div className={styles.nodeName}>
-                <h3>{node.name}</h3>
-                <p>{node.line}</p>
-              </div>
+              <div className={styles.nodeName}><h3>{node.name}</h3><p>{node.line}</p></div>
               <span className={styles.nodePrompt} aria-hidden="true">Explorar <i>↗</i></span>
             </Link>
           ))}
         </div>
       </section>
 
-      <section className={styles.interlude} aria-label="Declaración LATTICCE">
-        <div className={styles.interludeLight} aria-hidden="true" />
-        <p data-home-reveal>La forma cambia.</p>
-        <h2 data-home-reveal>La intención<br /><em>permanece.</em></h2>
+      <section {...sceneProps(3)} id="intencion" aria-labelledby="intention-title">
+        <div className={styles.intentionLight} aria-hidden="true" />
+        <p className={styles.intentionLead}>La forma cambia.</p>
+        <h2 id="intention-title">La intención<br /><em>permanece.</em></h2>
         <span>LATTICCE / 2026</span>
       </section>
 
-      <section className={styles.method} id="metodo" aria-label="Método">
-        <div className={styles.luminautta} aria-hidden="true">
-          <Image src="/UROBOROS/assets/images/luminautta.png" width={1024} height={1536} alt="" sizes="(max-width: 620px) 95vw, (max-width: 900px) 70vw, 34vw" />
-        </div>
-        <div className={styles.methodList}>
-          {method.map(([index, name, description]) => (
-            <article key={index} data-home-reveal>
-              <span>{index}</span>
-              <h3>{name}</h3>
-              <p>{description}</p>
-            </article>
-          ))}
+      <section {...sceneProps(4)} id="metodo" aria-labelledby="pillars-title">
+        <div className={styles.sceneLabel}><span>04</span><p>Método</p></div>
+        <ClassicalStructure />
+        <div className={styles.pillarsCopy}>
+          <p className={styles.kicker}>La estructura sostiene la intención</p>
+          <h2 id="pillars-title">Nuestros <em>Pilares</em></h2>
+          <div className={styles.pillarList}>
+            {pillars.map(([index, name, description]) => (
+              <article key={index} style={{ "--pillar-order": Number(index) - 1 } as React.CSSProperties}>
+                <span>{index}</span><h3>{name}</h3><p>{description}</p>
+              </article>
+            ))}
+          </div>
         </div>
       </section>
 
-      <section className={styles.contact} id="contacto" aria-labelledby="contact-title">
+      <section {...sceneProps(5)} id="contacto" aria-labelledby="contact-title">
         <div className={styles.contactAtmosphere} aria-hidden="true" />
-        <div className={styles.sectionLabel} data-home-reveal><span>03</span><p>Contacto</p></div>
-        <div className={styles.contactCopy} data-home-reveal>
+        <div className={styles.sceneLabel}><span>05</span><p>Contacto</p></div>
+        <div className={styles.contactCopy}>
           <p className={styles.kicker}>El siguiente proyecto puede comenzar aquí</p>
           <h2 id="contact-title">Hagamos espacio<br />para una <em>idea.</em></h2>
           <p>Mientras habilitamos el canal general de LATTICCE, puedes iniciar una conversación desde nuestro nodo de producción visual.</p>
-          <Link className={styles.contactButton} href="/studio#cotizar">
-            Hablar con Studio <span aria-hidden="true">↗</span>
-          </Link>
+          <Link className={styles.contactButton} href="/studio#cotizar">Hablar con Studio <span aria-hidden="true">↗</span></Link>
         </div>
+        <footer className={styles.contactFooter}>
+          <Link href="#inicio" onClick={(event) => { event.preventDefault(); moveTo(0); }} aria-label="Volver al inicio">
+            <Image src="/UROBOROS/assets/logos/LTT_LOGO_FX_POS.svg" width={198} height={38} alt="LATTICCE" />
+          </Link>
+          <p>Sistema creativo independiente</p>
+          <span>© 2026 LATTICCE</span>
+        </footer>
       </section>
 
-      <footer className={styles.footer}>
-        <Link className={styles.footerLogo} href="#inicio" aria-label="Volver al inicio">
-          <Image src="/UROBOROS/assets/logos/LTT_LOGO_FX_POS.svg" width={198} height={38} alt="LATTICCE" />
-        </Link>
-        <p>Sistema creativo independiente</p>
-        <div className={styles.footerNodes}>
-          {nodes.map((node) => <span key={node.name}>{node.name}</span>)}
-        </div>
-        <span>© 2026 LATTICCE</span>
-      </footer>
+      <div className={styles.scrollCue} aria-hidden="true">
+        <span>{activeScene === sceneAnchors.length - 1 ? "Scroll para volver" : "Scroll para avanzar"}</span>
+        <i />
+      </div>
     </main>
   );
 }
