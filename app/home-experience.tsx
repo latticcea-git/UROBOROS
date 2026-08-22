@@ -12,30 +12,35 @@ const nodes = [
     name: "Agency",
     line: "Ideas que se vuelven sistemas.",
     tone: "agency",
+    href: "/agency",
   },
   {
     index: "02",
     name: "Studio",
     line: "La realidad, dirigida.",
     tone: "studio",
+    href: "/studio",
   },
   {
     index: "03",
     name: "Sound",
     line: "Lo invisible toma cuerpo.",
     tone: "sound",
+    href: "/sound",
   },
   {
     index: "04",
     name: "Design",
     line: "La materia encuentra su forma.",
     tone: "design",
+    href: "/design",
   },
   {
     index: "05",
     name: "Time",
     line: "Lo vivido deja una huella.",
     tone: "time",
+    href: "/time",
   },
 ] as const;
 
@@ -101,12 +106,12 @@ export default function HomeExperience() {
         links={[
           { label: "HOME", href: "#inicio" },
           { label: "STUDIO", href: "/studio#inicio" },
-          { label: "SOUND", href: "#ecosistema" },
-          { label: "DESIGN", href: "#ecosistema" },
-          { label: "AGENCY", href: "#ecosistema" },
-          { label: "TIME", href: "#ecosistema" },
-          { label: "BOOK", href: "#ecosistema" },
-          { label: "BLOG", href: "#contacto" },
+          { label: "SOUND", href: "/sound" },
+          { label: "DESIGN", href: "/design" },
+          { label: "AGENCY", href: "/agency" },
+          { label: "TIME", href: "/time" },
+          { label: "BOOK", href: "/book" },
+          { label: "BLOG", href: "/blog" },
         ]}
       />
 
@@ -160,14 +165,14 @@ export default function HomeExperience() {
       <section className={styles.ecosystem} id="ecosistema" aria-label="Nodos LATTICCE">
         <div className={styles.nodeList}>
           {nodes.map((node) => (
-            <article className={`${styles.node} ${styles[node.tone]}`} key={node.name} data-home-reveal tabIndex={0}>
+            <Link className={`${styles.node} ${styles[node.tone]}`} key={node.name} data-home-reveal href={node.href} aria-label={`Explorar LATTICCE ${node.name}`}>
               <span className={styles.nodeIndex}>{node.index}</span>
               <div className={styles.nodeName}>
                 <h3>{node.name}</h3>
                 <p>{node.line}</p>
               </div>
               <span className={styles.nodePrompt} aria-hidden="true">Explorar <i>↗</i></span>
-            </article>
+            </Link>
           ))}
         </div>
       </section>

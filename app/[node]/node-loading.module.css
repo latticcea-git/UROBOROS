@@ -1,0 +1,11 @@
+.root { position: relative; display: grid; min-height: 100svh; place-items: center; overflow: hidden; background: #030303; color: #f2f1eb; }
+.root::before { position: absolute; inset: 0; content: ""; background: radial-gradient(circle at 50% 43%, #181a1a 0, #090a0a 29%, #030303 66%); }
+.light { position: absolute; top: -15%; left: 50%; width: min(34rem, 90vw); height: 77%; background: linear-gradient(180deg, rgba(238, 243, 240, .15), transparent 76%); clip-path: polygon(48% 0, 52% 0, 100% 100%, 0 100%); filter: blur(1.4rem); transform: translateX(-50%); }
+.content { position: relative; display: grid; justify-items: center; gap: 1.25rem; text-align: center; }
+.content img { width: min(13rem, 52vw); height: auto; }
+.content p, .content span { margin: 0; font-size: .58rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; }
+.content p { color: #a6a7a2; }
+.content span { color: #6e706b; }
+.content span::after { display: inline-block; width: .42rem; height: .42rem; margin-left: .65rem; border-radius: 50%; background: currentColor; content: ""; animation: pulse 1.4s ease-in-out infinite; }
+@keyframes pulse { 50% { opacity: .22; transform: scale(.55); } }
+@media (prefers-reduced-motion: reduce) { .content span::after { animation: none; } }

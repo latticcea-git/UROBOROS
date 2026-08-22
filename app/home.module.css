@@ -177,7 +177,7 @@
   border: 1px solid var(--home-line-strong);
   background: rgba(10, 10, 10, .18);
   color: #d4d5cf;
-  cursor: default;
+  cursor: pointer;
   outline: none;
   transition: border-color 350ms ease, box-shadow 450ms ease, color 350ms ease, transform 450ms cubic-bezier(.2,.8,.2,1);
 }

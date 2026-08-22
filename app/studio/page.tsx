@@ -291,12 +291,12 @@ export default function StudioPage() {
         links={[
           { label: "HOME", href: "/#inicio" },
           { label: "STUDIO", href: "#inicio" },
-          { label: "SOUND", href: "#servicios" },
-          { label: "DESIGN", href: "#servicios" },
-          { label: "AGENCY", href: "#proceso" },
-          { label: "TIME", href: "#proceso" },
-          { label: "BOOK", href: "#proyectos" },
-          { label: "BLOG", href: "#cotizar" },
+          { label: "SOUND", href: "/sound" },
+          { label: "DESIGN", href: "/design" },
+          { label: "AGENCY", href: "/agency" },
+          { label: "TIME", href: "/time" },
+          { label: "BOOK", href: "/book" },
+          { label: "BLOG", href: "/blog" },
         ]}
       />
 
