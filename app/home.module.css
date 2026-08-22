@@ -221,13 +221,19 @@
 .methodList h3 { margin: 0; font-family: Georgia, "Times New Roman", serif; font-size: clamp(1.9rem, 3vw, 3.4rem); font-weight: 400; }
 .methodList p { margin: 0; color: #8d8e89; font-size: .75rem; }
 
-.contact { position: relative; display: grid; grid-template-columns: .28fr 1fr; gap: 7vw; min-height: 85svh; align-items: center; padding: clamp(7rem, 11vw, 12rem) var(--home-pad); overflow: hidden; border-top: 1px solid var(--home-line); }
-.contactGrid { position: absolute; inset: 0; z-index: -2; opacity: .55; background-image: linear-gradient(var(--home-line) 1px, transparent 1px), linear-gradient(90deg, var(--home-line) 1px, transparent 1px); background-size: 8vw 8vw; mask-image: radial-gradient(circle at 70% 50%, black, transparent 54%); }
-.contact::after { position: absolute; top: 50%; right: 11%; z-index: -1; width: min(34vw, 32rem); aspect-ratio: 1; border: 1px solid rgba(255,255,255,.15); border-radius: 50%; box-shadow: 0 0 8rem rgba(255,255,255,.05); content: ""; transform: translateY(-50%); }
-.contactCopy h2 { margin: 1.5rem 0 2rem; font-size: clamp(4rem, 7vw, 8rem); }
-.contactCopy > p:not(.kicker) { max-width: 35rem; color: #8f908b; font-size: .8rem; }
-.contactButton { display: inline-flex; min-width: 16rem; align-items: center; justify-content: space-between; margin-top: 2rem; padding: 1rem 1.25rem; border: 1px solid var(--home-paper); background: var(--home-paper); color: var(--home-black); font-size: .6rem; letter-spacing: .13em; text-transform: uppercase; transition: background 180ms ease, color 180ms ease; }
-.contactButton:hover { background: transparent; color: var(--home-paper); }
+.contact { position: relative; isolation: isolate; display: grid; min-height: min(54rem, 100svh); place-items: center; padding: clamp(8rem, 13vw, 14rem) var(--home-pad); overflow: hidden; border-top: 1px solid var(--home-line); background: radial-gradient(ellipse at 50% 48%, #101212 0, #070808 33%, var(--home-black) 72%); }
+.contactAtmosphere, .contactAtmosphere::before, .contactAtmosphere::after { position: absolute; pointer-events: none; }
+.contactAtmosphere { inset: 0; z-index: -1; overflow: hidden; }
+.contactAtmosphere::before { top: -5%; left: 50%; width: min(50rem, 96vw); height: 79%; background: linear-gradient(180deg, rgba(231, 238, 235, .2), rgba(191, 205, 201, .07) 43%, transparent 92%); clip-path: polygon(47% 0, 53% 0, 100% 100%, 0 100%); content: ""; filter: blur(1.2rem); opacity: .75; transform: translateX(-50%); }
+.contactAtmosphere::after { bottom: 11%; left: 50%; width: min(42rem, 86vw); height: 5rem; border-radius: 50%; background: radial-gradient(ellipse, rgba(211, 221, 217, .22) 0, rgba(167, 181, 175, .06) 34%, transparent 72%); box-shadow: 0 0 5rem rgba(195, 213, 208, .12); content: ""; filter: blur(.5rem); transform: translateX(-50%); }
+.contact .sectionLabel { position: absolute; top: clamp(2rem, 4vw, 4rem); left: var(--home-pad); z-index: 1; }
+.contactCopy { display: grid; justify-items: center; max-width: 34rem; text-align: center; }
+.contactCopy h2 { max-width: 8ch; margin: 1.3rem 0 1.5rem; font-family: Arial, Helvetica, sans-serif; font-size: clamp(3.4rem, 6.3vw, 7.3rem); font-weight: 700; letter-spacing: -.085em; line-height: .79; text-transform: uppercase; }
+.contactCopy h2 em { color: #8b8d88; font-family: Georgia, "Times New Roman", serif; font-style: italic; font-weight: 400; text-transform: none; }
+.contactCopy > p:not(.kicker) { max-width: 29rem; margin: 0; color: #a0a19c; font-size: .78rem; line-height: 1.55; }
+.contactButton { display: inline-flex; min-width: auto; align-items: center; gap: 1rem; margin-top: 2rem; padding: .8rem 1.05rem .8rem 1.25rem; border: 1px solid rgba(255,255,255,.9); border-radius: 999px; background: var(--home-paper); color: var(--home-black); font-size: .58rem; letter-spacing: .1em; text-transform: uppercase; transition: background 180ms ease, color 180ms ease, transform 180ms ease; }
+.contactButton span { font-size: .9rem; line-height: .5; }
+.contactButton:hover { background: transparent; color: var(--home-paper); transform: translateY(-.2rem); }
 
 .footer { display: grid; grid-template-columns: .7fr 1fr 2fr auto; gap: 2rem; align-items: center; padding: 2rem var(--home-pad) 2.5rem; border-top: 1px solid var(--home-line); color: #6f706c; }
 .footerLogo { width: 7rem; }
@@ -246,7 +252,7 @@
   .monolith { right: -6%; width: 56vw; opacity: .85; }
   .heroObelisk { right: clamp(2rem, 8vw, 5rem); bottom: -1.5rem; width: clamp(16rem, 47vw, 25rem); }
   .hero h1 { font-size: clamp(4rem, 13vw, 7rem); }
-  .manifesto, .contact { grid-template-columns: 1fr; gap: 4rem; }
+  .manifesto { grid-template-columns: 1fr; gap: 4rem; }
   .nodeList { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .node { min-height: clamp(17rem, 43vw, 23rem); }
   .method { grid-template-columns: 1fr; }
@@ -276,7 +282,9 @@
   .luminautta { top: 5.5rem; left: -8rem; width: min(27rem, 95vw); opacity: .25; }
   .methodList article { grid-template-columns: 2rem 1fr; gap: 1rem; padding: 1.5rem 0; }
   .methodList p { grid-column: 2; }
-  .contact::after { right: -30%; width: 80vw; }
+  .contact { min-height: 44rem; }
+  .contactAtmosphere::before { width: 46rem; opacity: .6; }
+  .contactAtmosphere::after { bottom: 13%; width: 32rem; }
   .footer { font-size: .48rem; }
 }
 

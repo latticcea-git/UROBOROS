@@ -195,7 +195,7 @@ export default function HomeExperience() {
       </section>
 
       <section className={styles.contact} id="contacto" aria-labelledby="contact-title">
-        <div className={styles.contactGrid} aria-hidden="true" />
+        <div className={styles.contactAtmosphere} aria-hidden="true" />
         <div className={styles.sectionLabel} data-home-reveal><span>03</span><p>Contacto</p></div>
         <div className={styles.contactCopy} data-home-reveal>
           <p className={styles.kicker}>El siguiente proyecto puede comenzar aquí</p>
