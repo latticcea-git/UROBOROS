@@ -33,10 +33,11 @@ export default function AgencyIntro({ onCancel, onComplete }: AgencyIntroProps) 
 
   useEffect(() => {
     phaseRef.current = phase;
-    const duration = phase === "prompt" ? 6000 : phase === "loading" ? 5000 : 4000;
+    if (phase === "prompt") return;
+
+    const duration = phase === "loading" ? 7000 : 4000;
     const timer = window.setTimeout(() => {
-      if (phase === "prompt") setPhase("loading");
-      else if (phase === "loading") setPhase("welcome");
+      if (phase === "loading") setPhase("welcome");
       else completeRef.current();
     }, duration);
 
@@ -74,50 +75,48 @@ export default function AgencyIntro({ onCancel, onComplete }: AgencyIntroProps) 
     >
       <div className={styles.grid} aria-hidden="true" />
       <div className={styles.scan} aria-hidden="true" />
-      <div className={styles.technicalFrame} aria-hidden="true">
-        <span>SYS_ERR / 01</span>
-        <span>AGENCY_GATE</span>
-        <span>MX—19.4326</span>
-        <span>ESC / RETURN</span>
+
+      <div className={styles.consolePanel}>
+        <header className={styles.consoleHeader} aria-hidden="true">
+          <span>AGENCY.OS / GATEWAY</span>
+          <span>SESSION 01</span>
+        </header>
+
+        <div className={styles.consoleBody}>
+          {phase === "prompt" && (
+            <button className={styles.prompt} type="button" onClick={advance} autoFocus>
+              <strong>¿LISTO PARA CONOCER<br />LATTICCE AGENCY?</strong>
+              <span className={styles.inputHint}>PRESIONA <i>ENTER</i> O HAZ CLIC</span>
+            </button>
+          )}
+
+          {phase === "loading" && (
+            <div className={styles.loading} role="status">
+              <div className={styles.codeLines}>
+                {diagnosticLines.map((line, index) => (
+                  <p key={line} style={{ "--line-index": index } as React.CSSProperties}>{line}</p>
+                ))}
+              </div>
+              <div className={styles.progress} aria-label="Cargando LATTICCE Agency"><i /></div>
+              <div className={styles.loadMeta}><span>DEPLOYING ARCHITECTURE</span><span>000—100</span></div>
+            </div>
+          )}
+
+          {phase === "welcome" && (
+            <div className={styles.welcome} role="status">
+              <span>&gt; access_granted</span>
+              <strong>BIENVENIDO A<br />LATTICCE AGENCY</strong>
+              <p>ENTRANDO AL SISTEMA</p>
+            </div>
+          )}
+        </div>
+
+        <footer className={styles.consoleFooter} aria-hidden="true">
+          <span>MX—19.4326</span>
+          <span>{phase === "prompt" ? "AWAITING_INPUT" : phase === "loading" ? "PROCESSING" : "ACCESS_GRANTED"}</span>
+          <span>ESC PARA VOLVER</span>
+        </footer>
       </div>
-
-      {phase === "prompt" && (
-        <button className={styles.prompt} type="button" onClick={advance} autoFocus>
-          <span className={styles.alertCode}>UNEXPECTED CREATIVE SYSTEM DETECTED</span>
-          <strong><span>¿LISTO PARA CONOCER</span><br />LATTICCE AGENCY?</strong>
-          <span className={styles.clickHint}>CLICK / ENTER / ESPACIO PARA CONTINUAR</span>
-          <i aria-hidden="true" />
-        </button>
-      )}
-
-      {phase === "loading" && (
-        <div className={styles.loading} role="status">
-          <div className={styles.codeHeader}>
-            <span>DEPLOY_SEQUENCE</span>
-            <span>AGENCY.OS</span>
-          </div>
-          <div className={styles.codeLines}>
-            {diagnosticLines.map((line, index) => (
-              <p key={line} style={{ "--line-index": index } as React.CSSProperties}>{line}</p>
-            ))}
-          </div>
-          <div className={styles.progress} aria-label="Cargando LATTICCE Agency">
-            <i />
-          </div>
-          <div className={styles.loadMeta}><span>LOADING ARCHITECTURE</span><span>000—100</span></div>
-        </div>
-      )}
-
-      {phase === "welcome" && (
-        <div className={styles.welcome} role="status">
-          <span>ACCESS GRANTED</span>
-          <strong>BIENVENIDO A<br />LATTICCE AGENCY</strong>
-          <i aria-hidden="true" />
-          <p>ENTRANDO AL SISTEMA</p>
-        </div>
-      )}
-
-      <span className={styles.escapeHint}>ESC PARA VOLVER</span>
     </section>
   );
 }
