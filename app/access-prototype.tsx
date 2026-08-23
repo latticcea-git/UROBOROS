@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import styles from "./access.module.css";
 
 type Role = "colaborador" | "cliente";
@@ -28,6 +28,25 @@ export default function AccessPrototype() {
   const [mode, setMode] = useState<"entrar" | "registro">("entrar");
   const [submitted, setSubmitted] = useState(false);
   const current = roles[role];
+
+  useEffect(() => {
+    const documentRoot = document.documentElement;
+    const pageBody = document.body;
+    const previousRootOverflow = documentRoot.style.overflow;
+    const previousBodyOverflow = pageBody.style.overflow;
+    const previousBodyHeight = pageBody.style.height;
+
+    // Safari can retain the Home scroll lock after a client-side route change.
+    documentRoot.style.overflow = "auto";
+    pageBody.style.overflow = "auto";
+    pageBody.style.height = "auto";
+
+    return () => {
+      documentRoot.style.overflow = previousRootOverflow;
+      pageBody.style.overflow = previousBodyOverflow;
+      pageBody.style.height = previousBodyHeight;
+    };
+  }, []);
 
   function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
