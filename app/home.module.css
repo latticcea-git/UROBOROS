@@ -255,6 +255,7 @@
 .isSelectingNode .node { opacity: 0; filter: blur(.35rem); pointer-events: none; transform: translate3d(0, 1.5rem, 0) scale(.96); }
 .isSelectingNode .nodeSelected { z-index: 20; transform: translate3d(0, -.8rem, 0) scale(.985); }
 .homeRoot[data-agency-entering="true"] { visibility: hidden; }
+.homeRoot[data-sound-entering="true"] { visibility: hidden; }
 @keyframes nodeFloat { 0%, 100% { translate: 0 0; } 50% { translate: 0 -.55rem; } }
 @keyframes nodeReveal { 0%, 12%, 100% { opacity: .08; } 20%, 31% { opacity: .56; } 40% { opacity: .12; } }
 .agency { --node-accent: #3978ff; --node-glow: rgba(57,120,255,.25); }

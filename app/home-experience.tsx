@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
 import AgencyIntro from "./agency-intro";
+import SoundIntro from "./sound-intro";
 import styles from "./home.module.css";
 import { BlackSea, ClassicalStructure, LightNucleus, ManifestoLoop } from "./home-visuals";
 import SiteMenu from "./site-menu";
@@ -37,6 +38,7 @@ export default function HomeExperience() {
   const [flash, setFlash] = useState(false);
   const [selectedNode, setSelectedNode] = useState<string | null>(null);
   const [agencyIntro, setAgencyIntro] = useState(false);
+  const [soundIntro, setSoundIntro] = useState(false);
   const activeRef = useRef(0);
   const lockedRef = useRef(false);
   const wheelDeltaRef = useRef(0);
@@ -192,6 +194,10 @@ export default function HomeExperience() {
       setAgencyIntro(true);
       return;
     }
+    if (name === "Sound") {
+      setSoundIntro(true);
+      return;
+    }
     window.setTimeout(() => router.push(href), 520);
   };
 
@@ -205,12 +211,23 @@ export default function HomeExperience() {
     router.push("/agency", { scroll: false });
   }, [router]);
 
+  const cancelSoundIntro = useCallback(() => {
+    setSoundIntro(false);
+    setSelectedNode(null);
+    lockedRef.current = false;
+  }, []);
+
+  const completeSoundIntro = useCallback(() => {
+    router.push("/sound", { scroll: false });
+  }, [router]);
+
   return (
     <>
       <main
         className={`${styles.homeRoot} ${transitioning ? styles.isTransitioning : ""} ${selectedNode ? styles.isSelectingNode : ""}`}
         data-agency-entering={agencyIntro ? "true" : "false"}
-        inert={agencyIntro || undefined}
+        data-sound-entering={soundIntro ? "true" : "false"}
+        inert={agencyIntro || soundIntro || undefined}
       >
       <SiteMenu
         homeHref="#inicio"
@@ -359,6 +376,7 @@ export default function HomeExperience() {
       </div>
       </main>
       {agencyIntro && <AgencyIntro onCancel={cancelAgencyIntro} onComplete={completeAgencyIntro} />}
+      {soundIntro && <SoundIntro onCancel={cancelSoundIntro} onComplete={completeSoundIntro} />}
     </>
   );
 }
