@@ -244,6 +244,19 @@ export default function HomeExperience() {
         ]}
       />
 
+      <Link
+        className={styles.userAccess}
+        href="/usuario"
+        data-local-interactive="true"
+        aria-label="Abrir área de usuario"
+      >
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="12" cy="8" r="3.2" />
+          <path d="M4.8 20c.75-3.35 3.2-5.15 7.2-5.15s6.45 1.8 7.2 5.15" />
+        </svg>
+        <span>Acceso</span>
+      </Link>
+
       <div className={styles.sceneProgress} aria-hidden="true">
         <i style={{ transform: `scaleX(${activeScene / (sceneAnchors.length - 1)})` }} />
       </div>
