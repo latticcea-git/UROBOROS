@@ -33,14 +33,11 @@ export default function SoundIntro({ onCancel, onComplete }: SoundIntroProps) {
   const audioContextRef = useRef<AudioContext | null>(null);
   const energyRef = useRef<Energy>({ level: 0, bass: 0, pointer: 0 });
   const interactedRef = useRef(false);
-  const stateRef = useRef<SoundState>("awaiting");
-  const listeningStartedAtRef = useRef(0);
   const lastSignalAtRef = useRef(0);
   const accessGrantedRef = useRef(false);
   const accessTimerRef = useRef<number | null>(null);
   const completeRef = useRef(onComplete);
   const cancelRef = useRef(onCancel);
-  const grantAccessRef = useRef<() => void>(() => undefined);
   const [state, setState] = useState<SoundState>("awaiting");
   const [heardNothing, setHeardNothing] = useState(false);
 
@@ -62,11 +59,6 @@ export default function SoundIntro({ onCancel, onComplete }: SoundIntroProps) {
     setState("accepted");
     accessTimerRef.current = window.setTimeout(complete, 1500);
   }, [complete]);
-
-  useEffect(() => {
-    stateRef.current = state;
-    grantAccessRef.current = grantAccess;
-  }, [grantAccess, state]);
 
   useEffect(() => {
     const fallbackTimer = window.setTimeout(() => {
@@ -105,6 +97,18 @@ export default function SoundIntro({ onCancel, onComplete }: SoundIntroProps) {
   }, [complete, state]);
 
   useEffect(() => {
+    if (state !== "listening") return;
+    const maxListeningTimer = window.setTimeout(grantAccess, 10000);
+    const silenceWatch = window.setInterval(() => {
+      if (performance.now() - lastSignalAtRef.current >= 5000) grantAccess();
+    }, 200);
+    return () => {
+      window.clearTimeout(maxListeningTimer);
+      window.clearInterval(silenceWatch);
+    };
+  }, [grantAccess, state]);
+
+  useEffect(() => {
     const canvas = canvasRef.current;
     const context = canvas?.getContext("2d");
     if (!canvas || !context) return;
@@ -138,12 +142,7 @@ export default function SoundIntro({ onCancel, onComplete }: SoundIntroProps) {
         const level = frequencyData.reduce((sum, value) => sum + value, 0) / (frequencyData.length * 255);
         energyRef.current.level = level;
         energyRef.current.bass = bass;
-        if (level > .025) lastSignalAtRef.current = now;
-        if (stateRef.current === "listening") {
-          const listeningFor = now - listeningStartedAtRef.current;
-          const silentFor = now - lastSignalAtRef.current;
-          if (listeningFor >= 10000 || silentFor >= 5000) grantAccessRef.current();
-        }
+        if (level > .055) lastSignalAtRef.current = now;
       }
 
       const simulated = .11 + Math.sin(motion * 1.45) * .035 + Math.sin(motion * 3.7) * .014;
@@ -258,8 +257,7 @@ export default function SoundIntro({ onCancel, onComplete }: SoundIntroProps) {
       streamRef.current = stream;
       audioContextRef.current = audioContext;
       analyserRef.current = analyser;
-      listeningStartedAtRef.current = performance.now();
-      lastSignalAtRef.current = listeningStartedAtRef.current;
+      lastSignalAtRef.current = performance.now();
       setState("listening");
       setHeardNothing(false);
     } catch {
