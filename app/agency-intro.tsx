@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import styles from "./agency-intro.module.css";
 
 type AgencyIntroProps = {
@@ -8,7 +8,7 @@ type AgencyIntroProps = {
   onComplete: () => void;
 };
 
-type IntroPhase = "prompt" | "loading" | "welcome";
+type IntroPhase = "blank" | "prompt" | "loading" | "welcome";
 
 const diagnosticLines = [
   "> latticce.agency / access_request",
@@ -21,8 +21,9 @@ const diagnosticLines = [
 ] as const;
 
 export default function AgencyIntro({ onCancel, onComplete }: AgencyIntroProps) {
-  const [phase, setPhase] = useState<IntroPhase>("prompt");
-  const phaseRef = useRef<IntroPhase>("prompt");
+  const [phase, setPhase] = useState<IntroPhase>("blank");
+  const [typedCommand, setTypedCommand] = useState("");
+  const phaseRef = useRef<IntroPhase>("blank");
   const completeRef = useRef(onComplete);
   const cancelRef = useRef(onCancel);
 
@@ -31,18 +32,24 @@ export default function AgencyIntro({ onCancel, onComplete }: AgencyIntroProps) 
     cancelRef.current = onCancel;
   }, [onCancel, onComplete]);
 
+  const startLoading = useCallback(() => {
+    if (phaseRef.current !== "prompt") return;
+    phaseRef.current = "loading";
+    setPhase("loading");
+  }, []);
+
   useEffect(() => {
     phaseRef.current = phase;
-    if (phase === "prompt") return;
-
-    const duration = phase === "loading" ? 7000 : 4000;
+    const duration = phase === "blank" ? 2000 : phase === "prompt" ? 7000 : phase === "loading" ? 3000 : 7000;
     const timer = window.setTimeout(() => {
-      if (phase === "loading") setPhase("welcome");
+      if (phase === "blank") setPhase("prompt");
+      else if (phase === "prompt") startLoading();
+      else if (phase === "loading") setPhase("welcome");
       else completeRef.current();
     }, duration);
 
     return () => window.clearTimeout(timer);
-  }, [phase]);
+  }, [phase, startLoading]);
 
   useEffect(() => {
     const onKeyDown = (event: KeyboardEvent) => {
@@ -52,19 +59,33 @@ export default function AgencyIntro({ onCancel, onComplete }: AgencyIntroProps) 
         return;
       }
 
-      if (phaseRef.current === "prompt" && (event.key === "Enter" || event.key === " ")) {
+      if (phaseRef.current !== "prompt") return;
+
+      if (event.key === "Enter") {
         event.preventDefault();
-        setPhase("loading");
+        startLoading();
+        return;
+      }
+
+      if (event.key === "Backspace") {
+        event.preventDefault();
+        setTypedCommand((current) => current.slice(0, -1));
+        return;
+      }
+
+      if (/^[a-z]$/i.test(event.key)) {
+        event.preventDefault();
+        setTypedCommand((current) => {
+          const next = `${current}${event.key}`.slice(-12);
+          if (next.toLowerCase().endsWith("ok")) window.setTimeout(startLoading, 0);
+          return next;
+        });
       }
     };
 
     window.addEventListener("keydown", onKeyDown);
     return () => window.removeEventListener("keydown", onKeyDown);
-  }, []);
-
-  const advance = () => {
-    if (phaseRef.current === "prompt") setPhase("loading");
-  };
+  }, [startLoading]);
 
   return (
     <section
@@ -76,7 +97,7 @@ export default function AgencyIntro({ onCancel, onComplete }: AgencyIntroProps) 
       <div className={styles.grid} aria-hidden="true" />
       <div className={styles.scan} aria-hidden="true" />
 
-      <div className={styles.consolePanel}>
+      <div className={styles.consolePanel} onClick={startLoading}>
         <header className={styles.consoleHeader} aria-hidden="true">
           <span>AGENCY.OS / GATEWAY</span>
           <span>SESSION 01</span>
@@ -84,10 +105,13 @@ export default function AgencyIntro({ onCancel, onComplete }: AgencyIntroProps) 
 
         <div className={styles.consoleBody}>
           {phase === "prompt" && (
-            <button className={styles.prompt} type="button" onClick={advance} autoFocus>
-              <strong>¿LISTO PARA CONOCER<br />LATTICCE AGENCY?</strong>
-              <span className={styles.inputHint}>PRESIONA <i>ENTER</i> O HAZ CLIC</span>
-            </button>
+            <div className={styles.prompt} role="button" tabIndex={0} aria-label="Continuar a LATTICCE Agency">
+              <p className={styles.question}>¿Listo para conocer LATTICCE AGENCY?</p>
+              <p className={styles.instruction}>Presiona Enter, haz clic o escribe OK para continuar.</p>
+              <p className={styles.typedLine} aria-label={`Comando escrito: ${typedCommand || "vacío"}`}>
+                &gt; {typedCommand}<i aria-hidden="true" />
+              </p>
+            </div>
           )}
 
           {phase === "loading" && (
@@ -104,16 +128,14 @@ export default function AgencyIntro({ onCancel, onComplete }: AgencyIntroProps) 
 
           {phase === "welcome" && (
             <div className={styles.welcome} role="status">
-              <span>&gt; access_granted</span>
-              <strong>BIENVENIDO A<br />LATTICCE AGENCY</strong>
-              <p>ENTRANDO AL SISTEMA</p>
+              <p>BIENVENIDO A LATTICCE AGENCY</p>
             </div>
           )}
         </div>
 
         <footer className={styles.consoleFooter} aria-hidden="true">
           <span>MX—19.4326</span>
-          <span>{phase === "prompt" ? "AWAITING_INPUT" : phase === "loading" ? "PROCESSING" : "ACCESS_GRANTED"}</span>
+          <span>{phase === "blank" ? "STANDBY" : phase === "prompt" ? "AWAITING_INPUT" : phase === "loading" ? "PROCESSING" : "ACCESS_GRANTED"}</span>
           <span>ESC PARA VOLVER</span>
         </footer>
       </div>

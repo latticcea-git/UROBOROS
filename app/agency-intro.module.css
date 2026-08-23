@@ -113,44 +113,44 @@
   display: grid;
   align-content: center;
   justify-items: start;
-  padding: 0;
-  border: 0;
-  outline: none;
   color: inherit;
-  background: transparent;
   cursor: pointer;
   text-align: left;
 }
 
-.prompt:focus-visible { box-shadow: inset 0 0 0 1px rgba(255,255,255,.9); }
-.prompt strong { font-family: Arial, Helvetica, sans-serif; font-size: clamp(2.5rem, 5.8vw, 6.4rem); font-weight: 700; letter-spacing: -.065em; line-height: .85; text-transform: uppercase; }
-.inputHint { margin-top: 2.4rem; color: rgba(238,245,255,.65); font-size: clamp(.52rem, .7vw, .7rem); letter-spacing: .14em; animation: hint-pulse 1.8s ease-in-out infinite; }
-.inputHint i { padding: .48rem .62rem; border: 1px solid rgba(255,255,255,.55); font-style: normal; color: #fff; }
+.prompt:focus-visible { outline: 1px solid rgba(255,255,255,.7); outline-offset: 1rem; }
+.question,
+.instruction,
+.typedLine,
+.welcome p { margin: 0; font-size: clamp(.78rem, 1.2vw, 1.16rem); font-weight: 400; letter-spacing: .025em; line-height: 1.55; }
+.question { width: 35ch; max-width: 100%; overflow: hidden; white-space: nowrap; animation: terminal-type 1.8s steps(35, end) both; }
+.instruction { margin-top: 1rem; color: rgba(238,245,255,.7); opacity: 0; animation: terminal-appear 180ms linear 1.9s forwards; }
+.typedLine { display: flex; align-items: center; min-height: 1.8em; margin-top: 1.8rem; color: rgba(255,255,255,.92); opacity: 0; animation: terminal-appear 180ms linear 2.05s forwards; }
+.typedLine i { display: inline-block; width: .62em; height: 1.1em; margin-left: .2em; background: rgba(255,255,255,.86); animation: cursor-blink .8s steps(1, end) infinite; }
 
 .loading { display: grid; align-content: stretch; grid-template-rows: 1fr auto auto; gap: 1.2rem; }
 .codeLines { display: grid; align-content: center; gap: .85rem; }
-.codeLines p { margin: 0; overflow: hidden; color: rgba(246,249,255,.9); font-size: clamp(.7rem, 1vw, 1rem); letter-spacing: .035em; opacity: 0; white-space: nowrap; animation: code-line 360ms steps(24, end) calc(var(--line-index) * 760ms + 180ms) forwards; }
+.codeLines p { margin: 0; overflow: hidden; color: rgba(246,249,255,.9); font-size: clamp(.7rem, 1vw, 1rem); letter-spacing: .035em; opacity: 0; white-space: nowrap; animation: code-line 260ms steps(24, end) calc(var(--line-index) * 380ms + 100ms) forwards; }
 .progress { height: .6rem; overflow: hidden; border: 1px solid rgba(255,255,255,.45); background: rgba(0,7,56,.36); }
-.progress i { display: block; width: 100%; height: 100%; background: #fff; box-shadow: 0 0 1.6rem rgba(255,255,255,.75); transform: scaleX(0); transform-origin: left; animation: load-progress 7s cubic-bezier(.32,.02,.12,1) both; }
+.progress i { display: block; width: 100%; height: 100%; background: #fff; box-shadow: 0 0 1.6rem rgba(255,255,255,.75); transform: scaleX(0); transform-origin: left; animation: load-progress 3s cubic-bezier(.32,.02,.12,1) both; }
 
 .welcome { display: grid; align-content: center; justify-items: start; }
-.welcome > span { margin-bottom: 2rem; color: rgba(238,245,255,.74); font-size: clamp(.7rem, 1vw, 1rem); }
-.welcome strong { font-family: Arial, Helvetica, sans-serif; font-size: clamp(2.7rem, 6vw, 6.8rem); font-weight: 700; letter-spacing: -.07em; line-height: .84; text-transform: uppercase; animation: welcome-enter 700ms cubic-bezier(.16,1,.3,1) both; }
-.welcome p { margin: 2.2rem 0 0; color: rgba(238,245,255,.65); font-size: clamp(.52rem, .7vw, .7rem); letter-spacing: .18em; }
+.welcome p { width: 31ch; max-width: 100%; overflow: hidden; color: rgba(255,255,255,.94); white-space: nowrap; animation: terminal-type 1.5s steps(31, end) both; }
 
 @keyframes scan { to { transform: translateY(850%); } }
-@keyframes hint-pulse { 0%, 100% { opacity: .52; } 50% { opacity: 1; } }
+@keyframes terminal-type { from { width: 0; } }
+@keyframes terminal-appear { to { opacity: 1; } }
+@keyframes cursor-blink { 50% { opacity: 0; } }
 @keyframes code-line { from { max-width: 0; opacity: 0; } 12% { opacity: 1; } to { max-width: 100%; opacity: 1; } }
 @keyframes load-progress { 0% { transform: scaleX(0); } 20% { transform: scaleX(.1); } 43% { transform: scaleX(.35); } 66% { transform: scaleX(.58); } 86% { transform: scaleX(.82); } 100% { transform: scaleX(1); } }
-@keyframes welcome-enter { from { opacity: 0; filter: blur(.8rem); } to { opacity: 1; filter: blur(0); } }
 
 @media (max-width: 700px) {
   .consolePanel { width: calc(100vw - 2rem); min-height: 72vh; }
   .consoleHeader, .consoleFooter { padding: .85rem; }
   .consoleFooter span:nth-child(2) { display: none; }
   .consoleBody { min-height: 0; padding: 1.25rem; }
-  .prompt strong, .welcome strong { font-size: clamp(2.45rem, 12vw, 4.6rem); }
-  .inputHint { max-width: 18rem; line-height: 2.5; }
+  .question, .welcome p { white-space: normal; animation: terminal-appear 350ms linear both; }
+  .instruction { max-width: 20rem; }
   .codeLines { gap: 1rem; }
   .codeLines p { overflow: hidden; text-overflow: ellipsis; }
 }
