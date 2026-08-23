@@ -55,7 +55,7 @@ export default function SoundIntro({ onCancel, onComplete }: SoundIntroProps) {
         setHeardNothing(true);
         setState("fallback");
       }
-    }, 4000);
+    }, 8000);
     const autoTimer = window.setTimeout(() => {
       if (!interactedRef.current) complete();
     }, 10000);
@@ -155,7 +155,7 @@ export default function SoundIntro({ onCancel, onComplete }: SoundIntroProps) {
       }
 
       const cx = width * .5;
-      const cy = height * .5;
+      const cy = height * .62;
       const radius = Math.min(width, height) * (.102 + smoothBass * .1 + energyRef.current.pointer * .018);
       const halo = context.createRadialGradient(cx, cy, radius * .2, cx, cy, radius * 3.2);
       halo.addColorStop(0, `rgba(196, 139, 255, ${.15 + smoothLevel * .34})`);

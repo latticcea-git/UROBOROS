@@ -11,7 +11,7 @@
 
 .canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
 .intro::after { position: absolute; inset: 0; z-index: 1; background: radial-gradient(ellipse at center, transparent 32%, rgba(0,0,0,.28) 70%, rgba(0,0,0,.78)); content: ""; pointer-events: none; }
-.copy { position: absolute; top: 50%; left: 50%; z-index: 2; width: min(36rem, calc(100vw - 3rem)); transform: translate(-50%, -50%); text-align: center; }
+.copy { position: absolute; top: 27%; left: 50%; z-index: 2; width: min(36rem, calc(100vw - 3rem)); transform: translate(-50%, -50%); text-align: center; }
 .kicker { margin: 0 0 1.4rem; color: rgba(215,196,255,.54); font-size: clamp(.5rem, .65vw, .67rem); letter-spacing: .18em; }
 .prompt { margin: 0; font-size: clamp(.78rem, 1.1vw, 1.05rem); letter-spacing: .05em; }
 .actions { display: grid; grid-template-columns: repeat(2, auto); justify-content: center; gap: .7rem; margin-top: 1.45rem; }
@@ -22,7 +22,7 @@
 @keyframes signal { 0%, 100% { opacity: .45; } 50% { opacity: 1; text-shadow: 0 0 1rem rgba(191,132,255,.65); } }
 
 @media (max-width: 700px) {
-  .copy { width: calc(100vw - 2rem); }
+  .copy { top: 24%; width: calc(100vw - 2rem); }
   .actions { grid-template-columns: 1fr; width: min(18rem, 100%); margin-right: auto; margin-left: auto; }
   .escape { right: 1rem; bottom: 1rem; }
 }
