@@ -8,7 +8,7 @@ type SoundIntroProps = {
   onComplete: () => void;
 };
 
-type SoundState = "awaiting" | "listening" | "fallback";
+type SoundState = "awaiting" | "listening" | "fallback" | "accepted";
 
 type Energy = { level: number; bass: number; pointer: number };
 type LegacyAudioWindow = Window & typeof globalThis & { webkitAudioContext?: typeof AudioContext };
@@ -33,8 +33,14 @@ export default function SoundIntro({ onCancel, onComplete }: SoundIntroProps) {
   const audioContextRef = useRef<AudioContext | null>(null);
   const energyRef = useRef<Energy>({ level: 0, bass: 0, pointer: 0 });
   const interactedRef = useRef(false);
+  const stateRef = useRef<SoundState>("awaiting");
+  const listeningStartedAtRef = useRef(0);
+  const lastSignalAtRef = useRef(0);
+  const accessGrantedRef = useRef(false);
+  const accessTimerRef = useRef<number | null>(null);
   const completeRef = useRef(onComplete);
   const cancelRef = useRef(onCancel);
+  const grantAccessRef = useRef<() => void>(() => undefined);
   const [state, setState] = useState<SoundState>("awaiting");
   const [heardNothing, setHeardNothing] = useState(false);
 
@@ -48,6 +54,19 @@ export default function SoundIntro({ onCancel, onComplete }: SoundIntroProps) {
     audioContextRef.current?.close().catch(() => undefined);
     completeRef.current();
   }, []);
+
+  const grantAccess = useCallback(() => {
+    if (accessGrantedRef.current) return;
+    accessGrantedRef.current = true;
+    setHeardNothing(false);
+    setState("accepted");
+    accessTimerRef.current = window.setTimeout(complete, 1500);
+  }, [complete]);
+
+  useEffect(() => {
+    stateRef.current = state;
+    grantAccessRef.current = grantAccess;
+  }, [grantAccess, state]);
 
   useEffect(() => {
     const fallbackTimer = window.setTimeout(() => {
@@ -65,7 +84,7 @@ export default function SoundIntro({ onCancel, onComplete }: SoundIntroProps) {
         event.preventDefault();
         cancelRef.current();
       }
-      if (event.key === "Enter" && interactedRef.current) complete();
+      if (event.key === "Enter" && interactedRef.current) grantAccess();
     };
 
     window.addEventListener("keydown", onKeyDown);
@@ -73,10 +92,17 @@ export default function SoundIntro({ onCancel, onComplete }: SoundIntroProps) {
       window.clearTimeout(fallbackTimer);
       window.clearTimeout(autoTimer);
       window.removeEventListener("keydown", onKeyDown);
+      if (accessTimerRef.current) window.clearTimeout(accessTimerRef.current);
       streamRef.current?.getTracks().forEach((track) => track.stop());
       audioContextRef.current?.close().catch(() => undefined);
     };
   }, [complete]);
+
+  useEffect(() => {
+    if (state !== "fallback") return;
+    const fallbackExitTimer = window.setTimeout(complete, 10000);
+    return () => window.clearTimeout(fallbackExitTimer);
+  }, [complete, state]);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -112,6 +138,12 @@ export default function SoundIntro({ onCancel, onComplete }: SoundIntroProps) {
         const level = frequencyData.reduce((sum, value) => sum + value, 0) / (frequencyData.length * 255);
         energyRef.current.level = level;
         energyRef.current.bass = bass;
+        if (level > .025) lastSignalAtRef.current = now;
+        if (stateRef.current === "listening") {
+          const listeningFor = now - listeningStartedAtRef.current;
+          const silentFor = now - lastSignalAtRef.current;
+          if (listeningFor >= 10000 || silentFor >= 5000) grantAccessRef.current();
+        }
       }
 
       const simulated = .11 + Math.sin(motion * 1.45) * .035 + Math.sin(motion * 3.7) * .014;
@@ -226,6 +258,8 @@ export default function SoundIntro({ onCancel, onComplete }: SoundIntroProps) {
       streamRef.current = stream;
       audioContextRef.current = audioContext;
       analyserRef.current = analyser;
+      listeningStartedAtRef.current = performance.now();
+      lastSignalAtRef.current = listeningStartedAtRef.current;
       setState("listening");
       setHeardNothing(false);
     } catch {
@@ -252,8 +286,9 @@ export default function SoundIntro({ onCancel, onComplete }: SoundIntroProps) {
             <button type="button" onClick={continueWithoutMicrophone}>CONTINUAR SIN MICRÓFONO</button>
           </div>
         )}
-        {state === "listening" && <p className={styles.status}>TE ESCUCHO · PRESIONA ENTER PARA ACCEDER</p>}
+        {state === "listening" && <p className={styles.status}>TE ESCUCHO · SIGUE A TU RITMO</p>}
         {heardNothing && <p className={styles.status}>NO TE ESCUCHO · PRESIONA ENTER PARA ACCEDER</p>}
+        {state === "accepted" && <p className={styles.status}>ACCESO ACEPTADO</p>}
       </div>
       <p className={styles.escape}>ESC PARA VOLVER</p>
     </section>
