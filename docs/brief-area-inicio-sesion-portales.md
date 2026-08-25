@@ -1,364 +1,240 @@
-# Brief funcional — Área de usuario y portales LATTICCE
+# Brief actualizado — Área de usuario y portales LATTICCE
 
-**Proyecto:** UROBOROS / Sitio LATTICCE
-**Área:** Inicio de sesión, registro y portales privados
-**Estado:** Exploración funcional para definir el primer alcance
-**Prioridad:** Crear una puerta de acceso única para colaboradores y clientes, sin romper la experiencia inmersiva del Home.
+**Proyecto:** UROBOROS / LATTICCE
+**Área:** acceso, portal de colaboradores y portal de clientes
+**Estado:** dirección funcional y visual para la siguiente iteración
+**Alcance de este documento:** define qué se diseñará y qué datos debe representar; no da por hechas integraciones, cuentas reales ni métricas sin una fuente conectada.
 
 ## 1. Intención detectada
 
-Incorporar en la esquina izquierda del Home un botón de usuario que conduzca a un sistema de acceso privado LATTICCE. Desde el registro, la persona deberá distinguir si entra como **colaborador** o como **cliente**. Cada perfil tendrá después un portal diferente:
+Construir dos portales privados, unidos por un mismo acceso pero con finalidades distintas:
 
-- El portal de colaboradores será el primer intento de plataforma interna de trabajo, con identidad `@latticce.com`, herramientas conectadas, comunicación, aprendizaje y utilidades operativas.
-- El portal de clientes será un dashboard privado para consultar el estado de la relación y del proyecto: contrato, seguimiento, notificaciones, contactos, equipo asignado y servicios incluidos.
+- **Colaboradores:** un espacio operativo para organizar proyectos, herramientas, calendario, personas, aprendizaje y anuncios.
+- **Clientes:** una vista clara y contenida de su proyecto, avance, contrato, documentos, responsables y acciones pendientes.
 
-## 2. Objetivo del producto
+Ambos deben tomar de la referencia una cualidad espacial y editorial: un **núcleo con halo acuoso** que concentra atención y un **panel inferior oscuro** que resume la información operativa. No se debe copiar su interfaz ni rellenar el portal con gráficas, archivos o integraciones simuladas.
 
-Construir una experiencia de acceso que haga visible que LATTICCE no solo presenta servicios, sino que también ofrece un sistema vivo de relación, colaboración y seguimiento.
+## 2. Lectura de la referencia
 
-El área deberá resolver tres necesidades:
+### Lo que funciona y se conserva
 
-1. Permitir que una persona se registre y solicite su identidad o acceso correspondiente.
-2. Dirigirla a la experiencia correcta según su relación con LATTICCE.
-3. Centralizar la información y las acciones más importantes de colaboradores y clientes en un espacio privado, claro y escalable.
+| Rasgo visible | Valor para LATTICCE | Adaptación propuesta |
+| --- | --- | --- |
+| Campo claro y muy despejado | Hace que la información se perciba ordenada y permite distinguir lo crítico. | Superficie clara o gris mineral para los portales, con tipografía LATTICCE y contraste negro preciso. |
+| Núcleo orgánico con halo acuoso | Da un punto de concentración sin convertir el dashboard en una cuadrícula genérica. | Halo abstracto, sin imagen decorativa obligatoria, asociado al proyecto seleccionado o al estado general. Nunca debe ocultar datos. |
+| Módulos de distintas escalas | Separa agenda, actividad, equipo y material sin usar una sola tabla. | Tarjetas con propósito único y jerarquía explícita: proyecto, avance, próximas fechas, equipo o documentos. |
+| Franja inferior negra | Crea un lugar claro para resumir indicadores y actividad. | Panel inferior de rendimiento/progreso, con datos verificables y fecha de actualización. |
 
-## 3. Punto de entrada en el Home
+### Lo que no se adopta
 
-### Ubicación
+- No se copiará la marca, la retícula exacta, los textos, el file preview ni la forma de las tarjetas de la referencia.
+- No se crearán gráficas, porcentajes, archivos o avatares ficticios para llenar espacio.
+- El halo no será un adorno constante ni una animación que perjudique lectura, rendimiento o movimiento reducido.
+- No se prometerá que una herramienta está integrada si solo abre un enlace externo.
 
-- Botón de usuario fijo en la esquina superior izquierda del sitio.
-- Debe convivir con el lenguaje visual del Home sin competir con el logo, el menú ni el contenido principal.
-- Debe ser reconocible por icono y, cuando el contexto lo permita, por etiqueta textual.
-- En móvil deberá conservar un área táctil cómoda y no quedar oculto detrás de la navegación o de contenido interactivo.
+### Veredicto
 
-### Estados del botón
+La referencia es **prometedora** para el tipo de información que necesitan ambos portales: mezcla una superficie serena con un foco visual y un resumen operacional. Su adaptación debe ser más sobria: la identidad LATTICCE aparece en luz, materialidad, contraste y ritmo, mientras que el contenido siempre conserva prioridad.
 
-- **Visitante:** icono de usuario y acción “Entrar” o “Área de usuario”.
-- **Persona no autenticada en una ruta privada:** opción de iniciar sesión o regresar al Home.
-- **Persona autenticada:** avatar o iniciales, nombre y acceso directo a su portal.
-- **Notificaciones pendientes:** indicador discreto, sin depender únicamente del color.
+## 3. Principios de diseño compartidos
 
-### Decisión pendiente
+1. **Un núcleo por contexto.** El halo representa el proyecto activo, el avance general o el siguiente hito; no una imagen intercambiable sin significado.
+2. **El panel inferior informa.** Resume progreso, carga o estado con texto, etiquetas y fecha; las gráficas complementan, no sustituyen, la lectura.
+3. **Una acción principal visible.** Crear proyecto, revisar un hito o descargar un documento; no varias llamadas compitiendo.
+4. **Datos antes que ornamento.** Si no existe conexión o dato, se muestra un estado vacío útil y la acción para resolverlo.
+5. **Móvil primero en comportamiento.** Las tarjetas pasan a una columna; el panel inferior se apila; las acciones de arrastrar también se pueden realizar con toque, selección y botón “Agregar”.
+6. **Mismo sistema, distinta privacidad.** Colaboradores ven operación interna según permisos. Clientes solo ven contenido autorizado de su organización y proyecto.
 
-Confirmar si el botón abrirá una pantalla dedicada, un panel lateral o una transición modal sobre el Home. Para el primer alcance se recomienda una pantalla dedicada de acceso, porque facilita la autenticación, la recuperación de sesión y la accesibilidad.
+## 4. Acceso y clasificación de cuenta
 
-## 4. Registro y clasificación de cuenta
+El botón de usuario permanece en la esquina superior izquierda del Home y dirige a una pantalla dedicada `/usuario`.
 
-### Pantalla inicial
+La pantalla de acceso debe permitir elegir con claridad:
 
-La persona deberá poder elegir entre:
+- **Colaborador/a:** solicita o activa una identidad `@latticce.com`; la cuenta requiere la aprobación que LATTICCE defina.
+- **Cliente:** accede mediante invitación, validación o relación previa; registrarse por sí solo no concede acceso a proyectos ni contratos.
 
-- **Soy colaborador/a**
-- **Soy cliente**
-
-La distinción debe explicarse con una frase breve para evitar que una persona seleccione el flujo equivocado.
-
-### Registro de colaborador
-
-Objetivo: solicitar o activar una identidad de trabajo LATTICCE.
-
-Campos iniciales propuestos:
-
-- Nombre completo.
-- Correo actual.
-- Área, disciplina o relación con LATTICCE.
-- Tipo de colaboración, si aplica.
-- Contraseña o método de acceso sin contraseña.
-- Aceptación de términos y políticas aplicables.
-
-Regla principal: el registro debe pedir o gestionar una identidad `@latticce.com`. Falta definir si:
-
-- toda persona colaboradora recibirá automáticamente una cuenta;
-- la cuenta se aprobará manualmente;
-- el correo `@latticce.com` será un alias, una cuenta de Google Workspace o solo un identificador dentro de la plataforma.
-
-### Registro de cliente
-
-Objetivo: vincular a una persona con una empresa, contrato o proyecto existente.
-
-Campos iniciales propuestos:
-
-- Nombre completo.
-- Correo de contacto.
-- Empresa o marca.
-- Proyecto o servicio relacionado, si lo conoce.
-- Código de invitación, enlace de invitación o validación por parte de LATTICCE.
-- Contraseña o método de acceso sin contraseña.
-- Aceptación de términos y políticas aplicables.
-
-El portal de cliente no debería permitir que una persona consulte información de una empresa o proyecto únicamente por registrarse. La vinculación deberá requerir invitación, aprobación o coincidencia validada con un registro interno.
-
-## 5. Autenticación y estados de acceso
-
-### Flujo mínimo
+Flujo mínimo:
 
 ```text
-Home → Botón de usuario → Entrar / Registrarse → Elegir perfil
-→ Crear cuenta o aceptar invitación → Verificar identidad
-→ Aprobación, si aplica → Portal correspondiente
+Home → Área de usuario → Entrar / Registrarse → Elegir perfil
+→ Verificar identidad o aceptar invitación → Aprobación, si aplica
+→ Portal correspondiente
 ```
 
-### Casos necesarios
+La autenticación y la autorización se mantienen separadas: tener sesión no concede automáticamente acceso a una organización, proyecto, calculadora o integración.
 
-- Iniciar sesión.
-- Cerrar sesión.
-- Recuperar contraseña o solicitar nuevo enlace de acceso.
-- Verificar correo electrónico.
-- Aceptar una invitación.
-- Ver cuenta pendiente de aprobación.
-- Ver acceso rechazado o expirado.
-- Cambiar de organización o proyecto cuando una persona tenga más de uno.
-- Gestionar permisos según rol.
-
-### Recomendación de seguridad
-
-Separar desde el inicio la autenticación de la autorización. Una persona puede estar autenticada y aun así no tener permiso para ver un contrato, un proyecto, un curso o una integración determinada.
-
-## 6. Portal de colaboradores
+## 5. Portal de colaboradores
 
 ### Propósito
 
-Crear la primera versión de una plataforma interna para trabajadores y colaboradores LATTICCE. Debe funcionar como punto de entrada operativo, cultural y de comunicación, no como una acumulación de enlaces.
+Ser el centro de trabajo de cada colaborador: encontrar su actividad y organizar proyectos sin intentar reemplazar Drive, Jira, Meta, Adobe o las demás plataformas.
 
-### Módulos iniciales
+### Navegación propuesta
 
-#### Inicio
+```text
+/colaboradores
+├── Inicio
+├── Proyectos
+├── Herramientas
+├── Calendario
+├── Personas
+├── Cursos
+├── Anuncios
+└── Perfil
+```
 
-- Resumen de actividad relevante.
-- Anuncios recientes.
-- Accesos rápidos a herramientas.
-- Próximos eventos, entregas o pendientes, si se integran después.
-- Estado de la cuenta y de la identidad `@latticce.com`.
+### Inicio: composición visual
 
-#### Herramientas e integraciones
+- **Núcleo / halo:** proyecto seleccionado o estado general del trabajo. Debe mostrar su nombre y estado en texto.
+- **Columna operativa:** próximos hitos, actividad relevante y anuncios no leídos.
+- **Panel inferior oscuro:** rendimiento general y por proyecto, únicamente cuando haya una fuente de datos definida; de lo contrario, estado “Sin datos conectados”.
+- **Acción primaria:** `Crear proyecto`, visible solo a quien tenga permiso.
 
-Espacio para centralizar o enlazar integraciones con:
+### Proyectos
 
-- Google Drive.
-- Jira.
-- Redes sociales.
-- Meta.
-- Otros complementos que se incorporen posteriormente.
+- Vistas separables: **activos**, **terminados** y, si se requiere posteriormente, archivados.
+- Crear proyecto con un nombre y los datos mínimos que LATTICCE defina; no se inventa un flujo de aprobación sin regla operativa.
+- Cada proyecto muestra: estado, responsables visibles, siguiente hito y avance solo si está disponible.
+- Al abrir un proyecto se muestra su espacio de herramientas, calendario, equipo y actividad autorizada.
 
-Cada integración deberá indicar claramente si:
+### Espacio de herramientas por proyecto
 
-- está conectada;
-- requiere autorización;
-- está disponible solo para ciertos roles;
-- abre una herramienta externa;
-- sincroniza información dentro de LATTICCE.
+El usuario puede configurar las herramientas de cada proyecto mediante una bandeja de iconos y zonas de destino claras.
 
-Para el MVP se recomienda comenzar con enlaces y estados de conexión antes de construir sincronizaciones profundas.
+**Catálogo inicial solicitado:** Jira, Meta, Google Drive, Adobe, TikTok, otras apps aprobadas y lenguajes o stacks de programación.
 
-#### Cursos y aprendizaje
+Reglas:
 
-- Catálogo de cursos o recursos.
-- Estado de avance.
-- Cursos obligatorios o recomendados.
-- Materiales asociados.
-- Posible registro de finalización.
+- Arrastrar un icono equivale inicialmente a **asociar un acceso o una categoría** al proyecto; no equivale a conceder permisos ni a sincronizar datos.
+- Cada icono debe indicar su estado: `disponible`, `requiere conexión`, `conectado` o `sin permiso`.
+- En móvil se ofrece el mismo resultado con selección de icono y botón `Agregar al proyecto`.
+- Las opciones de lenguajes/stacks se usan para describir la configuración técnica del proyecto, no como métricas de desempeño.
 
-#### Anuncios
+### Herramientas y calculadoras
 
-- Comunicados internos.
-- Cambios operativos.
-- Nuevos proyectos, oportunidades o recursos.
-- Fecha de publicación y autor o área responsable.
-- Estado leído/no leído.
+La sección `Herramientas` reúne accesos externos y las calculadoras actuales de TABULADOR:
 
-#### Calculadora
+| Herramienta | Ruta actual en TABULADOR | Condición de enlace |
+| --- | --- | --- |
+| HORA$ | `/` | Abrir en la instancia pública de TABULADOR cuando exista. |
+| Cotizador Studio | `/cotizador-studio` | Abrir en la instancia pública de TABULADOR cuando exista. |
+| Renta de equipo | `/renta-equipo` | Abrir en la instancia pública de TABULADOR cuando exista. |
+| Paquetes | `/paquetes` | Abrir en la instancia pública de TABULADOR cuando exista. |
 
-La calculadora vivirá dentro del portal de colaboradores. En esta etapa se debe definir qué calcula, qué variables recibe, quién puede usarla y si sus resultados se guardan.
+La base pública de TABULADOR aún debe confirmarse. Hasta entonces, el portal no debe exponer enlaces `localhost` ni presentar estas calculadoras como públicas. Al definirse, se configurará una sola URL base y se enlazarán las cuatro rutas.
 
-Preguntas pendientes:
+### Calendario, personas y perfil
 
-- ¿Es una calculadora de cotización, horas, recursos, presupuestos, producción o rentabilidad?
-- ¿Sus fórmulas serán visibles para todos?
-- ¿Los resultados son privados, compartibles o parte de un proyecto?
-- ¿Debe generar un reporte o exportación?
+- **Calendario:** hitos, entregas, sesiones y fechas de proyecto que estén autorizadas para el usuario.
+- **Personas:** directorio de colaboradores y clientes visibles según proyecto/permisos, con una vía de contacto aprobada por LATTICCE.
+- **Perfil:** cambiar foto, nombre y datos de contacto propios. La visibilidad de cada dato se configura explícitamente.
+- **Cursos y anuncios:** se conservan como módulos de apoyo, con avance y lectura solo si se registran esas señales.
 
-#### Perfil y cuenta
-
-- Nombre, foto o avatar e información profesional.
-- Disciplina y rol.
-- Datos de contacto.
-- Estado de identidad `@latticce.com`.
-- Preferencias de notificación.
-- Seguridad y sesiones activas.
-
-## 7. Portal de clientes
+## 6. Portal de clientes
 
 ### Propósito
 
-Ofrecer a cada cliente una vista clara, confiable y actualizada de su relación con LATTICCE, sin exponer información interna innecesaria.
+Dar al cliente una imagen confiable de su proyecto sin trasladarle la operación interna de LATTICCE.
 
-### Módulos iniciales
-
-#### Dashboard
-
-- Estado general de la relación o proyecto.
-- Próximo hito.
-- Última actualización.
-- Acciones pendientes del cliente.
-- Acceso rápido a contacto y documentos.
-
-#### Contrato y alcance
-
-- Contrato vigente.
-- Versión y fecha del documento.
-- Estado: pendiente, activo, pausado, cerrado o vencido.
-- Servicios incluidos.
-- Entregables o límites de alcance, si se decide mostrarlos.
-- Documentos relacionados y versiones aprobadas.
-
-#### Seguimiento del proyecto
-
-- Fases o hitos.
-- Estado de cada fase.
-- Fechas relevantes.
-- Entregables entregados, en revisión o pendientes.
-- Comentarios o actualizaciones autorizadas.
-
-#### Notificaciones
-
-- Cambios de estado.
-- Solicitudes de aprobación.
-- Nuevos documentos.
-- Próximas reuniones o fechas clave.
-- Comunicaciones importantes.
-
-#### Información de contacto
-
-- Contacto principal de LATTICCE.
-- Contactos adicionales autorizados.
-- Canal recomendado de comunicación.
-- Horarios o tiempos de respuesta, si se definen.
-
-#### Personas asignadas al proyecto
-
-- Nombre y rol de cada persona visible para el cliente.
-- Área o disciplina.
-- Función dentro del proyecto.
-- Canal de contacto, solo si corresponde.
-
-#### Servicios incluidos
-
-- Lista de servicios contratados.
-- Estado de cada servicio.
-- Descripción breve.
-- Relación con fases o entregables.
-- Servicios adicionales fuera del alcance, si deben mostrarse como oportunidades y no como obligaciones.
-
-## 8. Modelo de roles y permisos
-
-El sistema deberá contemplar permisos desde el primer diseño, aunque el MVP tenga pocos roles.
-
-### Roles mínimos sugeridos
-
-- **Visitante:** puede ver el Home y solicitar acceso.
-- **Colaborador pendiente:** puede completar registro y esperar aprobación.
-- **Colaborador activo:** puede entrar al portal interno según sus permisos.
-- **Cliente pendiente:** puede aceptar invitación o completar validación.
-- **Cliente activo:** puede consultar la información de sus organizaciones y proyectos autorizados.
-- **Administrador LATTICCE:** gestiona usuarios, permisos, contenidos, proyectos e integraciones.
-- **Responsable de proyecto:** actualiza el seguimiento y la información visible para un cliente.
-
-### Principio de visibilidad
-
-El cliente verá únicamente datos asociados a su organización y a los proyectos que tenga autorizados. El colaborador verá únicamente las herramientas, cursos, anuncios y datos internos correspondientes a su rol.
-
-## 9. Arquitectura de navegación propuesta
+### Navegación propuesta
 
 ```text
-/usuario
-├── /entrar
-├── /registrarse
-│   ├── /colaborador
-│   └── /cliente
-├── /verificar
-├── /recuperar-acceso
-├── /pendiente
-├── /colaboradores
-│   ├── /inicio
-│   ├── /herramientas
-│   ├── /cursos
-│   ├── /anuncios
-│   ├── /calculadora
-│   └── /perfil
-└── /clientes
-    ├── /inicio
-    ├── /contrato
-    ├── /seguimiento
-    ├── /notificaciones
-    ├── /contactos
-    ├── /equipo
-    └── /servicios
+/clientes
+├── Inicio
+├── Proyecto
+├── Contrato y documentos
+├── Calendario
+├── Personas
+└── Notificaciones
 ```
 
-Las rutas son una propuesta de organización y no una decisión técnica definitiva.
+### Dashboard: composición visual equivalente
 
-## 10. Alcance recomendado para el primer MVP
+- **Núcleo / halo:** estado del proyecto seleccionado y su próximo hito, siempre expresados con texto y fecha.
+- **Módulos centrales:** avance por fases, entregables autorizados, próximas acciones y responsable principal.
+- **Panel inferior oscuro:** gráfica de avance y resumen de servicios/entregables solo con datos reales; indica última actualización y fuente.
+- **Acción primaria:** revisar una aprobación o descargar un documento disponible. No hay “crear proyecto” para clientes salvo que se apruebe expresamente ese flujo.
+
+### Información visible
+
+| Módulo | Información permitida |
+| --- | --- |
+| Proyecto | Estado, fases/hitos visibles, próxima fecha y actualizaciones autorizadas. |
+| Avance | Gráfica o porcentaje respaldado por el seguimiento del proyecto, con fecha de actualización. |
+| Contrato y descargables | Contrato vigente y documentos aprobados para descarga; versión, fecha y estado. |
+| Servicios | Servicios incluidos y su relación con el proyecto, sin costos o notas internas no autorizadas. |
+| Personas | Equipo y contactos visibles, con rol y canal de contacto autorizado. |
+| Notificaciones | Cambios de estado, documentos, aprobaciones y fechas importantes. |
+| Calendario | Hitos, reuniones y entregas que el cliente pueda consultar. |
+
+El cliente no ve comentarios internos, proyectos de terceros, costos no aprobados, herramientas de colaboradores ni métricas internas de rendimiento.
+
+## 7. Datos, permisos y estados necesarios
+
+### Entidades mínimas
+
+```text
+Usuario
+├── perfil, foto y datos de contacto con visibilidad configurable
+├── rol: visitante | colaborador pendiente | colaborador activo |
+│       cliente pendiente | cliente activo | administrador
+└── pertenencias y permisos
+
+Proyecto
+├── estado, responsables, hitos y calendario
+├── avance y fuente/fecha de actualización
+├── herramientas asociadas
+└── documentos o contratos visibles por permiso
+```
+
+### Estados obligatorios
+
+- Carga, vacío, error, sesión expirada y permiso denegado.
+- Integración no conectada o sin permiso.
+- Avance todavía no disponible, con explicación y fecha de última actualización si existe.
+- Documento no disponible o acceso revocado.
+
+## 8. Alcance de la siguiente implementación
 
 ### Incluir
 
-- Botón de usuario en el Home.
-- Pantallas de entrar, registrarse y recuperar acceso.
-- Selección explícita entre colaborador y cliente.
-- Verificación de correo.
-- Flujo de invitación o aprobación.
-- Portal base con navegación diferenciada por perfil.
-- Portal de colaboradores con inicio, anuncios, herramientas enlazadas, cursos básicos y calculadora pendiente de definición.
-- Portal de clientes con inicio, contrato, seguimiento, contactos, equipo y servicios incluidos.
-- Sistema básico de permisos.
-- Estados vacíos, errores, carga, sesión expirada y acceso pendiente.
+- El sistema visual compartido: halo funcional, módulos claros y panel inferior informativo.
+- Dashboard de colaborador y de cliente con contenido de ejemplo claramente identificado como demo cuando no sea real.
+- Vistas de proyectos activos/terminados y la acción de crear proyecto condicionada a permiso.
+- Compositor de herramientas por proyecto con arrastrar y alternativa táctil.
+- Sección Herramientas con las cuatro calculadoras preparadas para una URL base de TABULADOR.
+- Perfil editable, calendario, personas y módulos de progreso con estados vacíos honestos.
+- Contrato/documentos descargables como estructura y permisos; la descarga real requiere archivos y autorización.
 
-### Dejar para una segunda fase
+### No incluir todavía
 
-- Sincronización profunda con Drive, Jira, Meta y redes sociales.
-- Automatizaciones entre integraciones.
-- Chat interno o mensajería compleja.
-- Facturación y pagos.
-- Aplicación móvil nativa.
-- Analítica avanzada de uso.
-- Constructor flexible de dashboards.
+- Sincronización profunda o acceso delegado a Jira, Meta, Drive, Adobe, TikTok u otras plataformas.
+- Chat, pagos, facturación o métricas inventadas.
+- Creación automática de correos `@latticce.com`.
+- Enlaces públicos a TABULADOR hasta confirmar y publicar su instancia.
 
-## 11. Criterios de aceptación iniciales
+## 9. Criterios de aceptación
 
-- El botón de usuario es localizable y usable en escritorio y móvil.
-- Una persona puede identificar correctamente si entra como colaborador o cliente.
-- Un cliente no puede acceder a información ajena por conocer un correo o URL.
-- Un colaborador pendiente no recibe acceso completo antes de la aprobación definida.
-- Cada perfil llega a un dashboard diferente después de autenticarse.
-- Las integraciones externas muestran su estado y no aparentan estar sincronizadas si solo son enlaces.
-- Los portales funcionan con estados de carga, vacío, error y sesión expirada.
-- La experiencia mantiene el lenguaje visual de LATTICCE sin sacrificar legibilidad ni claridad operativa.
-- La interfaz es navegable por teclado, tiene foco visible y ofrece una alternativa razonable para movimiento reducido.
+- El portal de colaboradores permite distinguir proyectos activos de terminados y crear uno solo con permiso.
+- Las herramientas se pueden asociar a un proyecto con arrastrar y con una alternativa accesible en móvil/teclado.
+- Ningún icono promete una integración que no exista.
+- Las calculadoras usan las rutas actuales y se activan solo con una base pública válida de TABULADOR.
+- El perfil permite editar únicamente los propios datos y define qué datos de contacto se muestran.
+- Cada gráfica expone etiqueta, estado y fecha; si no hay datos, no simula actividad.
+- El cliente entiende estado, avance, documentos, contrato, responsables y siguiente acción desde su dashboard.
+- El cliente no puede acceder a información interna ni a proyectos ajenos.
+- En móvil, el acceso y ambos portales mantienen scroll, controles táctiles y lectura en una sola columna.
 
-## 12. Decisiones que deben resolverse antes de diseñar la UI final
+## 10. Decisiones aún necesarias
 
-1. ¿Qué proveedor gestionará autenticación, usuarios, invitaciones y recuperación de acceso?
-2. ¿Cómo se crearán las cuentas `@latticce.com` y quién las aprobará?
-3. ¿El registro de clientes será abierto, por invitación o mixto?
-4. ¿Qué información contractual puede ver el cliente y qué información debe permanecer interna?
-5. ¿Cuál es la definición exacta de la calculadora?
-6. ¿Qué integraciones son prioritarias para la primera versión?
-7. ¿Quién administra cursos, anuncios, usuarios y permisos?
-8. ¿Una misma persona puede ser colaborador y cliente en contextos distintos?
-9. ¿Un cliente puede pertenecer a varias empresas o proyectos?
-10. ¿Qué acciones deben generar notificaciones y por qué canal?
+1. Qué roles pueden crear, cerrar o archivar proyectos.
+2. Cuál será la fuente de verdad para avance, rendimiento y calendario.
+3. Qué datos de perfil y contacto serán visibles entre colaboradores y clientes.
+4. Qué integraciones entrarán primero y quién autoriza cada conexión.
+5. La URL pública definitiva de TABULADOR para activar HORA$, Cotizador Studio, Renta y Paquetes.
+6. Qué contratos y documentos pueden descargarse y bajo qué regla de expiración/revocación.
 
-## 13. Supuestos de esta ampliación
+## 11. Siguiente iteración sugerida
 
-- “Obtener un `@latticce.com`” se interpreta como una identidad de colaborador, no como una dirección que cualquier visitante puede reclamar automáticamente.
-- El portal de clientes requiere una relación previa con LATTICCE y no debe ser un área pública de autoservicio.
-- Las integraciones serán inicialmente accesos controlados o enlaces con estado, salvo que se defina una sincronización específica.
-- La calculadora se incorpora como módulo reservado a colaboradores, pero su función todavía no está definida.
-- El documento describe producto, contenido, permisos y criterios de experiencia; no fija todavía una tecnología de backend ni un proveedor de autenticación.
-
-## 14. Siguiente paso recomendado
-
-Convertir este brief en tres piezas de trabajo antes de programar:
-
-1. Mapa de roles, permisos y datos visibles.
-2. Flujo UX completo de registro, aprobación, inicio de sesión y primer acceso.
-3. Wireframes del botón de usuario, autenticación, dashboard de colaborador y dashboard de cliente.
+Diseñar primero cuatro pantallas con datos de muestra explícitamente etiquetados: Inicio de colaborador, proyecto de colaborador con compositor de herramientas, Inicio de cliente y detalle de contrato/documentos. Después se valida el comportamiento móvil antes de conectar cualquier dato real.
