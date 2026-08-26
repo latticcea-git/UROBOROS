@@ -5,7 +5,6 @@ import styles from "./node-loading.module.css";
 
 const pendingNodes = {
   sound: "Sound",
-  time: "Time",
   book: "Book",
   blog: "Blog",
 } as const;
