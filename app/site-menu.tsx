@@ -5,33 +5,56 @@ import Link from "next/link";
 import { useState } from "react";
 
 type SiteMenuProps = {
-  links: Array<{ label: string; href: string }>;
+  links?: Array<{ label: string; href: string }>;
   homeHref: string;
   onNavigate?: (href: string) => void;
+  logoSrc?: string;
+  logoAlt?: string;
+  variant?: "dark" | "light" | "agency" | "design";
 };
 
-export default function SiteMenu({ links, homeHref, onNavigate }: SiteMenuProps) {
+const defaultLinks = [
+  { label: "HOME", href: "/" },
+  { label: "AGENCY", href: "/agency" },
+  { label: "DESIGN", href: "/design" },
+  { label: "STUDIO", href: "/studio" },
+  { label: "TIME", href: "/time" },
+  { label: "SOUND", href: "/sound" },
+  { label: "BOOK", href: "/book" },
+  { label: "BLOG", href: "/blog" },
+  { label: "CLIENTES", href: "/clientes" },
+  { label: "COLABORADORES", href: "/colaboradores" },
+  { label: "USUARIO", href: "/usuario" },
+] as const;
+
+export default function SiteMenu({
+  links = [],
+  homeHref,
+  onNavigate,
+  logoSrc = "/UROBOROS/assets/logos/LTT_LOGO_FX_POS.svg",
+  logoAlt = "LATTICCE",
+  variant = "dark",
+}: SiteMenuProps) {
   const [open, setOpen] = useState(false);
+  const overrides = new Map(links.map((link) => [link.label, link]));
   const canonicalLinks = [
-    ...links,
-    { label: "CLIENTES", href: "/clientes" },
-    { label: "COLABORADORES", href: "/colaboradores" },
-    { label: "USUARIO", href: "/usuario" },
-  ].filter((link, index, all) => all.findIndex((candidate) => candidate.label === link.label) === index);
+    ...defaultLinks.map((link) => overrides.get(link.label) ?? link),
+    ...links.filter((link) => !defaultLinks.some((canonical) => canonical.label === link.label)),
+  ];
   const close = (href?: string) => {
     setOpen(false);
     if (href) onNavigate?.(href);
   };
 
   return (
-    <header className="global-menu-header">
+    <header className="global-menu-header" data-menu-variant={variant}>
       {homeHref.startsWith("/UROBOROS/") ? (
         <a className="global-menu-logo" href={homeHref} onClick={() => close(homeHref)} aria-label="LATTICCE, ir al inicio">
-          <Image src="/UROBOROS/assets/logos/LTT_LOGO_FX_POS.svg" width={246} height={47} alt="LATTICCE" loading="eager" fetchPriority="high" />
+          <Image src={logoSrc} width={246} height={47} alt={logoAlt} loading="eager" fetchPriority="high" />
         </a>
       ) : (
         <Link className="global-menu-logo" href={homeHref} onClick={() => close(homeHref)} aria-label="LATTICCE, ir al inicio">
-          <Image src="/UROBOROS/assets/logos/LTT_LOGO_FX_POS.svg" width={246} height={47} alt="LATTICCE" loading="eager" fetchPriority="high" />
+          <Image src={logoSrc} width={246} height={47} alt={logoAlt} loading="eager" fetchPriority="high" />
         </Link>
       )}
       <button
@@ -42,7 +65,10 @@ export default function SiteMenu({ links, homeHref, onNavigate }: SiteMenuProps)
         aria-controls="site-menu-panel"
         onClick={() => setOpen((value) => !value)}
       >
-        <span>Menú</span><i aria-hidden="true">{open ? "×" : "+"}</i>
+        <span>Menú</span>
+        <i aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d={open ? "M6 6l12 12M18 6 6 18" : "M12 5v14M5 12h14"} /></svg>
+        </i>
       </button>
       {open && (
         <nav className="global-menu-panel" id="site-menu-panel" aria-label="Navegación principal">

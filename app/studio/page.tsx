@@ -299,6 +299,7 @@ export default function StudioPage() {
           { label: "BLOG", href: "/blog" },
         ]}
       />
+      <div className="journey-direction-cue" aria-hidden="true"><span>‹‹‹</span><i /><span>›››</span></div>
 
       <div className="site-horizontal" ref={siteHorizontalSectionRef}>
         <div className="site-horizontal-sticky">
@@ -328,10 +329,9 @@ export default function StudioPage() {
         </div>
 
         <button className="hero-reel-control" type="button" onClick={() => setReelOpen(true)}>
-          <i aria-hidden="true">▶</i><span>Ver reel</span>
+          <i aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m9 7 8 5-8 5Z" /></svg></i><span>Ver reel</span>
         </button>
 
-        <div className="scroll-cue" aria-hidden="true"><span>‹‹‹ &nbsp; Desplaza &nbsp; ›››</span><i /></div>
       </section>
 
       <section className="statement section-pad site-panel" aria-labelledby="statement-title">

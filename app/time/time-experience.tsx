@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { FormEvent, PointerEvent, useEffect, useMemo, useRef, useState } from "react";
 import type { CSSProperties } from "react";
+import SiteMenu from "../site-menu";
 import styles from "./time.module.css";
 
 const heroImage = "/UROBOROS/assets/images/time/wedding-hero-v1.png";
@@ -518,29 +519,24 @@ export default function TimeExperience() {
     <main className={styles.root}>
       <a className={styles.skipLink} href="#agenda">Ir a agendar una cita</a>
 
-      <header className={styles.header}>
-        <a className={styles.logo} href="/UROBOROS/#inicio" aria-label="LATTICCE, volver al inicio">
-          <Image
-            src="/UROBOROS/assets/logos/LTT_LOGO_NEG_TIME.svg"
-            width={330}
-            height={104}
-            alt="LATTICCE Time"
-            priority
-          />
-        </a>
-        <nav className={styles.nav} aria-label="Navegación de LATTICCE Time">
-          <a href="#historias">Historias</a>
-          <a href="#coberturas">Coberturas</a>
-          <a href="#equipo">Equipo</a>
-        </nav>
-        <a className={styles.headerCta} href="#agenda">Agenda tu cita <span aria-hidden="true">↗</span></a>
-      </header>
+      <SiteMenu
+        homeHref="/"
+        logoSrc="/UROBOROS/assets/logos/LTT_LOGO_NEG_TIME.svg"
+        logoAlt="LATTICCE Time"
+        variant="light"
+        links={[
+          { label: "HISTORIAS", href: "#historias" },
+          { label: "COBERTURAS", href: "#coberturas" },
+          { label: "EQUIPO", href: "#equipo" },
+          { label: "AGENDAR", href: "#agenda" },
+        ]}
+      />
+      <div className={styles.directionCue} aria-hidden="true"><span>‹‹‹</span><i /><span>›››</span></div>
 
       <div className={styles.horizontal} ref={horizontalRef}>
         <div className={styles.sticky}>
           <div className={styles.track} ref={trackRef}>
             <section className={`${styles.panel} ${styles.hero}`} id="inicio" aria-labelledby="time-hero-title">
-              <div className={styles.directionCue} aria-hidden="true"><span>‹‹‹</span><i /><span>›››</span></div>
               <div className={styles.heroCopy}>
                 <p className={styles.eyebrow}>Fotografía + video de eventos</p>
                 <h1 id="time-hero-title">Tu historia<br /><em>merece quedar así.</em></h1>
@@ -554,7 +550,7 @@ export default function TimeExperience() {
               <figure className={styles.heroPrint}>
                 <button className={styles.heroPhotoButton} type="button" onClick={() => setReelOpen(true)} aria-label="Abrir reel de bodas">
                   <span className={styles.heroPhoto} role="img" aria-label="Pareja caminando después de su boda" />
-                  <span className={styles.reelBadge} aria-hidden="true"><i>▶</i> Ver reel</span>
+                  <span className={styles.reelBadge} aria-hidden="true"><i><svg viewBox="0 0 24 24"><path d="m9 7 8 5-8 5Z" /></svg></i> Ver reel</span>
                 </button>
                 <figcaption>Hagámoslo real</figcaption>
               </figure>

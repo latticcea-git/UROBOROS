@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { MouseEvent as ReactMouseEvent, useEffect, useRef, useState } from "react";
+import SiteMenu from "../site-menu";
 import styles from "./agency.module.css";
 
 const services = [
@@ -99,6 +100,12 @@ export default function AgencyExperience() {
       data-exiting={active ? "true" : "false"}
       data-active={hovered ?? active ?? "none"}
     >
+      <SiteMenu
+        homeHref="/"
+        logoSrc="/UROBOROS/assets/logos/LTT_LOGO_FX_POS_AGENCY.svg"
+        logoAlt="LATTICCE Agency"
+        variant="agency"
+      />
       <div className={styles.world} aria-hidden="true">
         <Image
           className={styles.worldImage}
@@ -116,14 +123,7 @@ export default function AgencyExperience() {
       </div>
 
       <div className={styles.interface}>
-        <nav className={styles.topline} aria-label="Navegación de Agency">
-          <Link className={styles.backLink} href="/">
-            <span aria-hidden="true">←</span> LATTICCE
-          </Link>
-          <Link className={styles.contactLink} href="/#contacto">
-            HABLEMOS <span aria-hidden="true">↗</span>
-          </Link>
-        </nav>
+        <div className={styles.topline} aria-hidden="true" />
 
         <header className={styles.brandBlock}>
           <p className={styles.eyebrow}>NODO 01 / DIGITAL SYSTEMS</p>

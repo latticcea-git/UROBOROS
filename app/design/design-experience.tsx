@@ -1,9 +1,9 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import type { CSSProperties } from "react";
+import SiteMenu from "../site-menu";
 import styles from "./design.module.css";
 
 const projects = [
@@ -91,7 +91,6 @@ export default function DesignExperience() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
   const [cursor, setCursor] = useState({ x: -100, y: -100, mode: "Pluma" });
-  const [menuOpen, setMenuOpen] = useState(false);
   const [activeProject, setActiveProject] = useState<(typeof projects)[number] | null>(null);
 
   useEffect(() => {
@@ -197,31 +196,18 @@ export default function DesignExperience() {
       const reverseProgress = Math.min(1, Math.max(0, 1 - targetOffset / travel));
       window.scrollTo({ top: section.offsetTop + reverseProgress * verticalTravel, behavior: "smooth" });
     }
-    setMenuOpen(false);
   };
 
   return (
     <main className={styles.root}>
       <PenCursor {...cursor} />
 
-      <header className={styles.header}>
-        <Link href="/" className={styles.brand} data-cursor="Abrir" aria-label="LATTICCE Design, volver a inicio">
-          <Image src="/UROBOROS/assets/logos/LTT_LOGO_NEG_DESIGN.svg" width={272} height={70} alt="LATTICCE Design" loading="eager" />
-        </Link>
-        <div className={styles.status}><i /> archivo/design_01.ai <span>125%</span></div>
-        <button className={styles.menuButton} type="button" data-cursor="Menú" aria-expanded={menuOpen} onClick={() => setMenuOpen((value) => !value)}>
-          Menú <b>{menuOpen ? "×" : "+"}</b>
-        </button>
-        {menuOpen && (
-          <nav className={styles.menuPanel} aria-label="Navegación de Design">
-            {[["inicio", "Inicio"], ["book", "Book"], ["metodo", "Método"], ["servicios", "Servicios"], ["contacto", "Contacto"]].map(([id, label], index) => (
-              <button key={id} type="button" onClick={() => goTo(id)} data-cursor="Ir">
-                <span>{String(index).padStart(2, "0")}</span>{label}
-              </button>
-            ))}
-          </nav>
-        )}
-      </header>
+      <SiteMenu
+        homeHref="/"
+        logoSrc="/UROBOROS/assets/logos/LTT_LOGO_NEG_DESIGN.svg"
+        logoAlt="LATTICCE Design"
+        variant="design"
+      />
 
       <aside className={styles.toolbar} aria-label="Herramientas visuales">
         {["↖", "⌁", "◆", "T", "○", "▱"].map((tool, index) => <button key={tool} type="button" data-cursor={index === 1 ? "Dibujar" : "Herramienta"} aria-label={`Herramienta ${index + 1}`}>{tool}</button>)}

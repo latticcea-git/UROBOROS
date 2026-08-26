@@ -143,6 +143,20 @@ button { color: inherit; }
   background: linear-gradient(180deg, rgba(3,3,3,.94), rgba(3,3,3,.3));
   backdrop-filter: blur(14px);
 }
+.global-menu-header[data-menu-variant="light"] {
+  border-bottom-color: rgba(23,23,21,.14);
+  color: #171715;
+  background: linear-gradient(180deg, rgba(241,238,230,.96), rgba(241,238,230,.7));
+}
+.global-menu-header[data-menu-variant="agency"] {
+  border-bottom-color: rgba(114,231,255,.2);
+  background: linear-gradient(180deg, rgba(2,9,18,.94), rgba(2,9,18,.5));
+}
+.global-menu-header[data-menu-variant="design"] {
+  border-bottom-color: rgba(255,106,0,.18);
+  background: linear-gradient(180deg, rgba(8,8,8,.96), rgba(8,8,8,.68));
+}
+.global-menu-header[data-menu-variant="design"] .global-menu-logo img { filter: invert(1); }
 .global-menu-logo {
   position: absolute;
   left: 50%;
@@ -177,6 +191,8 @@ button { color: inherit; }
   font-style: normal;
   line-height: 1;
 }
+.global-menu-trigger i svg { width: 1rem; height: 1rem; fill: none; stroke: currentColor; stroke-width: 1.5; }
+.global-menu-header[data-menu-variant="light"] .global-menu-panel { color: #f2f1eb; }
 .global-menu-panel {
   position: absolute;
   top: calc(100% - 1px);
@@ -363,6 +379,7 @@ button { color: inherit; }
   font-style: normal;
   transition: background 180ms ease, color 180ms ease, transform 180ms ease;
 }
+.hero-reel-control i svg { width: 1rem; height: 1rem; fill: currentColor; }
 .hero-reel-control:hover i { background: var(--paper); color: var(--black); transform: scale(1.06); }
 .hero-reel-control span { font-size: .58rem; letter-spacing: .14em; text-transform: uppercase; }
 
@@ -400,6 +417,10 @@ button { color: inherit; }
 .scroll-cue i { width: 1px; height: 4rem; background: linear-gradient(var(--paper), transparent); }
 .scroll-cue span { animation: directionCuePulse 1.8s ease-in-out infinite; }
 @keyframes directionCuePulse { 0%, 100% { opacity: .55; transform: translateX(0); } 50% { opacity: 1; transform: translateX(.2rem); } }
+.journey-direction-cue { position: fixed; right: var(--pad); bottom: 3.4rem; z-index: 75; display: flex; align-items: center; gap: .45rem; color: #8e8e88; font-size: .62rem; letter-spacing: .16em; pointer-events: none; }
+.journey-direction-cue i { width: 2.8rem; height: 1px; background: var(--line); }
+.journey-direction-cue span { animation: directionCuePulse 1.8s ease-in-out infinite; }
+.journey-direction-cue span:last-child { animation-delay: .9s; }
 
 .statement {
   display: grid;
@@ -740,8 +761,11 @@ textarea:focus, .field-grid input:focus { border-color: var(--paper); }
   .project-copy { min-height: 34rem; }
   .services-horizontal { min-height: 100svh; padding: 0; overflow: visible !important; }
   .services-sticky { position: relative; height: 100svh; min-height: 0; overflow: visible; padding-top: 6rem; padding-bottom: 3rem; }
+  .services-sticky > .section-heading { align-self: end; margin-bottom: 1rem; padding-top: .9rem; }
+  .services-sticky > .section-heading h2 { font-size: clamp(2.35rem, 8vw, 3.8rem); line-height: .94; }
+  .services-sticky > .section-heading > p:last-child { font-size: .74rem; }
   .service-window { overflow: visible; }
-  .service-grid { height: 100%; transform: none !important; }
+  .service-grid { height: min(48svh, 31rem); align-self: start; transform: none !important; }
   .service-card { width: min(78vw, 34rem); scroll-snap-align: start; }
   .service-gallery { grid-template-columns: 1fr; }
   .service-modal-frame { max-height: 82svh; }
@@ -767,6 +791,7 @@ textarea:focus, .field-grid input:focus { border-color: var(--paper); }
   .hero-actions { align-items: flex-start; flex-direction: column; gap: 1.25rem; }
   .scroll-cue { display: flex; right: 1rem; bottom: 3.1rem; left: auto; flex-direction: row; gap: .5rem; writing-mode: horizontal-tb; }
   .scroll-cue i { width: 2.6rem; height: 1px; background: linear-gradient(90deg, transparent, var(--paper)); }
+  .journey-direction-cue { right: 1rem; bottom: 3.15rem; }
   .statement-grid { grid-template-columns: 1fr; gap: 2rem; }
   .statement h2 { font-size: clamp(2.8rem, 14vw, 4.5rem); }
   .section-heading { grid-template-columns: 1fr; gap: 1rem; }
