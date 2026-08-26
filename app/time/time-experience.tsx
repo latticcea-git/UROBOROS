@@ -540,6 +540,7 @@ export default function TimeExperience() {
         <div className={styles.sticky}>
           <div className={styles.track} ref={trackRef}>
             <section className={`${styles.panel} ${styles.hero}`} id="inicio" aria-labelledby="time-hero-title">
+              <div className={styles.directionCue} aria-hidden="true"><span>‹‹‹</span><i /><span>›››</span></div>
               <div className={styles.heroCopy}>
                 <p className={styles.eyebrow}>Fotografía + video de eventos</p>
                 <h1 id="time-hero-title">Tu historia<br /><em>merece quedar así.</em></h1>

@@ -149,7 +149,7 @@
   transform: rotate(-3deg);
 }
 .heroPhotoButton { position: relative; display: block; width: 100%; border: 0; padding: 0; overflow: hidden; background: transparent; cursor: pointer; }
-.heroPhoto { display: block; width: 100%; aspect-ratio: 1821 / 864; background: url("/UROBOROS/assets/images/time/wedding-hero-v1.png") 58% center / cover no-repeat; filter: saturate(.74) contrast(.96); transition: transform 600ms cubic-bezier(.16,1,.3,1), filter 350ms ease; }
+.heroPhoto { display: block; width: 100%; aspect-ratio: 1821 / 864; background: url("/UROBOROS/assets/images/time/wedding-hero-v1.png") 68% center / cover no-repeat; filter: saturate(.74) contrast(.96); transition: transform 600ms cubic-bezier(.16,1,.3,1), filter 350ms ease; }
 .heroPhotoButton:hover .heroPhoto, .heroPhotoButton:focus-visible .heroPhoto { filter: saturate(.88) contrast(1); transform: scale(1.025); }
 .reelBadge { position: absolute; right: 1.2rem; bottom: 1.2rem; display: inline-flex; gap: .65rem; align-items: center; padding: .65rem .9rem; color: #f8f5ed; background: rgba(18,18,16,.72); backdrop-filter: blur(8px); font-size: .54rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
 .reelBadge i { display: grid; width: 1.45rem; height: 1.45rem; place-items: center; border: 1px solid rgba(255,255,255,.55); border-radius: 50%; font-size: .48rem; font-style: normal; }
@@ -157,6 +157,11 @@
 .scrollHint { position: absolute; right: 2.25rem; bottom: 1.7rem; display: flex; gap: .8rem; align-items: center; color: var(--muted); font-size: .55rem; letter-spacing: .15em; text-transform: uppercase; }
 .scrollHint i { display: block; width: 4.5rem; height: 1px; background: var(--line); }
 .scrollHint i::after { display: block; width: 42%; height: 100%; content: ""; background: var(--ink); animation: scrollPulse 1.8s ease-in-out infinite; }
+.directionCue { position: fixed; right: 1rem; bottom: 3.2rem; z-index: 70; display: flex; align-items: center; gap: .45rem; color: var(--muted); font-size: .62rem; letter-spacing: .16em; pointer-events: none; }
+.directionCue i { width: 2.6rem; height: 1px; background: var(--line); }
+.directionCue span { animation: directionPulse 1.8s ease-in-out infinite; }
+.directionCue span:last-child { animation-delay: .9s; }
+@keyframes directionPulse { 0%, 100% { opacity: .45; transform: translateX(0); } 50% { opacity: 1; transform: translateX(.22rem); } }
 
 .stories { width: 156vw; display: grid; grid-template-columns: minmax(25rem,.34fr) minmax(72rem,1fr); gap: clamp(2rem,4vw,5rem); align-items: center; background: radial-gradient(circle at 12% 18%, rgba(255,255,255,.82), transparent 20%), linear-gradient(118deg, rgba(116,105,91,.055) 1px, transparent 1px), #eee9df; background-size: auto, 44px 44px, auto; }
 .stories::after { position: absolute; inset: 0 -.8rem 0 auto; z-index: 3; width: 2.4rem; content: ""; background: #e5e0d6; clip-path: polygon(45% 0, 74% 4%, 38% 8%, 72% 12%, 42% 16%, 77% 21%, 34% 26%, 66% 31%, 39% 36%, 73% 42%, 35% 48%, 69% 54%, 38% 60%, 74% 67%, 40% 74%, 70% 81%, 35% 88%, 73% 94%, 45% 100%, 100% 100%, 100% 0); }

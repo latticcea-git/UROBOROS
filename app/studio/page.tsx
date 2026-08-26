@@ -331,7 +331,7 @@ export default function StudioPage() {
           <i aria-hidden="true">▶</i><span>Ver reel</span>
         </button>
 
-        <div className="scroll-cue" aria-hidden="true"><span>Explorar</span><i /></div>
+        <div className="scroll-cue" aria-hidden="true"><span>‹‹‹ &nbsp; Desplaza &nbsp; ›››</span><i /></div>
       </section>
 
       <section className="statement section-pad site-panel" aria-labelledby="statement-title">

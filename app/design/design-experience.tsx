@@ -231,6 +231,7 @@ export default function DesignExperience() {
       <p className={styles.draft}>BORRADOR — VERSIÓN 1</p>
 
       <div className={styles.horizontal} ref={sectionRef}>
+        <div className={styles.directionCue} aria-hidden="true"><span>‹‹‹</span><i /><span>›››</span></div>
         <div className={styles.viewport} data-design-viewport>
           <div className={styles.track} ref={trackRef}>
             <section className={`${styles.panel} ${styles.hero}`} id="inicio" aria-labelledby="design-hero-title">

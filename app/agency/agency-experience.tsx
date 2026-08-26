@@ -16,7 +16,7 @@ const services = [
   },
   {
     index: "02",
-    title: "ECOSISTEMAS UI–UX",
+    title: "ECOSISTEMAS DIGITALES (UI–UX)",
     detail: "Diseñar · construir · conectar",
     href: "/agency/ecosistemas-ui-ux",
     tone: "system",

@@ -87,6 +87,11 @@
 .materialOrb b { position: absolute; inset: 27%; border: 1px solid rgba(255,255,255,.28); border-radius: 50%; box-shadow: inset 0 0 2rem rgba(0,0,0,.6); }
 .scrollHint { position: absolute; right: 3rem; bottom: 4rem; z-index: 4; color: #85827c; font-size: .5rem; letter-spacing: .14em; text-transform: uppercase; }
 .scrollHint span { margin-left: 1rem; color: var(--orange); }
+.directionCue { position: fixed; right: 1.25rem; bottom: 3.2rem; z-index: 75; display: flex; align-items: center; gap: .45rem; color: #85827c; font-size: .62rem; letter-spacing: .16em; pointer-events: none; }
+.directionCue i { width: 2.8rem; height: 1px; background: var(--line); }
+.directionCue span { animation: directionPulse 1.8s ease-in-out infinite; }
+.directionCue span:last-child { animation-delay: .9s; }
+@keyframes directionPulse { 0%, 100% { opacity: .45; transform: translateX(0); } 50% { opacity: 1; transform: translateX(.22rem); } }
 @keyframes morph { 0%,100% { border-radius: 48% 52% 61% 39% / 41% 36% 64% 59%; transform: rotate(17deg) scale(1); } 50% { border-radius: 63% 37% 42% 58% / 55% 60% 40% 45%; transform: rotate(28deg) scale(1.04); } }
 
 .manifesto { width: 82vw; min-width: 59rem; background: #edebe5; color: #11110f; }
@@ -186,6 +191,7 @@
   .root { cursor: auto; }
   .root button, .root a { cursor: pointer; }
   .penCursor, .status, .toolbar { display: none; }
+  .directionCue { right: 1rem; bottom: 3.15rem; }
   .header { grid-template-columns: 1fr auto; min-height: 4.5rem; }
   .brand { width: 9.5rem; }
   .horizontal { height: 100svh !important; min-height: 100svh; }

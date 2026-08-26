@@ -12,6 +12,12 @@ type SiteMenuProps = {
 
 export default function SiteMenu({ links, homeHref, onNavigate }: SiteMenuProps) {
   const [open, setOpen] = useState(false);
+  const canonicalLinks = [
+    ...links,
+    { label: "CLIENTES", href: "/clientes" },
+    { label: "COLABORADORES", href: "/colaboradores" },
+    { label: "USUARIO", href: "/usuario" },
+  ].filter((link, index, all) => all.findIndex((candidate) => candidate.label === link.label) === index);
   const close = (href?: string) => {
     setOpen(false);
     if (href) onNavigate?.(href);
@@ -41,7 +47,7 @@ export default function SiteMenu({ links, homeHref, onNavigate }: SiteMenuProps)
       {open && (
         <nav className="global-menu-panel" id="site-menu-panel" aria-label="Navegación principal">
           <div className="global-menu-topline"><span>Índice</span><span>LATTICCE / 00</span></div>
-          {links.map((link, index) => (
+          {canonicalLinks.map((link, index) => (
             link.href.startsWith("/UROBOROS/") ? (
               <a href={link.href} onClick={() => close(link.href)} key={link.label}>
                 <span>{String(index).padStart(2, "0")}</span>{link.label}
