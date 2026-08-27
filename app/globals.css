@@ -81,8 +81,8 @@ button { color: inherit; }
 .contact-popup form { max-width: 31rem; padding: 1.15rem 1.25rem 1.35rem; border: 1px solid rgba(255,255,255,.18); background: rgba(5,5,5,.58); backdrop-filter: blur(14px); }
 .contact-popup-close { position: absolute; top: 1.2rem; right: 1.2rem; width: 2.3rem; height: 2.3rem; border: 1px solid var(--line-strong); border-radius: 50%; background: transparent; cursor: pointer; font-size: 1.4rem; }
 .contact-popup > p { color: #858681; font-size: .62rem; letter-spacing: .14em; text-transform: uppercase; }
-.contact-popup h2 { margin: 1rem 0 2rem; font-family: Georgia,"Times New Roman",serif; font-size: clamp(2.5rem,6vw,5rem); font-weight: 400; line-height: .92; }
-.contact-popup h2 em { color: var(--glow); font-weight: 400; }
+.contact-popup h2 { margin: 1rem 0 2rem; font-family: Arial,Helvetica,sans-serif; font-size: clamp(2.1rem,5vw,4.5rem); font-weight: 700; letter-spacing: -.07em; line-height: .84; }
+.contact-popup h2 em { color: var(--glow); font-family: Georgia,"Times New Roman",serif; font-weight: 400; letter-spacing: -.08em; }
 .contact-popup form { display: grid; gap: 1rem; }
 .contact-popup label { display: grid; gap: .35rem; }
 .contact-popup label span { color: #92938e; font-size: .58rem; letter-spacing: .12em; text-transform: uppercase; }

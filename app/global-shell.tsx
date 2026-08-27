@@ -168,7 +168,7 @@ function ContactPopup() {
   const sendWhatsApp = () => window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(body)}`, "_blank", "noopener,noreferrer");
   if (!open) return null;
   return <div className="contact-popup-backdrop" role="presentation" onMouseDown={(event) => { if (event.target === event.currentTarget) setOpen(false); }}><section className="contact-popup" role="dialog" aria-modal="true" aria-labelledby={titleId}>
-    <button className="contact-popup-close" type="button" aria-label="Cerrar contacto" onClick={() => setOpen(false)}>×</button><p>Contacto general / LATTICCE</p><h2 id={titleId}>AQUÍ TERMINA TU RECORRIDO<br /><em>Y COMIENZA TTU CAMINO</em></h2>
+    <button className="contact-popup-close" type="button" aria-label="Cerrar contacto" onClick={() => setOpen(false)}>×</button><p>Contacto general / LATTICCE</p><h2 id={titleId}>Aquí termina TTU<br /><em>recorrido</em><br />COMIENZA TTU<br /><em>camino</em></h2>
     <form onSubmit={sendEmail}><label><span>Nombre</span><input required value={name} onChange={(event) => setName(event.target.value)} autoFocus /></label><label><span>Correo o teléfono</span><input required value={contact} onChange={(event) => setContact(event.target.value)} /></label><label><span>Proyecto</span><textarea required rows={4} value={message} onChange={(event) => setMessage(event.target.value)} /></label><div className="contact-popup-actions"><button type="submit">Enviar por correo ↗</button><button type="button" onClick={sendWhatsApp}>Enviar por WhatsApp ↗</button></div></form>
     <a className="contact-popup-email" href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
   </section></div>;

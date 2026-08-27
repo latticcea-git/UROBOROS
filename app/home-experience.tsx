@@ -27,7 +27,7 @@ const pillars = [
 ] as const;
 
 const sceneAnchors = ["inicio", "manifiesto", "ecosistema", "intencion", "metodo", "comunidad", "contacto"] as const;
-const sceneNames = ["Inicio", "Manifiesto", "Elige TTU nodo", "La INTTENCCIÓN PERMANECCE", "NUESTTROS PILARES", "SINTTERGIA LATTENTTE", "Contacto"] as const;
+const sceneNames = ["Inicio", "Manifiesto", "ELIGE TTU nodo", "LA INTTENCCIÓN permanecce", "NUESTTROS pilares", "SINTTERGIA LATTENTTE", "Contacto"] as const;
 const transitionDuration = 1050;
 
 export default function HomeExperience() {
@@ -330,7 +330,7 @@ export default function HomeExperience() {
         <div className={styles.sceneLabel}><span>02</span><p>Ecosistema</p></div>
         <div className={styles.nodesHeader}>
           <p className={styles.kicker}>Cinco miradas / una intención</p>
-          <h2 id="nodes-title">Elige <em>TTU nodo</em></h2>
+          <h2 id="nodes-title">ELIGE TTU <em>nodo</em></h2>
         </div>
         <div className={styles.nodeList}>
           {nodes.map((node, index) => (
@@ -355,7 +355,7 @@ export default function HomeExperience() {
         <BlackSea active={activeScene === 3} presence={0.22} tempo={0.34} horizon={0.12} />
         <div className={styles.intentionLight} aria-hidden="true" />
         <p className={styles.intentionLead}>La forma cambia.</p>
-        <h2 id="intention-title">La INTTENCCIÓN<br /><em>PERMANECCE.</em></h2>
+        <h2 id="intention-title">LA INTTENCCIÓN<br /><em>permanecce.</em></h2>
         <span>LATTICCE / 2026</span>
         <Link className={styles.intentionBookCta} href="/book" data-local-interactive="true">
           Conoce nuestro trabajo <i aria-hidden="true">↗</i>
@@ -368,7 +368,7 @@ export default function HomeExperience() {
         <ClassicalStructure />
         <div className={styles.pillarsCopy}>
           <p className={styles.kicker}>La estructura sostiene la intención</p>
-          <h2 id="pillars-title">NUESTTROS <em>PILARES</em></h2>
+          <h2 id="pillars-title">NUESTTROS <em>pilares</em></h2>
           <div className={styles.pillarList}>
             {pillars.map(([index, name, description]) => (
               <article key={index} style={{ "--pillar-order": Number(index) - 1 } as React.CSSProperties}>
@@ -396,7 +396,7 @@ export default function HomeExperience() {
         <div className={styles.sceneLabel}><span>06</span><p>Contacto</p></div>
         <div className={styles.contactCopy}>
           <p className={styles.kicker}>Un LUMINAUTTA enviará una señal a la brevedad</p>
-          <h2 id="contact-title">AGENDA<br /><em>TTU CITTA</em></h2>
+          <h2 id="contact-title">Agenda<br />TU CITTA</h2>
           <p>Cuéntanos qué quieres poner en movimiento. Elegiremos contigo el nodo o la combinación adecuada.</p>
           <button className={styles.contactButton} type="button" data-contact-trigger onClick={openContactPopup}>Iniciar una conversación <span aria-hidden="true">↗</span></button>
         </div>
