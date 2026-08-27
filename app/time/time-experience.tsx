@@ -707,10 +707,6 @@ export default function TimeExperience() {
         </div>
       </div>
 
-      <div className={styles.progress} aria-hidden="true">
-        <span>TIME / recorrido</span><div><i /></div><span>01 — 07</span>
-      </div>
-
       {introVisible && (
         <section className={`${styles.intro} ${flashing ? styles.isCapturing : ""}`} aria-label="Entrada a LATTICCE Time">
           <div className={styles.introTopline}><span>LATTICCE / TIME</span><span>Visor — 01</span></div>

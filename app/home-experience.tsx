@@ -9,6 +9,7 @@ import SoundIntro from "./sound-intro";
 import styles from "./home.module.css";
 import { BlackSea, ClassicalStructure, LightNucleus, ManifestoLoop } from "./home-visuals";
 import SiteMenu from "./site-menu";
+import { openContactPopup } from "./global-shell";
 
 const nodes = [
   { index: "01", name: "Agency", line: "Ideas que se vuelven sistemas.", tone: "agency", href: "/agency" },
@@ -25,8 +26,8 @@ const pillars = [
   ["04", "Permanecer", "Crear sistemas capaces de crecer sin perder identidad."],
 ] as const;
 
-const sceneAnchors = ["inicio", "manifiesto", "ecosistema", "intencion", "metodo", "contacto"] as const;
-const sceneNames = ["Inicio", "Manifiesto", "Escoge tu nodo", "La intención permanece", "Nuestros Pilares", "Contacto"] as const;
+const sceneAnchors = ["inicio", "manifiesto", "ecosistema", "intencion", "metodo", "comunidad", "contacto"] as const;
+const sceneNames = ["Inicio", "Manifiesto", "Elige TTU nodo", "La INTTENCCIÓN PERMANECCE", "NUESTTROS PILARES", "SINTTERGIA LATTENTTE", "Contacto"] as const;
 const transitionDuration = 1050;
 
 export default function HomeExperience() {
@@ -164,6 +165,16 @@ export default function HomeExperience() {
       window.removeEventListener("touchend", onTouchEnd);
       window.removeEventListener("keydown", onKeyDown);
     };
+  }, [moveTo]);
+
+  useEffect(() => {
+    const navigateSection = (event: Event) => {
+      const id = (event as CustomEvent<string>).detail;
+      const index = sceneAnchors.indexOf(id as (typeof sceneAnchors)[number]);
+      if (index >= 0) moveTo(index);
+    };
+    window.addEventListener("latticce:navigate-section", navigateSection);
+    return () => window.removeEventListener("latticce:navigate-section", navigateSection);
   }, [moveTo]);
 
   const sceneClass = (index: number) => {
@@ -319,7 +330,7 @@ export default function HomeExperience() {
         <div className={styles.sceneLabel}><span>02</span><p>Ecosistema</p></div>
         <div className={styles.nodesHeader}>
           <p className={styles.kicker}>Cinco miradas / una intención</p>
-          <h2 id="nodes-title">Escoge tu <em>nodo</em></h2>
+          <h2 id="nodes-title">Elige <em>TTU nodo</em></h2>
         </div>
         <div className={styles.nodeList}>
           {nodes.map((node, index) => (
@@ -344,7 +355,7 @@ export default function HomeExperience() {
         <BlackSea active={activeScene === 3} presence={0.22} tempo={0.34} horizon={0.12} />
         <div className={styles.intentionLight} aria-hidden="true" />
         <p className={styles.intentionLead}>La forma cambia.</p>
-        <h2 id="intention-title">La intención<br /><em>permanece.</em></h2>
+        <h2 id="intention-title">La INTTENCCIÓN<br /><em>PERMANECCE.</em></h2>
         <span>LATTICCE / 2026</span>
         <Link className={styles.intentionBookCta} href="/book" data-local-interactive="true">
           Conoce nuestro trabajo <i aria-hidden="true">↗</i>
@@ -357,7 +368,7 @@ export default function HomeExperience() {
         <ClassicalStructure />
         <div className={styles.pillarsCopy}>
           <p className={styles.kicker}>La estructura sostiene la intención</p>
-          <h2 id="pillars-title">Nuestros <em>Pilares</em></h2>
+          <h2 id="pillars-title">NUESTTROS <em>PILARES</em></h2>
           <div className={styles.pillarList}>
             {pillars.map(([index, name, description]) => (
               <article key={index} style={{ "--pillar-order": Number(index) - 1 } as React.CSSProperties}>
@@ -368,21 +379,32 @@ export default function HomeExperience() {
         </div>
       </section>
 
-      <section {...sceneProps(5)} id="contacto" aria-labelledby="contact-title">
-        <BlackSea active={activeScene === 5} presence={0.16} tempo={0.24} horizon={0.14} />
+      <section {...sceneProps(5)} id="comunidad" aria-labelledby="community-title">
+        <div className={styles.communityImage} aria-hidden="true" />
+        <div className={styles.communityShade} aria-hidden="true" />
+        <div className={styles.sceneLabel}><span>05</span><p>Comunidad</p></div>
+        <div className={styles.communityCopy}>
+          <p className={styles.kicker}>Conecta con otros LUMINAUTTAS</p>
+          <h2 id="community-title">SINTTERGIA<br /><em>LATTENTTE</em></h2>
+          <a href="https://chat.whatsapp.com/GCpJDA5K9quC0RaHCEodRi" target="_blank" rel="noreferrer" data-local-interactive="true">Únete a nuestra comunidad <span aria-hidden="true">↗</span></a>
+        </div>
+      </section>
+
+      <section {...sceneProps(6)} id="contacto" aria-labelledby="contact-title">
+        <BlackSea active={activeScene === 6} presence={0.16} tempo={0.24} horizon={0.14} />
         <div className={styles.contactAtmosphere} aria-hidden="true" />
-        <div className={styles.sceneLabel}><span>05</span><p>Contacto</p></div>
+        <div className={styles.sceneLabel}><span>06</span><p>Contacto</p></div>
         <div className={styles.contactCopy}>
-          <p className={styles.kicker}>El siguiente proyecto puede comenzar aquí</p>
-          <h2 id="contact-title">Hagamos espacio<br />para una <em>idea.</em></h2>
-          <p>Mientras habilitamos el canal general de LATTICCE, puedes iniciar una conversación desde nuestro nodo de producción visual.</p>
-          <Link className={styles.contactButton} href="/studio#cotizar">Hablar con Studio <span aria-hidden="true">↗</span></Link>
+          <p className={styles.kicker}>Un LUMINAUTTA enviará una señal a la brevedad</p>
+          <h2 id="contact-title">AGENDA<br /><em>TTU CITTA</em></h2>
+          <p>Cuéntanos qué quieres poner en movimiento. Elegiremos contigo el nodo o la combinación adecuada.</p>
+          <button className={styles.contactButton} type="button" data-contact-trigger onClick={openContactPopup}>Iniciar una conversación <span aria-hidden="true">↗</span></button>
         </div>
         <footer className={styles.contactFooter}>
           <Link href="#inicio" onClick={(event) => { event.preventDefault(); moveTo(0); }} aria-label="Volver al inicio">
             <Image src="/UROBOROS/assets/logos/LTT_LOGO_FX_POS.svg" width={198} height={38} alt="LATTICCE" />
           </Link>
-          <p>Sistema creativo independiente</p>
+          <nav aria-label="Explorar LATTICCE"><Link href="/studio">Studio</Link><Link href="/sound">Sound</Link><Link href="/time">Time</Link><Link href="/design">Design</Link><Link href="/agency">Agency</Link><Link href="/book">Book</Link><Link href="/blog">Blog</Link><a href="https://chat.whatsapp.com/GCpJDA5K9quC0RaHCEodRi" target="_blank" rel="noreferrer">Comunidad</a><a href="https://wa.me/525525241137" target="_blank" rel="noreferrer">WhatsApp</a></nav>
           <span>© 2026 LATTICCE</span>
         </footer>
       </section>

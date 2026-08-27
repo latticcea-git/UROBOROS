@@ -77,7 +77,7 @@ export default function AgencyServiceExperience({ service }: Props) {
         </nav>
       </header>
 
-      <section className={styles.hero} aria-labelledby="service-title">
+      <section className={styles.hero} id="inicio" aria-labelledby="service-title">
         <Image
           className={styles.heroImage}
           src={service.heroImage}
@@ -113,7 +113,7 @@ export default function AgencyServiceExperience({ service }: Props) {
         </div>
       </section>
 
-      <section className={styles.statement}>
+      <section className={styles.statement} id="enfoque">
         <div className={styles.sectionIndex} data-reveal>
           <span>01</span>
           <span>EL PROBLEMA</span>
@@ -157,7 +157,7 @@ export default function AgencyServiceExperience({ service }: Props) {
         </section>
       ) : null}
 
-      <section className={styles.processSection}>
+      <section className={styles.processSection} id="proceso">
         <div className={styles.sectionHeading} data-reveal>
           <div className={styles.sectionIndex}>
             <span>{service.cinematic ? "02" : "02"}</span>
@@ -198,7 +198,7 @@ export default function AgencyServiceExperience({ service }: Props) {
         </section>
       ) : null}
 
-      <section className={styles.capabilitiesSection}>
+      <section className={styles.capabilitiesSection} id="capacidades">
         <div className={styles.sectionHeading} data-reveal>
           <div className={styles.sectionIndex}>
             <span>{service.platforms ? "04" : "03"}</span>
@@ -245,7 +245,7 @@ export default function AgencyServiceExperience({ service }: Props) {
         </div>
       </section>
 
-      <section className={styles.casesSection}>
+      <section className={styles.casesSection} id="casos">
         <div className={styles.caseNumber} aria-hidden="true">
           {service.platforms ? "06" : "05"}
         </div>

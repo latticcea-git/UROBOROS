@@ -33,7 +33,7 @@ export default async function NodeLoadingPage({ params }: PageProps<"/[node]">) 
   if (!name) notFound();
 
   return (
-    <main className={styles.root} aria-labelledby="loading-title">
+    <main className={styles.root} id="inicio" aria-labelledby="loading-title">
       <div className={styles.light} aria-hidden="true" />
       <div className={styles.content}>
         <Image src="/UROBOROS/assets/logos/LTT_LOGO_FX_POS.svg" width={246} height={47} alt="LATTICCE" priority />

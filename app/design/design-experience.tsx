@@ -198,6 +198,12 @@ export default function DesignExperience() {
     }
   };
 
+  useEffect(() => {
+    const navigateSection = (event: Event) => goTo((event as CustomEvent<string>).detail);
+    window.addEventListener("latticce:navigate-section", navigateSection);
+    return () => window.removeEventListener("latticce:navigate-section", navigateSection);
+  });
+
   return (
     <main className={styles.root}>
       <PenCursor {...cursor} />
@@ -213,7 +219,6 @@ export default function DesignExperience() {
         {["↖", "⌁", "◆", "T", "○", "▱"].map((tool, index) => <button key={tool} type="button" data-cursor={index === 1 ? "Dibujar" : "Herramienta"} aria-label={`Herramienta ${index + 1}`}>{tool}</button>)}
       </aside>
 
-      <div className={styles.timeline}><span>06</span><i /><span>00</span></div>
       <p className={styles.draft}>BORRADOR — VERSIÓN 1</p>
 
       <div className={styles.horizontal} ref={sectionRef}>

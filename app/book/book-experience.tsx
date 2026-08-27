@@ -53,7 +53,7 @@ export default function BookExperience() {
       <BookMotion variant="index" refreshKey={`${activeNode}-${activeCategory}`} />
       <SiteMenu homeHref="/" logoSrc="/UROBOROS/assets/logos/LTT_LOGO_1920_FX.png" logoAlt="LATTICCE" />
 
-      <section className={styles.hero} aria-labelledby="book-title" data-book-hero>
+      <section className={styles.hero} id="inicio" aria-labelledby="book-title" data-book-hero>
         <div data-book-antigravity>
           <Antigravity className={styles.antigravityField} count={180} magnetRadius={16} ringRadius={9} particleSize={1.5} waveAmplitude={1.05} />
         </div>
@@ -122,7 +122,7 @@ export default function BookExperience() {
         </div>
       </section>
 
-      <section className={styles.nodes} aria-label="Nodos de LATTICCE" data-book-nodes>
+      <section className={styles.nodes} id="nodos" aria-label="Nodos de LATTICCE" data-book-nodes>
         <div className={styles.nodeStage} data-book-node-stage>
           <div className={styles.nodeList} role="list" aria-label="Nodos de LATTICCE">
             {bookNodes.map((node) => (

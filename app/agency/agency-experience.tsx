@@ -95,6 +95,7 @@ export default function AgencyExperience() {
 
   return (
     <main
+      id="inicio"
       ref={rootRef}
       className={styles.agencyRoot}
       data-exiting={active ? "true" : "false"}
@@ -140,7 +141,7 @@ export default function AgencyExperience() {
           </p>
         </header>
 
-        <nav className={styles.services} aria-label="Servicios principales de Agency">
+        <nav className={styles.services} id="servicios" aria-label="Servicios principales de Agency">
           {services.map((service) => (
             <Link
               key={service.href}
