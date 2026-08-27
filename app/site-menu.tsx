@@ -31,7 +31,7 @@ export default function SiteMenu({
   links = [],
   homeHref,
   onNavigate,
-  logoSrc = "/UROBOROS/assets/logos/LTT_LOGO_FX_POS.svg",
+  logoSrc = "/UROBOROS/assets/logos/LTT_LOGO_1920_FX.png",
   logoAlt = "LATTICCE",
   variant = "dark",
 }: SiteMenuProps) {
@@ -73,17 +73,30 @@ export default function SiteMenu({
       {open && (
         <nav className="global-menu-panel" id="site-menu-panel" aria-label="Navegación principal">
           <div className="global-menu-topline"><span>Índice</span><span>LATTICCE / 00</span></div>
-          {canonicalLinks.map((link, index) => (
-            link.href.startsWith("/UROBOROS/") ? (
-              <a href={link.href} onClick={() => close(link.href)} key={link.label}>
-                <span>{String(index).padStart(2, "0")}</span>{link.label}
+          {canonicalLinks.map((link, index) => {
+            const isBook = link.label === "BOOK";
+            const nodeId = ["AGENCY", "STUDIO", "SOUND", "DESIGN", "TIME"].includes(link.label)
+              ? link.label.toLowerCase()
+              : undefined;
+            const bookPointer = isBook ? {
+              onPointerMove: (event: React.PointerEvent<HTMLAnchorElement>) => {
+                const bounds = event.currentTarget.getBoundingClientRect();
+                event.currentTarget.style.setProperty("--book-lens-x", `${event.clientX - bounds.left}px`);
+                event.currentTarget.style.setProperty("--book-lens-y", `${event.clientY - bounds.top}px`);
+              },
+            } : {};
+            const content = <><span>{String(index).padStart(2, "0")}</span>{link.label}</>;
+
+            return link.href.startsWith("/UROBOROS/") ? (
+              <a href={link.href} onClick={() => close(link.href)} key={link.label} data-book-link={isBook || undefined} data-node={nodeId} {...bookPointer}>
+                {content}
               </a>
             ) : (
-              <Link href={link.href} onClick={() => close(link.href)} key={link.label}>
-                <span>{String(index).padStart(2, "0")}</span>{link.label}
+              <Link href={link.href} onClick={() => close(link.href)} key={link.label} data-book-link={isBook || undefined} data-node={nodeId} {...bookPointer}>
+                {content}
               </Link>
-            )
-          ))}
+            );
+          })}
         </nav>
       )}
     </header>

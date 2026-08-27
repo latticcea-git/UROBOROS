@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import SiteMenu from "../site-menu";
 import { FormEvent, useEffect, useMemo, useRef, useState } from "react";
 import type { CSSProperties } from "react";
@@ -314,7 +315,7 @@ export default function StudioPage() {
           <p className="eyebrow">Realidad dirigida</p>
           <h1 className="hero-studio-title">
             <Image
-              src="/UROBOROS/assets/logos/LTT_LOGO_FX_POS_STUDIO.svg"
+              src="/UROBOROS/assets/logos/LTT_STUDIO_LOGO_1920_FX.png"
               width={640}
               height={165}
               alt="LATTICCE Studio"
@@ -394,17 +395,24 @@ export default function StudioPage() {
 
       <section className="project-feature section-pad site-panel" id="proyectos" aria-labelledby="project-title">
         <div className="project-visual" data-reveal>
-          <span className="project-index">01 / Caso seleccionado</span>
+          <Image
+            src="/UROBOROS/assets/images/book/mdyssl/mdyssl-hero.jpg"
+            alt="María Daniela canta frente al público durante un concierto nocturno."
+            fill
+            sizes="(max-width: 900px) 100vw, 62vw"
+          />
+          <span className="project-index">01 / Proyecto real</span>
         </div>
         <div className="project-copy" data-reveal>
-          <p className="eyebrow">Proyecto en foco</p>
-          <h2 id="project-title">La materia también cuenta historias.</h2>
-          <p>Un ejemplo provisional de cómo presentaremos cada caso: necesidad, mirada, proceso y resultado.</p>
+          <p className="eyebrow">Concierto / Proyecto en foco</p>
+          <h2 id="project-title">María Daniela y Su Sonido Lasser</h2>
+          <p>Una noche de electropop, luz y respuesta colectiva documentada desde el gesto real con Sony α7 IV.</p>
           <dl>
-            <div><dt>Registro</dt><dd>Comercial</dd></div>
-            <div><dt>Formato</dt><dd>Foto + video</dd></div>
-            <div><dt>Estado</dt><dd>En actualización</dd></div>
+            <div><dt>Registro</dt><dd>Concierto</dd></div>
+            <div><dt>Formato</dt><dd>Fotografía</dd></div>
+            <div><dt>Cámara</dt><dd>Sony α7 IV</dd></div>
           </dl>
+          <Link className="text-link project-link" href="/book/maria-daniela-y-su-sonido-lasser">Ver proyecto completo <span aria-hidden="true">↗</span></Link>
         </div>
       </section>
 
@@ -513,7 +521,7 @@ export default function StudioPage() {
 
         <footer className="site-footer section-pad">
           <a className="footer-brand" href="/UROBOROS/#inicio" aria-label="Volver al inicio">
-            <Image src="/UROBOROS/assets/logos/LTT_LOGO_FX_POS.svg" width={190} height={42} alt="LATTICCE" loading="eager" />
+            <Image src="/UROBOROS/assets/logos/LTT_LOGO_1920_FX.png" width={190} height={42} alt="LATTICCE" loading="eager" />
           </a>
           <p>Realidad, personas, procesos, espacios y luz.</p>
           <div className="footer-progress" aria-hidden="true">

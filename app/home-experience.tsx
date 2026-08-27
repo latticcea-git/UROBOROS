@@ -330,6 +330,7 @@ export default function HomeExperience() {
               href={node.href}
               onClick={(event) => selectNode(event, node.name, node.href)}
               aria-label={`Explorar LATTICCE ${node.name}`}
+              data-node={node.tone}
             >
               <span className={styles.nodeIndex}>{node.index}</span>
               <div className={styles.nodeName}><h3>{node.name}</h3><p>{node.line}</p></div>
@@ -345,6 +346,9 @@ export default function HomeExperience() {
         <p className={styles.intentionLead}>La forma cambia.</p>
         <h2 id="intention-title">La intención<br /><em>permanece.</em></h2>
         <span>LATTICCE / 2026</span>
+        <Link className={styles.intentionBookCta} href="/book" data-local-interactive="true">
+          Conoce nuestro trabajo <i aria-hidden="true">↗</i>
+        </Link>
       </section>
 
       <section {...sceneProps(4)} id="metodo" aria-labelledby="pillars-title">
