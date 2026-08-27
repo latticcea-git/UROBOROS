@@ -385,7 +385,7 @@ export default function HomeExperience() {
         <div className={styles.sceneLabel}><span>05</span><p>Comunidad</p></div>
         <div className={styles.communityCopy}>
           <p className={styles.kicker}>Conecta con otros LUMINAUTTAS</p>
-              <h2 id="community-title">SINTTERGIA<br /><em>lattentte</em></h2>
+              <h2 id="community-title">SINTTERGIA<br /><em>LATTENTTE</em></h2>
           <a href="https://chat.whatsapp.com/GCpJDA5K9quC0RaHCEodRi" target="_blank" rel="noreferrer" data-local-interactive="true">Únete a nuestra comunidad <span aria-hidden="true">↗</span></a>
         </div>
       </section>
