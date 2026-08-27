@@ -343,7 +343,7 @@
 .communityShade { position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg,rgba(2,2,2,.88) 0,rgba(2,2,2,.36) 42%,rgba(2,2,2,.16) 67%,rgba(2,2,2,.64)),linear-gradient(0deg,rgba(2,2,2,.94) 0,transparent 53%,rgba(2,2,2,.25)); }
 .communityCopy { position: relative; z-index: 2; width: min(74rem,94vw); padding-bottom: clamp(1.5rem,5vh,4rem); }
 .communityCopy h2 { margin: .8rem 0 1.6rem; font-size: clamp(4.2rem,9.4vw,10.4rem); font-weight: 700; letter-spacing: -.08em; line-height: .78; text-transform: uppercase; }
-.communityCopy h2 em { color: #8f928d; font-family: Georgia,"Times New Roman",serif; font-weight: 400; text-shadow: 0 0 2.8rem rgba(255,255,255,.16); text-transform: uppercase; }
+.communityCopy h2 em { color: #8f928d; font-family: Georgia,"Times New Roman",serif; font-weight: 400; text-shadow: 0 0 2.8rem rgba(255,255,255,.16); text-transform: lowercase; }
 .communityCopy > a { display: inline-flex; align-items: center; gap: 1.1rem; padding: .86rem 1.15rem; border: 1px solid rgba(255,255,255,.78); border-radius: 999px; background: rgba(3,3,3,.34); backdrop-filter: blur(12px); font-size: .56rem; letter-spacing: .12em; text-transform: uppercase; transition: background 180ms ease,color 180ms ease,transform 180ms ease; }
 .communityCopy > a:hover,.communityCopy > a:focus-visible { background: var(--home-paper); color: var(--home-black); transform: translateY(-.2rem); }
 @keyframes communityPulse { 0%,100% { filter: contrast(1.04) brightness(.82); transform: scale(1.015); } 50% { filter: contrast(1.02) brightness(.96); transform: scale(1.025); } }
