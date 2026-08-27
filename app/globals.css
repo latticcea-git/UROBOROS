@@ -827,7 +827,7 @@ textarea:focus, .field-grid input:focus { border-color: var(--paper); }
 }
 
 @media (max-width: 900px) {
-  body { overflow: hidden; }
+  body:has(.site-horizontal) { overflow: hidden; }
   .site-horizontal { height: 100svh !important; min-height: 100svh; }
   .site-horizontal-sticky {
     position: relative;

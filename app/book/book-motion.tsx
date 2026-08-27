@@ -48,6 +48,10 @@ function revealCards(root: Element, selector: string) {
 }
 
 function animateIndex(root: Element, desktop: boolean) {
+  // On touch devices Book remains a continuous, native vertical reading journey.
+  // The section navigator still provides direct access to each marked section.
+  if (!desktop) return;
+
   const hero = root.querySelector<HTMLElement>("[data-book-hero]");
   const title = hero?.querySelector<HTMLElement>("[data-book-hero-title]");
   const antigravity = hero?.querySelector<HTMLElement>("[data-book-antigravity]");
@@ -69,7 +73,7 @@ function animateIndex(root: Element, desktop: boolean) {
     });
 
     timeline
-      .to(title, { yPercent: desktop ? -11 : -16, scale: desktop ? 0.56 : 0.7, autoAlpha: 0, ease: "none" }, 0.12)
+      .to(title, { yPercent: -11, scale: 0.56, autoAlpha: 0, ease: "none" }, 0.12)
       .to(hero.querySelector("[data-book-hero-topline]"), { autoAlpha: 0, y: -28, ease: "none" }, 0.08)
       .to(hero.querySelector("[data-book-hero-foot]"), { autoAlpha: 0, y: 65, ease: "none" }, 0.08)
       .to(capsules[0], { xPercent: -60, yPercent: 34, rotate: -6, autoAlpha: 0, ease: "none" }, 0.08)
@@ -118,7 +122,7 @@ function animateIndex(root: Element, desktop: boolean) {
   const catalog = root.querySelector<HTMLElement>("#catalogo");
   const track = catalog?.querySelector<HTMLElement>("[data-book-project-track]");
   if (catalog && track) {
-    const travel = () => Math.max(0, track.scrollWidth - window.innerWidth + (desktop ? 64 : 20));
+    const travel = () => Math.max(0, track.scrollWidth - window.innerWidth + 64);
     const catalogTimeline = gsap.timeline({
       scrollTrigger: {
         trigger: catalog,

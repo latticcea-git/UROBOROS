@@ -911,14 +911,19 @@
   .nodePreview p { max-width: 23rem; margin-top: .4rem; font-size: .58rem; }
   .nodePreview button { margin-top: .65rem; padding: .55rem .8rem; }
 
-  .catalog { padding: 5rem 0 .7rem; }
-  .catalogHead { margin: 0 1.25rem .55rem; }
+  .catalog {
+    display: block;
+    height: auto;
+    min-height: 0;
+    padding: 5rem 1.25rem 6rem;
+  }
+  .catalogHead { margin: 0 0 .55rem; }
   .catalogHead h2 { margin-top: .5rem; font-size: clamp(2.2rem, 10vw, 3.4rem); }
   .catalogHead > button { align-self: end; padding: .55rem .75rem; }
-  .categoryList { margin: 0 1.25rem .55rem; padding: .45rem 0; }
+  .categoryList { margin: 0 0 1.25rem; padding: .45rem 0; }
   .categoryList button { padding: .45rem .7rem; }
-  .projectGrid { display: flex; gap: .8rem; width: max-content; height: 100%; padding: 0 1.25rem; }
-  .projectCard { flex-basis: 84vw; }
+  .projectGrid { display: grid; width: auto; height: auto; gap: 2.25rem; padding: 0; }
+  .projectCard { width: 100%; flex-basis: auto; }
   .projectCard:nth-child(n) { margin-top: 0; }
   .projectImage { aspect-ratio: 4 / 3; }
   .projectImage > b { opacity: 1; transform: none; }
