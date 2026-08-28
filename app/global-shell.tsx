@@ -75,7 +75,7 @@ export function NodeSocialFooter({ node, socials = {} }: { node?: string; social
 
 type SectionItem = { id: string; label: string };
 const routeSections: Array<{ match: (pathname: string) => boolean; items: SectionItem[] }> = [
-  { match: (path) => path === "/", items: [{ id: "inicio", label: "Inicio" }, { id: "manifiesto", label: "Manifiesto" }, { id: "ecosistema", label: "Nodos" }, { id: "intencion", label: "Book" }, { id: "metodo", label: "Pilares" }, { id: "comunidad", label: "Comunidad" }, { id: "contacto", label: "Contacto" }] },
+  { match: (path) => path === "/", items: [{ id: "inicio", label: "Inicio" }, { id: "ecosistema", label: "Nodos" }, { id: "intencion", label: "Book" }, { id: "metodo", label: "Pilares" }, { id: "comunidad", label: "Comunidad" }, { id: "manifiesto", label: "Manifiesto" }, { id: "contacto", label: "Agenda" }] },
   { match: (path) => path === "/agency", items: [{ id: "inicio", label: "Inicio" }, { id: "servicios", label: "Sistemas" }] },
   { match: (path) => path === "/sound", items: [{ id: "inicio", label: "Inicio" }] },
   { match: (path) => path === "/studio", items: [{ id: "inicio", label: "Inicio" }, { id: "servicios", label: "Servicios" }, { id: "proceso", label: "Proceso" }, { id: "proyectos", label: "Proyectos" }, { id: "cotizar", label: "Cotizar" }] },
