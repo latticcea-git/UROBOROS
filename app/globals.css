@@ -106,7 +106,7 @@ button { color: inherit; }
 .shared-section-progress { height: 1px; overflow: hidden; background: rgba(255,255,255,.2); }
 .shared-section-progress i { display: block; width: 100%; height: 100%; background: var(--node-color,var(--paper)); transform: scaleX(var(--section-progress)); transform-origin: left; transition: transform 280ms ease; }
 .site-footer .footer-progress { visibility: hidden; }
-body:has([class*="homeRoot"]) [class*="sceneProgress"],body:has([class*="homeRoot"]) [class*="sceneRail"],body:has([class*="homeRoot"]) [class*="scrollCue"] { display: none; }
+body:has([class*="homeRoot"]) [class*="sceneProgress"] { display: none; }
 
 @media (max-width: 700px) {
   .shared-header { grid-template-columns: auto 1fr auto; min-height: 4.8rem; }

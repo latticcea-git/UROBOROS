@@ -26,8 +26,8 @@ const pillars = [
   ["04", "Permanecer", "Crear sistemas capaces de crecer sin perder identidad."],
 ] as const;
 
-const sceneAnchors = ["inicio", "manifiesto", "ecosistema", "intencion", "metodo", "comunidad", "contacto"] as const;
-const sceneNames = ["Inicio", "Manifiesto", "ELIGE TTU nodo", "LA INTTENCCIÓN permanecce", "NUESTTROS pilares", "SINTTERGIA LATTENTTE", "Contacto"] as const;
+const sceneAnchors = ["inicio", "ecosistema", "intencion", "metodo", "comunidad", "manifiesto", "contacto"] as const;
+const sceneNames = ["Inicio", "ELIGE TTU nodo", "LA INTTENCCIÓN permanecce", "NUESTTROS pilares", "SINTTERGIA lattentte", "MANIFIESTTO", "Agenda TU CITA"] as const;
 const transitionDuration = 1050;
 
 export default function HomeExperience() {
@@ -60,7 +60,7 @@ export default function HomeExperience() {
     setPreviousScene(current);
     setActiveScene(next);
     setTransitioning(true);
-    setFlash((current === 3 && next === 4) || (current === 4 && next === 3));
+    setFlash((current === 2 && next === 3) || (current === 3 && next === 2));
     wheelDeltaRef.current = 0;
 
     window.history.replaceState(null, "", `#${sceneAnchors[next]}`);
@@ -304,30 +304,13 @@ export default function HomeExperience() {
             <button type="button" onClick={() => moveTo(1)}>Entrar al sistema <span aria-hidden="true">↓</span></button>
           </div>
         </div>
-        <span className={styles.sceneIndex}>00 / 05</span>
+        <span className={styles.sceneIndex}>00 / 06</span>
       </section>
 
-      <section {...sceneProps(1)} id="manifiesto" aria-labelledby="manifesto-title">
-        <BlackSea active={activeScene === 1} presence={0.34} tempo={0.48} horizon={0.08} />
-        <div className={styles.manifestoAtmosphere} aria-hidden="true" />
-        <div className={styles.sceneLabel}><span>01</span><p>Manifiesto</p></div>
-        <div className={styles.manifestoLayout}>
-          <div className={styles.manifestoText}>
-            <p className={styles.kicker}>Una red, no una colección</p>
-            <h2 id="manifesto-title">MANIFIESTTO</h2>
-            <ManifestoLoop active={activeScene === 1} />
-          </div>
-          <div className={styles.nucleusWrap} data-local-interactive="true">
-            <LightNucleus active={activeScene === 1} />
-            <span>Luminautta / núcleo latente</span>
-          </div>
-        </div>
-      </section>
-
-      <section {...sceneProps(2)} id="ecosistema" aria-labelledby="nodes-title">
-        <BlackSea active={activeScene === 2} presence={0.94} tempo={1.02} horizon={0.025} />
+      <section {...sceneProps(1)} id="ecosistema" aria-labelledby="nodes-title">
+        <BlackSea active={activeScene === 1} presence={0.94} tempo={1.02} horizon={0.025} />
         <div className={styles.nodesAtmosphere} aria-hidden="true" />
-        <div className={styles.sceneLabel}><span>02</span><p>Ecosistema</p></div>
+        <div className={styles.sceneLabel}><span>01</span><p>Ecosistema</p></div>
         <div className={styles.nodesHeader}>
           <p className={styles.kicker}>Cinco miradas / una intención</p>
           <h2 id="nodes-title">ELIGE TTU <em>nodo</em></h2>
@@ -351,8 +334,8 @@ export default function HomeExperience() {
         </div>
       </section>
 
-      <section {...sceneProps(3)} id="intencion" aria-labelledby="intention-title">
-        <BlackSea active={activeScene === 3} presence={0.22} tempo={0.34} horizon={0.12} />
+      <section {...sceneProps(2)} id="intencion" aria-labelledby="intention-title">
+        <BlackSea active={activeScene === 2} presence={0.22} tempo={0.34} horizon={0.12} />
         <div className={styles.intentionLight} aria-hidden="true" />
         <p className={styles.intentionLead}>La forma cambia.</p>
         <h2 id="intention-title">LA INTTENCCIÓN<br /><em>permanecce.</em></h2>
@@ -362,9 +345,9 @@ export default function HomeExperience() {
         </Link>
       </section>
 
-      <section {...sceneProps(4)} id="metodo" aria-labelledby="pillars-title">
-        <BlackSea active={activeScene === 4} presence={0.4} tempo={0.56} horizon={0.06} />
-        <div className={styles.sceneLabel}><span>04</span><p>Método</p></div>
+      <section {...sceneProps(3)} id="metodo" aria-labelledby="pillars-title">
+        <BlackSea active={activeScene === 3} presence={0.4} tempo={0.56} horizon={0.06} />
+        <div className={styles.sceneLabel}><span>03</span><p>Método</p></div>
         <ClassicalStructure />
         <div className={styles.pillarsCopy}>
           <p className={styles.kicker}>La estructura sostiene la intención</p>
@@ -379,14 +362,31 @@ export default function HomeExperience() {
         </div>
       </section>
 
-      <section {...sceneProps(5)} id="comunidad" aria-labelledby="community-title">
+      <section {...sceneProps(4)} id="comunidad" aria-labelledby="community-title">
         <div className={styles.communityImage} aria-hidden="true" />
         <div className={styles.communityShade} aria-hidden="true" />
-        <div className={styles.sceneLabel}><span>05</span><p>Comunidad</p></div>
+        <div className={styles.sceneLabel}><span>04</span><p>Comunidad</p></div>
         <div className={styles.communityCopy}>
           <p className={styles.kicker}>Conecta con otros LUMINAUTTAS</p>
               <h2 id="community-title">SINTTERGIA<br /><em>lattentte</em></h2>
           <a href="https://chat.whatsapp.com/GCpJDA5K9quC0RaHCEodRi" target="_blank" rel="noreferrer" data-local-interactive="true">Únete a nuestra comunidad <span aria-hidden="true">↗</span></a>
+        </div>
+      </section>
+
+      <section {...sceneProps(5)} id="manifiesto" aria-labelledby="manifesto-title">
+        <BlackSea active={activeScene === 5} presence={0.34} tempo={0.48} horizon={0.08} />
+        <div className={styles.manifestoAtmosphere} aria-hidden="true" />
+        <div className={styles.sceneLabel}><span>05</span><p>Manifiesto</p></div>
+        <div className={styles.manifestoLayout}>
+          <div className={styles.manifestoText}>
+            <p className={styles.kicker}>Una red, no una colección</p>
+            <h2 id="manifesto-title">MANIFIESTTO</h2>
+            <ManifestoLoop active={activeScene === 5} />
+          </div>
+          <div className={styles.nucleusWrap} data-local-interactive="true">
+            <LightNucleus active={activeScene === 5} />
+            <span>Luminautta / núcleo latente</span>
+          </div>
         </div>
       </section>
 
@@ -396,7 +396,7 @@ export default function HomeExperience() {
         <div className={styles.sceneLabel}><span>06</span><p>Contacto</p></div>
         <div className={styles.contactCopy}>
           <p className={styles.kicker}>Un LUMINAUTTA enviará una señal a la brevedad</p>
-          <h2 id="contact-title">Agenda<br />TU CITTA</h2>
+          <h2 id="contact-title">Agenda<br />TU CITA</h2>
           <p>Cuéntanos qué quieres poner en movimiento. Elegiremos contigo el nodo o la combinación adecuada.</p>
           <button className={styles.contactButton} type="button" data-contact-trigger onClick={openContactPopup}>Iniciar una conversación <span aria-hidden="true">↗</span></button>
         </div>
@@ -409,10 +409,10 @@ export default function HomeExperience() {
         </footer>
       </section>
 
-      <div className={styles.scrollCue} aria-hidden="true">
-        <span>{activeScene === sceneAnchors.length - 1 ? "Scroll para volver" : "Scroll para avanzar"}</span>
-        <i />
-      </div>
+      <button className={styles.scrollCue} type="button" onClick={() => moveTo(activeScene === sceneAnchors.length - 1 ? 0 : activeScene + 1)} aria-label={activeScene === sceneAnchors.length - 1 ? "Volver al inicio" : `Continuar hacia ${sceneNames[activeScene + 1]}`}>
+        <span>{activeScene === sceneAnchors.length - 1 ? "Volver al inicio" : "Desliza para continuar"}</span>
+        <b aria-hidden="true">↓↓</b>
+      </button>
       </main>
       {agencyIntro && <AgencyIntro onCancel={cancelAgencyIntro} onComplete={completeAgencyIntro} />}
       {soundIntro && <SoundIntro onCancel={cancelSoundIntro} onComplete={completeSoundIntro} />}
