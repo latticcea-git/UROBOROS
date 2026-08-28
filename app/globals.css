@@ -43,6 +43,12 @@ body:has(.homeRoot) {
   overscroll-behavior: none;
 }
 
+body:has([class*="cinemaRoot"]) {
+  height: 100svh;
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+
 body::before {
   position: fixed;
   inset: 0;

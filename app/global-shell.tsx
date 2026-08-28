@@ -7,6 +7,7 @@ import { usePathname } from "next/navigation";
 
 const WHATSAPP_NUMBER = "525525241137";
 const CONTACT_EMAIL = "contacto@latticce.com";
+type ContactContext = "general" | "films";
 const nodes = [
   { label: "Studio", href: "/studio", node: "studio" },
   { label: "Sound", href: "/sound", node: "sound" },
@@ -20,12 +21,12 @@ const portalLinks = [
   { label: "Colaboradores", href: "/colaboradores" },
 ] as const;
 
-export function openContactPopup() {
-  window.dispatchEvent(new CustomEvent("latticce:open-contact"));
+export function openContactPopup(context: ContactContext = "general") {
+  window.dispatchEvent(new CustomEvent("latticce:open-contact", { detail: { context } }));
 }
 
 export function ContactTrigger({ children, className }: { children: ReactNode; className?: string }) {
-  return <button className={className} type="button" data-contact-trigger onClick={openContactPopup}>{children}</button>;
+  return <button className={className} type="button" data-contact-trigger onClick={() => openContactPopup()}>{children}</button>;
 }
 
 export type NodeSocialLinks = { instagram?: string; facebook?: string; youtube?: string };
@@ -139,7 +140,7 @@ function GlobalHeader() {
     {menuOpen && <nav className="shared-navigation" id="global-navigation" aria-label="Navegación principal">
       <Link href="/">HOME</Link>
       <div className="shared-navigation-group"><button type="button" aria-expanded={sectionOpen === "nodes"} onClick={() => setSectionOpen(sectionOpen === "nodes" ? null : "nodes")}>NODOS <span>+</span></button>{sectionOpen === "nodes" && <div>{nodes.map((item) => <Link key={item.node} href={item.href} data-node={item.node}>{item.label}</Link>)}</div>}</div>
-      <Link href="/book">BOOK</Link><Link href="/blog">BLOG</Link>
+      <Link href="/book">BOOK</Link><Link href="/blog">BLOG</Link><Link href="/films/cinema">CINNEMA</Link>
       <div className="shared-navigation-group"><button type="button" aria-expanded={sectionOpen === "portal"} onClick={() => setSectionOpen(sectionOpen === "portal" ? null : "portal")}>PORTAL <span>+</span></button>{sectionOpen === "portal" && <div>{portalLinks.map((item) => <Link key={item.label} href={item.href}>{item.label}</Link>)}</div>}</div>
       <button className="shared-navigation-contact" type="button" onClick={() => { setMenuOpen(false); openContactPopup(); }}>CONTACTO</button>
       <a className="shared-navigation-whatsapp" href={`https://wa.me/${WHATSAPP_NUMBER}`} target="_blank" rel="noreferrer">WHATSAPP ↗</a>
@@ -149,26 +150,32 @@ function GlobalHeader() {
 
 function ContactPopup() {
   const [open, setOpen] = useState(false);
+  const [context, setContext] = useState<ContactContext>("general");
   const titleId = useId();
   const [name, setName] = useState(""); const [contact, setContact] = useState(""); const [message, setMessage] = useState("");
   useEffect(() => {
-    const show = () => setOpen(true);
+    const show = (event: Event) => {
+      const detail = (event as CustomEvent<{ context?: ContactContext }>).detail;
+      setContext(detail?.context === "films" ? "films" : "general");
+      setOpen(true);
+    };
     const intercept = (event: MouseEvent) => {
       const target = (event.target as HTMLElement).closest<HTMLAnchorElement>("a[href='#contacto'], a[href='/#contacto'], a[href='#cotizar'], a[href='#agenda'], a[href='#cuentanos'], a[href^='mailto:']");
       if (!target || target.closest(".shared-section-nav")) return;
       event.preventDefault();
-      setOpen(true);
+      setContext("general"); setOpen(true);
     };
     const escape = (event: KeyboardEvent) => { if (event.key === "Escape") setOpen(false); };
     window.addEventListener("latticce:open-contact", show); document.addEventListener("click", intercept); document.addEventListener("keydown", escape);
     return () => { window.removeEventListener("latticce:open-contact", show); document.removeEventListener("click", intercept); document.removeEventListener("keydown", escape); };
   }, []);
-  const body = [`Nombre: ${name}`, `Contacto: ${contact}`, "", message].join("\n");
-  const sendEmail = (event: FormEvent) => { event.preventDefault(); window.location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(`Nuevo proyecto — ${name}`)}&body=${encodeURIComponent(body)}`; };
+  const contextLabel = context === "films" ? "LATTICCE FILMS" : "LATTICCE";
+  const body = [`Área: ${contextLabel}`, `Nombre: ${name}`, `Contacto: ${contact}`, "", message].join("\n");
+  const sendEmail = (event: FormEvent) => { event.preventDefault(); window.location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(`Nuevo proyecto — ${contextLabel} — ${name}`)}&body=${encodeURIComponent(body)}`; };
   const sendWhatsApp = () => window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(body)}`, "_blank", "noopener,noreferrer");
   if (!open) return null;
   return <div className="contact-popup-backdrop" role="presentation" onMouseDown={(event) => { if (event.target === event.currentTarget) setOpen(false); }}><section className="contact-popup" role="dialog" aria-modal="true" aria-labelledby={titleId}>
-    <button className="contact-popup-close" type="button" aria-label="Cerrar contacto" onClick={() => setOpen(false)}>×</button><p>Contacto general / LATTICCE</p><h2 id={titleId}>Aquí termina TTU<br /><em>recorrido</em><br />COMIENZA TTU<br /><em>camino</em></h2>
+    <button className="contact-popup-close" type="button" aria-label="Cerrar contacto" onClick={() => setOpen(false)}>×</button><p>{context === "films" ? "Contacto / LATTICCE FILMS" : "Contacto general / LATTICCE"}</p>{context === "films" ? <h2 id={titleId}>CONTACTA CON<br /><em>LATTICCE FILMS</em></h2> : <h2 id={titleId}>Aquí termina TTU<br /><em>recorrido</em><br />COMIENZA TTU<br /><em>camino</em></h2>}
     <form onSubmit={sendEmail}><label><span>Nombre</span><input required value={name} onChange={(event) => setName(event.target.value)} autoFocus /></label><label><span>Correo o teléfono</span><input required value={contact} onChange={(event) => setContact(event.target.value)} /></label><label><span>Proyecto</span><textarea required rows={4} value={message} onChange={(event) => setMessage(event.target.value)} /></label><div className="contact-popup-actions"><button type="submit">Enviar por correo ↗</button><button type="button" onClick={sendWhatsApp}>Enviar por WhatsApp ↗</button></div></form>
     <a className="contact-popup-email" href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
   </section></div>;
@@ -176,6 +183,8 @@ function ContactPopup() {
 
 export default function GlobalShell({ children }: { children: ReactNode }) {
   const pathname = usePathname();
+  const isCinema = pathname === "/films/cinema" || pathname.startsWith("/films/cinema/");
   const node = nodes.find((item) => pathname === item.href || pathname.startsWith(`${item.href}/`))?.node;
+  if (isCinema) return <>{children}<ContactPopup /></>;
   return <><GlobalHeader />{children}<SectionNavigator pathname={pathname} /><ContactPopup />{node && <NodeSocialFooter node={node} socials={socialLinksByNode[node]} />}</>;
 }

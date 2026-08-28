@@ -11,3 +11,8 @@ coverage/
 *.log
 *.tsbuildinfo
 LATTICCE-site-final-*.zip
+
+# Másteres y derivados de video: se conservan localmente, nunca en Git/GitHub Pages.
+ESCILA EQ 2.mp4
+HM_CORTOMETRAJE_SUB-ESP.mp4
+media-archive/
