@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import DesignExperience from "./design-experience";
 
 export const metadata: Metadata = {
-  title: "LATTICCE Design — Ideas que toman forma",
+  title: "LATTICCE Design — La idea toma forma",
   description:
-    "Identidad, dirección de arte, editorial, experiencias digitales, 3D y movimiento construidos como sistemas vivos.",
+    "Branding, dirección de arte, diseño editorial, 3D, animación, packaging y contenido para marcas que quieren tomar forma.",
 };
 
 export default function DesignPage() {

@@ -1,367 +1,405 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useEffect, useRef, useState } from "react";
 import type { CSSProperties } from "react";
-import SiteMenu from "../site-menu";
+import { bookProjects } from "../book/book-data";
+import { ContactTrigger } from "../global-shell";
 import styles from "./design.module.css";
 
-const projects = [
+gsap.registerPlugin(useGSAP, ScrollTrigger);
+ScrollTrigger.config({ ignoreMobileResize: true });
+
+const designProjects = bookProjects.filter((project) => project.node === "design");
+
+const capabilities = [
+  "Branding e identidad",
+  "Dirección de arte",
+  "Diseño editorial",
+  "3D y visualización",
+  "Motion y animación",
+  "Packaging",
+  "Contenido para redes",
+] as const;
+
+const processSteps = [
+  { index: "01", title: "Brief claro", copy: "Aterrizamos objetivo, contexto, alcance y referencias antes de diseñar." },
+  { index: "02", title: "Dirección compartida", copy: "Alineamos concepto, ruta visual y decisiones antes de producir." },
+  { index: "03", title: "Seguimiento visible", copy: "Compartimos avances y próximos pasos para que siempre sepas dónde estamos." },
+  { index: "04", title: "Entrega ordenada", copy: "Archivos, versiones y guías listos para usar, adaptar y crecer." },
+] as const;
+
+const applications = [
   {
-    number: "01",
-    title: "Forma continua",
-    discipline: "Identidad · Objeto 3D",
-    caption: "Un sistema que se reconoce incluso cuando cambia de materia.",
-    brief: "Construir una identidad flexible capaz de conservar su carácter al pasar de símbolo a objeto, espacio y movimiento.",
-    solution: "Una geometría continua que cambia de material sin perder su gesto central. El sistema vive entre vidrio, metal, tinta y animación.",
-    deliverables: ["Estrategia visual", "Identidad", "Sistema 3D", "Motion toolkit"],
-    visual: "orange",
+    id: "branding",
+    eyebrow: "05 / BRANDING DESIGN",
+    title: "Creamos universos visuales.",
+    copy: "Tu marca deja de ser una pieza aislada y se convierte en un lenguaje reconocible.",
+    image: "/UROBOROS/assets/images/design/design-branding-universe-generated-draft-v1.png",
+    alt: "Sistema visual de papel, resina negra, metal y piezas naranjas dispuesto sobre una superficie oscura",
+    side: "left",
   },
   {
-    number: "02",
-    title: "Archivo vivo",
-    discipline: "Editorial · Dirección de arte",
-    caption: "Capas, ritmo y contraste para convertir información en experiencia.",
-    brief: "Transformar un archivo complejo de ideas, imágenes y documentos en una publicación con tensión y ritmo propios.",
-    solution: "Una retícula variable que alterna silencio, escala y color para convertir cada capítulo en una secuencia visual distinta.",
-    deliverables: ["Dirección de arte", "Sistema editorial", "Cubierta", "Plantillas"],
-    visual: "editorial",
+    id: "modelado",
+    eyebrow: "06 / 3D + VISUALIZACIÓN",
+    title: "Modelamos tu mundo.",
+    copy: "Construimos objetos, espacios y productos antes de que existan, listos para presentar, probar o animar.",
+    image: "/UROBOROS/assets/images/design/design-modeling-world-generated-draft-v1.png",
+    alt: "Objeto tridimensional continuo de vidrio, cromo y arcilla naranja suspendido sobre un pedestal",
+    side: "right",
   },
   {
-    number: "03",
-    title: "Interfaz sensible",
-    discipline: "Digital · Motion",
-    caption: "Una interfaz que responde con intención, peso y movimiento.",
-    brief: "Diseñar una experiencia digital que hiciera visible información en tiempo real sin sentirse fría ni genérica.",
-    solution: "Datos convertidos en pulsos, órbitas y cambios de materia. La interacción organiza el contenido y produce una respuesta física.",
-    deliverables: ["UX direction", "UI system", "Motion language", "Prototype"],
-    visual: "interface",
+    id: "packaging",
+    eyebrow: "07 / PACKAGING",
+    title: "Listo para enviar.",
+    copy: "Diseñamos empaques que presentan, protegen y venden desde el primer contacto.",
+    image: "/UROBOROS/assets/images/design/design-packaging-ready-generated-draft-v1.png",
+    alt: "Empaque negro sin marca con estructura de papel y mecanismo interior naranja",
+    side: "left",
   },
 ] as const;
 
-const method = [
-  ["01", "Encontrar", "Contexto, preguntas, referencias y la tensión que hace único al proyecto."],
-  ["02", "Construir", "Concepto, lenguaje, forma, tipografía, color y materia trabajando juntos."],
-  ["03", "Probar", "Prototipos, variaciones y movimiento para comprobar el comportamiento del sistema."],
-  ["04", "Entregar", "Un sistema aplicable, archivos claros y acompañamiento para hacerlo crecer."],
-] as const;
-
-const services = [
-  ["01", "Branding", "Identidades con una idea central y un sistema capaz de evolucionar."],
-  ["02", "Dirección de arte", "Una mirada coherente para campañas, lanzamientos y universos visuales."],
-  ["03", "Editorial", "Estructuras que hacen legible, deseable y memorable la información."],
-  ["04", "UI / UX", "Experiencias digitales claras con carácter, ritmo y comportamiento."],
-  ["05", "3D + Packaging", "Objetos, materiales y empaques que vuelven tangible una idea."],
-  ["06", "Motion", "Movimiento con función: explicar, conectar, revelar y dar vida."],
-] as const;
-
-function PenCursor({ mode, x, y }: { mode: string; x: number; y: number }) {
+function IllustratorPen() {
   return (
-    <div
-      className={styles.penCursor}
-      data-mode={mode}
-      style={{ transform: `translate3d(${x}px, ${y}px, 0)` }}
-      aria-hidden="true"
-    >
-      <svg viewBox="0 0 36 44">
-        <path d="M18 1 31 15 18 41 5 15 18 1Z" />
-        <path d="M18 2v23" />
-        <circle cx="18" cy="25" r="3.2" />
-      </svg>
-      <span>{mode}</span>
-    </div>
+    <svg viewBox="0 0 20 24" aria-hidden="true">
+      <path d="M.8 23.2 4.2 9.4 15.6.8l3.6 3.6-8.8 11.3L.8 23.2Z" />
+      <path d="m.8 23.2 9.6-7.5" />
+      <circle cx="10.4" cy="15.7" r="1.7" />
+    </svg>
   );
 }
 
-function AnchorNode({ className = "" }: { className?: string }) {
-  return <i className={`${styles.anchorNode} ${className}`} aria-hidden="true" />;
+function DraftAsset() {
+  return <span className={styles.draftAsset}>BORRADOR — imagen generada</span>;
 }
 
-function ProjectArtwork({ visual, full = false }: { visual: (typeof projects)[number]["visual"]; full?: boolean }) {
+function AdobeWindow({ project, index }: { project: (typeof designProjects)[number]; index: number }) {
+  const extension = index % 2 === 0 ? "ai" : "psd";
+  const filename = `${project.slug.replaceAll("-", "_")}.${extension}`;
+
   return (
-    <div className={`${styles.projectVisual} ${styles[visual]} ${full ? styles.projectVisualFull : ""}`}>
-      {visual === "orange" && <Image src="/UROBOROS/assets/images/nodes/design.png" fill sizes={full ? "90vw" : "45vw"} alt="Objeto escultórico translúcido en color naranja" />}
-      {visual === "editorial" && <div className={styles.editorialObject}><i>DESIGN</i><b>FORM<br />FOLLOWS<br />INTENT</b><span>VOL. 01</span></div>}
-      {visual === "interface" && <div className={styles.interfaceObject}><i /><i /><i /><b>98.4</b><span>motion / system</span></div>}
-    </div>
+    <Link className={styles.adobeWindow} href={`/book/${project.slug}`} aria-label={`Abrir el proyecto completo ${project.title}`} data-pen-active>
+      <span className={styles.windowTopbar}>
+        <i className={styles.windowDots} aria-hidden="true"><b /><b /><b /></i>
+        <span>{filename} @ 100% (RGB/8)</span>
+        <i className={styles.windowControls} aria-hidden="true">—　□　×</i>
+      </span>
+      <span className={styles.windowWorkspace}>
+        <span className={styles.toolRail} aria-hidden="true">
+          <i>↖</i><i>⌁</i><i className={styles.activeTool}>♢</i><i>T</i><i>□</i><i>◯</i><i>⌗</i>
+        </span>
+        <span className={styles.artboard}>
+          <span className={styles.artboardImage}>
+            <Image src={project.image} fill sizes="(max-width: 760px) 76vw, 58vw" alt={project.alt} />
+            <i className={styles.selectionBox} aria-hidden="true"><b /><b /><b /><b /></i>
+          </span>
+          <span className={styles.zoomLabel}>{index === 0 ? "66.7%" : "50%"}</span>
+        </span>
+        <span className={styles.layerPanel}>
+          <span className={styles.panelTitle}>CAPAS <i>•••</i></span>
+          <span className={styles.layerActive}><i>◉</i>{project.title}</span>
+          {project.services.slice(0, 3).map((service) => <span key={service}><i>◉</i>{service}</span>)}
+          <span className={styles.panelTitle}>PROPIEDADES <i>•••</i></span>
+          <span><i>W</i> 1920 px</span>
+          <span><i>H</i> 1080 px</span>
+        </span>
+      </span>
+      <span className={styles.windowFooter}>
+        <span><i>{String(index + 1).padStart(2, "0")}</i>{project.category} / {project.year}</span>
+        <strong>Abrir proyecto completo <i>↗</i></strong>
+      </span>
+    </Link>
+  );
+}
+
+function ApplicationSection({ item }: { item: (typeof applications)[number] }) {
+  return (
+    <section className={styles.application} id={item.id} data-side={item.side} data-application aria-labelledby={`${item.id}-title`}>
+      <Image className={styles.applicationImage} src={item.image} fill sizes="100vw" alt={item.alt} data-application-image />
+      <div className={styles.applicationShade} aria-hidden="true" />
+      <DraftAsset />
+      <div className={styles.applicationCopy} data-application-copy>
+        <p className={styles.eyebrow}>{item.eyebrow}</p>
+        <h2 id={`${item.id}-title`}>{item.title}</h2>
+        <p>{item.copy}</p>
+        <a href="#contacto" data-pen-active>Hablemos de tu proyecto <span>↗</span></a>
+      </div>
+    </section>
   );
 }
 
 export default function DesignExperience() {
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const trackRef = useRef<HTMLDivElement>(null);
-  const [cursor, setCursor] = useState({ x: -100, y: -100, mode: "Pluma" });
-  const [activeProject, setActiveProject] = useState<(typeof projects)[number] | null>(null);
+  const rootRef = useRef<HTMLElement>(null);
+  const capabilitiesRef = useRef<HTMLElement>(null);
+  const bookRef = useRef<HTMLElement>(null);
+  const bookViewportRef = useRef<HTMLDivElement>(null);
+  const bookTrackRef = useRef<HTMLDivElement>(null);
+  const loaderNumberRef = useRef<HTMLSpanElement>(null);
+  const loaderRef = useRef<HTMLDivElement>(null);
+  const penRef = useRef<HTMLDivElement>(null);
+  const [activeCapability, setActiveCapability] = useState(0);
 
   useEffect(() => {
-    const section = sectionRef.current;
-    const track = trackRef.current;
-    if (!section || !track) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const interval = window.setInterval(() => setActiveCapability((current) => (current + 1) % capabilities.length), 2300);
+    return () => window.clearInterval(interval);
+  }, []);
 
-    const viewport = section.querySelector<HTMLElement>("[data-design-viewport]");
-    const mobile = window.matchMedia("(max-width: 820px)");
-    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
-    if (!viewport) return;
+  useGSAP(() => {
+    const root = rootRef.current;
+    const book = bookRef.current;
+    const viewport = bookViewportRef.current;
+    const track = bookTrackRef.current;
+    const loader = loaderRef.current;
+    const loaderNumber = loaderNumberRef.current;
+    if (!root || !book || !viewport || !track || !loader || !loaderNumber) return;
 
-    let frame = 0;
-    let mobileInitialized = false;
-    const update = () => {
-      frame = 0;
-      const travel = Math.max(0, track.scrollWidth - viewport.clientWidth);
+    const loaderBars = Array.from(loader.querySelectorAll<HTMLElement>("[data-loader-bar]"));
+    const paintLoader = (progress: number) => {
+      const value = Math.round(progress * 100);
+      loaderNumber.textContent = String(value).padStart(2, "0");
+      loader.style.setProperty("--loader-progress", progress.toFixed(3));
+      loaderBars.forEach((bar, index) => {
+        bar.dataset.active = index / Math.max(1, loaderBars.length - 1) <= progress ? "true" : "false";
+      });
+    };
 
-      if (mobile.matches) {
-        section.style.height = `${window.innerHeight}px`;
-        track.style.removeProperty("transform");
-        if (!mobileInitialized) {
-          viewport.scrollLeft = travel;
-          mobileInitialized = true;
-        }
-        const progress = travel ? 1 - viewport.scrollLeft / travel : 0;
-        section.style.setProperty("--design-progress", progress.toFixed(4));
+    const media = gsap.matchMedia();
+    media.add({ motion: "(prefers-reduced-motion: no-preference)", desktop: "(min-width: 901px)" }, (context) => {
+      const { motion, desktop } = context.conditions as { motion: boolean; desktop: boolean };
+      if (!motion) {
+        paintLoader(1);
         return;
       }
 
-      mobileInitialized = false;
-      section.style.height = `${window.innerHeight + travel}px`;
-      const scrollDistance = Math.max(1, section.offsetHeight - window.innerHeight);
-      const progress = Math.min(1, Math.max(0, -section.getBoundingClientRect().top / scrollDistance));
-      track.style.removeProperty("transform");
-      viewport.scrollLeft = (1 - progress) * travel;
-      section.style.setProperty("--design-progress", progress.toFixed(4));
-    };
+      paintLoader(.01);
+      const heroCopy = root.querySelector<HTMLElement>("[data-hero-copy]");
+      const heroLogo = root.querySelector<HTMLElement>("[data-hero-logo]");
+      const heroImage = root.querySelector<HTMLElement>("[data-hero-image]");
+      if (heroCopy) gsap.from(Array.from(heroCopy.children), { autoAlpha: 0, y: 42, duration: 1.05, stagger: .09, ease: "power3.out", delay: .18 });
+      if (heroLogo) gsap.fromTo(heroLogo, { autoAlpha: 0, scale: .965 }, { autoAlpha: 1, scale: 1, duration: 1.45, ease: "power3.out", delay: .12 });
+      if (heroImage) gsap.fromTo(heroImage, { scale: 1.08, autoAlpha: .6 }, { scale: 1, autoAlpha: 1, duration: 1.75, ease: "power3.out" });
 
-    const requestUpdate = () => {
-      if (!frame) frame = window.requestAnimationFrame(update);
-    };
+      root.querySelectorAll<HTMLElement>("[data-reveal]").forEach((element) => {
+        gsap.fromTo(Array.from(element.children), { autoAlpha: 0, y: 34 }, {
+          autoAlpha: 1,
+          y: 0,
+          duration: .8,
+          stagger: .07,
+          ease: "power3.out",
+          scrollTrigger: { trigger: element, start: "top 82%", toggleActions: "play none none none", once: true },
+        });
+      });
 
-    update();
-    window.addEventListener("scroll", requestUpdate, { passive: true });
-    window.addEventListener("resize", requestUpdate);
-    viewport.addEventListener("scroll", requestUpdate, { passive: true });
-    mobile.addEventListener("change", requestUpdate);
+      root.querySelectorAll<HTMLElement>("[data-application]").forEach((section) => {
+        const image = section.querySelector<HTMLElement>("[data-application-image]");
+        const copy = section.querySelector<HTMLElement>("[data-application-copy]");
+        if (section.id === "packaging" && image && copy) {
+          const copyChildren = Array.from(copy.children);
+          gsap.set(copyChildren, { autoAlpha: 0, y: 42 });
+          gsap.timeline({
+            scrollTrigger: { trigger: section, start: "top 72%", toggleActions: "play none none none", once: true },
+          })
+            .fromTo(image, { scale: 1.055, filter: "brightness(.72) saturate(.82)" }, { scale: 1, filter: "brightness(1) saturate(1)", duration: 1.2, ease: "power3.out" })
+            .to(image, { scale: 1.012, duration: 2.6, ease: "sine.inOut" })
+            .to(copyChildren, { autoAlpha: 1, y: 0, duration: .8, stagger: .08, ease: "power3.out" });
+          return;
+        }
+        if (image) gsap.fromTo(image, { scale: 1.08 }, { scale: 1, ease: "none", scrollTrigger: { trigger: section, start: "top bottom", end: "bottom top", scrub: true } });
+        if (copy) gsap.fromTo(Array.from(copy.children), { autoAlpha: 0, y: 46 }, {
+          autoAlpha: 1,
+          y: 0,
+          duration: .85,
+          stagger: .08,
+          ease: "power3.out",
+          scrollTrigger: { trigger: section, start: "top 72%", toggleActions: "play none none none", once: true },
+        });
+      });
 
-    const reveal = Array.from(document.querySelectorAll<HTMLElement>("[data-design-reveal]"));
-    if (reduced.matches) reveal.forEach((item) => item.setAttribute("data-visible", "true"));
-    const observer = new IntersectionObserver(
-      (entries) => entries.forEach((entry) => entry.isIntersecting && entry.target.setAttribute("data-visible", "true")),
-      { threshold: 0.12 },
-    );
-    if (!reduced.matches) reveal.forEach((item) => observer.observe(item));
+      const loaderState = { progress: .01 };
+      gsap.to(loaderState, {
+        progress: 1,
+        duration: 15,
+        ease: "none",
+        onUpdate: () => paintLoader(loaderState.progress),
+        scrollTrigger: { trigger: loader, start: "top 78%", toggleActions: "play none none none", once: true },
+      });
 
-    return () => {
-      if (frame) window.cancelAnimationFrame(frame);
-      window.removeEventListener("scroll", requestUpdate);
-      window.removeEventListener("resize", requestUpdate);
-      viewport.removeEventListener("scroll", requestUpdate);
-      mobile.removeEventListener("change", requestUpdate);
-      observer.disconnect();
-    };
-  }, []);
+      if (desktop) {
+        const distance = () => Math.max(0, track.scrollWidth - viewport.clientWidth);
+        gsap.to(track, {
+          x: () => -distance(),
+          ease: "none",
+          scrollTrigger: {
+            trigger: book,
+            start: "top top",
+            end: () => `+=${distance()}`,
+            pin: true,
+            pinSpacing: true,
+            scrub: 1,
+            anticipatePin: 1,
+            invalidateOnRefresh: true,
+          },
+        });
+      }
+
+      requestAnimationFrame(() => ScrollTrigger.refresh());
+    });
+
+    return () => media.revert();
+  }, { scope: rootRef });
 
   useEffect(() => {
-    if (!activeProject) return;
-    const previousOverflow = document.body.style.overflow;
-    const close = (event: KeyboardEvent) => event.key === "Escape" && setActiveProject(null);
-    document.body.style.overflow = "hidden";
-    window.addEventListener("keydown", close);
-    return () => {
-      document.body.style.overflow = previousOverflow;
-      window.removeEventListener("keydown", close);
-    };
-  }, [activeProject]);
+    const capabilitiesSection = capabilitiesRef.current;
+    const pen = penRef.current;
+    if (!capabilitiesSection || !pen) return;
 
-  useEffect(() => {
-    const onMove = (event: PointerEvent) => {
+    const coarse = window.matchMedia("(pointer: coarse)").matches;
+    if (!coarse) document.body.classList.add("design-cursor-active");
+
+    const movePen = (event: PointerEvent) => {
+      pen.style.transform = `translate3d(${event.clientX}px, ${event.clientY}px, 0)`;
+      pen.dataset.visible = "true";
       const target = event.target as HTMLElement | null;
-      const mode = target?.closest<HTMLElement>("[data-cursor]")?.dataset.cursor ?? "Pluma";
-      setCursor({ x: event.clientX - 9, y: event.clientY - 4, mode });
+      pen.dataset.active = target?.closest("a, button, [data-pen-active]") ? "true" : "false";
     };
-    window.addEventListener("pointermove", onMove, { passive: true });
-    return () => window.removeEventListener("pointermove", onMove);
-  }, []);
+    const hidePen = () => { pen.dataset.visible = "false"; };
+    const moveLight = (event: PointerEvent) => {
+      const bounds = capabilitiesSection.getBoundingClientRect();
+      capabilitiesSection.style.setProperty("--light-x", `${event.clientX - bounds.left}px`);
+      capabilitiesSection.style.setProperty("--light-y", `${event.clientY - bounds.top}px`);
+    };
 
-  const goTo = (id: string) => {
-    const section = sectionRef.current;
-    const track = trackRef.current;
-    const target = document.getElementById(id);
-    const viewport = section?.querySelector<HTMLElement>("[data-design-viewport]");
-    if (!section || !track || !target || !viewport) return;
-
-    const targetOffset = target.offsetLeft;
-    const travel = Math.max(1, track.scrollWidth - viewport.clientWidth);
-    if (window.matchMedia("(max-width: 820px)").matches) {
-      viewport.scrollTo({ left: targetOffset, behavior: "smooth" });
-    } else {
-      const verticalTravel = Math.max(1, section.offsetHeight - window.innerHeight);
-      const reverseProgress = Math.min(1, Math.max(0, 1 - targetOffset / travel));
-      window.scrollTo({ top: section.offsetTop + reverseProgress * verticalTravel, behavior: "smooth" });
+    if (!coarse) {
+      window.addEventListener("pointermove", movePen, { passive: true });
+      window.addEventListener("blur", hidePen);
+      document.documentElement.addEventListener("mouseleave", hidePen);
+      capabilitiesSection.addEventListener("pointermove", moveLight, { passive: true });
     }
-  };
 
-  useEffect(() => {
-    const navigateSection = (event: Event) => goTo((event as CustomEvent<string>).detail);
-    window.addEventListener("latticce:navigate-section", navigateSection);
-    return () => window.removeEventListener("latticce:navigate-section", navigateSection);
-  });
+    return () => {
+      document.body.classList.remove("design-cursor-active");
+      window.removeEventListener("pointermove", movePen);
+      window.removeEventListener("blur", hidePen);
+      document.documentElement.removeEventListener("mouseleave", hidePen);
+      capabilitiesSection.removeEventListener("pointermove", moveLight);
+    };
+  }, []);
 
   return (
-    <main className={styles.root}>
-      <PenCursor {...cursor} />
+    <main ref={rootRef} className={styles.root} data-node="design">
+      <div ref={penRef} className={styles.penCursor} data-visible="false" data-active="false" aria-hidden="true"><IllustratorPen /></div>
+      <p className={styles.version}>BORRADOR — VERSIÓN 2</p>
 
-      <SiteMenu
-        homeHref="/"
-        logoSrc="/UROBOROS/assets/logos/LTT_LOGO_NEG_DESIGN.svg"
-        logoAlt="LATTICCE Design"
-        variant="design"
-      />
+      <section className={styles.hero} id="inicio" aria-labelledby="design-title">
+        <Image className={styles.heroImage} src="/UROBOROS/assets/images/design/design-hero-threshold-generated-draft-v1.png" fill priority sizes="100vw" alt="Escultura monumental de resina negra dividida por una abertura de luz naranja" data-hero-image />
+        <div className={styles.heroShade} aria-hidden="true" />
+        <div className={styles.heroLines} aria-hidden="true"><i /><i /><i /><i /></div>
+        <DraftAsset />
+        <div className={styles.heroMeta}><span>DESIGN / 04</span><span>La idea atraviesa la materia y toma forma</span></div>
+        <div className={styles.heroLogoFrame} data-hero-logo data-pen-active>
+          <h1 id="design-title" className={styles.srOnly}>LATTICCE Design</h1>
+          <Image src="/UROBOROS/assets/logos/LTT_LOGO_NEG_DESIGN.svg" width={704} height={182} alt="LATTICCE Design" />
+          <i className={styles.logoNodeOne} /><i className={styles.logoNodeTwo} /><i className={styles.logoNodeThree} /><i className={styles.logoNodeFour} />
+        </div>
+        <div className={styles.heroCopy} data-hero-copy>
+          <p>Convertimos ideas en identidades, objetos y experiencias que pueden verse, tocarse y moverse.</p>
+          <a href="#capacidades" data-pen-active>Descubrir capacidades <span>↓</span></a>
+        </div>
+      </section>
 
-      <aside className={styles.toolbar} aria-label="Herramientas visuales">
-        {["↖︎", "⌁", "◆", "T", "○", "▱"].map((tool, index) => <button key={tool} type="button" data-cursor={index === 1 ? "Dibujar" : "Herramienta"} aria-label={`Herramienta ${index + 1}`}>{tool}</button>)}
-      </aside>
+      <section ref={capabilitiesRef} className={styles.capabilities} id="capacidades" aria-labelledby="capabilities-title">
+        <div className={styles.capabilityGrid} aria-hidden="true" />
+        <div className={styles.capabilityHalo} aria-hidden="true" />
+        <div className={styles.sectionMeta}><span>01 / CAPACIDADES</span><span>Una idea / múltiples formas</span></div>
+        <div className={styles.createStage}>
+          <div className={styles.createPill} data-pen-active><span aria-hidden="true">＋</span><strong id="capabilities-title">CREA</strong></div>
+          <i className={styles.createBeam} aria-hidden="true" />
+          <p key={activeCapability} className={styles.activeCapability} aria-live="polite">{capabilities[activeCapability]}</p>
+        </div>
+        <div className={styles.capabilitySelector} aria-label="Capacidades de LATTICCE Design">
+          {capabilities.map((capability, index) => (
+            <button type="button" key={capability} className={index === activeCapability ? styles.capabilityActive : ""} onClick={() => setActiveCapability(index)}>
+              <span>{String(index + 1).padStart(2, "0")}</span>{capability}
+            </button>
+          ))}
+        </div>
+      </section>
 
-      <p className={styles.draft}>BORRADOR — VERSIÓN 1</p>
-
-      <div className={styles.horizontal} ref={sectionRef}>
-        <div className={styles.directionCue} aria-hidden="true"><span>‹‹‹</span><i /><span>›››</span></div>
-        <div className={styles.viewport} data-design-viewport>
-          <div className={styles.track} ref={trackRef}>
-            <section className={`${styles.panel} ${styles.hero}`} id="inicio" aria-labelledby="design-hero-title">
-              <div className={styles.heroGrid} aria-hidden="true" />
-              <div className={styles.heroCopy} data-design-reveal>
-                <p className={styles.kicker}><span>01</span> Diseño como materia</p>
-                <h1 id="design-hero-title">Ideas que<br /><em>toman forma.</em></h1>
-                <p>Identidad, objetos, sistemas y experiencias construidos para moverse en el mundo real.</p>
-                <button type="button" onClick={() => goTo("book")} data-cursor="Explorar">Ver el book <span>←︎</span></button>
+      <section ref={bookRef} className={styles.book} id="book" aria-labelledby="book-title">
+        <div ref={bookViewportRef} className={styles.bookViewport}>
+          <div ref={bookTrackRef} className={styles.bookTrack}>
+            <div className={styles.bookIntro}>
+              <div data-reveal>
+                <p className={styles.eyebrow}>02 / BOOK SELECCIONADO</p>
+                <h2 id="book-title">El proceso también<br /><em>forma parte de la obra.</em></h2>
+                <p>Dos proyectos abiertos como archivos de trabajo. Entra a cada ventana para conocer el caso completo.</p>
               </div>
-              <div className={styles.editingStage} data-cursor="Editar" aria-label="Logotipo oficial de LATTICCE Design en un marco de edición">
-                <span className={styles.coordinate}>X 1820 px · Y 640 px</span>
-                <div className={styles.logoSelection}>
-                  <Image src="/UROBOROS/assets/logos/LTT_LOGO_NEG_DESIGN.svg" width={704} height={182} alt="LATTICCE Design" loading="eager" />
-                  <AnchorNode className={styles.n1} /><AnchorNode className={styles.n2} /><AnchorNode className={styles.n3} /><AnchorNode className={styles.n4} />
-                </div>
-                <svg className={styles.heroCurve} viewBox="0 0 800 360" aria-hidden="true"><path d="M20 292C186 60 372 56 486 178S684 328 786 76" /><circle cx="20" cy="292" r="5" /><circle cx="486" cy="178" r="5" /><circle cx="786" cy="76" r="5" /></svg>
-                <div className={styles.materialOrb} aria-hidden="true"><i /><b /></div>
-              </div>
-              <p className={styles.scrollHint}>Desplaza hacia la izquierda <span>←︎</span></p>
-            </section>
-
-            <section className={`${styles.panel} ${styles.manifesto}`} aria-labelledby="manifesto-title">
-              <div className={styles.manifestoObject} data-cursor="Rotar" aria-hidden="true"><i /><b /><span /></div>
-              <div className={styles.manifestoCopy} data-design-reveal>
-                <p className={styles.kicker}><span>02</span> Punto de vista</p>
-                <h2 id="manifesto-title">Antes de diseñar,<br /><em>observamos.</em></h2>
-                <p>Encontramos la tensión correcta, la convertimos en lenguaje y después la hacemos comportarse como un sistema.</p>
-              </div>
-              <div className={styles.layerPanel} aria-hidden="true"><p>CAPAS</p><span>◉ concepto</span><span>◉ forma</span><span>◉ materia</span><span>◉ movimiento</span></div>
-            </section>
-
-            <section className={`${styles.panel} ${styles.bookWorkspace}`} id="book" aria-labelledby="book-title">
-              <div className={styles.bookHead} data-design-reveal>
-                <p className={styles.kicker}><span>03</span> Book seleccionado</p>
-                <h2 id="book-title">Proyectos abiertos.<br /><em>Procesos visibles.</em></h2>
-                <p>Selecciona una ventana para abrir el caso completo, sus decisiones y entregables.</p>
-              </div>
-              <div className={styles.windowDock}>
-                {projects.map((project, index) => (
-                  <button
-                    className={styles.projectWindow}
-                    style={{ "--window-index": index } as CSSProperties}
-                    key={project.number}
-                    type="button"
-                    onClick={() => setActiveProject(project)}
-                    data-cursor="Abrir proyecto"
-                    aria-label={`Abrir proyecto ${project.title}`}
-                  >
-                    <span className={styles.windowBar}>
-                      <i><b /> <b /> <b /></i>
-                      <em>{project.title.toLowerCase().replaceAll(" ", "_")}.{project.visual === "editorial" ? "ai" : "psd"} @ 100%</em>
-                      <strong>— □ ×</strong>
-                    </span>
-                    <span className={styles.windowBody}>
-                      <span className={styles.windowTools}>↖︎<i>⌁</i>◆T○▱</span>
-                      <ProjectArtwork visual={project.visual} />
-                      <span className={styles.windowLayers}>
-                        <b>CAPAS</b><i>◉ {project.title}</i><i>◉ Material</i><i>◉ Guías</i><i>◉ Fondo</i>
-                      </span>
-                    </span>
-                    <span className={styles.windowMeta}><i>{project.number} / 03 · {project.discipline}</i><strong>{project.title}</strong><em>Abrir caso ↗︎</em></span>
-                  </button>
-                ))}
-              </div>
-              <span className={styles.bookCount}>03 VENTANAS / CLICK PARA ABRIR</span>
-            </section>
-
-            <section className={`${styles.panel} ${styles.method}`} id="metodo" aria-labelledby="method-title">
-              <div className={styles.methodHead} data-design-reveal>
-                <p className={styles.kicker}><span>04</span> Método</p>
-                <h2 id="method-title">Del trazo<br /><em>al sistema.</em></h2>
-              </div>
-              <svg className={styles.methodLine} viewBox="0 0 1100 220" preserveAspectRatio="none" aria-hidden="true"><path d="M8 164C194 4 289 20 398 112S626 214 753 95 944 31 1092 144" /></svg>
-              <div className={styles.methodList}>
-                {method.map(([number, title, text]) => <article key={number} data-cursor="Seleccionar"><span>{number}</span><h3>{title}</h3><p>{text}</p></article>)}
-              </div>
-            </section>
-
-            <section className={`${styles.panel} ${styles.services}`} id="servicios" aria-labelledby="services-title">
-              <div className={styles.servicesHead} data-design-reveal>
-                <p className={styles.kicker}><span>05</span> Servicios</p>
-                <h2 id="services-title">Herramientas para<br /><em>hacer visible una idea.</em></h2>
-              </div>
-              <div className={styles.serviceList}>
-                {services.map(([number, title, text]) => <article key={number} data-cursor="Transformar"><span>{number}</span><h3>{title}</h3><p>{text}</p><i>↗︎</i></article>)}
-              </div>
-              <div className={styles.serviceSculpture} aria-hidden="true"><i /><b /><span /></div>
-            </section>
-
-            <section className={`${styles.panel} ${styles.contact}`} id="contacto" aria-labelledby="contact-title">
-              <div className={styles.contactCopy} data-design-reveal>
-                <p className={styles.kicker}><span>06</span> Nuevo archivo</p>
-                <h2 id="contact-title">¿Qué quieres<br /><em>construir?</em></h2>
-                <p>Cuéntanos dónde estás, qué necesita tomar forma y qué debería cambiar cuando el proyecto exista.</p>
-                <a href="mailto:hola@latticce.com?subject=Nuevo%20proyecto%20LATTICCE%20Design" data-cursor="Enviar">Iniciar un proyecto <span>→︎</span></a>
-              </div>
-              <div className={styles.contactForm} aria-hidden="true">
-                <p>NUEVO_PROYECTO.DESIGN</p>
-                <span>Nombre / marca</span><i />
-                <span>¿Qué quieres construir?</span><i />
-                <span>Fecha ideal</span><i />
-                <b>Adjuntar referencias +</b>
-              </div>
-              <footer><Image src="/UROBOROS/assets/logos/LTT_LOGO_NEG_DESIGN.svg" width={238} height={62} alt="LATTICCE Design" /><span>© 2026 · México</span></footer>
-            </section>
+              <span className={styles.bookDirection}>Desplaza para abrir archivos <i>→</i></span>
+            </div>
+            {designProjects.map((project, index) => <AdobeWindow project={project} index={index} key={project.slug} />)}
+            <div className={styles.bookEnd} aria-hidden="true"><span>BOOK</span><i>02 / 02</i></div>
           </div>
         </div>
-      </div>
+      </section>
 
-      {activeProject && (
-        <div className={styles.caseOverlay} role="presentation" onMouseDown={(event) => event.currentTarget === event.target && setActiveProject(null)}>
-          <article className={styles.caseWindow} role="dialog" aria-modal="true" aria-labelledby="case-title">
-            <header className={styles.caseBar}>
-              <span><i /><i /><i /></span>
-              <p>{activeProject.title.toLowerCase().replaceAll(" ", "_")}_case.ai @ 100% (RGB/Preview)</p>
-              <button type="button" onClick={() => setActiveProject(null)} data-cursor="Cerrar" aria-label="Cerrar proyecto">×</button>
-            </header>
-            <div className={styles.caseBody}>
-              <aside className={styles.caseTools} aria-hidden="true">↖︎<i>⌁</i>◆T○▱◇⌗</aside>
-              <div className={styles.caseCanvas}>
-                <ProjectArtwork visual={activeProject.visual} full />
-                <div className={styles.caseIdentity}>
-                  <span>{activeProject.number} / CASO SELECCIONADO</span>
-                  <h2 id="case-title">{activeProject.title}</h2>
-                  <p>{activeProject.discipline}</p>
-                </div>
-              </div>
-              <aside className={styles.caseInfo}>
-                <section><span>01 / RETO</span><p>{activeProject.brief}</p></section>
-                <section><span>02 / RESPUESTA</span><p>{activeProject.solution}</p></section>
-                <section><span>03 / ENTREGABLES</span><ul>{activeProject.deliverables.map((item) => <li key={item}>{item}</li>)}</ul></section>
-                <div className={styles.caseLayers}><b>CAPAS</b><i>◉ Resultado final</i><i>◉ Sistema</i><i>◉ Exploración</i><i>◉ Concepto</i></div>
-              </aside>
-            </div>
-            <footer className={styles.caseFooter}><span>{activeProject.caption}</span><button type="button" onClick={() => setActiveProject(null)} data-cursor="Volver">←︎ Volver al book</button></footer>
-          </article>
+      <section className={styles.anima} id="anima" aria-labelledby="anima-title">
+        <div ref={loaderRef} className={styles.loader} aria-hidden="true">
+          {Array.from({ length: 64 }, (_, index) => <i key={index} data-loader-bar style={{ "--bar-index": index } as CSSProperties} />)}
+          <div><span ref={loaderNumberRef}>01</span><b>%</b><small>cargando anima</small></div>
         </div>
-      )}
+        <div className={styles.animaCopy} data-reveal>
+          <p className={styles.eyebrow}>03 / MOTION + ANIMACIÓN</p>
+          <h2 id="anima-title">ANIMA</h2>
+          <p>Le damos alma y movimiento a tu mundo plano.</p>
+        </div>
+      </section>
+
+      <section className={styles.process} id="proceso" aria-labelledby="process-title">
+        <div className={styles.processHeader} data-reveal>
+          <p className={styles.eyebrow}>04 / NUESTRO PROCESO</p>
+          <h2 id="process-title">De una idea clara<br /><em>a una entrega útil.</em></h2>
+          <p>Atención cercana, decisiones visibles y archivos que no necesitan explicación adicional.</p>
+        </div>
+        <div className={styles.processSteps}>
+          {processSteps.map((step) => <article key={step.index}><span>{step.index}</span><i aria-hidden="true" /><h3>{step.title}</h3><p>{step.copy}</p></article>)}
+        </div>
+        <div className={styles.processVisual}>
+          <Image src="/UROBOROS/assets/images/design/design-process-panels-generated-draft-v1.png" fill sizes="100vw" alt="Cuatro paneles de vidrio, arcilla, acrílico transparente y acrílico naranja sobre fondo marfil" />
+          <DraftAsset />
+        </div>
+      </section>
+
+      <div id="aplicaciones" className={styles.applicationFlow}>{applications.map((item) => <ApplicationSection item={item} key={item.id} />)}</div>
+
+      <section className={styles.content} id="contenido" aria-labelledby="content-title" data-application>
+        <Image className={styles.contentImage} src="/UROBOROS/assets/images/design/design-social-content-generated-draft-v1.png" fill sizes="100vw" alt="Mano sosteniendo un teléfono sin marca con formas abstractas bajo luz naranja" data-application-image />
+        <div className={styles.contentShade} aria-hidden="true" />
+        <DraftAsset />
+        <div className={styles.contentCopy} data-application-copy>
+          <p className={styles.eyebrow}>08 / CONTENIDO PARA REDES</p>
+          <h2 id="content-title">Contenido periódico<br />para redes sociales.<br /><em>Lo hacemos por ti.</em></h2>
+          <p>Planeamos, diseñamos y adaptamos un sistema constante para que tu marca no improvise cada semana.</p>
+          <ul aria-label="Alcance del servicio"><li>Planeación</li><li>Diseño</li><li>Adaptación</li><li>Entrega periódica</li></ul>
+          <a href="#contacto" data-pen-active>Construyamos tu sistema <span>↗</span></a>
+        </div>
+      </section>
+
+      <section className={styles.contact} id="contacto" aria-labelledby="contact-title">
+        <Image className={styles.contactImage} src="/UROBOROS/assets/images/design/design-contact-hands-generated-draft-v1.png" fill sizes="100vw" alt="Dos manos desenfocadas acercándose detrás de vidrio esmerilado con luz naranja" />
+        <div className={styles.contactShade} aria-hidden="true" />
+        <DraftAsset />
+        <div className={styles.contactCopy} data-reveal>
+          <p className={styles.eyebrow}>09 / HABLEMOS</p>
+          <h2 id="contact-title">Agenda tu<br /><em>cita virtual.</em></h2>
+          <p>*Asesoramos tu proyecto.</p>
+          <ContactTrigger className={styles.contactButton}>Agendar una conversación <span>↗</span></ContactTrigger>
+        </div>
+      </section>
     </main>
   );
 }

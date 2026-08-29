@@ -1,171 +1,197 @@
-# Brief maestro — LATTICCE DESIGN
+# Brief maestro — LATTICCE DESIGN / VERSIÓN 2
 
-> Prompt de dirección creativa, experiencia y producción para planear la página web de LATTICCE DESIGN.
+> Prompt de dirección creativa, experiencia, contenido y producción para la página `/design`.
+>
+> Estado: `BORRADOR — VERSIÓN 2`
+> Concepto rector: **La idea atraviesa la materia y toma forma.**
 
 ## 1. Encargo
 
-Diseñar una página editorial e interactiva para LATTICCE DESIGN, estudio que convierte ideas en objetos, sistemas visuales, experiencias y movimiento. La experiencia debe sentirse como entrar a un espacio de trabajo creativo entre Adobe Illustrator, Photoshop, Blender y una mesa de prototipado: herramientas, nodos, guías, trazos, capas, puntos de ancla, materiales y transformaciones aparecen integrados a la composición.
+Diseñar y desarrollar una experiencia web vertical para LATTICCE DESIGN, integrada al ecosistema general de LATTICCE y construida desde objetos, materia, luz y transformación. El sitio debe comunicar que DESIGN convierte ideas en identidades, objetos y experiencias que pueden verse, tocarse y moverse.
 
-La referencia entregada sirve únicamente para tomar el hero con el logotipo de LATTICCE DESIGN editándose y la presencia de una pluma. Ignorar su estructura de secciones, su composición general y su dependencia de tarjetas o paneles tipo dashboard.
+La página no es un clon de Adobe ni una interfaz SaaS. Illustrator, Photoshop y Blender funcionan como vocabulario visual: pluma, nodos, guías, capas, barras, lienzos, materiales y estados de edición. La única escena que adopta una interfaz completa de software es el BOOK.
 
-## 2. Objetivo de comunicación
+## 2. Objetivo
 
-Mostrar un book memorable, explicar el método de trabajo, presentar los servicios y convertir la visita en una conversación de proyecto. La página debe comunicar que LATTICCE DESIGN no entrega decoración: construye objetos visuales, identidades, sistemas y experiencias con pensamiento, materia y precisión.
+- Presentar con claridad las capacidades de DESIGN.
+- Destacar el BOOK y conducir a los casos completos.
+- Explicar una atención ordenada y cercana.
+- Mostrar aplicaciones concretas: branding, 3D, packaging y contenido periódico.
+- Convertir el recorrido en una cita virtual mediante el formulario global de LATTICCE.
 
 ## 3. Audiencia
 
-Marcas, fundadores, directores creativos, equipos de marketing y proyectos culturales o tecnológicos que buscan identidad, dirección visual, diseño editorial, producto digital, 3D o animación con una perspectiva experimental y cuidada.
+Marcas, fundadores, equipos de marketing, directores creativos y proyectos culturales o tecnológicos que necesitan identidad, dirección visual, editorial, 3D, animación, packaging o contenido recurrente con una perspectiva experimental y producible.
 
-## 4. Idea rectora
+## 4. Dirección visual
 
-**“Una idea se vuelve objeto cuando puede editarse, tocarse y transformarse.”**
+### Materia
 
-La pluma es el hilo conductor. No debe ser un cursor decorativo aislado: dibuja, selecciona, corta, revela, une nodos y deja una huella material. Cada sección es una etapa de edición de una misma pieza en construcción.
-
-## 5. Experiencia principal
-
-- Al entrar, el cursor se transforma en un icono de pluma estilizado, inspirado en la herramienta Pluma de Photoshop/Illustrator, pero diseñado como pieza propia del sistema LATTICCE DESIGN.
-- El cursor-pluma cambia de estado según la acción: reposo, hover, selección, dibujo, arrastre y enlace. En touch y dispositivos sin puntero debe existir una alternativa clara: controles de navegación y microinteracciones táctiles.
-- El scroll completo de la página es horizontal, de derecha a izquierda para avanzar por la narrativa. La rueda vertical, trackpad, shift+wheel, teclado y touch deben traducirse de manera accesible a desplazamiento horizontal.
-- El movimiento debe sentirse deliberado y cinematográfico: inercia breve, anclajes por sección, transiciones suaves y ningún desplazamiento que maree o bloquee.
-- La interfaz nunca debe parecer un panel administrativo. Las referencias a software deben funcionar como lenguaje visual y teatralidad de proceso, no como un producto SaaS.
-
-## 6. Arquitectura de la página
-
-### A. Entrada / Hero — “Editar la idea”
-
-Primer impacto a pantalla completa. Fondo oscuro mate con una gran palabra/forma tipográfica de LATTICCE DESIGN en proceso de edición: nodos, curvas Bézier, puntos de ancla, líneas de construcción y cambios de material. El logotipo oficial se coloca como capa independiente y no se genera con IA.
-
-Texto sugerido: **“Diseñamos ideas que toman forma.”**
-
-Acciones: `Ver el book` y `Cómo trabajamos`.
-
-La pluma atraviesa o modifica la composición; al mover el cursor aparecen pequeñas decisiones visuales: handles, guías, máscaras, deformaciones o cambios de material. La animación debe tener una causa perceptible.
-
-### B. Manifiesto / Punto de vista — “Antes de diseñar, observamos”
-
-Un tramo de lectura breve que explique la postura: investigar, ordenar, construir, probar y dar forma. Integrar una pieza 3D o tipográfica que se deforme lentamente como si estuviera en Blender o arcilla digital.
-
-### C. Book — “Objetos terminados, sistemas vivos”
-
-El book es el núcleo de la página. Presentar proyectos en composiciones grandes, no como una cuadrícula genérica de miniaturas. Cada proyecto debe tener:
-
-- imagen o render protagonista;
-- título, disciplina y año;
-- una frase sobre la decisión central;
-- una interacción de revelar capas, variantes, wireframe, material o movimiento;
-- entrada clara al caso completo.
-
-El recorrido puede alternar piezas de branding, identidad, editorial, UI/UX, packaging, 3D y animación, manteniendo una lógica de galería en proceso. Usar profundidad, escala, superposición y cambios de materia para diferenciar proyectos.
-
-### D. Método — “Del trazo al sistema”
-
-Explicar cuatro fases conectadas por una línea de Bézier viva:
-
-1. **Encontrar** — contexto, preguntas, referencias y tensión de la marca.
-2. **Construir** — concepto, lenguaje, forma, tipografía y materia.
-3. **Probar** — prototipos, variaciones, movimiento y comportamiento.
-4. **Entregar** — sistema aplicable, archivos, guías y acompañamiento.
-
-La línea puede convertirse en objeto, volumen o estructura durante el avance horizontal. Cada fase debe revelar ejemplos de proceso, evitando párrafos largos.
-
-### E. Servicios — “Herramientas para hacer visible una idea”
-
-Mostrar servicios como instrumentos/objetos manipulables, no como tarjetas de software:
-
-- Branding e identidad visual
-- Dirección de arte
-- Diseño editorial
-- UI/UX y experiencias digitales
-- 3D, visualización y packaging
-- Animación y motion design
-
-Cada servicio debe indicar qué problema resuelve, qué se entrega y qué tipo de proyecto activa. Al pasar el cursor, el objeto cambia de material, escala o estado de edición.
-
-### F. Contacto — “Abramos un archivo nuevo”
-
-Cerrar con una zona de contacto abierta, cálida y directa. Usar un formulario breve y progresivo: nombre, correo, tipo de proyecto, contexto, presupuesto aproximado opcional y fecha. Permitir adjuntar referencias sin convertirlo en un cotizador rígido.
-
-Texto sugerido: **“Cuéntanos qué quieres construir.”**
-
-CTA principal: `Iniciar un proyecto`.
-
-## 7. Dirección visual
-
-### Materia y objetos
-
-Construir la identidad visual con objetos diseñados: plumas estilográficas, nodos metálicos, curvas tensadas, bloques tipográficos, papel, vidrio, plástico translúcido, arcilla, cromo suave, tinta y superficies de prototipo. Cada material debe tener peso, sombra, reflejo y comportamiento.
-
-### Fondo
-
-Negro carbón, grafito y superficies profundas con variaciones de grano, papel, mesa de trabajo o volumen oscuro. Evitar que el fondo dependa de una repetición de partículas doradas o de una estética espacial genérica. El detalle debe aparecer cuando una acción lo justifique.
+Resina negra, arcilla, vidrio, acrílico naranja, cromo, aluminio, papel sin recubrimiento, niebla y grano. Los materiales deben percibirse con peso, espesor, sombras y comportamiento físico intencional.
 
 ### Paleta
 
-Base: `#090909`, `#151515`, `#262626`, blanco cálido `#F1EEE8`.
+- Negro: `#050505`
+- Grafito: `#141414`
+- Papel cálido: `#F1EEE8`
+- Marfil: `#E9E4DB`
+- Naranja: `#FF5A0A`
 
-Acentos funcionales: marfil, cobre, naranja de selección, azul guía y verde de confirmación. Usar color para estados, jerarquía y materialidad, no como decoración aleatoria.
+El naranja funciona como abertura, selección, energía y continuidad. No usar violeta, azul neón ni partículas decorativas.
 
 ### Tipografía
 
-Contrastar una serif editorial de alto carácter para titulares con una sans técnica para navegación, metadatos y controles. La serif debe sentirse cultural y táctil; la sans, precisa y utilitaria. Mantener textos breves y legibles sobre movimiento.
+- Arial/Helvetica para interfaz, navegación, datos y titulares de fuerza gráfica.
+- Georgia para énfasis editorial, lenguaje humano y contraste material.
+- No añadir dependencias tipográficas.
 
-### Líneas y controles
+### Logo
 
-Usar líneas de construcción finas, puntos de ancla, handles, marcos de selección, coordenadas, reglas y etiquetas pequeñas. Todo elemento técnico debe sugerir una acción o un proceso. No simular una interfaz completa con ventanas flotantes omnipresentes.
+Usar exclusivamente el SVG oficial `public/assets/logos/LTT_LOGO_NEG_DESIGN.svg` sobre fondo oscuro o su variante positiva sobre fondo claro. El logo se superpone como capa independiente; nunca se genera, redibuja o deforma con IA.
 
-## 8. Movimiento e interacción
+## 5. Secuencia narrativa
 
-- Entrada: el logotipo se ensambla o edita con trazos y puntos; no usar una aparición genérica por fade.
-- Cursor: pluma con estados accesibles, contraste suficiente y etiqueta contextual breve cuando corresponda.
-- Hover en book: revelar wireframe, recorte, textura, capas o una variación del proyecto.
-- Scroll: el lienzo se desplaza horizontalmente; los elementos pueden tener parallax leve y deformación mínima.
-- Transiciones: cortes editoriales, máscaras, trazos que conectan y objetos que cambian de material.
-- Rendimiento: respetar `prefers-reduced-motion`, cargar imágenes progresivamente y mantener una ruta de lectura usable sin animación.
+### 01. Hero — La idea atraviesa la materia
 
-## 9. Logo y assets
+Escultura monumental de resina negra dividida por una abertura naranja. Niebla baja, grano y retícula técnica sutil. El logo oficial de LATTICCE DESIGN se presenta como vector seleccionado con cuatro nodos discretos y resplandor controlado.
 
-Usar únicamente el logo oficial `assets/logos/LTT_LOGO_NEG_DESIGN.svg` sobre fondo oscuro o `assets/logos/LTT_LOGO_POS_DESIGN.svg` sobre fondo claro. No redibujar, deformar ni pedir a IA que escriba “LATTICCE DESIGN”. Si se generan imágenes, generar solamente objetos, materia, escenas o composiciones sin logotipos ni texto legible; superponer el SVG oficial como capa independiente.
+Copy:
 
-La imagen de referencia se usa como inspiración de hero, pluma y edición. No copiar su layout ni sus textos. Sustituir imágenes de placeholder por proyectos reales del book antes de publicar.
+> Convertimos ideas en identidades, objetos y experiencias que pueden verse, tocarse y moverse.
 
-## 10. Prohibiciones
+CTA: `Descubrir capacidades`.
 
-- No convertir la página en dashboard, SaaS, portafolio de cards o clon de Adobe.
-- No usar una estética corporativa genérica, exceso de paneles flotantes ni lenguaje de “software product”.
-- No repetir oscuridad, partículas y monumentalidad de la marca madre sin una función material concreta.
-- No saturar el recorrido con partículas, brillos, neón o glitches.
-- No sacrificar legibilidad, accesibilidad, navegación móvil o rendimiento por el efecto horizontal.
-- No usar texto generado dentro de renders como logo o identidad real.
+### 02. Capacidades — + CREA
 
-## 11. Especificaciones de producción
+Adaptar el sistema visual de `+ CREA` de LATTICCE SOUND a naranja. Un halo tenue sigue al mouse y la capacidad activa cambia automáticamente o por selección directa.
 
-- Desktop-first por la naturaleza del lienzo horizontal, con adaptación específica para tablet y móvil.
-- Navegación persistente, indicador de progreso horizontal y acceso visible a contacto.
-- Soporte para teclado: foco visible, avance por secciones y escape de interacciones inmersivas.
-- Fallback de cursor para touch, stylus y sistemas que no permiten cursor personalizado.
-- Imágenes optimizadas, lazy loading y animaciones desacopladas del scroll para evitar saltos.
-- El eje narrativo debe seguir funcionando si se desactivan las animaciones.
+1. Branding e identidad
+2. Dirección de arte
+3. Diseño editorial
+4. 3D y visualización
+5. Motion y animación
+6. Packaging
+7. Contenido para redes
 
-## 12. Criterios de aceptación / QA
+### 03. Book — Archivos abiertos
 
-- ¿Se entiende en los primeros segundos que es LATTICCE DESIGN?
-- ¿El hero comunica edición, materia y autoría sin depender de texto generado?
-- ¿El cursor-pluma aporta una acción reconocible y no distrae?
-- ¿El scroll horizontal es descubrible, accesible y usable en todos los dispositivos?
-- ¿El book domina la experiencia y muestra trabajo real?
-- ¿El método explica valor y no solo etapas decorativas?
-- ¿Los servicios son concretos y el contacto tiene fricción baja?
-- ¿La pieza está hecha de objetos, volumen, material y tipografía, no de una interfaz corporativa?
-- ¿Color, sombras, escala y movimiento sostienen una jerarquía clara?
-- ¿Se reconoce DESIGN dentro del universo LATTICCE sin confundirse con Agency, Films, Sound o la marca madre?
+Único tramo horizontal del sitio. En desktop permanece fijado mientras las ventanas avanzan de derecha a izquierda; en móvil usa scroll horizontal nativo con `scroll-snap`.
 
-## Prompt maestro de ejecución
+Mostrar exclusivamente `bookProjects.filter(project => project.node === "design")`:
 
-Diseña y desarrolla una página web inmersiva para LATTICCE DESIGN, un estudio que convierte ideas en objetos visuales, identidades, sistemas, experiencias y movimiento. La experiencia debe sentirse como un lienzo de trabajo entre Adobe Illustrator, Photoshop, Blender y una mesa de prototipado físico: pluma, nodos Bézier, handles, guías, reglas, capas insinuadas, tipografía en construcción, papel, arcilla, vidrio, plástico, cobre, cromo suave y tinta. Usa la imagen de referencia solo para inspirar el hero con el logotipo de LATTICCE DESIGN editándose y la presencia de una pluma; ignora su estructura, sus tarjetas y su composición general.
+- `Materia 01` como archivo `.ai`, enlace `/book/materia-01`.
+- `Archivo naranja` como archivo `.psd`, enlace `/book/archivo-naranja`.
 
-Haz que al entrar o mover el puntero el cursor se convierta en una pluma propia del sistema visual, con estados de reposo, hover, selección, dibujo y enlace. Toda la página debe desplazarse horizontalmente de derecha a izquierda, con inercia breve, progreso visible, soporte de rueda, trackpad, teclado, touch y `prefers-reduced-motion`. Construye la narrativa en este orden: hero “Editar la idea”, manifiesto, book de proyectos, método en cuatro fases, servicios y contacto “Abramos un archivo nuevo”. El book es el centro: muestra proyectos reales en composiciones grandes con proceso, wireframe, variantes, materiales y movimiento.
+Cada proyecto se presenta como una ventana completa de software creativo con barra, herramientas, lienzo, selección, capas, propiedades y metadatos. Toda la ventana es un enlace al caso completo.
 
-La dirección visual debe ser experimental, lúdica, plástica, surreal, material y gráfica. Usa negro carbón y grafito como base, blanco cálido para lectura y acentos de cobre, naranja de selección, azul guía y verde de confirmación con función clara. Combina serif editorial expresiva con sans técnica. Usa líneas de construcción y controles solo cuando comuniquen proceso. Evita dashboard, SaaS, minimalismo corporativo, exceso de partículas, glitches, neón y mundos digitales de Agency.
+### 04. Anima — El mundo plano se mueve
 
-Usa únicamente `assets/logos/LTT_LOGO_NEG_DESIGN.svg` en fondos oscuros y `assets/logos/LTT_LOGO_POS_DESIGN.svg` en fondos claros. No generes logos, texto legible ni marcas dentro de imágenes generadas. Genera solo objetos, materiales, escenas y procesos; superpone el SVG oficial de forma independiente. Prioriza accesibilidad, rendimiento, legibilidad, navegación móvil y una estructura que siga funcionando sin animación.
+Escena oscura y limpia con loader radial naranja. El porcentaje pasa de 0 a 100 conforme la sección entra y avanza por el viewport.
+
+Copy:
+
+> ANIMA
+> Le damos alma y movimiento a tu mundo plano.
+
+### 05. Proceso — Atención visible
+
+Fondo marfil con paneles físicos de vidrio, arcilla, acrílico transparente y acrílico naranja.
+
+1. **Brief claro** — Aterrizamos objetivo, contexto, alcance y referencias antes de diseñar.
+2. **Dirección compartida** — Alineamos concepto, ruta visual y decisiones antes de producir.
+3. **Seguimiento visible** — Compartimos avances y próximos pasos para que siempre sepas dónde estamos.
+4. **Entrega ordenada** — Archivos, versiones y guías listos para usar, adaptar y crecer.
+
+### 06. Branding
+
+> Creamos universos visuales.
+
+Tu marca deja de ser una pieza aislada y se convierte en un lenguaje reconocible.
+
+### 07. 3D
+
+> Modelamos tu mundo.
+
+Construimos objetos, espacios y productos antes de que existan, listos para presentar, probar o animar.
+
+### 08. Packaging
+
+> Listo para enviar.
+
+Diseñamos empaques que presentan, protegen y venden desde el primer contacto.
+
+### 09. Contenido periódico
+
+> Contenido periódico para redes sociales.
+> Lo hacemos por ti.
+
+Planeamos, diseñamos y adaptamos un sistema constante para que tu marca no improvise cada semana.
+
+### 10. Contacto
+
+Manos desenfocadas detrás de vidrio esmerilado con luz naranja.
+
+> Agenda tu cita virtual.
+> *Asesoramos tu proyecto.
+
+CTA: `Agendar una conversación`. Debe abrir el formulario global de LATTICCE sin duplicar formularios dentro de la página.
+
+## 6. Interacción y movimiento
+
+- Scroll vertical para todo el recorrido.
+- Book horizontal fijado únicamente en desktop y solo cuando no se solicita reducción de movimiento.
+- Cursor personalizado de 16–20 px inspirado en la pluma de Illustrator, con la punta exactamente en el hotspot.
+- Sin etiqueta junto al cursor. En elementos interactivos aparece únicamente un nodo naranja discreto.
+- Halo naranja que sigue al mouse dentro de Capacidades.
+- Revelados, escalas y parallax leves con GSAP/ScrollTrigger.
+- El contenido nunca depende de una animación para existir o entenderse.
+
+## 7. Responsive y accesibilidad
+
+- Validar en `1440×900`, `768×1024` y `390×844`.
+- En touch ocultar el cursor personalizado y conservar cursores/controles nativos.
+- En móvil, el BOOK debe tener `overflow-x: auto`, `scroll-snap-type: x mandatory` y ventanas completas enlazables.
+- Mantener foco visible, semántica de enlaces/botones, textos alternativos y contraste AA.
+- Con `prefers-reduced-motion: reduce`: sin pinning, parallax ni progresión; loader estático en 100% y contenido visible.
+
+## 8. Assets originales
+
+Las referencias entregadas son dirección, no material de producción. Generar imágenes nuevas sin logos, marcas ni texto legible y etiquetarlas como `BORRADOR — imagen generada` hasta aprobación:
+
+1. Hero: monolito de resina negra abierto por luz naranja.
+2. Proceso: paneles de vidrio, arcilla y acrílico naranja sobre marfil.
+3. Branding: papel, resina, metal y bloques abstractos sin texto.
+4. 3D: objeto continuo de vidrio, cromo y arcilla naranja.
+5. Packaging: caja negra con mecanismo interior naranja.
+6. Redes: mano real sosteniendo un dispositivo sin marca bajo luz naranja.
+7. Contacto: dos manos detrás de vidrio esmerilado.
+
+## 9. Prohibiciones
+
+- No convertir toda la página en software, dashboard o SaaS.
+- No copiar composiciones, textos, marcas ni assets de las referencias.
+- No generar el logo de LATTICCE DESIGN dentro de una imagen.
+- No usar texto falso dentro de renders.
+- No añadir partículas, glitches, neón azul/violeta o mundos digitales de Agency.
+- No sacrificar legibilidad, touch, teclado, rendimiento o reducción de movimiento por efectos.
+
+## 10. Prompt maestro de ejecución
+
+Diseña y desarrolla una página vertical para LATTICCE DESIGN bajo el concepto “La idea atraviesa la materia y toma forma”. Construye la experiencia desde objetos físicos y experimentación 3D: resina negra, arcilla, vidrio, acrílico naranja, cromo, papel, niebla y grano. Usa negro `#050505`, grafito `#141414`, papel `#F1EEE8`, marfil `#E9E4DB` y naranja `#FF5A0A`; combina Arial/Helvetica para interfaz con Georgia para énfasis editorial.
+
+Ordena la página así: hero monumental con el SVG oficial de LATTICCE DESIGN superpuesto, capacidades `+ CREA`, book, Anima, proceso, branding, modelado 3D, packaging, contenido periódico y contacto. Mantén el scroll vertical y convierte únicamente el book en una escena horizontal fijada en desktop; en móvil usa scroll horizontal nativo con snap. Construye el book desde los proyectos centrales del nodo DESIGN y representa cada uno como una ventana enlazable de Illustrator o Photoshop con barra, herramientas, lienzo, selección, capas y propiedades.
+
+Usa una pluma de Illustrator de 16–20 px como cursor, orientada hacia su hotspot exacto en la punta inferior izquierda, sin etiqueta y con un nodo naranja mínimo en estados interactivos. Añade un halo naranja que siga al mouse en Capacidades y un loader radial que inicie opaco en 1%, se ilumine progresivamente y alcance 100% en 15 segundos al entrar en Anima. En Packaging, deja visible la imagen sola durante unos segundos antes de revelar el copy. Usa GSAP/ScrollTrigger con moderación y respeta `prefers-reduced-motion`: sin pin, parallax ni progresión, con contenido visible y loader al 100%.
+
+Genera únicamente las siete escenas de materia descritas, sin logos, marcas ni texto legible. Coloca el SVG oficial como capa independiente. Evita SaaS, dashboard, copia de Adobe, exceso de partículas, mundos digitales, azul/violeta, texto generado y minimalismo corporativo. Prioriza jerarquía, contraste AA, foco visible, touch, rendimiento y navegación clara al formulario global.
+
+## 11. Criterios de aceptación
+
+- DESIGN se reconoce en los primeros segundos mediante logo oficial, materia y naranja.
+- La página es vertical; solo el book cambia de eje.
+- El book contiene los dos proyectos reales del nodo y abre sus páginas canónicas.
+- El cursor es pequeño, claro y no compite con el contenido.
+- Las siete capacidades, cuatro etapas y cuatro aplicaciones están completas.
+- El CTA final abre el formulario global.
+- No hay assets rotos, texto generado dentro de imágenes ni logotipos reconstruidos.
+- Desktop, tablet, móvil y reducción de movimiento conservan contenido, foco y navegación.
