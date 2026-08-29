@@ -27,6 +27,9 @@
 
 html { scroll-behavior: smooth; }
 
+/* Keep navigation marks, arrows, and control symbols as interface glyphs on mobile. */
+:where(html, body, a, button, input, textarea, select, [aria-hidden="true"]) { font-variant-emoji: text; }
+
 body {
   margin: 0;
   overflow-x: hidden;
