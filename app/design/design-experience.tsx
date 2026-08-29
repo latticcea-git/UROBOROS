@@ -119,6 +119,7 @@ function AdobeWindow({ project, index }: { project: (typeof designProjects)[numb
 function ApplicationSection({ item }: { item: (typeof applications)[number] }) {
   return (
     <section className={styles.application} id={item.id} data-side={item.side} data-application aria-labelledby={`${item.id}-title`}>
+      <i className={styles.sectionTransition} data-section-transition aria-hidden="true" />
       <Image className={styles.applicationImage} src={item.image} fill sizes="100vw" alt={item.alt} data-application-image />
       <div className={styles.applicationShade} aria-hidden="true" />
       <DraftAsset />
@@ -185,14 +186,30 @@ export default function DesignExperience() {
       if (heroImage) gsap.fromTo(heroImage, { scale: 1.08, autoAlpha: .6 }, { scale: 1, autoAlpha: 1, duration: 1.75, ease: "power3.out" });
 
       root.querySelectorAll<HTMLElement>("[data-reveal]").forEach((element) => {
-        gsap.fromTo(Array.from(element.children), { autoAlpha: 0, y: 34 }, {
+        gsap.fromTo(Array.from(element.children), { autoAlpha: 0, y: 34, filter: "blur(7px)" }, {
           autoAlpha: 1,
           y: 0,
+          filter: "blur(0px)",
           duration: .8,
           stagger: .07,
           ease: "power3.out",
           scrollTrigger: { trigger: element, start: "top 82%", toggleActions: "play none none none", once: true },
         });
+      });
+
+      root.querySelectorAll<HTMLElement>("[data-section-transition]").forEach((line) => {
+        gsap.timeline({ scrollTrigger: { trigger: line, start: "top 94%", toggleActions: "play none none none", once: true } })
+          .fromTo(line, { autoAlpha: 0, scaleX: 0 }, { autoAlpha: .9, scaleX: 1, duration: 1.05, ease: "power3.out" })
+          .to(line, { autoAlpha: .2, duration: .55, ease: "power2.out" });
+      });
+
+      const processVisual = root.querySelector<HTMLElement>("[data-process-visual]");
+      if (processVisual) gsap.fromTo(processVisual, { clipPath: "inset(16% 0 0 0)", scale: 1.045 }, {
+        clipPath: "inset(0% 0 0 0)",
+        scale: 1,
+        duration: 1.25,
+        ease: "power3.out",
+        scrollTrigger: { trigger: processVisual, start: "top 88%", toggleActions: "play none none none", once: true },
       });
 
       root.querySelectorAll<HTMLElement>("[data-application]").forEach((section) => {
@@ -293,7 +310,7 @@ export default function DesignExperience() {
   return (
     <main ref={rootRef} className={styles.root} data-node="design">
       <div ref={penRef} className={styles.penCursor} data-visible="false" data-active="false" aria-hidden="true"><IllustratorPen /></div>
-      <p className={styles.version}>BORRADOR — VERSIÓN 2</p>
+      <p className={styles.version}>BORRADOR — VERSIÓN 3</p>
 
       <section className={styles.hero} id="inicio" aria-labelledby="design-title">
         <Image className={styles.heroImage} src="/UROBOROS/assets/images/design/design-hero-threshold-generated-draft-v1.png" fill priority sizes="100vw" alt="Escultura monumental de resina negra dividida por una abertura de luz naranja" data-hero-image />
@@ -313,15 +330,16 @@ export default function DesignExperience() {
       </section>
 
       <section ref={capabilitiesRef} className={styles.capabilities} id="capacidades" aria-labelledby="capabilities-title">
+        <i className={styles.sectionTransition} data-section-transition aria-hidden="true" />
         <div className={styles.capabilityGrid} aria-hidden="true" />
         <div className={styles.capabilityHalo} aria-hidden="true" />
-        <div className={styles.sectionMeta}><span>01 / CAPACIDADES</span><span>Una idea / múltiples formas</span></div>
-        <div className={styles.createStage}>
+        <div className={styles.sectionMeta} data-reveal><span>01 / CAPACIDADES</span><span>Una idea / múltiples formas</span></div>
+        <div className={styles.createStage} data-reveal>
           <div className={styles.createPill} data-pen-active><span aria-hidden="true">＋</span><strong id="capabilities-title">CREA</strong></div>
           <i className={styles.createBeam} aria-hidden="true" />
           <p key={activeCapability} className={styles.activeCapability} aria-live="polite">{capabilities[activeCapability]}</p>
         </div>
-        <div className={styles.capabilitySelector} aria-label="Capacidades de LATTICCE Design">
+        <div className={styles.capabilitySelector} aria-label="Capacidades de LATTICCE Design" data-reveal>
           {capabilities.map((capability, index) => (
             <button type="button" key={capability} className={index === activeCapability ? styles.capabilityActive : ""} onClick={() => setActiveCapability(index)}>
               <span>{String(index + 1).padStart(2, "0")}</span>{capability}
@@ -331,6 +349,7 @@ export default function DesignExperience() {
       </section>
 
       <section ref={bookRef} className={styles.book} id="book" aria-labelledby="book-title">
+        <i className={styles.sectionTransition} data-section-transition aria-hidden="true" />
         <div ref={bookViewportRef} className={styles.bookViewport}>
           <div ref={bookTrackRef} className={styles.bookTrack}>
             <div className={styles.bookIntro}>
@@ -348,6 +367,7 @@ export default function DesignExperience() {
       </section>
 
       <section className={styles.anima} id="anima" aria-labelledby="anima-title">
+        <i className={styles.sectionTransition} data-section-transition aria-hidden="true" />
         <div ref={loaderRef} className={styles.loader} aria-hidden="true">
           {Array.from({ length: 64 }, (_, index) => <i key={index} data-loader-bar style={{ "--bar-index": index } as CSSProperties} />)}
           <div><span ref={loaderNumberRef}>01</span><b>%</b><small>cargando anima</small></div>
@@ -360,15 +380,16 @@ export default function DesignExperience() {
       </section>
 
       <section className={styles.process} id="proceso" aria-labelledby="process-title">
+        <i className={styles.sectionTransition} data-section-transition aria-hidden="true" />
         <div className={styles.processHeader} data-reveal>
           <p className={styles.eyebrow}>04 / NUESTRO PROCESO</p>
           <h2 id="process-title">De una idea clara<br /><em>a una entrega útil.</em></h2>
           <p>Atención cercana, decisiones visibles y archivos que no necesitan explicación adicional.</p>
         </div>
-        <div className={styles.processSteps}>
+        <div className={styles.processSteps} data-reveal>
           {processSteps.map((step) => <article key={step.index}><span>{step.index}</span><i aria-hidden="true" /><h3>{step.title}</h3><p>{step.copy}</p></article>)}
         </div>
-        <div className={styles.processVisual}>
+        <div className={styles.processVisual} data-process-visual>
           <Image src="/UROBOROS/assets/images/design/design-process-panels-generated-draft-v1.png" fill sizes="100vw" alt="Cuatro paneles de vidrio, arcilla, acrílico transparente y acrílico naranja sobre fondo marfil" />
           <DraftAsset />
         </div>
@@ -377,6 +398,7 @@ export default function DesignExperience() {
       <div id="aplicaciones" className={styles.applicationFlow}>{applications.map((item) => <ApplicationSection item={item} key={item.id} />)}</div>
 
       <section className={styles.content} id="contenido" aria-labelledby="content-title" data-application>
+        <i className={styles.sectionTransition} data-section-transition aria-hidden="true" />
         <Image className={styles.contentImage} src="/UROBOROS/assets/images/design/design-social-content-generated-draft-v1.png" fill sizes="100vw" alt="Mano sosteniendo un teléfono sin marca con formas abstractas bajo luz naranja" data-application-image />
         <div className={styles.contentShade} aria-hidden="true" />
         <DraftAsset />
@@ -390,6 +412,7 @@ export default function DesignExperience() {
       </section>
 
       <section className={styles.contact} id="contacto" aria-labelledby="contact-title">
+        <i className={styles.sectionTransition} data-section-transition aria-hidden="true" />
         <Image className={styles.contactImage} src="/UROBOROS/assets/images/design/design-contact-hands-generated-draft-v1.png" fill sizes="100vw" alt="Dos manos desenfocadas acercándose detrás de vidrio esmerilado con luz naranja" />
         <div className={styles.contactShade} aria-hidden="true" />
         <DraftAsset />

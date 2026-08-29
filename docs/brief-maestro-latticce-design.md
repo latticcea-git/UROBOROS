@@ -2,7 +2,7 @@
 
 > Prompt de dirección creativa, experiencia, contenido y producción para la página `/design`.
 >
-> Estado: `BORRADOR — VERSIÓN 2`
+> Estado: `BORRADOR — VERSIÓN 3`
 > Concepto rector: **La idea atraviesa la materia y toma forma.**
 
 ## 1. Encargo
@@ -195,3 +195,4 @@ Genera únicamente las siete escenas de materia descritas, sin logos, marcas ni 
 - El CTA final abre el formulario global.
 - No hay assets rotos, texto generado dentro de imágenes ni logotipos reconstruidos.
 - Desktop, tablet, móvil y reducción de movimiento conservan contenido, foco y navegación.
+- En móvil, logo y copy del hero mantienen separación incluso en pantallas de poca altura; las entradas de texto y transiciones de sección funcionan en móvil y escritorio.
