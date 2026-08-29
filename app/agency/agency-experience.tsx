@@ -159,7 +159,7 @@ export default function AgencyExperience() {
               <span className={styles.serviceIndex}>{service.index}</span>
               <span className={styles.serviceTitle}>{service.title}</span>
               <span className={styles.serviceDetail}>{service.detail}</span>
-              <span className={styles.serviceArrow} aria-hidden="true">↗</span>
+              <span className={styles.serviceArrow} aria-hidden="true">↗︎</span>
             </Link>
           ))}
         </nav>

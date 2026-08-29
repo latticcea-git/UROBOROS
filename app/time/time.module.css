@@ -312,7 +312,7 @@
 .packageButton span { margin-left: auto; }
 .packageList { margin: 1rem .7rem 0; padding: 0; list-style: none; }
 .packageList li { position: relative; padding: .58rem 0 .58rem 1.25rem; border-bottom: 1px solid rgba(65,61,55,.08); color: #47443f; font-size: .7rem; }
-.packageList li::before { position: absolute; left: 0; content: "✓"; color: #a6aaac; }
+.packageList li::before { position: absolute; left: 0; content: "✓︎"; color: #a6aaac; }
 .affordableNote { grid-column: 1; margin: 0; color: var(--muted); font-size: .67rem; letter-spacing: .1em; text-transform: uppercase; }
 
 .equipment { width: 132vw; display: grid; grid-template-columns: minmax(35rem,.58fr) minmax(52rem,1fr); gap: 7vw; align-items: center; isolation: isolate; color: #f0eee9; background: radial-gradient(circle at 75% 44%, rgba(211,218,222,.16), transparent 24%), radial-gradient(circle at 15% 90%, rgba(255,255,255,.07), transparent 25%), repeating-linear-gradient(112deg, rgba(255,255,255,.025) 0 1px, transparent 1px 9px), #242526; }

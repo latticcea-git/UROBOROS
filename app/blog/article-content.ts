@@ -129,7 +129,7 @@ export const articleContent: Record<string, ArticleContent> = {
     notes: [
       { label: "Territorio", value: "Diseño gráfico" },
       { label: "Materiales", value: "Papel / metal / resina" },
-      { label: "Traducción", value: "Físico → digital" },
+      { label: "Traducción", value: "Físico →︎ digital" },
     ],
     bookProjectSlug: "materia-01",
   },

@@ -216,7 +216,7 @@ export default function DesignExperience() {
       />
 
       <aside className={styles.toolbar} aria-label="Herramientas visuales">
-        {["↖", "⌁", "◆", "T", "○", "▱"].map((tool, index) => <button key={tool} type="button" data-cursor={index === 1 ? "Dibujar" : "Herramienta"} aria-label={`Herramienta ${index + 1}`}>{tool}</button>)}
+        {["↖︎", "⌁", "◆", "T", "○", "▱"].map((tool, index) => <button key={tool} type="button" data-cursor={index === 1 ? "Dibujar" : "Herramienta"} aria-label={`Herramienta ${index + 1}`}>{tool}</button>)}
       </aside>
 
       <p className={styles.draft}>BORRADOR — VERSIÓN 1</p>
@@ -231,7 +231,7 @@ export default function DesignExperience() {
                 <p className={styles.kicker}><span>01</span> Diseño como materia</p>
                 <h1 id="design-hero-title">Ideas que<br /><em>toman forma.</em></h1>
                 <p>Identidad, objetos, sistemas y experiencias construidos para moverse en el mundo real.</p>
-                <button type="button" onClick={() => goTo("book")} data-cursor="Explorar">Ver el book <span>←</span></button>
+                <button type="button" onClick={() => goTo("book")} data-cursor="Explorar">Ver el book <span>←︎</span></button>
               </div>
               <div className={styles.editingStage} data-cursor="Editar" aria-label="Logotipo oficial de LATTICCE Design en un marco de edición">
                 <span className={styles.coordinate}>X 1820 px · Y 640 px</span>
@@ -242,7 +242,7 @@ export default function DesignExperience() {
                 <svg className={styles.heroCurve} viewBox="0 0 800 360" aria-hidden="true"><path d="M20 292C186 60 372 56 486 178S684 328 786 76" /><circle cx="20" cy="292" r="5" /><circle cx="486" cy="178" r="5" /><circle cx="786" cy="76" r="5" /></svg>
                 <div className={styles.materialOrb} aria-hidden="true"><i /><b /></div>
               </div>
-              <p className={styles.scrollHint}>Desplaza hacia la izquierda <span>←</span></p>
+              <p className={styles.scrollHint}>Desplaza hacia la izquierda <span>←︎</span></p>
             </section>
 
             <section className={`${styles.panel} ${styles.manifesto}`} aria-labelledby="manifesto-title">
@@ -278,13 +278,13 @@ export default function DesignExperience() {
                       <strong>— □ ×</strong>
                     </span>
                     <span className={styles.windowBody}>
-                      <span className={styles.windowTools}>↖<i>⌁</i>◆T○▱</span>
+                      <span className={styles.windowTools}>↖︎<i>⌁</i>◆T○▱</span>
                       <ProjectArtwork visual={project.visual} />
                       <span className={styles.windowLayers}>
                         <b>CAPAS</b><i>◉ {project.title}</i><i>◉ Material</i><i>◉ Guías</i><i>◉ Fondo</i>
                       </span>
                     </span>
-                    <span className={styles.windowMeta}><i>{project.number} / 03 · {project.discipline}</i><strong>{project.title}</strong><em>Abrir caso ↗</em></span>
+                    <span className={styles.windowMeta}><i>{project.number} / 03 · {project.discipline}</i><strong>{project.title}</strong><em>Abrir caso ↗︎</em></span>
                   </button>
                 ))}
               </div>
@@ -308,7 +308,7 @@ export default function DesignExperience() {
                 <h2 id="services-title">Herramientas para<br /><em>hacer visible una idea.</em></h2>
               </div>
               <div className={styles.serviceList}>
-                {services.map(([number, title, text]) => <article key={number} data-cursor="Transformar"><span>{number}</span><h3>{title}</h3><p>{text}</p><i>↗</i></article>)}
+                {services.map(([number, title, text]) => <article key={number} data-cursor="Transformar"><span>{number}</span><h3>{title}</h3><p>{text}</p><i>↗︎</i></article>)}
               </div>
               <div className={styles.serviceSculpture} aria-hidden="true"><i /><b /><span /></div>
             </section>
@@ -318,7 +318,7 @@ export default function DesignExperience() {
                 <p className={styles.kicker}><span>06</span> Nuevo archivo</p>
                 <h2 id="contact-title">¿Qué quieres<br /><em>construir?</em></h2>
                 <p>Cuéntanos dónde estás, qué necesita tomar forma y qué debería cambiar cuando el proyecto exista.</p>
-                <a href="mailto:hola@latticce.com?subject=Nuevo%20proyecto%20LATTICCE%20Design" data-cursor="Enviar">Iniciar un proyecto <span>→</span></a>
+                <a href="mailto:hola@latticce.com?subject=Nuevo%20proyecto%20LATTICCE%20Design" data-cursor="Enviar">Iniciar un proyecto <span>→︎</span></a>
               </div>
               <div className={styles.contactForm} aria-hidden="true">
                 <p>NUEVO_PROYECTO.DESIGN</p>
@@ -342,7 +342,7 @@ export default function DesignExperience() {
               <button type="button" onClick={() => setActiveProject(null)} data-cursor="Cerrar" aria-label="Cerrar proyecto">×</button>
             </header>
             <div className={styles.caseBody}>
-              <aside className={styles.caseTools} aria-hidden="true">↖<i>⌁</i>◆T○▱◇⌗</aside>
+              <aside className={styles.caseTools} aria-hidden="true">↖︎<i>⌁</i>◆T○▱◇⌗</aside>
               <div className={styles.caseCanvas}>
                 <ProjectArtwork visual={activeProject.visual} full />
                 <div className={styles.caseIdentity}>
@@ -358,7 +358,7 @@ export default function DesignExperience() {
                 <div className={styles.caseLayers}><b>CAPAS</b><i>◉ Resultado final</i><i>◉ Sistema</i><i>◉ Exploración</i><i>◉ Concepto</i></div>
               </aside>
             </div>
-            <footer className={styles.caseFooter}><span>{activeProject.caption}</span><button type="button" onClick={() => setActiveProject(null)} data-cursor="Volver">← Volver al book</button></footer>
+            <footer className={styles.caseFooter}><span>{activeProject.caption}</span><button type="button" onClick={() => setActiveProject(null)} data-cursor="Volver">←︎ Volver al book</button></footer>
           </article>
         </div>
       )}

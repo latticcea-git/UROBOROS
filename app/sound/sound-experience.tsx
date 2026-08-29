@@ -77,7 +77,7 @@ function EquipmentPanel({ item, index }: { item: EquipmentItem; index: number })
         <h2>{item.title}</h2>
         <div>
           <p>{"focus" in item && <strong className={styles.equipmentFocus}>{item.focus}</strong>}{item.copy}</p>
-          <a href="#contacto">Hablemos de tu proyecto <span>↗</span></a>
+          <a href="#contacto">Hablemos de tu proyecto <span>↗︎</span></a>
         </div>
       </div>
     </section>
@@ -323,9 +323,9 @@ export default function SoundExperience() {
           <p className={styles.eyebrow}>LATTICCE SOUND / Sonido que toma cuerpo</p>
           <h1 id="sound-title">Hacemos visible<br />lo que <em>se escucha.</em></h1>
           <p>Grabación, postproducción y música para construir experiencias que se sienten antes de explicarse.</p>
-          <a className={styles.primaryCta} href="#contacto">Cuéntanos tu proyecto <span>↗</span></a>
+          <a className={styles.primaryCta} href="#contacto">Cuéntanos tu proyecto <span>↗︎</span></a>
         </div>
-        <a className={styles.scrollCue} href="#servicios">Explorar la frecuencia <span>↓</span></a>
+        <a className={styles.scrollCue} href="#servicios">Explorar la frecuencia <span>↓︎</span></a>
       </section>
 
       <section ref={servicesRef} className={styles.services} id="servicios" aria-labelledby="services-title">
@@ -352,7 +352,7 @@ export default function SoundExperience() {
             </button>
           ))}
         </div>
-        <a className={styles.inlineCta} href="#contacto">Agenda una cita virtual <span>↗</span></a>
+        <a className={styles.inlineCta} href="#contacto">Agenda una cita virtual <span>↗︎</span></a>
       </section>
 
       <section className={styles.studio} id="estudio" aria-labelledby="studio-title" data-studio-scene>
@@ -369,7 +369,7 @@ export default function SoundExperience() {
           <p className={styles.eyebrow}>02 / HOME STUDIO</p>
           <h2>Un espacio para<br /><em>escuchar mejor.</em></h2>
           <p>Monitoreo preciso, acústica controlada y un entorno diseñado para grabar, editar, mezclar y tomar decisiones con confianza.</p>
-          <a className={styles.primaryCta} href="#contacto">Reserva una sesión <span>↗</span></a>
+          <a className={styles.primaryCta} href="#contacto">Reserva una sesión <span>↗︎</span></a>
         </div>
       </section>
 
@@ -439,7 +439,7 @@ export default function SoundExperience() {
               <div className={styles.dawPlayhead} />
             </div>
           </div>
-          <div className={styles.dawTransport} aria-hidden="true"><span>■</span><span>◀</span><strong>▶</strong><span>▶</span><i /></div>
+          <div className={styles.dawTransport} aria-hidden="true"><span>■︎</span><span>◀︎</span><strong>▶︎</strong><span>▶︎</span><i /></div>
         </div>
       </section>
 
@@ -453,7 +453,7 @@ export default function SoundExperience() {
           <p className={styles.eyebrow}>05 / PROYECTOS TERMINADOS</p>
           <h2 id="projects-title">ARCHIVO<br /><em>sound</em></h2>
           <p>Una selección de experiencias donde grabación, producción y espacio se convierten en una escucha concreta.</p>
-          <Link className={styles.archiveLink} href="/book#sound">Ver todo el archivo <span>↗</span></Link>
+          <Link className={styles.archiveLink} href="/book#sound">Ver todo el archivo <span>↗︎</span></Link>
         </div>
         <div className={styles.projectGrid}>
           {completedProjects.map((project, index) => (
@@ -470,7 +470,7 @@ export default function SoundExperience() {
               <div className={styles.projectCopy}>
                 <p>{project.category} / {project.year}</p>
                 <h3>{project.title}</h3>
-                <span>Ver proyecto <i aria-hidden="true">↗</i></span>
+                <span>Ver proyecto <i aria-hidden="true">↗︎</i></span>
               </div>
             </Link>
           ))}
@@ -482,7 +482,7 @@ export default function SoundExperience() {
         <p className={styles.eyebrow}>Tu proyecto / nuestra escucha</p>
         <h2 id="contact-title">Agenda tu cita virtual.<br /><em>Asesoramos tu proyecto.</em></h2>
         <p>Cuéntanos qué quieres hacer sonar. Encontraremos contigo el proceso, el equipo y la escala adecuados.</p>
-        <a className={styles.contactButton} href="#contacto">Comenzar conversación <span>↗</span></a>
+        <a className={styles.contactButton} href="#contacto">Comenzar conversación <span>↗︎</span></a>
       </section>
     </main>
   );

@@ -76,7 +76,7 @@ export default function BookExperience() {
         </div>
         <div className={styles.heroFoot} data-book-hero-foot>
           <p>Una selección de obras, procesos y sistemas conectados por una misma intención.</p>
-          <a href="#destacados">Entrar al archivo <span aria-hidden="true">↓</span></a>
+          <a href="#destacados">Entrar al archivo <span aria-hidden="true">↓︎</span></a>
         </div>
         <div className={styles.heroIndex} aria-hidden="true"><span>NODE</span><i /><span>PROJECT</span><i /><span>WORK</span></div>
       </section>
@@ -116,17 +116,17 @@ export default function BookExperience() {
                     <span>{String(index + 1).padStart(2, "0")} / {String(featuredProjects.length).padStart(2, "0")}</span>
                     <h3>{project.title}</h3>
                     <p>{project.summary}</p>
-                    <b>Ver proyecto <i aria-hidden="true">↗</i></b>
+                    <b>Ver proyecto <i aria-hidden="true">↗︎</i></b>
                   </div>
                 </Link>
               );
             })}
           </div>
           <div className={styles.sliderControls}>
-            <button type="button" onClick={() => moveSlide(-1)} aria-label="Proyecto anterior">←</button>
+            <button type="button" onClick={() => moveSlide(-1)} aria-label="Proyecto anterior">←︎</button>
             <div aria-hidden="true"><i style={{ transform: `scaleX(${(slide + 1) / featuredProjects.length})` }} /></div>
             <span>{String(slide + 1).padStart(2, "0")} — {String(featuredProjects.length).padStart(2, "0")}</span>
-            <button type="button" onClick={() => moveSlide(1)} aria-label="Proyecto siguiente">→</button>
+            <button type="button" onClick={() => moveSlide(1)} aria-label="Proyecto siguiente">→︎</button>
           </div>
         </div>
       </section>
@@ -149,7 +149,7 @@ export default function BookExperience() {
                 <span>{node.index}</span>
                 <Image src={node.logo} alt={`LATTICCE ${node.name}`} width={360} height={92} />
                 <small>{node.statement}</small>
-                <i aria-hidden="true">↗</i>
+                <i aria-hidden="true">↗︎</i>
               </button>
             ))}
           </div>
@@ -211,7 +211,7 @@ export default function BookExperience() {
                     style={{ objectPosition: project.imagePosition }}
                   />
                   <span aria-hidden="true" />
-                  <b aria-hidden="true">Abrir ↗</b>
+                  <b aria-hidden="true">Abrir ↗︎</b>
                 </div>
                 <div className={styles.projectMeta}>
                   <span>{String(index + 1).padStart(2, "0")}</span>
@@ -227,7 +227,7 @@ export default function BookExperience() {
       <footer className={styles.footer} data-book-footer>
         <p>LATTICCE / BOOK / 2026</p>
         <h2>¿Qué puede llegar a ser <em>tu idea?</em></h2>
-        <Link href="/#contacto">Conversemos <span aria-hidden="true">↗</span></Link>
+        <Link href="/#contacto">Conversemos <span aria-hidden="true">↗︎</span></Link>
         <Image src="/UROBOROS/assets/logos/LTT_LOGO_1920_FX.png" width={460} height={88} alt="LATTICCE" />
       </footer>
     </main>

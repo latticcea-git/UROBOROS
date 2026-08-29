@@ -145,7 +145,7 @@ function GlobalHeader() {
       <Link href="/book">BOOK</Link><Link href="/blog">BLOG</Link><Link href="/films/cinema">CINNEMA</Link>
       <div className="shared-navigation-group"><button type="button" aria-expanded={sectionOpen === "portal"} onClick={() => setSectionOpen(sectionOpen === "portal" ? null : "portal")}>PORTAL <span>+</span></button>{sectionOpen === "portal" && <div>{portalLinks.map((item) => <Link key={item.label} href={item.href}>{item.label}</Link>)}</div>}</div>
       <button className="shared-navigation-contact" type="button" onClick={() => { setMenuOpen(false); openContactPopup(); }}>CONTACTO</button>
-      <a className="shared-navigation-whatsapp" href={`https://wa.me/${WHATSAPP_NUMBER}`} target="_blank" rel="noreferrer">WHATSAPP ↗</a>
+      <a className="shared-navigation-whatsapp" href={`https://wa.me/${WHATSAPP_NUMBER}`} target="_blank" rel="noreferrer">WHATSAPP ↗︎</a>
     </nav>}
   </header>;
 }
@@ -178,7 +178,7 @@ function ContactPopup() {
   if (!open) return null;
   return <div className="contact-popup-backdrop" role="presentation" onMouseDown={(event) => { if (event.target === event.currentTarget) setOpen(false); }}><section className="contact-popup" role="dialog" aria-modal="true" aria-labelledby={titleId}>
     <button className="contact-popup-close" type="button" aria-label="Cerrar contacto" onClick={() => setOpen(false)}>×</button><p>{context === "films" ? "Contacto / LATTICCE FILMS" : "Contacto general / LATTICCE"}</p>{context === "films" ? <h2 id={titleId}>CONTACTA CON<br /><em>LATTICCE FILMS</em></h2> : <h2 id={titleId}>Aquí termina TTU<br /><em>recorrido</em><br />COMIENZA TTU<br /><em>camino</em></h2>}
-    <form onSubmit={sendEmail}><label><span>Nombre</span><input required value={name} onChange={(event) => setName(event.target.value)} autoFocus /></label><label><span>Correo o teléfono</span><input required value={contact} onChange={(event) => setContact(event.target.value)} /></label><label><span>Proyecto</span><textarea required rows={4} value={message} onChange={(event) => setMessage(event.target.value)} /></label><div className="contact-popup-actions"><button type="submit">Enviar por correo ↗</button><button type="button" onClick={sendWhatsApp}>Enviar por WhatsApp ↗</button></div></form>
+    <form onSubmit={sendEmail}><label><span>Nombre</span><input required value={name} onChange={(event) => setName(event.target.value)} autoFocus /></label><label><span>Correo o teléfono</span><input required value={contact} onChange={(event) => setContact(event.target.value)} /></label><label><span>Proyecto</span><textarea required rows={4} value={message} onChange={(event) => setMessage(event.target.value)} /></label><div className="contact-popup-actions"><button type="submit">Enviar por correo ↗︎</button><button type="button" onClick={sendWhatsApp}>Enviar por WhatsApp ↗︎</button></div></form>
     <a className="contact-popup-email" href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
   </section></div>;
 }

@@ -38,7 +38,7 @@ const collaboratorNav = [
   { id: "herramientas", label: "Herramientas", mark: "⊞" },
   { id: "calendario", label: "Calendario", mark: "□" },
   { id: "personas", label: "Personas", mark: "◎" },
-  { id: "cursos", label: "Cursos", mark: "↗" },
+  { id: "cursos", label: "Cursos", mark: "↗︎" },
   { id: "anuncios", label: "Anuncios", mark: "•" },
   { id: "perfil", label: "Perfil", mark: "◉" },
 ] as const;
@@ -151,7 +151,7 @@ export default function PortalPrototype({ type }: { type: PortalType }) {
               <Avatar image={profileImage} initials={initials} />
               <span><strong>{profileName}</strong><small>{client ? "Portal cliente" : "@latticce.com"}</small></span>
             </button>
-            <Link href="/usuario" aria-label="Salir del prototipo">↗</Link>
+            <Link href="/usuario" aria-label="Salir del prototipo">↗︎</Link>
           </div>
         </aside>
 
@@ -285,7 +285,7 @@ function TimelineCard({ client, onOpen }: { client: boolean; onOpen: () => void 
           </div>
         ))}
       </div>
-      <button className={styles.inlineAction} type="button" onClick={onOpen}>{client ? "Ver detalle" : "Gestionar proyectos"}<span>↗</span></button>
+      <button className={styles.inlineAction} type="button" onClick={onOpen}>{client ? "Ver detalle" : "Gestionar proyectos"}<span>↗︎</span></button>
     </article>
   );
 }
@@ -330,7 +330,7 @@ function IntegrationCard({ onOpen }: { onOpen: () => void }) {
           <div key={tool.id}><SoftwareMark tool={tool} /><span><strong>{tool.name}</strong><small>{tool.category}</small></span><b>＋</b></div>
         ))}
       </div>
-      <button className={styles.inlineAction} onClick={onOpen} type="button">Abrir compositor<span>↗</span></button>
+      <button className={styles.inlineAction} onClick={onOpen} type="button">Abrir compositor<span>↗︎</span></button>
     </article>
   );
 }
@@ -344,7 +344,7 @@ function DocumentList({ onOpen }: { onOpen: () => void }) {
           <div key={name}><i className={styles.fileMark}>0{index + 1}</i><span><strong>{name}</strong><small>{index ? "Archivo pendiente" : "Descarga no disponible"}</small></span><b>—</b></div>
         ))}
       </div>
-      <button className={styles.inlineAction} onClick={onOpen} type="button">Ver documentos<span>↗</span></button>
+      <button className={styles.inlineAction} onClick={onOpen} type="button">Ver documentos<span>↗︎</span></button>
     </article>
   );
 }
@@ -452,10 +452,10 @@ function ToolsHub() {
       <section className={styles.calculatorGrid}>
         {calculators.map((calculator) => {
           const href = tabulatorBase ? `${tabulatorBase}${calculator.route}` : "";
-          return <article className={styles.calculatorCard} key={calculator.id}><header><span>{calculator.id}</span><i>{calculator.mark}</i></header><div><h2>{calculator.title}</h2><p>{calculator.detail}</p></div>{href ? <a href={href} target="_blank" rel="noreferrer">Abrir <span>↗</span></a> : <button type="button" disabled>URL pendiente <span>—</span></button>}</article>;
+          return <article className={styles.calculatorCard} key={calculator.id}><header><span>{calculator.id}</span><i>{calculator.mark}</i></header><div><h2>{calculator.title}</h2><p>{calculator.detail}</p></div>{href ? <a href={href} target="_blank" rel="noreferrer">Abrir <span>↗︎</span></a> : <button type="button" disabled>URL pendiente <span>—</span></button>}</article>;
         })}
       </section>
-      <article className={styles.localTool}><span><small>DISPONIBLE EN UROBOROS</small><strong>Cotizador Studio</strong></span><Link href="/studio#cotizar">Abrir herramienta ↗</Link></article>
+      <article className={styles.localTool}><span><small>DISPONIBLE EN UROBOROS</small><strong>Cotizador Studio</strong></span><Link href="/studio#cotizar">Abrir herramienta ↗︎</Link></article>
     </div>
   );
 }
@@ -519,7 +519,7 @@ function ProfilePanel({ name, setName, image, setImage, initials }: { name: stri
         <label><span>Identidad de trabajo</span><input disabled value="usuario@latticce.com" /></label>
         <label><span>Contacto</span><input disabled placeholder="Dato no conectado" /></label>
         <div className={styles.contactToggle}><span><strong>Permitir contacto</strong><small>Solo personas autorizadas del proyecto.</small></span><button className={contact ? styles.toggleOn : ""} onClick={() => setContact((value) => !value)} type="button" role="switch" aria-checked={contact}><i /></button></div>
-        <button className={styles.saveButton} type="button">Guardado en esta sesión <span>✓</span></button>
+        <button className={styles.saveButton} type="button">Guardado en esta sesión <span>✓︎</span></button>
       </form>
     </div>
   );
@@ -528,7 +528,7 @@ function ProfilePanel({ name, setName, image, setImage, initials }: { name: stri
 function ClientProject() {
   return (
     <div className={styles.clientProjectGrid}>
-      <article className={`${styles.card} ${styles.phaseCard}`}><CardTop title="Fases del proyecto" meta="04 etapas" action="•••" />{["Descubrimiento", "Dirección", "Producción", "Entrega"].map((name, index) => <div className={index === 1 ? styles.phaseActive : ""} key={name}><i>0{index + 1}</i><span><strong>{name}</strong><small>{index === 0 ? "Completa" : index === 1 ? "En curso" : "Pendiente"}</small></span><b>{index === 0 ? "✓" : index === 1 ? "42%" : "—"}</b></div>)}</article>
+      <article className={`${styles.card} ${styles.phaseCard}`}><CardTop title="Fases del proyecto" meta="04 etapas" action="•••" />{["Descubrimiento", "Dirección", "Producción", "Entrega"].map((name, index) => <div className={index === 1 ? styles.phaseActive : ""} key={name}><i>0{index + 1}</i><span><strong>{name}</strong><small>{index === 0 ? "Completa" : index === 1 ? "En curso" : "Pendiente"}</small></span><b>{index === 0 ? "✓︎" : index === 1 ? "42%" : "—"}</b></div>)}</article>
       <ProgressCard value={42} label="Avance autorizado" />
       <MediaCard title="Proyecto 01" meta="Vista autorizada" />
       <article className={styles.servicesCard}><CardTop title="Servicios incluidos" meta="Alcance visible" action="03" /><div>{["Servicio incluido 01", "Servicio incluido 02", "Servicio incluido 03"].map((item, index) => <span key={item}><i>0{index + 1}</i><strong>{item}</strong><small>Estado por conectar</small></span>)}</div></article>

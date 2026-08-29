@@ -24,7 +24,7 @@ export default function AccessHomeTestPage() {
         <p className="eyebrow">Acceso integrado sin tocar el Home público</p>
         <h1>Una idea.<br /><em>Muchas formas</em><br />de hacerla real.</h1>
         <p>Este entorno simula la posición final del icono de usuario. El enlace abre el flujo de acceso para colaboradores y clientes.</p>
-        <Link href="/usuario" className={styles.enter}>Probar inicio de sesión <span>↗</span></Link>
+        <Link href="/usuario" className={styles.enter}>Probar inicio de sesión <span>↗︎</span></Link>
       </section>
 
       <aside className={styles.note}>

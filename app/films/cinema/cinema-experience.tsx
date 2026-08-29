@@ -192,8 +192,8 @@ export default function CinemaExperience({ initialSlug }: { initialSlug?: string
       <div className={styles.vignette} aria-hidden="true" />
 
       <nav className={styles.chrome} aria-label="Controles de CINEMA LATTICCE">
-        <button className={styles.chromeButton} type="button" onClick={() => nextWork(-1)} aria-label="Ficha anterior">←</button>
-        <button className={styles.chromeButton} type="button" onClick={() => nextWork(1)} aria-label="Ficha siguiente">→</button>
+        <button className={styles.chromeButton} type="button" onClick={() => nextWork(-1)} aria-label="Ficha anterior">←︎</button>
+        <button className={styles.chromeButton} type="button" onClick={() => nextWork(1)} aria-label="Ficha siguiente">→︎</button>
         <div className={styles.chromeAddress} role="group" aria-label="Seleccionar ficha">
           {works.map((work, index) => (
             <button
@@ -205,8 +205,8 @@ export default function CinemaExperience({ initialSlug }: { initialSlug?: string
             />
           ))}
         </div>
-        <button className={styles.chromeButton} type="button" disabled aria-label="Correo, no disponible">✉</button>
-        <button className={styles.chromeButton} type="button" disabled aria-label="Favorito, no disponible">♡</button>
+        <button className={styles.chromeButton} type="button" disabled aria-label="Correo, no disponible">✉︎</button>
+        <button className={styles.chromeButton} type="button" disabled aria-label="Favorito, no disponible">♡︎</button>
       </nav>
 
       <Image className={styles.filmsLogo} src="/UROBOROS/assets/logos/LTT_FILMS_LOGO_1920_FX.png" width={1920} height={503} priority alt="LATTICCE FILMS" />
@@ -240,8 +240,8 @@ export default function CinemaExperience({ initialSlug }: { initialSlug?: string
                 <Image src={work.poster} alt={work.posterAlt} fill priority={offset === 0} sizes="(max-width: 700px) 88vw, 52vw" />
                 <div className={styles.posterShade} />
                 {offset === 0 && (work.source.kind === "externalLink"
-                  ? <a className={styles.playButton} href={work.source.url} target="_blank" rel="noopener noreferrer" aria-label={`Abrir ${work.title} en una pestaña nueva`}><span aria-hidden="true">▶</span></a>
-                  : <button className={styles.playButton} type="button" onClick={openPlayer} aria-label={`Reproducir ${work.title}`}><span aria-hidden="true">▶</span></button>)}
+                  ? <a className={styles.playButton} href={work.source.url} target="_blank" rel="noopener noreferrer" aria-label={`Abrir ${work.title} en una pestaña nueva`}><span aria-hidden="true">▶︎</span></a>
+                  : <button className={styles.playButton} type="button" onClick={openPlayer} aria-label={`Reproducir ${work.title}`}><span aria-hidden="true">▶︎</span></button>)}
               </div>
               <div className={styles.workInfo}>
                 <div className={styles.titleLine}><h1>{work.title}</h1><span>{work.year}</span></div>
@@ -282,8 +282,8 @@ export default function CinemaExperience({ initialSlug }: { initialSlug?: string
             <div className={styles.playerHeader}>
               <span>{activeWork.title} / {activeWork.year}</span>
               <div>
-                {externalPlayerUrl && <a href={externalPlayerUrl} target="_blank" rel="noopener noreferrer" aria-label={`Abrir ${activeWork.title} en su publicación original`}>↗</a>}
-                <button type="button" onClick={requestFullscreen} aria-label="Pantalla completa">⛶</button>
+                {externalPlayerUrl && <a href={externalPlayerUrl} target="_blank" rel="noopener noreferrer" aria-label={`Abrir ${activeWork.title} en su publicación original`}>↗︎</a>}
+                <button type="button" onClick={requestFullscreen} aria-label="Pantalla completa">⛶︎</button>
                 <button type="button" onClick={closePlayer} aria-label="Cerrar reproductor">×</button>
               </div>
             </div>

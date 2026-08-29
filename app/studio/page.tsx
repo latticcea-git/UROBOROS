@@ -325,7 +325,7 @@ export default function StudioPage() {
           <p className="hero-service-title">Foto + video comercial.</p>
           <p className="hero-lede">Creamos imágenes que conectan, comunican y permanecen.</p>
           <div className="hero-actions">
-            <a className="text-link" href="#cotizar">Cotizar proyecto <span aria-hidden="true">↘</span></a>
+            <a className="text-link" href="#cotizar">Cotizar proyecto <span aria-hidden="true">↘︎</span></a>
           </div>
         </div>
 
@@ -341,7 +341,7 @@ export default function StudioPage() {
           <h2 id="statement-title">Historias reales.<br /><em>Imágenes poderosas.</em></h2>
           <div>
             <p>Desde la primera conversación hasta la entrega final, dirigimos cada proyecto para que una imagen no solo se vea bien: que diga algo verdadero.</p>
-            <a className="text-link" href="#proceso">Conocer el proceso <span aria-hidden="true">↓</span></a>
+            <a className="text-link" href="#proceso">Conocer el proceso <span aria-hidden="true">↓︎</span></a>
           </div>
         </div>
       </section>
@@ -371,7 +371,7 @@ export default function StudioPage() {
                     <h3>{service.title}</h3>
                     <span>{service.description}</span>
                   </div>
-                  <span className="service-open" aria-hidden="true">↗</span>
+                  <span className="service-open" aria-hidden="true">↗︎</span>
                 </button>
               ))}
             </div>
@@ -412,14 +412,14 @@ export default function StudioPage() {
             <div><dt>Formato</dt><dd>Fotografía</dd></div>
             <div><dt>Cámara</dt><dd>Sony α7 IV</dd></div>
           </dl>
-          <Link className="text-link project-link" href="/book/maria-daniela-y-su-sonido-lasser">Ver proyecto completo <span aria-hidden="true">↗</span></Link>
+          <Link className="text-link project-link" href="/book/maria-daniela-y-su-sonido-lasser">Ver proyecto completo <span aria-hidden="true">↗︎</span></Link>
         </div>
       </section>
 
       <section className="cta-band section-pad site-panel" data-reveal>
         <p className="eyebrow">Tu proyecto puede ser el siguiente</p>
         <h2>Hagamos visible<br /><em>lo que imaginas.</em></h2>
-        <a className="button button-light" href="#cotizar">Construir mi proyecto <span aria-hidden="true">→</span></a>
+        <a className="button button-light" href="#cotizar">Construir mi proyecto <span aria-hidden="true">→︎</span></a>
       </section>
 
       <section className="quote section-pad site-panel" id="cotizar" aria-labelledby="quote-title">
@@ -507,11 +507,11 @@ export default function StudioPage() {
           </div>
 
           <div className="quote-controls">
-            <button className="back-button" type="button" onClick={() => setStep((value) => Math.max(1, value - 1))} disabled={step === 1}>← Regresar</button>
+            <button className="back-button" type="button" onClick={() => setStep((value) => Math.max(1, value - 1))} disabled={step === 1}>←︎ Regresar</button>
             {step < 5 ? (
-              <button className="button button-primary" type="button" onClick={() => setStep((value) => Math.min(5, value + 1))}>Siguiente paso <span aria-hidden="true">→</span></button>
+              <button className="button button-primary" type="button" onClick={() => setStep((value) => Math.min(5, value + 1))}>Siguiente paso <span aria-hidden="true">→︎</span></button>
             ) : (
-              <button className="button whatsapp-button" type="submit" disabled={!quote.name || !quote.contact}>Enviar por WhatsApp <span aria-hidden="true">↗</span></button>
+              <button className="button whatsapp-button" type="submit" disabled={!quote.name || !quote.contact}>Enviar por WhatsApp <span aria-hidden="true">↗︎</span></button>
             )}
           </div>
         </form>

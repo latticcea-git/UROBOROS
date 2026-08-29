@@ -105,7 +105,7 @@ export default async function BlogArticlePage({ params }: Props) {
           <Link href={`/book/${bookProject.slug}`}>
             <Image src={bookProject.image} alt={bookProject.alt} fill sizes="100vw" style={{ objectPosition: bookProject.imagePosition }} />
             <span className={styles.bookBridgeShade} />
-            <div><span>{bookProject.node} / {bookProject.category}</span><h3>{bookProject.title}</h3><p>{bookProject.summary}</p><b>Ver proyecto ↗</b></div>
+            <div><span>{bookProject.node} / {bookProject.category}</span><h3>{bookProject.title}</h3><p>{bookProject.summary}</p><b>Ver proyecto ↗︎</b></div>
           </Link>
         </section>
       )}
@@ -128,7 +128,7 @@ export default async function BlogArticlePage({ params }: Props) {
 
       <footer className={styles.blogFooter}>
         <span>LATTICCE / BLOG / 2026</span>
-        <Link href="/blog">Volver al archivo <i aria-hidden="true">↗</i></Link>
+        <Link href="/blog">Volver al archivo <i aria-hidden="true">↗︎</i></Link>
       </footer>
     </main>
   );

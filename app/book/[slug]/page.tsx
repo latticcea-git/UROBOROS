@@ -65,7 +65,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
           <h1>{project.title}</h1>
           <span>{project.projectLabel ?? "Proyecto conceptual / Imagen generada"}</span>
         </div>
-        <a className={styles.projectScroll} href="#proyecto" data-project-scroll>Descubrir <span aria-hidden="true">↓</span></a>
+        <a className={styles.projectScroll} href="#proyecto" data-project-scroll>Descubrir <span aria-hidden="true">↓︎</span></a>
       </section>
 
       <section className={styles.projectStatement} id="proyecto" data-project-statement>
@@ -150,9 +150,9 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
       </section>
 
       <footer className={styles.projectFooter}>
-        <Link href="/book">← Volver al archivo</Link>
+        <Link href="/book">←︎ Volver al archivo</Link>
         <Image src="/UROBOROS/assets/logos/LTT_LOGO_1920_FX.png" width={380} height={74} alt="LATTICCE" />
-        <Link href="/#contacto">Iniciar un proyecto ↗</Link>
+        <Link href="/#contacto">Iniciar un proyecto ↗︎</Link>
       </footer>
     </main>
   );

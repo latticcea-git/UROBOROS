@@ -48,7 +48,7 @@ export default function BlogExperience() {
           <h1 id="blog-title">BLOG</h1>
           <p>Miradas que construyen.<br />Ideas que transforman.</p>
         </div>
-        <a className={styles.heroEnter} href="#archivo">Entrar al archivo <span aria-hidden="true">↓</span></a>
+        <a className={styles.heroEnter} href="#archivo">Entrar al archivo <span aria-hidden="true">↓︎</span></a>
       </section>
 
       <section className={styles.archive} id="archivo" aria-labelledby="archive-title">
@@ -122,7 +122,7 @@ export default function BlogExperience() {
                     <span>{post.category} / {post.displayDate} / {post.readingTime}</span>
                     <h3>{post.title}</h3>
                     <p>{post.dek}</p>
-                    <b>Leer artículo <i aria-hidden="true">↗</i></b>
+                    <b>Leer artículo <i aria-hidden="true">↗︎</i></b>
                   </div>
                 </Link>
               );

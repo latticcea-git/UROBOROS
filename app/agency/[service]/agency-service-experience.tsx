@@ -102,7 +102,7 @@ export default function AgencyServiceExperience({ service }: Props) {
           <p className={styles.heroPromise}>{service.promise}</p>
           <p className={styles.heroIntro}>{service.intro}</p>
           <a className={styles.primaryCta} href="#cuentanos">
-            CUÉNTANOS TU PROYECTO <span aria-hidden="true">↘</span>
+            CUÉNTANOS TU PROYECTO <span aria-hidden="true">↘︎</span>
           </a>
         </div>
 
@@ -222,7 +222,7 @@ export default function AgencyServiceExperience({ service }: Props) {
               Cuando el contenido necesita fotografía o video especializado, activamos el mundo de
               producción de LATTICCE Studio.
             </p>
-            <Link href="/studio">CONOCER STUDIO ↗</Link>
+            <Link href="/studio">CONOCER STUDIO ↗︎</Link>
           </div>
         ) : null}
       </section>
@@ -296,7 +296,7 @@ export default function AgencyServiceExperience({ service }: Props) {
               placeholder="¿Qué necesitas construir, activar o mejorar?"
             />
           </label>
-          <button type="submit">ENVIAR PROYECTO ↗</button>
+          <button type="submit">ENVIAR PROYECTO ↗︎</button>
           <p className={styles.formStatus} role="status" aria-live="polite">
             {formStatus}
           </p>
@@ -306,11 +306,11 @@ export default function AgencyServiceExperience({ service }: Props) {
       <Link className={styles.nextService} href={`/agency/${service.nextSlug}`}>
         <span>SIGUIENTE SISTEMA</span>
         <strong>{service.nextTitle}</strong>
-        <i aria-hidden="true">↗</i>
+        <i aria-hidden="true">↗︎</i>
       </Link>
 
       <footer className={styles.footer}>
-        <Link href="/agency">← SELECTOR AGENCY</Link>
+        <Link href="/agency">←︎ SELECTOR AGENCY</Link>
         <span>LATTICCE AGENCY</span>
         <span>ESTRATEGIA · SISTEMAS · CRECIMIENTO</span>
       </footer>

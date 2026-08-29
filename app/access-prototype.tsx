@@ -67,7 +67,7 @@ export default function AccessPrototype() {
           <h1 id="access-title">Elige cómo<br />entras al sistema.</h1>
           <p className={styles.introText}>Dos experiencias, una misma estructura. Tu acceso determina las herramientas y la información que verás.</p>
           <div className={styles.identityNote}>
-            <span aria-hidden="true">✦</span>
+            <span aria-hidden="true">✦︎</span>
             <p>Las identidades <strong>@latticce.com</strong> se asignarán a colaboradores autorizados. Este flujo es una demostración visual; aún no crea cuentas.</p>
           </div>
         </div>
@@ -95,7 +95,7 @@ export default function AccessPrototype() {
 
           {submitted ? (
             <div className={styles.success} role="status">
-              <span>✓</span>
+              <span>✓︎</span>
               <div>
                 <p>{mode === "entrar" ? "Acceso simulado listo." : "Solicitud simulada recibida."}</p>
                 <small>En la versión final se verificará tu identidad y tus permisos antes de mostrar contenido privado.</small>
@@ -129,7 +129,7 @@ export default function AccessPrototype() {
                 <input required type="password" name="password" autoComplete={mode === "entrar" ? "current-password" : "new-password"} placeholder="••••••••••" />
               </label>
               <p className={styles.hint}>{current.hint}</p>
-              <button className={styles.submit} type="submit">{mode === "entrar" ? "Entrar al portal" : role === "colaborador" ? "Solicitar identidad" : "Solicitar acceso"}<span aria-hidden="true">↗</span></button>
+              <button className={styles.submit} type="submit">{mode === "entrar" ? "Entrar al portal" : role === "colaborador" ? "Solicitar identidad" : "Solicitar acceso"}<span aria-hidden="true">↗︎</span></button>
               {mode === "entrar" && <button className={styles.textButton} type="button" onClick={() => setSubmitted(true)}>¿Olvidaste tu contraseña?</button>}
             </form>
           )}

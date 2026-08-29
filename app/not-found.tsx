@@ -37,7 +37,7 @@ export default function NotFound() {
             Puede que haya cambiado de forma, o que todavía no pertenezca al sistema.
           </p>
           <Link className={styles.cta} href="/">
-            Volver al inicio <span aria-hidden="true">↗</span>
+            Volver al inicio <span aria-hidden="true">↗︎</span>
           </Link>
         </section>
       </div>

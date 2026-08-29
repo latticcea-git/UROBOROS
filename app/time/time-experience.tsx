@@ -543,7 +543,7 @@ export default function TimeExperience() {
                 <p>Conservamos bodas, XV años y celebraciones con una mirada íntima, cercana y hecha para volver.</p>
                 <div className={styles.heroActions}>
                   <a className={styles.primaryButton} href="#agenda">Agenda tu cita</a>
-                  <a className={styles.textLink} href="#historias">Recorre el álbum <span aria-hidden="true">→</span></a>
+                  <a className={styles.textLink} href="#historias">Recorre el álbum <span aria-hidden="true">→︎</span></a>
                 </div>
               </div>
 
@@ -563,7 +563,7 @@ export default function TimeExperience() {
                 <p className={styles.eyebrow}>Servicios + productos</p>
                 <h2 id="stories-title">Una mirada para <em>cada historia.</em></h2>
                 <p>Todo lo que LATTICCE TIME tiene para ti.</p>
-                <a className={styles.boardCta} href="#agenda">Agendar mi evento <span aria-hidden="true">↘</span></a>
+                <a className={styles.boardCta} href="#agenda">Agendar mi evento <span aria-hidden="true">↘︎</span></a>
               </div>
 
               <div className={styles.corkboard} aria-label="Servicios de LATTICCE Time">
@@ -583,7 +583,7 @@ export default function TimeExperience() {
                   >
                     <span className={styles.serviceNumber}>{service.number}</span>
                     <strong>{service.title}</strong>
-                    <span className={styles.galleryHover}>Visita la galería <i aria-hidden="true">↗</i></span>
+                    <span className={styles.galleryHover}>Visita la galería <i aria-hidden="true">↗︎</i></span>
                   </button>
                 ))}
               </div>
@@ -614,7 +614,7 @@ export default function TimeExperience() {
                 />
               </div>
               <button className={styles.videoControl} type="button" onClick={toggleInterlude} aria-label={interludePaused ? "Reproducir video" : "Pausar video"}>
-                <span aria-hidden="true">{interludePaused ? "▶" : "Ⅱ"}</span>
+                <span aria-hidden="true">{interludePaused ? "▶︎" : "Ⅱ"}</span>
               </button>
               <span className={styles.interludeIndex} aria-hidden="true">Pausa / 00:03</span>
             </section>
@@ -638,7 +638,7 @@ export default function TimeExperience() {
                         <h3>{item.name}</h3>
                       </div>
                       <p className={styles.packageDescription}>{item.description}</p>
-                      <a className={styles.packageButton} href="#agenda">Elegir esta cobertura <span aria-hidden="true">↘</span></a>
+                      <a className={styles.packageButton} href="#agenda">Elegir esta cobertura <span aria-hidden="true">↘︎</span></a>
                     </div>
                     <ul className={styles.packageList}>{item.items.map((included) => <li key={included}>{included}</li>)}</ul>
                   </article>
@@ -652,7 +652,7 @@ export default function TimeExperience() {
                 <p className={styles.eyebrow}>La mirada + las herramientas</p>
                 <h2 id="equipment-title">Elegimos la tecnología<br /><em>según la historia.</em></h2>
                 <p>No se trata de llevar más equipo, sino de elegir la herramienta correcta para conservar cada escala, voz y movimiento.</p>
-                <a className={styles.equipmentCta} href="#coberturas">Escoge tu paquete <span aria-hidden="true">↖</span></a>
+                <a className={styles.equipmentCta} href="#coberturas">Escoge tu paquete <span aria-hidden="true">↖︎</span></a>
               </div>
               <div className={styles.equipmentConstellation}>
                 {equipment.map((item) => (
@@ -674,7 +674,7 @@ export default function TimeExperience() {
                 <div className={styles.deliveryList}>
                   <span>Galería digital</span><span>Video editado</span><span>Álbum</span><span>Impresiones</span>
                 </div>
-                <a className={styles.providerLink} href="#agenda">Pregunta por nuestros servicios impresos <span aria-hidden="true">↘</span></a>
+                <a className={styles.providerLink} href="#agenda">Pregunta por nuestros servicios impresos <span aria-hidden="true">↘︎</span></a>
                 <small className={styles.providerNote}>Trabajamos estas piezas con proveedores especializados.</small>
               </div>
             </section>
@@ -699,7 +699,7 @@ export default function TimeExperience() {
                   <label><span>Ciudad o lugar</span><input value={booking.city} onChange={(event) => setBooking({ ...booking, city: event.target.value })} placeholder="Ciudad de México" /></label>
                   <label><span>Me interesa</span><select value={booking.interests} onChange={(event) => setBooking({ ...booking, interests: event.target.value })}><option>Fotografía y video</option><option>Solo fotografía</option><option>Solo video</option><option>Foto, video y memoria impresa</option></select></label>
                 </div>
-                <button className={styles.submitButton} type="submit">Agenda tu cita <span aria-hidden="true">↗</span></button>
+                <button className={styles.submitButton} type="submit">Agenda tu cita <span aria-hidden="true">↗︎</span></button>
                 <p className={styles.privacy}>Abriremos WhatsApp con tu solicitud. Tú confirmarás el envío.</p>
               </form>
             </section>
