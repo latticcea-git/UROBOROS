@@ -239,7 +239,7 @@
 .communityCopy > a span,
 .contactButton span { color: inherit; font-size: 0 !important; }
 .nodePrompt i,
-.intentionBookCta i { width: .42rem !important; aspect-ratio: 1; border: 0; border-radius: 0; }
+.intentionBookCta i { width: .42rem !important; aspect-ratio: 1; border: 0 !important; border-radius: 0 !important; }
 .heroFoot button span::after,
 .nodePrompt i::after,
 .intentionBookCta i::after,
