@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import dynamic from "next/dynamic";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import SiteMenu from "../site-menu";
 import { bookNodes, bookProjects, getBookNode, type NodeId } from "./book-data";
 import BookMotion from "./book-motion";
@@ -17,6 +17,15 @@ export default function BookExperience() {
   const [activeNode, setActiveNode] = useState<NodeId | "all">("all");
   const [previewNode, setPreviewNode] = useState<NodeId>("agency");
   const [activeCategory, setActiveCategory] = useState("Todo");
+
+  useEffect(() => {
+    const node = window.location.hash.replace("#", "") as NodeId;
+    if (!bookNodes.some((item) => item.id === node)) return;
+    setActiveNode(node);
+    setPreviewNode(node);
+    setActiveCategory("Todo");
+    window.setTimeout(() => document.getElementById("catalogo")?.scrollIntoView({ behavior: "auto", block: "start" }), 80);
+  }, []);
 
   const categories = useMemo(() => {
     if (activeNode === "all") return ["Todo"];
