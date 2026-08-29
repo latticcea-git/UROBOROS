@@ -73,16 +73,12 @@ function IllustratorPen() {
   );
 }
 
-function DraftAsset() {
-  return <span className={styles.draftAsset}>BORRADOR — imagen generada</span>;
-}
-
 function AdobeWindow({ project, index }: { project: (typeof designProjects)[number]; index: number }) {
   const extension = index % 2 === 0 ? "ai" : "psd";
   const filename = `${project.slug.replaceAll("-", "_")}.${extension}`;
 
   return (
-    <Link className={styles.adobeWindow} href={`/book/${project.slug}`} aria-label={`Abrir el proyecto completo ${project.title}`} data-pen-active>
+    <Link className={styles.adobeWindow} href={`/book/${project.slug}`} aria-label={`Abrir el proyecto completo ${project.title}`} data-book-window data-pen-active>
       <span className={styles.windowTopbar}>
         <i className={styles.windowDots} aria-hidden="true"><b /><b /><b /></i>
         <span>{filename} @ 100% (RGB/8)</span>
@@ -122,7 +118,6 @@ function ApplicationSection({ item }: { item: (typeof applications)[number] }) {
       <i className={styles.sectionTransition} data-section-transition aria-hidden="true" />
       <Image className={styles.applicationImage} src={item.image} fill sizes="100vw" alt={item.alt} data-application-image />
       <div className={styles.applicationShade} aria-hidden="true" />
-      <DraftAsset />
       <div className={styles.applicationCopy} data-application-copy>
         <p className={styles.eyebrow}>{item.eyebrow}</p>
         <h2 id={`${item.id}-title`}>{item.title}</h2>
@@ -190,50 +185,71 @@ export default function DesignExperience() {
           autoAlpha: 1,
           y: 0,
           filter: "blur(0px)",
-          duration: .8,
+          duration: 1,
           stagger: .07,
-          ease: "power3.out",
-          scrollTrigger: { trigger: element, start: "top 82%", toggleActions: "play none none none", once: true },
+          ease: "none",
+          scrollTrigger: { trigger: element, start: "top 92%", end: "top 56%", scrub: .7 },
         });
       });
 
       root.querySelectorAll<HTMLElement>("[data-section-transition]").forEach((line) => {
-        gsap.timeline({ scrollTrigger: { trigger: line, start: "top 94%", toggleActions: "play none none none", once: true } })
-          .fromTo(line, { autoAlpha: 0, scaleX: 0 }, { autoAlpha: .9, scaleX: 1, duration: 1.05, ease: "power3.out" })
-          .to(line, { autoAlpha: .2, duration: .55, ease: "power2.out" });
+        gsap.fromTo(line, { autoAlpha: 0, scaleX: 0 }, {
+          autoAlpha: .34,
+          scaleX: 1,
+          ease: "none",
+          scrollTrigger: { trigger: line, start: "top 100%", end: "top 54%", scrub: .7 },
+        });
       });
 
       const processVisual = root.querySelector<HTMLElement>("[data-process-visual]");
       if (processVisual) gsap.fromTo(processVisual, { clipPath: "inset(16% 0 0 0)", scale: 1.045 }, {
         clipPath: "inset(0% 0 0 0)",
         scale: 1,
-        duration: 1.25,
-        ease: "power3.out",
-        scrollTrigger: { trigger: processVisual, start: "top 88%", toggleActions: "play none none none", once: true },
+        duration: 1,
+        ease: "none",
+        scrollTrigger: { trigger: processVisual, start: "top 96%", end: "top 48%", scrub: .8 },
+      });
+
+      const bookWindows = Array.from(root.querySelectorAll<HTMLElement>("[data-book-window]"));
+      if (bookWindows.length) gsap.fromTo(bookWindows, { autoAlpha: .18, y: 64, scale: .965 }, {
+        autoAlpha: 1,
+        y: 0,
+        scale: 1,
+        stagger: .12,
+        ease: "none",
+        scrollTrigger: { trigger: book, start: "top 96%", end: "top 38%", scrub: .8 },
       });
 
       root.querySelectorAll<HTMLElement>("[data-application]").forEach((section) => {
         const image = section.querySelector<HTMLElement>("[data-application-image]");
         const copy = section.querySelector<HTMLElement>("[data-application-copy]");
+        const enterX = section.dataset.side === "right" ? 64 : -64;
         if (section.id === "packaging" && image && copy) {
           const copyChildren = Array.from(copy.children);
-          gsap.set(copyChildren, { autoAlpha: 0, y: 42 });
           gsap.timeline({
-            scrollTrigger: { trigger: section, start: "top 72%", toggleActions: "play none none none", once: true },
+            scrollTrigger: { trigger: section, start: "top 98%", end: "top 34%", scrub: .8 },
           })
-            .fromTo(image, { scale: 1.055, filter: "brightness(.72) saturate(.82)" }, { scale: 1, filter: "brightness(1) saturate(1)", duration: 1.2, ease: "power3.out" })
-            .to(image, { scale: 1.012, duration: 2.6, ease: "sine.inOut" })
-            .to(copyChildren, { autoAlpha: 1, y: 0, duration: .8, stagger: .08, ease: "power3.out" });
+            .fromTo(image, { scale: 1.1, clipPath: "inset(9% 0 9% 0)", filter: "brightness(.62) saturate(.72)" }, { scale: 1, clipPath: "inset(0% 0 0% 0)", filter: "brightness(1) saturate(1)", duration: 1, ease: "none" })
+            .to(image, { scale: 1.008, duration: .7, ease: "none" })
+            .fromTo(copyChildren, { autoAlpha: 0, x: enterX, y: 28, filter: "blur(8px)" }, { autoAlpha: 1, x: 0, y: 0, filter: "blur(0px)", duration: 1, stagger: .08, ease: "none" });
           return;
         }
-        if (image) gsap.fromTo(image, { scale: 1.08 }, { scale: 1, ease: "none", scrollTrigger: { trigger: section, start: "top bottom", end: "bottom top", scrub: true } });
-        if (copy) gsap.fromTo(Array.from(copy.children), { autoAlpha: 0, y: 46 }, {
+        if (image) gsap.fromTo(image, { scale: 1.1, clipPath: "inset(9% 0 9% 0)", filter: "brightness(.62) saturate(.72)" }, {
+          scale: 1,
+          clipPath: "inset(0% 0 0% 0)",
+          filter: "brightness(1) saturate(1)",
+          ease: "none",
+          scrollTrigger: { trigger: section, start: "top 100%", end: "top 32%", scrub: .8 },
+        });
+        if (copy) gsap.fromTo(Array.from(copy.children), { autoAlpha: 0, x: enterX, y: 28, filter: "blur(8px)" }, {
           autoAlpha: 1,
+          x: 0,
           y: 0,
-          duration: .85,
+          filter: "blur(0px)",
+          duration: 1,
           stagger: .08,
-          ease: "power3.out",
-          scrollTrigger: { trigger: section, start: "top 72%", toggleActions: "play none none none", once: true },
+          ease: "none",
+          scrollTrigger: { trigger: section, start: "top 88%", end: "top 48%", scrub: .75 },
         });
       });
 
@@ -310,13 +326,11 @@ export default function DesignExperience() {
   return (
     <main ref={rootRef} className={styles.root} data-node="design">
       <div ref={penRef} className={styles.penCursor} data-visible="false" data-active="false" aria-hidden="true"><IllustratorPen /></div>
-      <p className={styles.version}>BORRADOR — VERSIÓN 3</p>
 
       <section className={styles.hero} id="inicio" aria-labelledby="design-title">
         <Image className={styles.heroImage} src="/UROBOROS/assets/images/design/design-hero-threshold-generated-draft-v1.png" fill priority sizes="100vw" alt="Escultura monumental de resina negra dividida por una abertura de luz naranja" data-hero-image />
         <div className={styles.heroShade} aria-hidden="true" />
         <div className={styles.heroLines} aria-hidden="true"><i /><i /><i /><i /></div>
-        <DraftAsset />
         <div className={styles.heroMeta}><span>DESIGN / 04</span><span>La idea atraviesa la materia y toma forma</span></div>
         <div className={styles.heroLogoFrame} data-hero-logo data-pen-active>
           <h1 id="design-title" className={styles.srOnly}>LATTICCE Design</h1>
@@ -391,7 +405,6 @@ export default function DesignExperience() {
         </div>
         <div className={styles.processVisual} data-process-visual>
           <Image src="/UROBOROS/assets/images/design/design-process-panels-generated-draft-v1.png" fill sizes="100vw" alt="Cuatro paneles de vidrio, arcilla, acrílico transparente y acrílico naranja sobre fondo marfil" />
-          <DraftAsset />
         </div>
       </section>
 
@@ -401,7 +414,6 @@ export default function DesignExperience() {
         <i className={styles.sectionTransition} data-section-transition aria-hidden="true" />
         <Image className={styles.contentImage} src="/UROBOROS/assets/images/design/design-social-content-generated-draft-v1.png" fill sizes="100vw" alt="Mano sosteniendo un teléfono sin marca con formas abstractas bajo luz naranja" data-application-image />
         <div className={styles.contentShade} aria-hidden="true" />
-        <DraftAsset />
         <div className={styles.contentCopy} data-application-copy>
           <p className={styles.eyebrow}>08 / CONTENIDO PARA REDES</p>
           <h2 id="content-title">Contenido periódico<br />para redes sociales.<br /><em>Lo hacemos por ti.</em></h2>
@@ -415,7 +427,6 @@ export default function DesignExperience() {
         <i className={styles.sectionTransition} data-section-transition aria-hidden="true" />
         <Image className={styles.contactImage} src="/UROBOROS/assets/images/design/design-contact-hands-generated-draft-v1.png" fill sizes="100vw" alt="Dos manos desenfocadas acercándose detrás de vidrio esmerilado con luz naranja" />
         <div className={styles.contactShade} aria-hidden="true" />
-        <DraftAsset />
         <div className={styles.contactCopy} data-reveal>
           <p className={styles.eyebrow}>09 / HABLEMOS</p>
           <h2 id="contact-title">Agenda tu<br /><em>cita virtual.</em></h2>

@@ -2,7 +2,7 @@
 
 > Prompt de dirección creativa, experiencia, contenido y producción para la página `/design`.
 >
-> Estado: `BORRADOR — VERSIÓN 3`
+> Estado: `VERSIÓN 4 — CANDIDATA`
 > Concepto rector: **La idea atraviesa la materia y toma forma.**
 
 ## 1. Encargo
@@ -86,7 +86,7 @@ Cada proyecto se presenta como una ventana completa de software creativo con bar
 
 ### 04. Anima — El mundo plano se mueve
 
-Escena oscura y limpia con loader radial naranja. El porcentaje pasa de 0 a 100 conforme la sección entra y avanza por el viewport.
+Escena oscura y limpia con loader radial naranja. El porcentaje inicia en 1% y alcanza 100% en 15 segundos al entrar en el viewport.
 
 Copy:
 
@@ -156,7 +156,7 @@ CTA: `Agendar una conversación`. Debe abrir el formulario global de LATTICCE si
 
 ## 8. Assets originales
 
-Las referencias entregadas son dirección, no material de producción. Generar imágenes nuevas sin logos, marcas ni texto legible y etiquetarlas como `BORRADOR — imagen generada` hasta aprobación:
+Las referencias entregadas son dirección, no material de producción. Las imágenes nuevas no contienen logos, marcas ni texto legible. En la versión candidata se retiran todas las etiquetas de revisión visibles:
 
 1. Hero: monolito de resina negra abierto por luz naranja.
 2. Proceso: paneles de vidrio, arcilla y acrílico naranja sobre marfil.
@@ -196,3 +196,4 @@ Genera únicamente las siete escenas de materia descritas, sin logos, marcas ni 
 - No hay assets rotos, texto generado dentro de imágenes ni logotipos reconstruidos.
 - Desktop, tablet, móvil y reducción de movimiento conservan contenido, foco y navegación.
 - En móvil, logo y copy del hero mantienen separación incluso en pantallas de poca altura; las entradas de texto y transiciones de sección funcionan en móvil y escritorio.
+- Excepto la secuencia temporal aprobada de ANIMA, las entradas de texto, imagen, paneles y líneas progresan de forma reversible según el scroll.

@@ -32,35 +32,6 @@
   border: 0;
 }
 
-.version {
-  position: fixed;
-  top: 6.35rem;
-  right: var(--pad);
-  z-index: 850;
-  margin: 0;
-  color: rgba(241, 238, 232, .42);
-  mix-blend-mode: difference;
-  font-size: .48rem;
-  letter-spacing: .17em;
-  text-transform: uppercase;
-  pointer-events: none;
-}
-
-.draftAsset {
-  position: absolute;
-  right: var(--pad);
-  bottom: 8.7rem;
-  z-index: 12;
-  padding: .35rem .55rem;
-  border: 1px solid rgba(255, 255, 255, .16);
-  color: rgba(255, 255, 255, .54);
-  background: rgba(5, 5, 5, .38);
-  backdrop-filter: blur(10px);
-  font-size: .45rem;
-  letter-spacing: .14em;
-  text-transform: uppercase;
-}
-
 .penCursor {
   position: fixed;
   top: 0;
@@ -107,7 +78,6 @@
 .heroLines i { position: absolute; top: 50%; left: 50%; width: .38rem; aspect-ratio: 1; border: 1px solid rgba(255, 255, 255, .8); background: #090909; transform: translate(-50%, -50%); }
 .heroLines i:nth-child(1) { top: 28%; left: 31%; }.heroLines i:nth-child(2) { top: 28%; left: 69%; }.heroLines i:nth-child(3) { top: 69%; left: 31%; }.heroLines i:nth-child(4) { top: 69%; left: 69%; }
 .heroMeta { position: absolute; top: 7.9rem; right: var(--pad); left: var(--pad); z-index: 4; display: flex; justify-content: space-between; color: rgba(241, 238, 232, .55); font-size: .52rem; letter-spacing: .17em; text-transform: uppercase; }
-.hero > .draftAsset { bottom: 10rem; }
 .heroLogoFrame { position: absolute; top: 23%; left: 50%; z-index: 4; width: min(57vw, 56rem); padding: clamp(1.1rem, 2vw, 2rem); border: 1px solid rgba(255, 255, 255, .13); transform: translateX(-50%); }
 .heroLogoFrame::before { position: absolute; inset: -18% -10%; z-index: -1; background: radial-gradient(ellipse, rgba(255, 90, 10, .2), transparent 64%); content: ""; filter: blur(2.5rem); }
 .heroLogoFrame::after { position: absolute; top: -1.45rem; left: 0; color: rgba(241, 238, 232, .46); content: "vector seleccionado / 01"; font-size: .46rem; letter-spacing: .14em; text-transform: uppercase; }
@@ -222,7 +192,6 @@
 .processVisual { position: absolute; right: 0; bottom: 0; left: 27%; height: 57%; overflow: hidden; }
 .processVisual::before { position: absolute; inset: 0; z-index: 2; background: linear-gradient(180deg, var(--ivory), transparent 19%); content: ""; pointer-events: none; }
 .processVisual img { object-fit: cover; object-position: center 66%; }
-.processVisual .draftAsset { color: rgba(25, 24, 22, .48); border-color: rgba(25, 24, 22, .14); background: rgba(240, 235, 226, .48); }
 
 /* Aplicaciones */
 .applicationFlow { position: relative; }
@@ -309,15 +278,12 @@
 }
 
 @media (max-width: 620px) {
-  .version { top: 5.05rem; right: 1rem; font-size: .4rem; }
-  .draftAsset { right: 1rem; bottom: 10rem; font-size: .38rem; }
   .hero { display: flex; min-height: max(100svh, 46rem); flex-direction: column; gap: clamp(3.75rem, 8svh, 5.5rem); padding: clamp(11.5rem, 25svh, 13.25rem) 1rem 10.5rem; }
   .heroImage { object-position: 56% center; }
   .heroShade { background: linear-gradient(180deg, rgba(2, 2, 2, .58), transparent 30%, rgba(2, 2, 2, .4) 52%, rgba(2, 2, 2, .96)), linear-gradient(90deg, rgba(2, 2, 2, .45), transparent); }
   .heroMeta { top: 6.5rem; right: 1rem; left: 1rem; }
   .heroMeta span:last-child { display: none; }
   .heroLogoFrame { position: relative; top: auto; left: auto; flex: 0 0 auto; width: 100%; margin: 0 auto; padding: .8rem; transform: none; }
-  .hero > .draftAsset { top: 8.2rem; bottom: auto; }
   .heroCopy { position: relative; right: auto; bottom: auto; left: auto; flex: 0 0 auto; grid-template-columns: 1fr; gap: 1.25rem; width: 100%; margin-top: auto; }
   .heroCopy > p { max-width: 22rem; font-size: clamp(1.55rem, 7.2vw, 2.2rem); line-height: 1.01; }
   .heroCopy a { min-width: 13rem; }
