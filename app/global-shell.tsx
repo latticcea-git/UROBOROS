@@ -21,6 +21,8 @@ const portalLinks = [
   { label: "Colaboradores", href: "/colaboradores" },
 ] as const;
 
+export function openContactPopup(): void;
+export function openContactPopup(context: ContactContext): void;
 export function openContactPopup(context: ContactContext = "general") {
   window.dispatchEvent(new CustomEvent("latticce:open-contact", { detail: { context } }));
 }
