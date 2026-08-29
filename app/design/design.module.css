@@ -60,6 +60,13 @@
   text-transform: uppercase;
 }
 .sectionTransition { position: absolute; top: 0; left: 0; z-index: 12; display: block; width: 100%; height: 1px; background: linear-gradient(90deg, transparent 0, rgba(255, 90, 10, .22) 22%, #ff7836 50%, rgba(255, 90, 10, .22) 78%, transparent 100%); box-shadow: 0 0 1.8rem rgba(255, 90, 10, .48); opacity: .2; pointer-events: none; transform-origin: center; }
+.drawnArrow { --arrow-rotation: 0deg; position: relative; display: inline-block; flex: 0 0 auto; width: .66rem; height: .66rem; color: var(--orange); transform: rotate(var(--arrow-rotation)); transform-origin: center; }
+.drawnArrow::before { position: absolute; top: calc(50% - .5px); left: .02rem; width: .58rem; height: 1px; background: currentColor; content: ""; }
+.drawnArrow::after { position: absolute; top: .08rem; right: .02rem; width: .32rem; height: .32rem; border-top: 1px solid currentColor; border-right: 1px solid currentColor; content: ""; }
+.arrowRight { --arrow-rotation: 0deg; }
+.arrowDown { --arrow-rotation: 90deg; }
+.arrowUpRight { --arrow-rotation: -45deg; }
+.arrowUpLeft { --arrow-rotation: -135deg; }
 
 /* Hero */
 .hero {
@@ -87,7 +94,7 @@
 .heroCopy { position: absolute; right: var(--pad); bottom: clamp(5.5rem, 9vh, 7.5rem); left: var(--pad); z-index: 5; display: grid; grid-template-columns: minmax(18rem, 44rem) auto; gap: 3rem; align-items: end; }
 .heroCopy > p { max-width: 37rem; margin: 0; font-family: Georgia, "Times New Roman", serif; font-size: clamp(1.6rem, 3.25vw, 3.55rem); letter-spacing: -.045em; line-height: 1.02; text-shadow: 0 .3rem 1.5rem #000; }
 .heroCopy a { justify-self: end; display: flex; min-width: 14rem; justify-content: space-between; gap: 2rem; padding: .9rem 0; border-bottom: 1px solid rgba(255, 143, 86, .46); color: #d4cec7; font-size: .56rem; letter-spacing: .14em; text-transform: uppercase; }
-.heroCopy a span { color: var(--orange); font-size: .9rem; }
+.heroCopy a .drawnArrow { color: var(--orange); }
 
 /* Capacidades */
 .capabilities {
@@ -129,7 +136,7 @@
 .bookIntro h2 em { color: var(--orange); font-family: Georgia, "Times New Roman", serif; font-weight: 400; }
 .bookIntro > div > p:last-child { max-width: 29rem; color: #99928b; font-size: .8rem; line-height: 1.5; }
 .bookDirection { display: flex; justify-content: space-between; max-width: 18rem; padding-bottom: .7rem; border-bottom: 1px solid var(--line); color: #7d7771; font-size: .52rem; letter-spacing: .14em; text-transform: uppercase; }
-.bookDirection i { color: var(--orange); font-style: normal; }
+.bookDirection .drawnArrow { color: var(--orange); }
 .adobeWindow { position: relative; display: grid; flex: 0 0 clamp(48rem, 68vw, 74rem); grid-template-rows: 2.7rem minmax(0, 1fr) 4.2rem; height: min(74vh, 43rem); overflow: hidden; border: 1px solid rgba(255, 255, 255, .25); border-radius: .55rem; background: rgba(20, 20, 20, .94); box-shadow: 0 2rem 7rem rgba(0, 0, 0, .7), 0 0 5rem rgba(255, 90, 10, .075); transition: border-color .35s ease, box-shadow .35s ease; }
 .adobeWindow:nth-child(3) { transform: translateY(1.8rem); }
 .adobeWindow:hover, .adobeWindow:focus-visible { border-color: rgba(255, 123, 55, .66); box-shadow: 0 2rem 8rem #000, 0 0 5rem rgba(255, 90, 10, .16); }
@@ -140,7 +147,10 @@
 .windowControls { justify-self: end; color: #706d68; font-style: normal; }
 .windowWorkspace { display: grid; min-height: 0; grid-template-columns: 2.9rem minmax(0, 1fr) 13.5rem; }
 .toolRail { display: flex; flex-direction: column; align-items: center; padding: .45rem .3rem; border-right: 1px solid rgba(255, 255, 255, .11); background: #161616; }
-.toolRail i { display: grid; width: 2rem; height: 2rem; place-items: center; border-bottom: 1px solid rgba(255, 255, 255, .08); color: #8a8782; font-style: normal; font-size: .65rem; }
+.toolRail > i { display: grid; width: 2rem; height: 2rem; place-items: center; border-bottom: 1px solid rgba(255, 255, 255, .08); color: #8a8782; font-style: normal; font-size: .65rem; }
+.toolRail .toolArrow .drawnArrow { width: .54rem; height: .54rem; color: #aaa59e; }
+.toolRail .toolArrow .drawnArrow::before { width: .47rem; }
+.toolRail .toolArrow .drawnArrow::after { width: .27rem; height: .27rem; }
 .toolRail .activeTool { border-radius: .2rem; color: #171717; background: var(--orange); }
 .artboard { position: relative; min-width: 0; overflow: hidden; background-color: #252525; background-image: linear-gradient(45deg, #292929 25%, transparent 25%), linear-gradient(-45deg, #292929 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #292929 75%), linear-gradient(-45deg, transparent 75%, #292929 75%); background-position: 0 0, 0 8px, 8px -8px, -8px 0; background-size: 16px 16px; }
 .artboardImage { position: absolute; inset: 7% 8%; overflow: visible; background: #ddd; box-shadow: 0 1rem 3rem rgba(0, 0, 0, .48); }
@@ -157,7 +167,7 @@
 .layerPanel .layerActive i { color: var(--orange); }
 .windowFooter { display: flex; justify-content: space-between; align-items: center; padding: 0 1.1rem; border-top: 1px solid rgba(255, 255, 255, .12); color: #96908a; background: #191919; font-size: .51rem; letter-spacing: .1em; text-transform: uppercase; }
 .windowFooter > span { display: flex; gap: 1rem; }.windowFooter > span i { color: var(--orange); font-style: normal; }
-.windowFooter strong { display: flex; gap: 2rem; align-items: center; color: #d8d0c8; font-weight: 400; }.windowFooter strong i { color: var(--orange); font-size: .8rem; font-style: normal; }
+.windowFooter strong { display: flex; gap: 2rem; align-items: center; color: #d8d0c8; font-weight: 400; }.windowFooter strong .drawnArrow { color: var(--orange); }
 .bookEnd { display: flex; flex: 0 0 16vw; height: 72vh; align-items: flex-end; justify-content: space-between; padding-bottom: 1rem; border-left: 1px solid var(--line); color: #4d4945; writing-mode: vertical-rl; }
 .bookEnd span { font-size: 4vw; font-weight: 700; letter-spacing: -.08em; }.bookEnd i { font-size: .5rem; font-style: normal; letter-spacing: .15em; }
 
@@ -204,7 +214,7 @@
 .applicationCopy h2 { max-width: 9ch; margin: 1rem 0 1.8rem; font-size: clamp(4rem, 8vw, 9rem); letter-spacing: -.085em; line-height: .79; }
 .applicationCopy > p:not(.eyebrow) { max-width: 33rem; color: #aaa39c; font-family: Georgia, "Times New Roman", serif; font-size: clamp(1.1rem, 1.8vw, 1.65rem); line-height: 1.28; }
 .applicationCopy a, .contentCopy > a { display: inline-flex; min-width: 16rem; justify-content: space-between; gap: 3rem; margin-top: 1.6rem; padding: .8rem 0; border-bottom: 1px solid rgba(255, 126, 59, .38); color: #cfc7bf; font-size: .55rem; letter-spacing: .14em; text-transform: uppercase; }
-.applicationCopy a span, .contentCopy > a span { color: var(--orange); }
+.applicationCopy a .drawnArrow, .contentCopy > a .drawnArrow { color: var(--orange); }
 
 /* Contenido */
 .content { position: relative; isolation: isolate; display: flex; min-height: 100svh; align-items: center; padding: clamp(8rem, 14vh, 10rem) var(--pad); overflow: hidden; background: #080402; }
@@ -227,7 +237,7 @@
 .contactCopy > p:not(.eyebrow) { color: #d5ccc4; font-family: Georgia, "Times New Roman", serif; font-size: clamp(1.2rem, 2vw, 1.85rem); }
 .contactButton { display: inline-flex; min-width: min(24rem, 86vw); justify-content: space-between; gap: 4rem; margin-top: 1.5rem; padding: 1rem 1.1rem; border: 1px solid rgba(255, 228, 210, .42); border-radius: 0; color: var(--paper); background: rgba(8, 8, 8, .42); font-size: .58rem; letter-spacing: .15em; text-transform: uppercase; backdrop-filter: blur(12px); transition: border-color .25s ease, background .25s ease; }
 .contactButton:hover, .contactButton:focus-visible { border-color: var(--orange); background: rgba(255, 90, 10, .14); }
-.contactButton span { color: var(--orange); }
+.contactButton .drawnArrow { color: var(--orange); }
 
 @keyframes capabilityIn {
   from { opacity: 0; transform: translateY(.75rem); filter: blur(4px); }
@@ -309,7 +319,7 @@
   .windowTopbar > span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .windowControls { display: none; }
   .windowWorkspace { grid-template-columns: 2.4rem minmax(0, 1fr); }
-  .toolRail i { width: 1.75rem; height: 1.75rem; }
+  .toolRail > i { width: 1.75rem; height: 1.75rem; }
   .layerPanel { display: none; }
   .artboardImage { inset: 8%; }
   .windowFooter { padding: 0 .7rem; font-size: .42rem; }

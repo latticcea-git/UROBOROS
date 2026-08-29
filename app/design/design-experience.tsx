@@ -73,6 +73,17 @@ function IllustratorPen() {
   );
 }
 
+function DrawnArrow({ direction }: { direction: "right" | "down" | "upRight" | "upLeft" }) {
+  const directionClass = {
+    right: styles.arrowRight,
+    down: styles.arrowDown,
+    upRight: styles.arrowUpRight,
+    upLeft: styles.arrowUpLeft,
+  }[direction];
+
+  return <span className={`${styles.drawnArrow} ${directionClass}`} aria-hidden="true" />;
+}
+
 function AdobeWindow({ project, index }: { project: (typeof designProjects)[number]; index: number }) {
   const extension = index % 2 === 0 ? "ai" : "psd";
   const filename = `${project.slug.replaceAll("-", "_")}.${extension}`;
@@ -86,7 +97,7 @@ function AdobeWindow({ project, index }: { project: (typeof designProjects)[numb
       </span>
       <span className={styles.windowWorkspace}>
         <span className={styles.toolRail} aria-hidden="true">
-          <i>↖</i><i>⌁</i><i className={styles.activeTool}>♢</i><i>T</i><i>□</i><i>◯</i><i>⌗</i>
+          <i className={styles.toolArrow}><DrawnArrow direction="upLeft" /></i><i>⌁</i><i className={styles.activeTool}>♢</i><i>T</i><i>□</i><i>◯</i><i>⌗</i>
         </span>
         <span className={styles.artboard}>
           <span className={styles.artboardImage}>
@@ -106,7 +117,7 @@ function AdobeWindow({ project, index }: { project: (typeof designProjects)[numb
       </span>
       <span className={styles.windowFooter}>
         <span><i>{String(index + 1).padStart(2, "0")}</i>{project.category} / {project.year}</span>
-        <strong>Abrir proyecto completo <i>↗</i></strong>
+        <strong>Abrir proyecto completo <DrawnArrow direction="upRight" /></strong>
       </span>
     </Link>
   );
@@ -122,7 +133,7 @@ function ApplicationSection({ item }: { item: (typeof applications)[number] }) {
         <p className={styles.eyebrow}>{item.eyebrow}</p>
         <h2 id={`${item.id}-title`}>{item.title}</h2>
         <p>{item.copy}</p>
-        <a href="#contacto" data-pen-active>Hablemos de tu proyecto <span>↗</span></a>
+        <a href="#contacto" data-pen-active>Hablemos de tu proyecto <DrawnArrow direction="upRight" /></a>
       </div>
     </section>
   );
@@ -339,7 +350,7 @@ export default function DesignExperience() {
         </div>
         <div className={styles.heroCopy} data-hero-copy>
           <p>Convertimos ideas en identidades, objetos y experiencias que pueden verse, tocarse y moverse.</p>
-          <a href="#capacidades" data-pen-active>Descubrir capacidades <span>↓</span></a>
+          <a href="#capacidades" data-pen-active>Descubrir capacidades <DrawnArrow direction="down" /></a>
         </div>
       </section>
 
@@ -372,7 +383,7 @@ export default function DesignExperience() {
                 <h2 id="book-title">El proceso también<br /><em>forma parte de la obra.</em></h2>
                 <p>Dos proyectos abiertos como archivos de trabajo. Entra a cada ventana para conocer el caso completo.</p>
               </div>
-              <span className={styles.bookDirection}>Desplaza para abrir archivos <i>→</i></span>
+              <span className={styles.bookDirection}>Desplaza para abrir archivos <DrawnArrow direction="right" /></span>
             </div>
             {designProjects.map((project, index) => <AdobeWindow project={project} index={index} key={project.slug} />)}
             <div className={styles.bookEnd} aria-hidden="true"><span>BOOK</span><i>02 / 02</i></div>
@@ -419,7 +430,7 @@ export default function DesignExperience() {
           <h2 id="content-title">Contenido periódico<br />para redes sociales.<br /><em>Lo hacemos por ti.</em></h2>
           <p>Planeamos, diseñamos y adaptamos un sistema constante para que tu marca no improvise cada semana.</p>
           <ul aria-label="Alcance del servicio"><li>Planeación</li><li>Diseño</li><li>Adaptación</li><li>Entrega periódica</li></ul>
-          <a href="#contacto" data-pen-active>Construyamos tu sistema <span>↗</span></a>
+          <a href="#contacto" data-pen-active>Construyamos tu sistema <DrawnArrow direction="upRight" /></a>
         </div>
       </section>
 
@@ -431,7 +442,7 @@ export default function DesignExperience() {
           <p className={styles.eyebrow}>09 / HABLEMOS</p>
           <h2 id="contact-title">Agenda tu<br /><em>cita virtual.</em></h2>
           <p>*Asesoramos tu proyecto.</p>
-          <ContactTrigger className={styles.contactButton}>Agendar una conversación <span>↗</span></ContactTrigger>
+          <ContactTrigger className={styles.contactButton}>Agendar una conversación <DrawnArrow direction="upRight" /></ContactTrigger>
         </div>
       </section>
     </main>
