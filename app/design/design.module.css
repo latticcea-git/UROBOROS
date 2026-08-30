@@ -174,9 +174,10 @@
 /* Anima */
 .anima { position: relative; isolation: isolate; display: grid; grid-template-columns: 1.05fr .95fr; align-items: center; min-height: 100svh; padding: clamp(8rem, 14vh, 10rem) var(--pad); overflow: hidden; background: radial-gradient(circle at 31% 50%, rgba(255, 90, 10, .1), transparent 30%), #060606; }
 .anima::before { position: absolute; inset: 0; opacity: .34; background-image: linear-gradient(rgba(255, 255, 255, .045) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, .045) 1px, transparent 1px); background-size: 8rem 8rem; content: ""; mask-image: radial-gradient(circle at 30% 50%, #000, transparent 55%); }
-.animaClouds { position: absolute; inset: 0; z-index: -1; overflow: hidden; opacity: .62; pointer-events: none; }
-.animaClouds::after { position: absolute; inset: 0; background: linear-gradient(180deg, #060606 0, transparent 26%, transparent 72%, #060606 100%); content: ""; }
-.animaClouds i { position: absolute; width: clamp(24rem, 48vw, 54rem); height: clamp(8rem, 20vw, 18rem); border-radius: 50%; background: radial-gradient(ellipse at 52% 54%, rgba(201, 197, 191, .13), rgba(116, 110, 103, .055) 42%, transparent 72%); filter: blur(1.8rem); opacity: 0; animation: cloudDrift 18s linear infinite; }
+.animaClouds { position: absolute; inset: 0; z-index: -1; overflow: hidden; opacity: .08; pointer-events: none; will-change: opacity, transform; }
+.animaClouds::before { position: absolute; inset: 8% -10%; background: radial-gradient(ellipse at 24% 37%, rgba(228, 216, 205, .16), transparent 28%), radial-gradient(ellipse at 68% 64%, rgba(177, 166, 157, .14), transparent 34%), radial-gradient(ellipse at 44% 86%, rgba(255, 112, 38, .08), transparent 30%); content: ""; filter: blur(2.4rem); }
+.animaClouds::after { position: absolute; inset: 0; background: linear-gradient(180deg, #060606 0, transparent 18%, transparent 80%, #060606 100%); content: ""; }
+.animaClouds i { position: absolute; width: clamp(24rem, 48vw, 54rem); height: clamp(8rem, 20vw, 18rem); border-radius: 50%; background: radial-gradient(ellipse at 52% 54%, rgba(226, 219, 212, .34), rgba(145, 135, 126, .15) 42%, transparent 72%); filter: blur(1.25rem); opacity: 0; animation: cloudDrift 18s linear infinite; }
 .animaClouds i:nth-child(1) { top: 9%; left: -36%; animation-delay: -3s; }
 .animaClouds i:nth-child(2) { top: 34%; left: -48%; width: 64vw; animation-delay: -11s; animation-duration: 25s; }
 .animaClouds i:nth-child(3) { top: 60%; left: -32%; animation-delay: -16s; animation-duration: 22s; }
@@ -302,8 +303,8 @@
 
 @keyframes cloudDrift {
   0% { opacity: 0; transform: translate3d(0, 0, 0) scale(.88); }
-  18% { opacity: .58; }
-  76% { opacity: .32; }
+  18% { opacity: .72; }
+  76% { opacity: .48; }
   100% { opacity: 0; transform: translate3d(150vw, -2rem, 0) scale(1.08); }
 }
 
@@ -445,6 +446,7 @@
   .bookTrack { transform: none !important; }
   .bookIntro, .adobeWindow { scroll-snap-align: center; }
   .applicationImage, .contentMedia, .socialPhone { opacity: 1 !important; clip-path: none !important; transform: none !important; }
+  .animaClouds { opacity: .72 !important; transform: none !important; }
 }
 
 @media (pointer: coarse) {

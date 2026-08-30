@@ -44,22 +44,22 @@ const applications = [
     side: "left",
   },
   {
-    id: "modelado",
-    eyebrow: "07 / 3D + VISUALIZACIÓN",
-    title: "Modelamos tu mundo.",
-    copy: "Construimos objetos, espacios y productos antes de que existan, listos para presentar, probar o animar.",
-    image: "/UROBOROS/assets/images/studio/architecture-optimized.jpg",
-    alt: "Render arquitectónico de un interior contemporáneo trabajado dentro de una interfaz de modelado tridimensional",
-    side: "right",
-  },
-  {
     id: "packaging",
-    eyebrow: "08 / PACKAGING + E-COMMERCE",
+    eyebrow: "07 / PACKAGING + E-COMMERCE",
     title: "Listo para enviar.",
     copy: "Diseñamos empaques que presentan, protegen y venden desde el primer contacto.",
     image: "/UROBOROS/assets/images/design/design-packaging-ready-generated-draft-v1.png",
     alt: "Empaque negro sin marca con estructura de papel y mecanismo interior naranja",
     side: "left",
+  },
+  {
+    id: "modelado",
+    eyebrow: "08 / 3D + VISUALIZACIÓN",
+    title: "Modelamos tu mundo.",
+    copy: "Construimos objetos, espacios y productos antes de que existan, listos para presentar, probar o animar.",
+    image: "/UROBOROS/assets/images/studio/architecture-optimized.jpg",
+    alt: "Render arquitectónico de un interior contemporáneo trabajado dentro de una interfaz de modelado tridimensional",
+    side: "right",
   },
 ] as const;
 
@@ -282,6 +282,14 @@ export default function DesignExperience() {
         scrollTrigger: { trigger: processVisual, start: "top 96%", end: "top 48%", scrub: .8 },
       });
 
+      const animaClouds = root.querySelector<HTMLElement>("[data-anima-clouds]");
+      if (animaClouds) gsap.fromTo(animaClouds, { autoAlpha: .08, scale: 1.07 }, {
+        autoAlpha: .94,
+        scale: 1,
+        ease: "none",
+        scrollTrigger: { trigger: animaClouds, start: "top 96%", end: "top 18%", scrub: 1.1 },
+      });
+
       const bookWindows = Array.from(root.querySelectorAll<HTMLElement>("[data-book-window]"));
       if (bookWindows.length) gsap.fromTo(bookWindows, { autoAlpha: .18, y: 64, scale: .965 }, {
         autoAlpha: 1,
@@ -498,7 +506,7 @@ export default function DesignExperience() {
 
       <section className={styles.anima} id="anima" aria-labelledby="anima-title">
         <i className={styles.sectionTransition} data-section-transition aria-hidden="true" />
-        <div className={styles.animaClouds} aria-hidden="true"><i /><i /><i /><i /></div>
+        <div className={styles.animaClouds} data-anima-clouds aria-hidden="true"><i /><i /><i /><i /></div>
         <div ref={loaderRef} className={styles.loader} aria-hidden="true">
           {Array.from({ length: 64 }, (_, index) => <i key={index} data-loader-bar style={{ "--bar-index": index } as CSSProperties} />)}
           <div><span ref={loaderNumberRef}>01</span><b>%</b><small>cargando αnima</small></div>
