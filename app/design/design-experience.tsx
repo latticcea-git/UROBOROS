@@ -36,25 +36,25 @@ const processSteps = [
 const applications = [
   {
     id: "branding",
-    eyebrow: "05 / BRANDING DESIGN",
-    title: "Creamos universos visuales.",
-    copy: "Tu marca deja de ser una pieza aislada y se convierte en un lenguaje reconocible.",
+    eyebrow: "06 / BRANDING DESIGN",
+    title: "Creamos tu universo visual.",
+    copy: "Diseñamos el kit que mantiene unido tu universo: identidad, tipografía, color, dirección de arte y aplicaciones.",
     image: "/UROBOROS/assets/images/design/design-branding-universe-generated-draft-v1.png",
     alt: "Sistema visual de papel, resina negra, metal y piezas naranjas dispuesto sobre una superficie oscura",
     side: "left",
   },
   {
     id: "modelado",
-    eyebrow: "06 / 3D + VISUALIZACIÓN",
+    eyebrow: "07 / 3D + VISUALIZACIÓN",
     title: "Modelamos tu mundo.",
     copy: "Construimos objetos, espacios y productos antes de que existan, listos para presentar, probar o animar.",
-    image: "/UROBOROS/assets/images/design/design-modeling-world-generated-draft-v1.png",
-    alt: "Objeto tridimensional continuo de vidrio, cromo y arcilla naranja suspendido sobre un pedestal",
+    image: "/UROBOROS/assets/images/studio/architecture-optimized.jpg",
+    alt: "Render arquitectónico de un interior contemporáneo trabajado dentro de una interfaz de modelado tridimensional",
     side: "right",
   },
   {
     id: "packaging",
-    eyebrow: "07 / PACKAGING",
+    eyebrow: "08 / PACKAGING + E-COMMERCE",
     title: "Listo para enviar.",
     copy: "Diseñamos empaques que presentan, protegen y venden desde el primer contacto.",
     image: "/UROBOROS/assets/images/design/design-packaging-ready-generated-draft-v1.png",
@@ -82,6 +82,64 @@ function DrawnArrow({ direction }: { direction: "right" | "down" | "upRight" | "
   }[direction];
 
   return <span className={`${styles.drawnArrow} ${directionClass}`} aria-hidden="true" />;
+}
+
+function SocialPhone() {
+  return (
+    <div className={styles.socialPhone} data-social-phone aria-label="Vista de una publicación de identidad de marca dentro de un teléfono">
+      <div className={styles.socialPhoneTop}><span>9:41</span><i aria-hidden="true" /></div>
+      <div className={styles.socialProfile}><b aria-hidden="true">L</b><span>IDENTIDAD / SISTEMA</span><i aria-hidden="true">•••</i></div>
+      <div className={styles.socialPost} aria-hidden="true">
+        <span className={styles.socialPostMark}>L</span>
+        <span className={styles.socialPostGrid} />
+        <strong>IDENTIDAD<br />EN MOVIMIENTO</strong>
+        <small>01 — 06</small>
+      </div>
+      <div className={styles.socialActions} aria-hidden="true"><i /><i /><i /><i /></div>
+      <p><b>Sistema visual naranja.</b><br />Una marca lista para publicar, adaptar y crecer.</p>
+      <div className={styles.socialPhoneHome} aria-hidden="true" />
+    </div>
+  );
+}
+
+function BrandKitExamples() {
+  return (
+    <div className={styles.brandKit} data-brand-kit aria-label="Ejemplos del kit de identidad">
+      {designProjects.slice(0, 2).map((project, index) => (
+        <Link href={`/book/${project.slug}`} key={project.slug} className={styles.brandKitCard} data-pen-active>
+          <Image src={project.image} fill sizes="(max-width: 620px) 42vw, 20vw" alt={project.alt} />
+          <span>{String(index + 1).padStart(2, "0")} / {project.title}</span>
+        </Link>
+      ))}
+      <div className={`${styles.brandKitCard} ${styles.brandKitPalette}`} aria-label="Paleta y sistema tipográfico">
+        <i /><i /><i /><i />
+        <strong>Aa</strong><span>Color / tipo / materia</span>
+      </div>
+    </div>
+  );
+}
+
+function BlenderInterface() {
+  return (
+    <div className={styles.blenderInterface} data-blender-ui aria-hidden="true">
+      <div className={styles.blenderTopbar}><span>LAYOUT</span><span>MODELING</span><b>RENDER</b><span>COMPOSITING</span></div>
+      <div className={styles.blenderTools}><i /><i /><i /><i /><i /><i /></div>
+      <div className={styles.blenderAxis}><i /><i /><i /><b>X</b><b>Y</b><b>Z</b></div>
+      <div className={styles.blenderOutliner}><strong>SCENE COLLECTION</strong><span>Architecture</span><span>Camera</span><span>Key light</span><span>Material.Orange</span></div>
+      <div className={styles.blenderTimeline}><span>001</span><i /><i /><i /><i /><i /><i /><span>120</span></div>
+      <span className={styles.blenderStatus}>RENDERING ARCHITECTURE / CYCLES</span>
+    </div>
+  );
+}
+
+function CommerceIcons() {
+  const icons = [
+    { label: "Tienda", path: <><path d="M3 5h2l1.4 8h8.8l1.7-6H6" /><circle cx="8" cy="16" r="1" /><circle cx="15" cy="16" r="1" /></> },
+    { label: "Empaque", path: <><path d="m4 7 6-3 6 3-6 3-6-3Z" /><path d="M4 7v7l6 3 6-3V7M10 10v7" /></> },
+    { label: "Entrega", path: <><path d="M2 6h10v8H2zM12 9h3l3 3v2h-6z" /><circle cx="6" cy="15" r="1.5" /><circle cx="15" cy="15" r="1.5" /></> },
+  ];
+
+  return <div className={styles.commerceIcons} data-commerce-icons>{icons.map((icon) => <span key={icon.label}><svg viewBox="0 0 20 20" aria-hidden="true">{icon.path}</svg><b>{icon.label}</b></span>)}</div>;
 }
 
 function AdobeWindow({ project, index }: { project: (typeof designProjects)[number]; index: number }) {
@@ -129,6 +187,9 @@ function ApplicationSection({ item }: { item: (typeof applications)[number] }) {
       <i className={styles.sectionTransition} data-section-transition aria-hidden="true" />
       <Image className={styles.applicationImage} src={item.image} fill sizes="100vw" alt={item.alt} data-application-image />
       <div className={styles.applicationShade} aria-hidden="true" />
+      {item.id === "branding" && <BrandKitExamples />}
+      {item.id === "modelado" && <BlenderInterface />}
+      {item.id === "packaging" && <CommerceIcons />}
       <div className={styles.applicationCopy} data-application-copy>
         <p className={styles.eyebrow}>{item.eyebrow}</p>
         <h2 id={`${item.id}-title`}>{item.title}</h2>
@@ -243,26 +304,70 @@ export default function DesignExperience() {
             .fromTo(image, { scale: 1.1, clipPath: "inset(9% 0 9% 0)", filter: "brightness(.62) saturate(.72)" }, { scale: 1, clipPath: "inset(0% 0 0% 0)", filter: "brightness(1) saturate(1)", duration: 1, ease: "none" })
             .to(image, { scale: 1.008, duration: .7, ease: "none" })
             .fromTo(copyChildren, { autoAlpha: 0, x: enterX, y: 28, filter: "blur(8px)" }, { autoAlpha: 1, x: 0, y: 0, filter: "blur(0px)", duration: 1, stagger: .08, ease: "none" });
-          return;
+        } else {
+          if (image) gsap.fromTo(image, { scale: 1.1, clipPath: "inset(9% 0 9% 0)", filter: "brightness(.62) saturate(.72)" }, {
+            scale: 1,
+            clipPath: "inset(0% 0 0% 0)",
+            filter: "brightness(1) saturate(1)",
+            ease: "none",
+            scrollTrigger: { trigger: section, start: "top 100%", end: "top 32%", scrub: .8 },
+          });
+          if (copy) gsap.fromTo(Array.from(copy.children), { autoAlpha: 0, x: enterX, y: 28, filter: "blur(8px)" }, {
+            autoAlpha: 1,
+            x: 0,
+            y: 0,
+            filter: "blur(0px)",
+            duration: 1,
+            stagger: .08,
+            ease: "none",
+            scrollTrigger: { trigger: section, start: "top 88%", end: "top 48%", scrub: .75 },
+          });
         }
-        if (image) gsap.fromTo(image, { scale: 1.1, clipPath: "inset(9% 0 9% 0)", filter: "brightness(.62) saturate(.72)" }, {
-          scale: 1,
-          clipPath: "inset(0% 0 0% 0)",
-          filter: "brightness(1) saturate(1)",
-          ease: "none",
-          scrollTrigger: { trigger: section, start: "top 100%", end: "top 32%", scrub: .8 },
-        });
-        if (copy) gsap.fromTo(Array.from(copy.children), { autoAlpha: 0, x: enterX, y: 28, filter: "blur(8px)" }, {
+
+        const brandKit = section.querySelector<HTMLElement>("[data-brand-kit]");
+        if (brandKit) gsap.fromTo(Array.from(brandKit.children), { autoAlpha: 0, y: 54, rotate: -2 }, {
           autoAlpha: 1,
-          x: 0,
           y: 0,
-          filter: "blur(0px)",
-          duration: 1,
-          stagger: .08,
+          rotate: 0,
+          stagger: .12,
           ease: "none",
-          scrollTrigger: { trigger: section, start: "top 88%", end: "top 48%", scrub: .75 },
+          scrollTrigger: { trigger: section, start: "top 72%", end: "top 24%", scrub: .8 },
+        });
+
+        const blenderUi = section.querySelector<HTMLElement>("[data-blender-ui]");
+        if (blenderUi) gsap.fromTo(Array.from(blenderUi.children), { autoAlpha: 0, scale: .96 }, {
+          autoAlpha: 1,
+          scale: 1,
+          stagger: .06,
+          ease: "none",
+          scrollTrigger: { trigger: section, start: "top 82%", end: "top 25%", scrub: .9 },
+        });
+
+        const commerceIcons = section.querySelector<HTMLElement>("[data-commerce-icons]");
+        if (commerceIcons) gsap.fromTo(Array.from(commerceIcons.children), { autoAlpha: 0, y: 40, scale: .9 }, {
+          autoAlpha: 1,
+          y: 0,
+          scale: 1,
+          stagger: .16,
+          ease: "none",
+          scrollTrigger: { trigger: section, start: "top 72%", end: "top 28%", scrub: .8 },
         });
       });
+
+      const socialSection = root.querySelector<HTMLElement>("[data-social-section]");
+      if (socialSection) {
+        const socialCopy = socialSection.querySelector<HTMLElement>("[data-social-copy]");
+        const socialPoints = socialSection.querySelectorAll<HTMLElement>("[data-social-point]");
+        const socialMedia = socialSection.querySelector<HTMLElement>("[data-social-media]");
+        const socialPhone = socialSection.querySelector<HTMLElement>("[data-social-phone]");
+        const socialTimeline = gsap.timeline({
+          scrollTrigger: { trigger: socialSection, start: "top 88%", end: "top 18%", scrub: .85 },
+        });
+        if (socialCopy) socialTimeline.fromTo(Array.from(socialCopy.children).filter((child) => child.tagName !== "UL"), { autoAlpha: 0, x: -52, y: 24, filter: "blur(8px)" }, { autoAlpha: 1, x: 0, y: 0, filter: "blur(0px)", stagger: .08, duration: 1, ease: "none" });
+        if (socialPoints.length) socialTimeline.fromTo(socialPoints, { autoAlpha: 0, y: 18 }, { autoAlpha: 1, y: 0, stagger: .1, duration: .6, ease: "none" }, ">-.15");
+        if (socialMedia) socialTimeline.fromTo(socialMedia, { autoAlpha: 0, scale: 1.08, clipPath: "inset(12% 0 0 0)" }, { autoAlpha: 1, scale: 1, clipPath: "inset(0% 0 0 0)", duration: 1.2, ease: "none" }, ">-.05");
+        if (socialPhone) socialTimeline.fromTo(socialPhone, { autoAlpha: 0, y: "62vh", rotate: 5 }, { autoAlpha: 1, y: 0, rotate: 0, duration: 1.35, ease: "none" }, "<+.1");
+      }
 
       const loaderState = { progress: .01 };
       gsap.to(loaderState, {
@@ -393,13 +498,14 @@ export default function DesignExperience() {
 
       <section className={styles.anima} id="anima" aria-labelledby="anima-title">
         <i className={styles.sectionTransition} data-section-transition aria-hidden="true" />
+        <div className={styles.animaClouds} aria-hidden="true"><i /><i /><i /><i /></div>
         <div ref={loaderRef} className={styles.loader} aria-hidden="true">
           {Array.from({ length: 64 }, (_, index) => <i key={index} data-loader-bar style={{ "--bar-index": index } as CSSProperties} />)}
-          <div><span ref={loaderNumberRef}>01</span><b>%</b><small>cargando anima</small></div>
+          <div><span ref={loaderNumberRef}>01</span><b>%</b><small>cargando αnima</small></div>
         </div>
         <div className={styles.animaCopy} data-reveal>
           <p className={styles.eyebrow}>03 / MOTION + ANIMACIÓN</p>
-          <h2 id="anima-title">ANIMA</h2>
+          <h2 id="anima-title" aria-label="anima"><span aria-hidden="true">αnima</span></h2>
           <p>Le damos alma y movimiento a tu mundo plano.</p>
         </div>
       </section>
@@ -419,20 +525,23 @@ export default function DesignExperience() {
         </div>
       </section>
 
-      <div id="aplicaciones" className={styles.applicationFlow}>{applications.map((item) => <ApplicationSection item={item} key={item.id} />)}</div>
-
-      <section className={styles.content} id="contenido" aria-labelledby="content-title" data-application>
+      <section className={styles.content} id="contenido" aria-labelledby="content-title" data-social-section>
         <i className={styles.sectionTransition} data-section-transition aria-hidden="true" />
-        <Image className={styles.contentImage} src="/UROBOROS/assets/images/design/design-social-content-generated-draft-v1.png" fill sizes="100vw" alt="Mano sosteniendo un teléfono sin marca con formas abstractas bajo luz naranja" data-application-image />
+        <div className={styles.contentMedia} data-social-media>
+          <Image className={styles.contentImage} src="/UROBOROS/assets/images/design/design-social-content-generated-draft-v1.png" fill sizes="100vw" alt="Mano sosteniendo un teléfono bajo luz naranja" />
+          <SocialPhone />
+        </div>
         <div className={styles.contentShade} aria-hidden="true" />
-        <div className={styles.contentCopy} data-application-copy>
-          <p className={styles.eyebrow}>08 / CONTENIDO PARA REDES</p>
+        <div className={styles.contentCopy} data-social-copy>
+          <p className={styles.eyebrow}>05 / CONTENIDO PARA REDES</p>
           <h2 id="content-title">Contenido periódico<br />para redes sociales.<br /><em>Lo hacemos por ti.</em></h2>
           <p>Planeamos, diseñamos y adaptamos un sistema constante para que tu marca no improvise cada semana.</p>
-          <ul aria-label="Alcance del servicio"><li>Planeación</li><li>Diseño</li><li>Adaptación</li><li>Entrega periódica</li></ul>
+          <ul aria-label="Alcance del servicio"><li data-social-point>Planeación</li><li data-social-point>Diseño</li><li data-social-point>Adaptación</li><li data-social-point>Entrega periódica</li></ul>
           <a href="#contacto" data-pen-active>Construyamos tu sistema <DrawnArrow direction="upRight" /></a>
         </div>
       </section>
+
+      <div id="aplicaciones" className={styles.applicationFlow}>{applications.map((item) => <ApplicationSection item={item} key={item.id} />)}</div>
 
       <section className={styles.contact} id="contacto" aria-labelledby="contact-title">
         <i className={styles.sectionTransition} data-section-transition aria-hidden="true" />
