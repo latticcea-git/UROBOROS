@@ -191,7 +191,8 @@ function ContactPopup() {
 }
 
 export default function GlobalShell({ children }: { children: ReactNode }) {
-  const pathname = usePathname();
+  const rawPathname = usePathname();
+  const pathname = rawPathname.replace(/^\/UROBOROS(?=\/|$)/, "").replace(/\.html$/, "").replace(/\/$/, "") || "/";
   const isCinema = pathname === "/films/cinema" || pathname.startsWith("/films/cinema/");
   const node = nodes.find((item) => pathname === item.href || pathname.startsWith(`${item.href}/`))?.node;
   if (isCinema) return <>{children}<ContactPopup /></>;
