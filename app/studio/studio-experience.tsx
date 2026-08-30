@@ -12,12 +12,12 @@ import styles from "./studio.module.css";
 const WHATSAPP_NUMBER = "525525241137";
 
 const services = [
-  { id: "video", title: "Producción de video", image: "/UROBOROS/assets/images/studio/video.png" },
-  { id: "photo", title: "Sesión fotográfica", image: "/UROBOROS/assets/images/studio/photo.png" },
-  { id: "videoclips", title: "Videoclips", image: "/UROBOROS/assets/images/studio/videoclips.png" },
-  { id: "events", title: "Cobertura de eventos", image: "/UROBOROS/assets/images/studio/events.png" },
-  { id: "food", title: "Food styling", image: "/UROBOROS/assets/images/studio/food.png" },
-  { id: "architecture", title: "Arquitectura", image: "/UROBOROS/assets/images/studio/architecture.png" },
+  { id: "video", title: "Producción de video", image: "/UROBOROS/assets/images/studio/video-optimized.jpg" },
+  { id: "photo", title: "Sesión fotográfica", image: "/UROBOROS/assets/images/studio/photo-optimized.jpg" },
+  { id: "videoclips", title: "Videoclips", image: "/UROBOROS/assets/images/studio/videoclips-optimized.jpg" },
+  { id: "events", title: "Cobertura de eventos", image: "/UROBOROS/assets/images/studio/events-optimized.jpg" },
+  { id: "food", title: "Food styling", image: "/UROBOROS/assets/images/studio/food-optimized.jpg" },
+  { id: "architecture", title: "Arquitectura", image: "/UROBOROS/assets/images/studio/architecture-optimized.jpg" },
 ] as const;
 
 const process = [
@@ -205,7 +205,7 @@ export default function StudioExperience() {
         <div className={styles.sticky} ref={stickyRef}>
           <div className={styles.track} ref={trackRef}>
             <section className={`${styles.panel} ${styles.hero}`} id="inicio" data-studio-panel="inicio">
-              <Image className={styles.heroImage} src="/UROBOROS/assets/images/studio/studio-cdmx-golden-hour-generated-draft-v2.png" alt="Ciudad de México durante una hora dorada, con el Ángel de la Independencia y peatones a contraluz." fill priority sizes="100vw" />
+              <ResponsivePhoto className={styles.heroImage} desktop="/UROBOROS/assets/images/studio/studio-cdmx-golden-hour-generated-draft-v2-optimized.jpg" mobile="/UROBOROS/assets/images/studio/studio-cdmx-golden-hour-generated-draft-v2-mobile.jpg" alt="Ciudad de México durante una hora dorada, con el Ángel de la Independencia y peatones a contraluz." eager />
               <div className={styles.heroShade} />
               <div className={styles.heroContent} data-studio-reveal>
                 <Image className={styles.heroLogo} src="/UROBOROS/assets/logos/LTT_LOGO_NEG_STUDIO.svg" alt="LATTICCE Studio" width={760} height={196} priority />
@@ -219,9 +219,9 @@ export default function StudioExperience() {
             </section>
 
             <section className={`${styles.panel} ${styles.statement}`} id="mirada" data-studio-panel="mirada">
-              <Image className={`${styles.mountain} ${styles.mountainTop}`} src="/UROBOROS/assets/images/studio/studio-snow-mountain-generated-draft-v2.png" alt="" fill sizes="100vw" />
-              <Image className={`${styles.mountain} ${styles.mountainTopEcho}`} src="/UROBOROS/assets/images/studio/studio-snow-mountain-generated-draft-v2.png" alt="" fill sizes="62vw" />
-              <Image className={`${styles.mountain} ${styles.mountainBottom}`} src="/UROBOROS/assets/images/studio/studio-snow-mountain-generated-draft-v2.png" alt="" fill sizes="100vw" />
+              <ResponsivePhoto className={`${styles.mountain} ${styles.mountainTop}`} desktop="/UROBOROS/assets/images/studio/studio-snow-mountain-generated-draft-v2-optimized.jpg" mobile="/UROBOROS/assets/images/studio/studio-snow-mountain-generated-draft-v2-mobile.jpg" alt="" />
+              <ResponsivePhoto className={`${styles.mountain} ${styles.mountainTopEcho}`} desktop="/UROBOROS/assets/images/studio/studio-snow-mountain-generated-draft-v2-optimized.jpg" mobile="/UROBOROS/assets/images/studio/studio-snow-mountain-generated-draft-v2-mobile.jpg" alt="" />
+              <ResponsivePhoto className={`${styles.mountain} ${styles.mountainBottom}`} desktop="/UROBOROS/assets/images/studio/studio-snow-mountain-generated-draft-v2-optimized.jpg" mobile="/UROBOROS/assets/images/studio/studio-snow-mountain-generated-draft-v2-mobile.jpg" alt="" />
               <div className={styles.statementShade} />
               <div className={styles.statementContent} data-studio-reveal>
                 <p className={styles.eyebrow}>02 / Lo que hacemos</p>
@@ -271,8 +271,8 @@ export default function StudioExperience() {
 
             <section className={`${styles.panel} ${styles.post}`} id="postproduccion" data-studio-panel="postproduccion">
               <div className={styles.postReference} data-studio-reveal>
-                <Image className={styles.postReferenceUi} src="/UROBOROS/assets/images/studio/studio-postproduction-davinci-reference-user-v2.png" alt="Interfaz de referencia aportada para representar un flujo profesional de edición y corrección de color." fill sizes="118vw" />
-                <div className={styles.postIndustrialFrame}><Image src="/UROBOROS/assets/images/studio/studio-industrial-commercial-generated-draft-v1.png" alt="Operador supervisando una máquina industrial durante un comercial." fill sizes="54vw" /></div>
+                <ResponsivePhoto className={styles.postReferenceUi} desktop="/UROBOROS/assets/images/studio/studio-postproduction-davinci-reference-user-v2-optimized.jpg" mobile="/UROBOROS/assets/images/studio/studio-postproduction-davinci-reference-user-v2-mobile.jpg" alt="Interfaz de referencia aportada para representar un flujo profesional de edición y corrección de color." />
+                <div className={styles.postIndustrialFrame}><Image src="/UROBOROS/assets/images/studio/studio-industrial-commercial-generated-draft-v1-optimized.jpg" alt="Operador supervisando una máquina industrial durante un comercial." fill sizes="(max-width: 900px) 74vw, 40vw" /></div>
                 <div className={styles.postIntegratedCopy}><p className={styles.eyebrow}>07 / Precisión después del rodaje</p><h2>Expertos en<br /><em>postproducción.</em></h2></div>
                 <div className={styles.postServiceBoard}>
                   <div className={styles.postServices}>{["Montaje", "Color grading", "VFX", "Motion graphics", "Retoque", "Edición fotográfica", "Limpieza de audio", "Masters y adaptaciones"].map((item) => <span key={item}>{item}</span>)}</div>
@@ -284,7 +284,7 @@ export default function StudioExperience() {
             <section className={`${styles.panel} ${styles.cta}`} data-studio-panel="cta"><div className={styles.ctaSea} aria-hidden="true"><BlackSea active={activeScene === "postproduccion"} presence={0.3} tempo={0.42} horizon={0.1} /></div><div className={styles.ctaGlow} aria-hidden="true" /><div className={styles.ctaContent} data-studio-reveal><p className={styles.eyebrow}>Tu proyecto puede ser el siguiente</p><h2>Hagamos <strong>visible</strong><br /><em>lo que imaginas.</em></h2><a href={whatsappUrl("Hola LATTICCE Studio, quiero hacer visible un proyecto.")} target="_blank" rel="noreferrer">Construir mi proyecto <ArrowUpRightIcon /></a></div></section>
 
             <section className={`${styles.panel} ${styles.social}`} id="contenido" data-studio-panel="contenido">
-              <Image className={styles.socialBackground} src="/UROBOROS/assets/images/studio/studio-social-dance-generated-draft-v1.png" alt="" fill sizes="100vw" /><div className={styles.socialShade} />
+              <ResponsivePhoto className={styles.socialBackground} desktop="/UROBOROS/assets/images/studio/studio-social-dance-generated-draft-v1-optimized.jpg" mobile="/UROBOROS/assets/images/studio/studio-social-dance-generated-draft-v1-mobile.jpg" alt="" /><div className={styles.socialShade} />
               <div className={styles.socialCopy} data-studio-reveal><p className={styles.eyebrow}>08 / Contenido periódico</p><h2>Tu marca también<br /><em>vive en movimiento.</em></h2><p>Planeamos, producimos y adaptamos contenido para que tus redes mantengan presencia sin perder intención.</p></div>
               <PhoneCamera /><span className={styles.draftLabel}>© LATTICCE — Todos los derechos reservados</span>
             </section>
@@ -305,7 +305,11 @@ function StudioFrame({ activeScene, sceneIndex, telemetry, onNavigate }: { activ
 }
 
 function PhoneCamera() {
-  return <div className={styles.phone} aria-label="Interfaz conceptual de cámara móvil"><div className={styles.phoneTop}><span>9:41</span><b className={styles.phoneSignal} aria-hidden="true"><i /><i /><i /></b></div><div className={styles.phoneMode}><span>RAW</span><b>CONTENT</b><span className={styles.phoneDots} aria-hidden="true"><i /><i /><i /></span></div><div className={styles.phonePreview}><Image src="/UROBOROS/assets/images/studio/studio-social-dance-generated-draft-v1.png" alt="Creadora de contenido bailando ante una cámara." fill sizes="26vw" /></div><div className={styles.phoneMeter}><span>−2</span><span>−1</span><b>0</b><span>+1</span><span>+2</span></div><div className={styles.phoneSettings}><span>4K<br /><b>RES</b></span><span>24<br /><b>FPS</b></span><span>5200<br /><b>WB</b></span></div><div className={styles.phoneShutter}><i /><button type="button" tabIndex={-1} aria-hidden="true" /><i /></div></div>;
+  return <div className={styles.phone} aria-label="Interfaz conceptual de cámara móvil"><div className={styles.phoneTop}><span>9:41</span><b className={styles.phoneSignal} aria-hidden="true"><i /><i /><i /></b></div><div className={styles.phoneMode}><span>RAW</span><b>CONTENT</b><span className={styles.phoneDots} aria-hidden="true"><i /><i /><i /></span></div><div className={styles.phonePreview}><Image src="/UROBOROS/assets/images/studio/studio-social-dance-generated-draft-v1-mobile.jpg" alt="Creadora de contenido bailando ante una cámara." fill sizes="(max-width: 900px) 48vw, 22vw" /></div><div className={styles.phoneMeter}><span>−2</span><span>−1</span><b>0</b><span>+1</span><span>+2</span></div><div className={styles.phoneSettings}><span>4K<br /><b>RES</b></span><span>24<br /><b>FPS</b></span><span>5200<br /><b>WB</b></span></div><div className={styles.phoneShutter}><i /><button type="button" tabIndex={-1} aria-hidden="true" /><i /></div></div>;
+}
+
+function ResponsivePhoto({ className, desktop, mobile, alt, eager = false }: { className: string; desktop: string; mobile: string; alt: string; eager?: boolean }) {
+  return <picture className={`${styles.responsivePhoto} ${className}`}><source media="(max-width: 900px)" srcSet={mobile} /><img src={desktop} alt={alt} loading={eager ? "eager" : "lazy"} fetchPriority={eager ? "high" : "auto"} decoding="async" /></picture>;
 }
 
 function ArrowRightIcon() {

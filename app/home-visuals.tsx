@@ -49,8 +49,10 @@ export function BlackSea({ active, presence = 0.7, tempo = 1, horizon = 0 }: Bla
     if (!canvas || !context) return;
 
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const compactRender = window.matchMedia("(max-width: 900px), (pointer: coarse)").matches;
     const pointer = { x: 0.68, y: 0.48, energy: 0 };
     let frame = 0;
+    let previousDraw = 0;
     let lastX = window.innerWidth * pointer.x;
     let lastY = window.innerHeight * pointer.y;
     let lastTime = performance.now();
@@ -68,6 +70,11 @@ export function BlackSea({ active, presence = 0.7, tempo = 1, horizon = 0 }: Bla
     };
 
     const draw = (now: number) => {
+      if (compactRender && !reduceMotion && now - previousDraw < 32) {
+        if (active && document.visibilityState === "visible") frame = window.requestAnimationFrame(draw);
+        return;
+      }
+      previousDraw = now;
       const { width, height } = sizeCanvas(canvas, context);
       const time = reduceMotion ? 0.8 : now * 0.00016 * tempo;
       pointer.energy *= 0.965;
@@ -88,8 +95,8 @@ export function BlackSea({ active, presence = 0.7, tempo = 1, horizon = 0 }: Bla
       context.fillStyle = atmosphere;
       context.fillRect(0, 0, width, height);
 
-      const rows = Math.max(42, Math.round(height / 15));
-      const points = Math.max(56, Math.round(width / 22));
+      const rows = compactRender ? Math.max(28, Math.round(height / 24)) : Math.max(42, Math.round(height / 15));
+      const points = compactRender ? Math.max(38, Math.round(width / 34)) : Math.max(56, Math.round(width / 22));
 
       for (let row = 0; row < rows; row += 1) {
         const depth = row / Math.max(1, rows - 1);
