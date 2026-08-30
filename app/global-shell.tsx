@@ -178,7 +178,7 @@ function ContactPopup() {
     const intercept = (event: MouseEvent) => {
       const target = (event.target as HTMLElement).closest<HTMLAnchorElement>("a[href='#contacto-global'], a[href='#contacto'], a[href='/#contacto'], a[href='#cotizar'], a[href='#agenda'], a[href='#cuentanos'], a[href^='mailto:']");
       if (!target || target.closest(".shared-section-nav")) return;
-      if (target.getAttribute("href") === "#contacto-global") { setContext("general"); setOpen(true); return; }
+      if (target.getAttribute("href") === "#contacto-global") { event.preventDefault(); setContext("general"); setOpen(true); return; }
       event.preventDefault();
       setContext("general"); setOpen(true);
     };
