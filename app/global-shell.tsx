@@ -143,17 +143,22 @@ function GlobalHeader() {
   return <header className="shared-header">
     <Link className="shared-header-logo" href="/" aria-label="LATTICCE, ir al inicio"><Image src="/UROBOROS/assets/logos/LTT_LOGO_1920_FX.png" width={246} height={47} alt="LATTICCE" priority /></Link>
     <a className="shared-header-whatsapp" href={`https://wa.me/${WHATSAPP_NUMBER}`} target="_blank" rel="noreferrer"><Image src="/UROBOROS/assets/icons/social/whatsapp.svg" width={16} height={16} alt="" /> WhatsApp</a>
-    <details className="shared-header-menu">
-      <summary className="shared-header-trigger" aria-controls="global-navigation">Menú<i aria-hidden="true">+</i></summary>
-      <nav className="shared-navigation" id="global-navigation" aria-label="Navegación principal">
-        <Link href="/">HOME</Link>
-        <details className="shared-navigation-group"><summary>NODOS <span>+</span></summary><div>{nodes.map((item) => <Link key={item.node} href={item.href} data-node={item.node}>{item.label}</Link>)}</div></details>
-        <Link href="/book">BOOK</Link><Link href="/blog">BLOG</Link><Link href="/films/cinema">CINNEMA</Link>
-        <details className="shared-navigation-group"><summary>PORTAL <span>+</span></summary><div>{portalLinks.map((item) => <Link key={item.label} href={item.href}>{item.label}</Link>)}</div></details>
-        <a className="shared-navigation-contact" href="#contacto-global">CONTACTO</a>
-        <a className="shared-navigation-whatsapp" href={`https://wa.me/${WHATSAPP_NUMBER}`} target="_blank" rel="noreferrer">WHATSAPP ↗︎</a>
-      </nav>
-    </details>
+    <div className="shared-header-actions">
+      <Link className="shared-header-login" href="/usuario" aria-label="Iniciar sesión">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.25" /><path d="M5.75 19c.7-3.2 2.8-5 6.25-5s5.55 1.8 6.25 5" /></svg>
+      </Link>
+      <details className="shared-header-menu">
+        <summary className="shared-header-trigger" aria-controls="global-navigation"><span>Menú</span><i aria-hidden="true"><b /><b /><b /></i></summary>
+        <nav className="shared-navigation" id="global-navigation" aria-label="Navegación principal">
+          <Link href="/">HOME</Link>
+          <details className="shared-navigation-group"><summary>NODOS <span>+</span></summary><div>{nodes.map((item) => <Link key={item.node} href={item.href} data-node={item.node}>{item.label}</Link>)}</div></details>
+          <Link href="/book">BOOK</Link><Link href="/blog">BLOG</Link><Link href="/films/cinema">CINNEMA</Link>
+          <details className="shared-navigation-group"><summary>PORTAL <span>+</span></summary><div>{portalLinks.map((item) => <Link key={item.label} href={item.href}>{item.label}</Link>)}</div></details>
+          <a className="shared-navigation-contact" href="#contacto-global">CONTACTO</a>
+          <a className="shared-navigation-whatsapp" href={`https://wa.me/${WHATSAPP_NUMBER}`} target="_blank" rel="noreferrer">WHATSAPP ↗︎</a>
+        </nav>
+      </details>
+    </div>
   </header>;
 }
 
@@ -184,7 +189,11 @@ function ContactPopup() {
   const sendEmail = (event: FormEvent) => { event.preventDefault(); window.location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(`Nuevo proyecto — ${contextLabel} — ${name}`)}&body=${encodeURIComponent(body)}`; };
   const whatsappHref = `https://wa.me/${WHATSAPP_NUMBER}${body.trim() ? `?text=${encodeURIComponent(body)}` : ""}`;
   return <div id="contacto-global" className="contact-popup-backdrop" data-open={open ? "true" : "false"} role="presentation" onMouseDown={(event) => { if (event.target === event.currentTarget) setOpen(false); }}><section className="contact-popup" role="dialog" aria-modal="true" aria-labelledby={titleId}>
-    <a className="contact-popup-close" href="#" aria-label="Cerrar contacto" onClick={() => setOpen(false)}>×</a><p>{context === "films" ? "Contacto / LATTICCE FILMS" : "Contacto general / LATTICCE"}</p>{context === "films" ? <h2 id={titleId}>CONTACTA CON<br /><em>LATTICCE FILMS</em></h2> : <h2 id={titleId}>Aquí termina TU<br /><em>recorrido</em><br />COMIENZA TU<br /><em>camino</em></h2>}
+    <button className="contact-popup-close" type="button" aria-label="Cerrar contacto" onClick={() => setOpen(false)}>×</button>
+    <p className="contact-popup-signal">Señal definitiva</p>
+    <p className="contact-popup-context">{context === "films" ? "LATTICCE FILMS" : "LATTICCE / CONTACTO"}</p>
+    <h2 id={titleId}>CONTTANCCTTA,<br /><em>platica y</em><br />CONECCTTA</h2>
+    <p className="contact-popup-subtitle">Envía el formulario y un ejecutivo de ventas de LATTICCE hará contacto a la brevedad.</p>
     <form action={`mailto:${CONTACT_EMAIL}`} method="post" encType="text/plain" onSubmit={sendEmail}><label><span>Nombre</span><input required name="Nombre" value={name} onChange={(event) => setName(event.target.value)} /></label><label><span>Correo o teléfono</span><input required name="Contacto" value={contact} onChange={(event) => setContact(event.target.value)} /></label><label><span>Proyecto</span><textarea required name="Proyecto" rows={4} value={message} onChange={(event) => setMessage(event.target.value)} /></label><div className="contact-popup-actions"><button type="submit">Enviar por correo ↗︎</button><a href={whatsappHref} target="_blank" rel="noreferrer">Enviar por WhatsApp ↗︎</a></div></form>
     <a className="contact-popup-email" href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
   </section></div>;
