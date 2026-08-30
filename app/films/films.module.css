@@ -1,0 +1,37 @@
+.root {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  min-height: 100svh;
+  overflow: hidden;
+  padding: clamp(7rem,12vh,9rem) clamp(1.25rem,4vw,4rem) clamp(1.5rem,4vh,3rem);
+  color: #ecece8;
+  background: #020303;
+}
+.landscape,.atmosphere { position: absolute; inset: 0; z-index: -2; }
+.landscape { background: url("/UROBOROS/assets/images/films/cinema/cinema-auditorium-generated-draft-v1.jpg") center/cover no-repeat; filter: grayscale(1) contrast(1.16) brightness(.35); transform: scale(1.025); animation: landscapeBreath 18s ease-in-out infinite alternate; }
+.atmosphere { z-index: -1; background: linear-gradient(90deg,rgba(0,0,0,.9),rgba(0,0,0,.38) 58%,rgba(0,0,0,.76)),radial-gradient(circle at 66% 42%,rgba(220,229,229,.12),transparent 38%); }
+.route { position: absolute; top: 6.8rem; left: clamp(1.25rem,4vw,4rem); margin: 0; color: #777975; font-size: .55rem; letter-spacing: .18em; text-transform: uppercase; }
+.signal { align-self: center; width: min(52rem,90vw); }
+.signal > span { color: #8b8d89; font-size: .56rem; letter-spacing: .18em; }
+.signal > img { display: block; width: clamp(11rem,22vw,19rem); height: auto; margin: 1.5rem 0 clamp(1.8rem,4vh,3rem); filter: brightness(1.12) contrast(1.06) drop-shadow(0 0 1.8rem rgba(225,231,230,.15)); }
+.signal h1 { margin: 0; font-size: clamp(3.1rem,8.6vw,9rem); font-weight: 700; letter-spacing: -.075em; line-height: .77; }
+.signal p { width: min(33rem,100%); margin: 2rem 0; color: #b1b3af; font-size: clamp(.74rem,1.1vw,.92rem); line-height: 1.6; text-wrap: pretty; }
+.signal nav { display: flex; flex-wrap: wrap; gap: .75rem; }
+.signal nav a { display: inline-flex; min-height: 2.9rem; align-items: center; gap: 1.2rem; padding: .7rem 1rem; border: 1px solid rgba(255,255,255,.28); border-radius: 999px; background: rgba(5,6,6,.36); font-size: .56rem; letter-spacing: .14em; transition: border-color 220ms ease,background 220ms ease,color 220ms ease,box-shadow 220ms ease; }
+.signal nav a:first-child { color: #050505; background: #ecece8; }
+.signal nav a:hover,.signal nav a:focus-visible { border-color: rgba(255,255,255,.7); box-shadow: 0 0 1.6rem rgba(224,232,231,.14); }
+.root footer { align-self: end; display: flex; justify-content: space-between; gap: 1rem; color: #777975; font-size: .5rem; letter-spacing: .15em; }
+@keyframes landscapeBreath { from { filter: grayscale(1) contrast(1.16) brightness(.31); transform: scale(1.025); } to { filter: grayscale(1) contrast(1.12) brightness(.42); transform: scale(1.055); } }
+@media (max-width:700px) {
+  .root { padding: 6.8rem 1.2rem 1.5rem; }
+  .route { top: 5.6rem; left: 1.2rem; }
+  .signal { width: 100%; }
+  .signal > img { width: 11rem; margin-block: 1.2rem 2.4rem; }
+  .signal h1 { font-size: clamp(2.65rem,12.2vw,4rem); }
+  .signal p { margin-block: 1.6rem; }
+  .signal nav { display: grid; grid-template-columns: 1fr; }
+  .signal nav a { justify-content: space-between; }
+  .root footer { font-size: .44rem; }
+}
+@media (prefers-reduced-motion:reduce) { .landscape { animation: none; } }
