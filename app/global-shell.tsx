@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { CSSProperties, FormEvent, ReactNode, useEffect, useId, useMemo, useState } from "react";
+import { CSSProperties, FormEvent, PointerEvent as ReactPointerEvent, ReactNode, useEffect, useId, useMemo, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 
 const WHATSAPP_NUMBER = "525525241137";
@@ -166,6 +166,8 @@ function ContactPopup() {
   const [open, setOpen] = useState(false);
   const [context, setContext] = useState<ContactContext>("general");
   const titleId = useId();
+  const popupRef = useRef<HTMLElement>(null);
+  const touchLightTimer = useRef<number | null>(null);
   const [name, setName] = useState(""); const [contact, setContact] = useState(""); const [message, setMessage] = useState("");
   useEffect(() => {
     const show = (event: Event) => {
@@ -182,13 +184,45 @@ function ContactPopup() {
     };
     const escape = (event: KeyboardEvent) => { if (event.key === "Escape") setOpen(false); };
     window.addEventListener("latticce:open-contact", show); document.addEventListener("click", intercept); document.addEventListener("keydown", escape);
-    return () => { window.removeEventListener("latticce:open-contact", show); document.removeEventListener("click", intercept); document.removeEventListener("keydown", escape); };
+    return () => {
+      window.removeEventListener("latticce:open-contact", show);
+      document.removeEventListener("click", intercept);
+      document.removeEventListener("keydown", escape);
+      if (touchLightTimer.current !== null) window.clearTimeout(touchLightTimer.current);
+    };
   }, []);
+  useEffect(() => {
+    popupRef.current?.style.setProperty("--contact-light", "0");
+    if (touchLightTimer.current !== null) {
+      window.clearTimeout(touchLightTimer.current);
+      touchLightTimer.current = null;
+    }
+  }, [open]);
+  const moveLightTowardClose = (event: ReactPointerEvent<HTMLElement>) => {
+    if (event.pointerType === "touch") return;
+    const close = event.currentTarget.querySelector<HTMLElement>(".contact-popup-close");
+    if (!close) return;
+    const bounds = close.getBoundingClientRect();
+    const distance = Math.hypot(event.clientX - (bounds.left + bounds.width / 2), event.clientY - (bounds.top + bounds.height / 2));
+    const radius = Math.min(760, Math.max(320, event.currentTarget.clientWidth * .78));
+    const proximity = Math.max(0, Math.min(1, 1 - distance / radius));
+    event.currentTarget.style.setProperty("--contact-light", Math.pow(proximity, 1.18).toFixed(3));
+  };
+  const activateTouchLight = (event: ReactPointerEvent<HTMLElement>) => {
+    if (event.pointerType !== "touch") return;
+    const popup = event.currentTarget;
+    popup.style.setProperty("--contact-light", "1");
+    if (touchLightTimer.current !== null) window.clearTimeout(touchLightTimer.current);
+    touchLightTimer.current = window.setTimeout(() => {
+      popup.style.setProperty("--contact-light", "0");
+      touchLightTimer.current = null;
+    }, 1500);
+  };
   const contextLabel = context === "films" ? "LATTICCE FILMS" : "LATTICCE";
   const body = [`Área: ${contextLabel}`, `Nombre: ${name}`, `Contacto: ${contact}`, "", message].join("\n");
   const sendEmail = (event: FormEvent) => { event.preventDefault(); window.location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(`Nuevo proyecto — ${contextLabel} — ${name}`)}&body=${encodeURIComponent(body)}`; };
   const whatsappHref = `https://wa.me/${WHATSAPP_NUMBER}${body.trim() ? `?text=${encodeURIComponent(body)}` : ""}`;
-  return <div id="contacto-global" className="contact-popup-backdrop" data-open={open ? "true" : "false"} role="presentation" onMouseDown={(event) => { if (event.target === event.currentTarget) setOpen(false); }}><section className="contact-popup" role="dialog" aria-modal="true" aria-labelledby={titleId}>
+  return <div id="contacto-global" className="contact-popup-backdrop" data-open={open ? "true" : "false"} role="presentation" onMouseDown={(event) => { if (event.target === event.currentTarget) setOpen(false); }}><section ref={popupRef} className="contact-popup" role="dialog" aria-modal="true" aria-labelledby={titleId} onPointerMove={moveLightTowardClose} onPointerLeave={(event) => { if (event.pointerType !== "touch") event.currentTarget.style.setProperty("--contact-light", "0"); }} onPointerDown={activateTouchLight}>
     <button className="contact-popup-close" type="button" aria-label="Cerrar contacto" onClick={() => setOpen(false)}>×</button>
     <p className="contact-popup-signal">Señal definitiva</p>
     <p className="contact-popup-context">{context === "films" ? "LATTICCE FILMS" : "LATTICCE / CONTACTO"}</p>
