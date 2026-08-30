@@ -36,6 +36,22 @@ export type BookProject = {
   }>;
 };
 
+function concertGallery(
+  basePath: string,
+  count: number,
+  artist: string,
+  captions: string[],
+): NonNullable<BookProject["gallery"]> {
+  return Array.from({ length: count }, (_, index) => {
+    const number = String(index + 1).padStart(2, "0");
+    return {
+      image: `${basePath}-${number}.jpg`,
+      alt: `${artist} durante el concierto, fotografía ${index + 1} de ${count}.`,
+      caption: captions[index] ?? `Registro documental / ${number}`,
+    };
+  });
+}
+
 export const bookNodes: BookNode[] = [
   {
     id: "agency",
@@ -104,39 +120,18 @@ export const bookProjects: BookProject[] = [
     galleryFirst: true,
     galleryTitle: "Una noche,",
     galleryEmphasis: "en enjambre",
-    galleryDescription: "La secuencia avanza del público a la presencia escénica y termina en una imagen de comunidad, sin reconstruir la energía del directo.",
-    gallery: [
-      {
-        image: "/UROBOROS/assets/images/book/enjambre/enjambre-gallery-01.jpg",
-        alt: "Asistente sostiene una manta de Enjambre entre el público del Estadio GNP Seguros.",
-        caption: "Pertenencia / Apertura",
-      },
-      {
-        image: "/UROBOROS/assets/images/book/enjambre/enjambre-gallery-02.jpg",
-        alt: "Integrante de Enjambre canta frente a una pantalla cian y magenta durante el concierto.",
-        caption: "Color y gesto / Pulso",
-      },
-      {
-        image: "/UROBOROS/assets/images/book/enjambre/enjambre-gallery-03.jpg",
-        alt: "Vocalista de Enjambre canta bajo un campo de luces en blanco y negro.",
-        caption: "Voz y constelación / Centro",
-      },
-      {
-        image: "/UROBOROS/assets/images/book/enjambre/enjambre-gallery-04.jpg",
-        alt: "Escenario de Enjambre visto en escala amplia bajo luces circulares y humo.",
-        caption: "Escenario / Escala",
-      },
-      {
-        image: "/UROBOROS/assets/images/book/enjambre/enjambre-gallery-05.jpg",
-        alt: "La banda Enjambre comparte el escenario en una imagen panorámica en blanco y negro.",
-        caption: "Banda completa / Encuentro",
-      },
-      {
-        image: "/UROBOROS/assets/images/book/enjambre/enjambre-gallery-06.jpg",
-        alt: "Dos asistentes con trajes de abeja celebran dentro del público del concierto de Enjambre.",
-        caption: "Comunidad / Cierre",
-      },
-    ],
+    galleryDescription: "La secuencia completa avanza del público a la presencia escénica y vuelve sobre la banda, el color y la escala del Estadio GNP, sin reconstruir la energía del directo.",
+    gallery: concertGallery(
+      "/UROBOROS/assets/images/book/enjambre/enjambre-gallery",
+      17,
+      "Enjambre en el Estadio GNP Seguros",
+      [
+        "Pertenencia / Apertura", "Público / Comunidad", "Escenario / Constelación", "Escala / Blanco y negro",
+        "Banda / Encuentro", "Voz / Contraluz", "Pulso / Cian", "Gesto / Movimiento", "Retrato / Perfil",
+        "Pantalla / Profundidad", "Guitarra / Atmósfera", "Voz / Rojo", "Banda / Color", "Escena / Capas",
+        "Músico / Detalle", "Voz / Haz de luz", "Escenario / Cierre",
+      ],
+    ),
   },
   {
     slug: "maria-daniela-y-su-sonido-lasser",
@@ -153,47 +148,26 @@ export const bookProjects: BookProject[] = [
     credits: [
       "Artista — María Daniela y Su Sonido Lasser",
       "Integrantes — María Daniela Azpiazu y Emilio Acevedo",
-      "Fotografía — LATTICCE Studio",
+      "Fotografía — Hernán Jiménez Herrera",
       "Cámara — Sony α7 IV (ILCE-7M4)",
     ],
     featured: true,
     projectLabel: "Registro documental / Sony α7 IV",
     status: "Proyecto real",
     galleryTitle: "Una noche,",
-    galleryEmphasis: "seis pulsos",
-    galleryDescription: "La secuencia abre el espacio, se acerca al gesto y vuelve a la pista. Luz, movimiento y público organizan el relato sin reconstruir lo que ocurrió.",
-    gallery: [
-      {
-        image: "/UROBOROS/assets/images/book/mdyssl/mdyssl-gallery-01.jpg",
-        alt: "Escenario azul de María Daniela y Su Sonido Lasser visto sobre las cabezas del público.",
-        caption: "Escenario y público / Apertura",
-      },
-      {
-        image: "/UROBOROS/assets/images/book/mdyssl/mdyssl-gallery-02.jpg",
-        alt: "María Daniela canta y señala al público bajo un haz de luz amarilla.",
-        caption: "Haces cálidos / Voz",
-      },
-      {
-        image: "/UROBOROS/assets/images/book/mdyssl/mdyssl-gallery-03.jpg",
-        alt: "María Daniela sonríe mientras canta frente a una pantalla azul y magenta.",
-        caption: "Proximidad / Coro",
-      },
-      {
-        image: "/UROBOROS/assets/images/book/mdyssl/mdyssl-gallery-04.jpg",
-        alt: "Vista amplia del concierto bajo haces cian con el público en primer plano.",
-        caption: "Baño azul / Escala",
-      },
-      {
-        image: "/UROBOROS/assets/images/book/mdyssl/mdyssl-gallery-05.jpg",
-        alt: "María Daniela en el escenario frente a una multitud iluminada por tonos amarillos y verdes.",
-        caption: "Pista y escenario / Clímax",
-      },
-      {
-        image: "/UROBOROS/assets/images/book/mdyssl/mdyssl-gallery-06.jpg",
-        alt: "María Daniela abre el brazo hacia el público bajo una intensa luz azul.",
-        caption: "Gesto y respuesta / Cierre",
-      },
-    ],
+    galleryEmphasis: "catorce pulsos",
+    galleryDescription: "La secuencia completa abre el espacio, se acerca al gesto y vuelve a la pista. Luz, movimiento y público organizan el relato sin reconstruir lo que ocurrió.",
+    gallery: concertGallery(
+      "/UROBOROS/assets/images/book/mdyssl/mdyssl-gallery",
+      14,
+      "María Daniela y Su Sonido Lasser",
+      [
+        "Escenario y público / Apertura", "Baño azul / Escala", "Haces y audiencia / Espacio", "Voz / Contraluz",
+        "Movimiento / Haz cálido", "Blanco y negro / Presencia", "Proximidad / Coro", "Luz amarilla / Gesto",
+        "Respuesta / Frente de escenario", "Brazo abierto / Encuentro", "Baño azul / Voz", "Color / Retrato",
+        "Escenario / Distancia", "Último gesto / Cierre",
+      ],
+    ),
   },
   {
     slug: "surfistas-del-sistema",
@@ -220,38 +194,17 @@ export const bookProjects: BookProject[] = [
     galleryTitle: "Una noche de",
     galleryEmphasis: "surfear el sistema",
     galleryDescription: "La secuencia captura la esencia de la banda y su impacto en vivo.",
-    gallery: [
-      {
-        image: "/UROBOROS/assets/images/book/surfistas/surfistas-gallery-01.jpg",
-        alt: "Vocalista de Surfistas del Sistema canta frente a una luz roja intensa.",
-        caption: "Voz y rojo / Inicio",
-      },
-      {
-        image: "/UROBOROS/assets/images/book/surfistas/surfistas-gallery-02.jpg",
-        alt: "Dos músicos tocan espalda con espalda, uno con saxofón y otro con guitarra.",
-        caption: "Cuerpos e instrumentos / Cruce",
-      },
-      {
-        image: "/UROBOROS/assets/images/book/surfistas/surfistas-gallery-03.jpg",
-        alt: "Dos intérpretes comparten el escenario durante un momento en blanco y negro.",
-        caption: "Encuentro / Contrapunto",
-      },
-      {
-        image: "/UROBOROS/assets/images/book/surfistas/surfistas-gallery-04.jpg",
-        alt: "Vista amplia en blanco y negro del escenario con la banda y haces de luz detrás.",
-        caption: "Escenario / Escala",
-      },
-      {
-        image: "/UROBOROS/assets/images/book/surfistas/surfistas-gallery-05.jpg",
-        alt: "Intérprete canta bajo luces cálidas durante el concierto.",
-        caption: "Pulso / Voz",
-      },
-      {
-        image: "/UROBOROS/assets/images/book/surfistas/surfistas-gallery-06.jpg",
-        alt: "Silueta de un intérprete frente a una luz violeta con el público al fondo.",
-        caption: "Siluetas / Cierre",
-      },
-    ],
+    gallery: concertGallery(
+      "/UROBOROS/assets/images/book/surfistas/surfistas-gallery",
+      17,
+      "Surfistas del Sistema en el Pepsi Center",
+      [
+        "Cuerpos e instrumentos / Apertura", "Saxofón / Silueta", "Guitarra / Blanco y negro", "Voz y rojo / Inicio",
+        "Encuentro / Contrapunto", "Pulso / Voz", "Escenario / Escala", "Silueta / Haz de luz", "Público / Violeta",
+        "Dúo / Cian", "Diálogo / Blanco y negro", "Guitarra / Retrato", "Cruce / Instrumentos", "Banda / Rojo",
+        "Escena / Clímax", "Banda completa / Blanco y negro", "Voz / Cierre",
+      ],
+    ),
   },
   {
     slug: "archivo-nocturno",
