@@ -81,7 +81,7 @@ const routeSections: Array<{ match: (pathname: string) => boolean; items: Sectio
   { match: (path) => path === "/", items: [{ id: "inicio", label: "Inicio" }, { id: "ecosistema", label: "Nodos" }, { id: "intencion", label: "Book" }, { id: "metodo", label: "Pilares" }, { id: "comunidad", label: "Comunidad" }, { id: "manifiesto", label: "Manifiesto" }, { id: "contacto", label: "Agenda" }] },
   { match: (path) => path === "/agency", items: [{ id: "inicio", label: "Inicio" }, { id: "servicios", label: "Sistemas" }] },
   { match: (path) => path === "/sound", items: [{ id: "inicio", label: "Inicio" }, { id: "servicios", label: "Capacidades" }, { id: "estudio", label: "Home Studio" }, { id: "postproduccion", label: "Precisión" }, { id: "radio", label: "radio" }, { id: "set", label: "Set" }, { id: "post", label: "Post" }, { id: "musicalizacion", label: "Música" }, { id: "proyectos", label: "Proyectos" }, { id: "contacto", label: "Agenda" }] },
-  { match: (path) => path === "/studio", items: [{ id: "inicio", label: "Inicio" }, { id: "servicios", label: "Servicios" }, { id: "proceso", label: "Proceso" }, { id: "proyectos", label: "Proyectos" }, { id: "cotizar", label: "Cotizar" }] },
+  { match: (path) => path === "/studio", items: [{ id: "inicio", label: "Inicio" }, { id: "mirada", label: "Mirada" }, { id: "crea", label: "+ Crea" }, { id: "proyecto", label: "Proyecto" }, { id: "book", label: "Book" }, { id: "proceso", label: "Proceso" }, { id: "postproduccion", label: "Post" }, { id: "contenido", label: "Redes" }, { id: "contacto", label: "Hablemos" }] },
   { match: (path) => path === "/time", items: [{ id: "inicio", label: "Inicio" }, { id: "historias", label: "Historias" }, { id: "coberturas", label: "Coberturas" }, { id: "equipo", label: "Equipo" }, { id: "agenda", label: "Agenda" }] },
   { match: (path) => path === "/design", items: [{ id: "inicio", label: "Inicio" }, { id: "capacidades", label: "Capacidades" }, { id: "book", label: "Book" }, { id: "anima", label: "Anima" }, { id: "proceso", label: "Proceso" }, { id: "aplicaciones", label: "Aplicaciones" }, { id: "contenido", label: "Contenido" }, { id: "contacto", label: "Agenda" }] },
   { match: (path) => path === "/book", items: [{ id: "inicio", label: "Inicio" }, { id: "destacados", label: "Destacados" }, { id: "nodos", label: "Nodos" }, { id: "catalogo", label: "Archivo" }] },
@@ -95,6 +95,10 @@ function SectionNavigator({ pathname }: { pathname: string }) {
   useEffect(() => {
     if (!items.length) return;
     let frame = 0;
+    const syncActive = (event: Event) => {
+      const index = items.findIndex((item) => item.id === (event as CustomEvent<string>).detail);
+      if (index >= 0) setActive(index);
+    };
     const update = () => {
       frame = 0;
       const hashIndex = items.findIndex((item) => `#${item.id}` === window.location.hash);
@@ -115,16 +119,21 @@ function SectionNavigator({ pathname }: { pathname: string }) {
     };
     const requestUpdate = () => { if (!frame) frame = window.requestAnimationFrame(update); };
     update();
+    if (pathname === "/studio") {
+      window.addEventListener("latticce:section-active", syncActive);
+      return () => window.removeEventListener("latticce:section-active", syncActive);
+    }
     window.addEventListener("scroll", requestUpdate, { passive: true, capture: true });
     window.addEventListener("resize", requestUpdate);
+    window.addEventListener("latticce:section-active", syncActive);
     const timer = window.setInterval(requestUpdate, 500);
-    return () => { if (frame) window.cancelAnimationFrame(frame); window.clearInterval(timer); window.removeEventListener("scroll", requestUpdate, true); window.removeEventListener("resize", requestUpdate); };
+    return () => { if (frame) window.cancelAnimationFrame(frame); window.clearInterval(timer); window.removeEventListener("scroll", requestUpdate, true); window.removeEventListener("resize", requestUpdate); window.removeEventListener("latticce:section-active", syncActive); };
   }, [items, pathname]);
   if (!items.length) return null;
   const progress = items.length > 1 ? active / (items.length - 1) : 1;
   return <nav className="shared-section-nav" aria-label="Secciones de esta página" style={{ "--section-progress": progress } as CSSProperties}>
     <span className="shared-section-node">{pathname.split("/")[1] || "LATTICCE"}</span>
-    <div className="shared-section-links">{items.map((item, index) => <a className={index === active ? "active" : ""} href={`#${item.id}`} key={item.id} aria-current={index === active ? "location" : undefined} onClick={() => window.dispatchEvent(new CustomEvent("latticce:navigate-section", { detail: item.id }))}>{item.label}</a>)}</div>
+    <div className="shared-section-links">{items.map((item, index) => <a className={index === active ? "active" : ""} href={`#${item.id}`} key={item.id} aria-current={index === active ? "location" : undefined} onClick={() => { setActive(index); window.dispatchEvent(new CustomEvent("latticce:navigate-section", { detail: item.id })); }}>{item.label}</a>)}</div>
     <div className="shared-section-progress" aria-hidden="true"><i /></div>
     <span>{String(active + 1).padStart(2, "0")} / {String(items.length).padStart(2, "0")}</span>
   </nav>;
@@ -184,9 +193,7 @@ function ContactPopup() {
 export default function GlobalShell({ children }: { children: ReactNode }) {
   const pathname = usePathname();
   const isCinema = pathname === "/films/cinema" || pathname.startsWith("/films/cinema/");
-  const isStudio = pathname === "/studio";
   const node = nodes.find((item) => pathname === item.href || pathname.startsWith(`${item.href}/`))?.node;
   if (isCinema) return <>{children}<ContactPopup /></>;
-  if (isStudio) return <><GlobalHeader />{children}<ContactPopup /></>;
   return <><GlobalHeader />{children}<SectionNavigator pathname={pathname} /><ContactPopup />{node && <NodeSocialFooter node={node} socials={socialLinksByNode[node]} />}</>;
 }

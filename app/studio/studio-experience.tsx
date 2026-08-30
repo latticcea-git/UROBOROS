@@ -194,13 +194,23 @@ export default function StudioExperience() {
     window.scrollTo({ top: journey.offsetTop + Math.min(1, target.offsetLeft / travel) * verticalTravel, behavior: "smooth" });
   }, []);
 
+  useEffect(() => {
+    const navigate = (event: Event) => goTo((event as CustomEvent<string>).detail);
+    window.addEventListener("latticce:navigate-section", navigate);
+    return () => window.removeEventListener("latticce:navigate-section", navigate);
+  }, [goTo]);
+
   const telemetry = scenes.find((scene) => scene.id === activeScene) ?? scenes[0];
   const sceneIndex = scenes.findIndex((scene) => scene.id === activeScene);
+
+  useEffect(() => {
+    window.dispatchEvent(new CustomEvent("latticce:section-active", { detail: activeScene }));
+  }, [activeScene]);
 
   return (
     <main className={`${styles.root} studio-page-root`}>
       <div className={styles.journey} ref={journeyRef}>
-        <StudioFrame activeScene={activeScene} sceneIndex={Math.max(0, sceneIndex)} telemetry={telemetry} onNavigate={goTo} />
+        <StudioFrame sceneIndex={Math.max(0, sceneIndex)} telemetry={telemetry} />
 
         <div className={styles.sticky} ref={stickyRef}>
           <div className={styles.track} ref={trackRef}>
@@ -300,8 +310,8 @@ export default function StudioExperience() {
   );
 }
 
-function StudioFrame({ activeScene, sceneIndex, telemetry, onNavigate }: { activeScene: string; sceneIndex: number; telemetry: (typeof scenes)[number]; onNavigate: (id: string) => void }) {
-  return <><aside className={styles.frame} aria-label="Parámetros de cámara"><div className={styles.frameCorners} aria-hidden="true"><i /><i /><i /><i /></div><div className={styles.telemetry} aria-live="polite"><span>ISO <b>{telemetry.iso}</b></span><span>SHUTTER <b>{telemetry.shutter}</b></span><span>APERTURE <b>{telemetry.aperture}</b></span><span>WB <b>{telemetry.wb}</b></span><span>REC.709</span></div><div className={styles.exposure} aria-hidden="true"><span>−2</span><i /><i /><i /><i /><i className={styles.exposureCenter} /><i /><i /><i /><i /><span>+2</span></div><div className={styles.frameProgress}><span>{String(sceneIndex + 1).padStart(2, "0")} / 09</span><div><i /></div></div><nav className={styles.frameSocials} aria-label="Redes de LATTICCE Studio"><a href="https://www.instagram.com/___latticce___?igsi=YTVnMzJwb2F2amQ1&utm_source=qr" target="_blank" rel="noreferrer" aria-label="Instagram"><Image src="/UROBOROS/assets/icons/social/instagram.svg" alt="" width={16} height={16} /></a><a href={`https://wa.me/${WHATSAPP_NUMBER}`} target="_blank" rel="noreferrer" aria-label="WhatsApp"><Image src="/UROBOROS/assets/icons/social/whatsapp.svg" alt="" width={16} height={16} /></a><span title="Facebook en preparación"><Image src="/UROBOROS/assets/icons/social/facebook.svg" alt="" width={16} height={16} /></span><span title="YouTube en preparación"><Image src="/UROBOROS/assets/icons/social/youtube.svg" alt="" width={16} height={16} /></span></nav></aside><nav className={styles.frameNav} aria-label="Secciones de Studio">{scenes.map((scene) => <a className={activeScene === scene.id ? styles.frameActive : ""} href={`#${scene.id}`} key={scene.id} onClick={(event) => { event.preventDefault(); onNavigate(scene.id); }}>{scene.label}</a>)}</nav></>;
+function StudioFrame({ sceneIndex, telemetry }: { sceneIndex: number; telemetry: (typeof scenes)[number] }) {
+  return <aside className={styles.frame} aria-label="Parámetros de cámara"><div className={styles.frameCorners} aria-hidden="true"><i /><i /><i /><i /></div><div className={styles.telemetry} aria-live="polite"><span>ISO <b>{telemetry.iso}</b></span><span>SHUTTER <b>{telemetry.shutter}</b></span><span>APERTURE <b>{telemetry.aperture}</b></span><span>WB <b>{telemetry.wb}</b></span><span>REC.709</span></div><div className={styles.exposure} aria-hidden="true"><span>−2</span><i /><i /><i /><i /><i className={styles.exposureCenter} /><i /><i /><i /><i /><span>+2</span></div><div className={styles.frameProgress}><span>{String(sceneIndex + 1).padStart(2, "0")} / 09</span><div><i /></div></div></aside>;
 }
 
 function PhoneCamera() {
