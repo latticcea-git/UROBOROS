@@ -39,6 +39,26 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
     alt: `${project.alt} Encuadre de muestra ${frame}.`,
     caption: "Imagen de muestra generada",
   }));
+  const gallery = (
+    <section className={styles.projectGallery} id="galeria" aria-labelledby="gallery-title">
+      <div className={styles.projectSectionHead} data-book-intro>
+        <p><span>{project.galleryFirst ? "01" : "02"}</span> Galería</p>
+        <h2 id="gallery-title">{project.galleryTitle ?? "Una imagen,"} <em>{project.galleryEmphasis ?? "seis ritmos"}</em></h2>
+        <p>{project.galleryDescription ?? "La fotografía de muestra se repite para probar la narración completa. Cada cuadro puede reemplazarse después de forma independiente."}</p>
+      </div>
+      <div className={styles.galleryGrid}>
+        {galleryFrames.map((frame, index) => (
+          <figure key={`${frame.image}-${index}`} data-project-frame>
+            <Image src={frame.image} alt={frame.alt} fill sizes="(max-width: 760px) 100vw, 70vw" />
+            <figcaption>
+              <span>{String(index + 1).padStart(2, "0")} / {String(galleryFrames.length).padStart(2, "0")}</span>
+              <span>{frame.caption}</span>
+            </figcaption>
+          </figure>
+        ))}
+      </div>
+    </section>
+  );
 
   return (
     <main className={styles.projectRoot} data-book-motion-root="project" data-node={project.node}>
@@ -65,11 +85,13 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
           <h1>{project.title}</h1>
           <span>{project.projectLabel ?? "Proyecto conceptual / Imagen generada"}</span>
         </div>
-        <a className={styles.projectScroll} href="#proyecto" data-project-scroll>Descubrir <span aria-hidden="true">↓︎</span></a>
+        <a className={styles.projectScroll} href={project.galleryFirst ? "#galeria" : "#proyecto"} data-project-scroll>Descubrir <span aria-hidden="true">↓︎</span></a>
       </section>
 
+      {project.galleryFirst && gallery}
+
       <section className={styles.projectStatement} id="proyecto" data-project-statement>
-        <p><span>01</span> El proyecto</p>
+        <p><span>{project.galleryFirst ? "02" : "01"}</span> El proyecto</p>
         <h2>{project.summary}</h2>
         <div>
           <span>Decisión central</span>
@@ -92,24 +114,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
         </div>
       </section>
 
-      <section className={styles.projectGallery} aria-labelledby="gallery-title">
-        <div className={styles.projectSectionHead} data-book-intro>
-          <p><span>02</span> Galería</p>
-          <h2 id="gallery-title">{project.galleryTitle ?? "Una imagen,"} <em>{project.galleryEmphasis ?? "seis ritmos"}</em></h2>
-          <p>{project.galleryDescription ?? "La fotografía de muestra se repite para probar la narración completa. Cada cuadro puede reemplazarse después de forma independiente."}</p>
-        </div>
-        <div className={styles.galleryGrid}>
-          {galleryFrames.map((frame, index) => (
-            <figure key={`${frame.image}-${index}`} data-project-frame>
-              <Image src={frame.image} alt={frame.alt} fill sizes="(max-width: 760px) 100vw, 70vw" />
-              <figcaption>
-                <span>{String(index + 1).padStart(2, "0")} / {String(galleryFrames.length).padStart(2, "0")}</span>
-                <span>{frame.caption}</span>
-              </figcaption>
-            </figure>
-          ))}
-        </div>
-      </section>
+      {!project.galleryFirst && gallery}
 
       <section className={styles.projectInfo}>
         <div data-project-info-panel>

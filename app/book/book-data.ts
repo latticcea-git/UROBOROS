@@ -28,6 +28,7 @@ export type BookProject = {
   galleryTitle?: string;
   galleryEmphasis?: string;
   galleryDescription?: string;
+  galleryFirst?: boolean;
   gallery?: Array<{
     image: string;
     alt: string;
@@ -133,6 +134,64 @@ export const bookProjects: BookProject[] = [
         image: "/UROBOROS/assets/images/book/mdyssl/mdyssl-gallery-06.jpg",
         alt: "María Daniela abre el brazo hacia el público bajo una intensa luz azul.",
         caption: "Gesto y respuesta / Cierre",
+      },
+    ],
+  },
+  {
+    slug: "surfistas-del-sistema",
+    title: "Surfistas del Sistema",
+    node: "studio",
+    category: "Conciertos",
+    year: "2026",
+    image: "/UROBOROS/assets/images/book/surfistas/surfistas-hero.jpg",
+    imagePosition: "center 50%",
+    alt: "Dos músicos de Surfistas del Sistema tocan espalda con espalda entre humo y luz blanca durante su concierto en el Pepsi Center.",
+    summary: "Surfistas del Sistema, proyecto argentino liderado por Fran Frione junto a Cisco Achával y Rama Vázquez, ha llevado su cruce de indie pop y synth-pop por Latinoamérica. En el Pepsi Center, ese pulso se volvió coro, luz y movimiento.",
+    decision: "Dejar que la energía del directo ordene el relato: la cercanía del gesto, la relación entre músicos y la escala del escenario aparecen sin reconstruir la noche.",
+    services: ["Fotografía de concierto", "Cobertura editorial", "Selección y curaduría", "Revelado y color"],
+    credits: [
+      "Artista — Surfistas del Sistema",
+      "Fotografía — Hernán Jiménez Herrera",
+      "Cámara — Sony α7 IV",
+      "Ubicación — Pepsi Center, Ciudad de México",
+    ],
+    featured: true,
+    projectLabel: "Registro documental / Sony α7 IV",
+    status: "Proyecto real",
+    galleryFirst: true,
+    galleryTitle: "Una noche de",
+    galleryEmphasis: "surfear el sistema",
+    galleryDescription: "La secuencia captura la esencia de la banda y su impacto en vivo.",
+    gallery: [
+      {
+        image: "/UROBOROS/assets/images/book/surfistas/surfistas-gallery-01.jpg",
+        alt: "Vocalista de Surfistas del Sistema canta frente a una luz roja intensa.",
+        caption: "Voz y rojo / Inicio",
+      },
+      {
+        image: "/UROBOROS/assets/images/book/surfistas/surfistas-gallery-02.jpg",
+        alt: "Dos músicos tocan espalda con espalda, uno con saxofón y otro con guitarra.",
+        caption: "Cuerpos e instrumentos / Cruce",
+      },
+      {
+        image: "/UROBOROS/assets/images/book/surfistas/surfistas-gallery-03.jpg",
+        alt: "Dos intérpretes comparten el escenario durante un momento en blanco y negro.",
+        caption: "Encuentro / Contrapunto",
+      },
+      {
+        image: "/UROBOROS/assets/images/book/surfistas/surfistas-gallery-04.jpg",
+        alt: "Vista amplia en blanco y negro del escenario con la banda y haces de luz detrás.",
+        caption: "Escenario / Escala",
+      },
+      {
+        image: "/UROBOROS/assets/images/book/surfistas/surfistas-gallery-05.jpg",
+        alt: "Intérprete canta bajo luces cálidas durante el concierto.",
+        caption: "Pulso / Voz",
+      },
+      {
+        image: "/UROBOROS/assets/images/book/surfistas/surfistas-gallery-06.jpg",
+        alt: "Silueta de un intérprete frente a una luz violeta con el público al fondo.",
+        caption: "Siluetas / Cierre",
       },
     ],
   },
