@@ -398,7 +398,7 @@ export default function HomeExperience() {
           <p className={styles.kicker}>Un LUMINAUTTA enviará una señal a la brevedad</p>
           <h2 id="contact-title">Agenda<br />TU CITA</h2>
           <p>Cuéntanos qué quieres poner en movimiento. Elegiremos contigo el nodo o la combinación adecuada.</p>
-          <button className={styles.contactButton} type="button" data-contact-trigger onClick={openContactPopup}>Iniciar una conversación <span aria-hidden="true">↗</span></button>
+          <button className={styles.contactButton} type="button" data-contact-trigger onClick={() => openContactPopup()}>Iniciar una conversación <span aria-hidden="true">↗</span></button>
         </div>
         <footer className={styles.contactFooter}>
           <Link href="#inicio" onClick={(event) => { event.preventDefault(); moveTo(0); }} aria-label="Volver al inicio">

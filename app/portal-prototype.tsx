@@ -455,7 +455,7 @@ function ToolsHub() {
           return <article className={styles.calculatorCard} key={calculator.id}><header><span>{calculator.id}</span><i>{calculator.mark}</i></header><div><h2>{calculator.title}</h2><p>{calculator.detail}</p></div>{href ? <a href={href} target="_blank" rel="noreferrer">Abrir <span>↗︎</span></a> : <button type="button" disabled>URL pendiente <span>—</span></button>}</article>;
         })}
       </section>
-      <article className={styles.localTool}><span><small>DISPONIBLE EN UROBOROS</small><strong>Cotizador Studio</strong></span><Link href="/studio#cotizar">Abrir herramienta ↗︎</Link></article>
+      <article className={styles.localTool}><span><small>DISPONIBLE EN UROBOROS</small><strong>LATTICCE Studio</strong></span><Link href="/studio">Abrir Studio ↗︎</Link></article>
     </div>
   );
 }

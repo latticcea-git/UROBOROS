@@ -28,7 +28,7 @@ export function openContactPopup(context: ContactContext = "general") {
 }
 
 export function ContactTrigger({ children, className }: { children: ReactNode; className?: string }) {
-  return <button className={className} type="button" data-contact-trigger onClick={() => openContactPopup()}>{children}</button>;
+  return <a className={className} href="#contacto-global" data-contact-trigger onClick={() => openContactPopup()}>{children}</a>;
 }
 
 export type NodeSocialLinks = { instagram?: string; facebook?: string; youtube?: string };
@@ -131,22 +131,20 @@ function SectionNavigator({ pathname }: { pathname: string }) {
 }
 
 function GlobalHeader() {
-  const pathname = usePathname();
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [sectionOpen, setSectionOpen] = useState<"nodes" | "portal" | null>(null);
-  useEffect(() => { setMenuOpen(false); setSectionOpen(null); }, [pathname]);
   return <header className="shared-header">
     <Link className="shared-header-logo" href="/" aria-label="LATTICCE, ir al inicio"><Image src="/UROBOROS/assets/logos/LTT_LOGO_1920_FX.png" width={246} height={47} alt="LATTICCE" priority /></Link>
     <a className="shared-header-whatsapp" href={`https://wa.me/${WHATSAPP_NUMBER}`} target="_blank" rel="noreferrer"><Image src="/UROBOROS/assets/icons/social/whatsapp.svg" width={16} height={16} alt="" /> WhatsApp</a>
-    <button className="shared-header-trigger" type="button" aria-expanded={menuOpen} aria-controls="global-navigation" onClick={() => setMenuOpen((value) => !value)}>{menuOpen ? "Cerrar" : "Menú"}<i aria-hidden="true">{menuOpen ? "×" : "+"}</i></button>
-    {menuOpen && <nav className="shared-navigation" id="global-navigation" aria-label="Navegación principal">
-      <Link href="/">HOME</Link>
-      <div className="shared-navigation-group"><button type="button" aria-expanded={sectionOpen === "nodes"} onClick={() => setSectionOpen(sectionOpen === "nodes" ? null : "nodes")}>NODOS <span>+</span></button>{sectionOpen === "nodes" && <div>{nodes.map((item) => <Link key={item.node} href={item.href} data-node={item.node}>{item.label}</Link>)}</div>}</div>
-      <Link href="/book">BOOK</Link><Link href="/blog">BLOG</Link><Link href="/films/cinema">CINNEMA</Link>
-      <div className="shared-navigation-group"><button type="button" aria-expanded={sectionOpen === "portal"} onClick={() => setSectionOpen(sectionOpen === "portal" ? null : "portal")}>PORTAL <span>+</span></button>{sectionOpen === "portal" && <div>{portalLinks.map((item) => <Link key={item.label} href={item.href}>{item.label}</Link>)}</div>}</div>
-      <button className="shared-navigation-contact" type="button" onClick={() => { setMenuOpen(false); openContactPopup(); }}>CONTACTO</button>
-      <a className="shared-navigation-whatsapp" href={`https://wa.me/${WHATSAPP_NUMBER}`} target="_blank" rel="noreferrer">WHATSAPP ↗︎</a>
-    </nav>}
+    <details className="shared-header-menu">
+      <summary className="shared-header-trigger" aria-controls="global-navigation">Menú<i aria-hidden="true">+</i></summary>
+      <nav className="shared-navigation" id="global-navigation" aria-label="Navegación principal">
+        <Link href="/">HOME</Link>
+        <details className="shared-navigation-group"><summary>NODOS <span>+</span></summary><div>{nodes.map((item) => <Link key={item.node} href={item.href} data-node={item.node}>{item.label}</Link>)}</div></details>
+        <Link href="/book">BOOK</Link><Link href="/blog">BLOG</Link><Link href="/films/cinema">CINNEMA</Link>
+        <details className="shared-navigation-group"><summary>PORTAL <span>+</span></summary><div>{portalLinks.map((item) => <Link key={item.label} href={item.href}>{item.label}</Link>)}</div></details>
+        <a className="shared-navigation-contact" href="#contacto-global">CONTACTO</a>
+        <a className="shared-navigation-whatsapp" href={`https://wa.me/${WHATSAPP_NUMBER}`} target="_blank" rel="noreferrer">WHATSAPP ↗︎</a>
+      </nav>
+    </details>
   </header>;
 }
 
@@ -162,8 +160,9 @@ function ContactPopup() {
       setOpen(true);
     };
     const intercept = (event: MouseEvent) => {
-      const target = (event.target as HTMLElement).closest<HTMLAnchorElement>("a[href='#contacto'], a[href='/#contacto'], a[href='#cotizar'], a[href='#agenda'], a[href='#cuentanos'], a[href^='mailto:']");
+      const target = (event.target as HTMLElement).closest<HTMLAnchorElement>("a[href='#contacto-global'], a[href='#contacto'], a[href='/#contacto'], a[href='#cotizar'], a[href='#agenda'], a[href='#cuentanos'], a[href^='mailto:']");
       if (!target || target.closest(".shared-section-nav")) return;
+      if (target.getAttribute("href") === "#contacto-global") { setContext("general"); setOpen(true); return; }
       event.preventDefault();
       setContext("general"); setOpen(true);
     };
@@ -174,11 +173,10 @@ function ContactPopup() {
   const contextLabel = context === "films" ? "LATTICCE FILMS" : "LATTICCE";
   const body = [`Área: ${contextLabel}`, `Nombre: ${name}`, `Contacto: ${contact}`, "", message].join("\n");
   const sendEmail = (event: FormEvent) => { event.preventDefault(); window.location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(`Nuevo proyecto — ${contextLabel} — ${name}`)}&body=${encodeURIComponent(body)}`; };
-  const sendWhatsApp = () => window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(body)}`, "_blank", "noopener,noreferrer");
-  if (!open) return null;
-  return <div className="contact-popup-backdrop" role="presentation" onMouseDown={(event) => { if (event.target === event.currentTarget) setOpen(false); }}><section className="contact-popup" role="dialog" aria-modal="true" aria-labelledby={titleId}>
-    <button className="contact-popup-close" type="button" aria-label="Cerrar contacto" onClick={() => setOpen(false)}>×</button><p>{context === "films" ? "Contacto / LATTICCE FILMS" : "Contacto general / LATTICCE"}</p>{context === "films" ? <h2 id={titleId}>CONTACTA CON<br /><em>LATTICCE FILMS</em></h2> : <h2 id={titleId}>Aquí termina TU<br /><em>recorrido</em><br />COMIENZA TU<br /><em>camino</em></h2>}
-    <form onSubmit={sendEmail}><label><span>Nombre</span><input required value={name} onChange={(event) => setName(event.target.value)} autoFocus /></label><label><span>Correo o teléfono</span><input required value={contact} onChange={(event) => setContact(event.target.value)} /></label><label><span>Proyecto</span><textarea required rows={4} value={message} onChange={(event) => setMessage(event.target.value)} /></label><div className="contact-popup-actions"><button type="submit">Enviar por correo ↗︎</button><button type="button" onClick={sendWhatsApp}>Enviar por WhatsApp ↗︎</button></div></form>
+  const whatsappHref = `https://wa.me/${WHATSAPP_NUMBER}${body.trim() ? `?text=${encodeURIComponent(body)}` : ""}`;
+  return <div id="contacto-global" className="contact-popup-backdrop" data-open={open ? "true" : "false"} role="presentation" onMouseDown={(event) => { if (event.target === event.currentTarget) setOpen(false); }}><section className="contact-popup" role="dialog" aria-modal="true" aria-labelledby={titleId}>
+    <a className="contact-popup-close" href="#" aria-label="Cerrar contacto" onClick={() => setOpen(false)}>×</a><p>{context === "films" ? "Contacto / LATTICCE FILMS" : "Contacto general / LATTICCE"}</p>{context === "films" ? <h2 id={titleId}>CONTACTA CON<br /><em>LATTICCE FILMS</em></h2> : <h2 id={titleId}>Aquí termina TU<br /><em>recorrido</em><br />COMIENZA TU<br /><em>camino</em></h2>}
+    <form action={`mailto:${CONTACT_EMAIL}`} method="post" encType="text/plain" onSubmit={sendEmail}><label><span>Nombre</span><input required name="Nombre" value={name} onChange={(event) => setName(event.target.value)} /></label><label><span>Correo o teléfono</span><input required name="Contacto" value={contact} onChange={(event) => setContact(event.target.value)} /></label><label><span>Proyecto</span><textarea required name="Proyecto" rows={4} value={message} onChange={(event) => setMessage(event.target.value)} /></label><div className="contact-popup-actions"><button type="submit">Enviar por correo ↗︎</button><a href={whatsappHref} target="_blank" rel="noreferrer">Enviar por WhatsApp ↗︎</a></div></form>
     <a className="contact-popup-email" href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
   </section></div>;
 }
@@ -186,7 +184,9 @@ function ContactPopup() {
 export default function GlobalShell({ children }: { children: ReactNode }) {
   const pathname = usePathname();
   const isCinema = pathname === "/films/cinema" || pathname.startsWith("/films/cinema/");
+  const isStudio = pathname === "/studio";
   const node = nodes.find((item) => pathname === item.href || pathname.startsWith(`${item.href}/`))?.node;
   if (isCinema) return <>{children}<ContactPopup /></>;
+  if (isStudio) return <><GlobalHeader />{children}<ContactPopup /></>;
   return <><GlobalHeader />{children}<SectionNavigator pathname={pathname} /><ContactPopup />{node && <NodeSocialFooter node={node} socials={socialLinksByNode[node]} />}</>;
 }
