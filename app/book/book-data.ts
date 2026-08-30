@@ -81,6 +81,64 @@ export const bookNodes: BookNode[] = [
 
 export const bookProjects: BookProject[] = [
   {
+    slug: "enjambre-estadio-gnp",
+    title: "Enjambre",
+    node: "studio",
+    category: "Conciertos",
+    year: "2026",
+    image: "/UROBOROS/assets/images/book/enjambre/enjambre-hero.jpg",
+    imagePosition: "center 50%",
+    alt: "Enjambre interpreta en el Estadio GNP Seguros bajo un campo de luces cálidas durante un concierto nocturno.",
+    summary: "Enjambre llevó su directo al Estadio GNP Seguros de Ciudad de México durante sus fechas de 2026. Esta serie registra la relación entre la banda, la luz y una audiencia que convirtió el concierto en una experiencia colectiva.",
+    decision: "Construir el relato desde la escala compartida: abrir con la pertenencia del público, acercarse al gesto de cada intérprete y volver al escenario completo. La Sony α7 IV conserva grano, color y contraste como sucedieron en la noche.",
+    services: ["Fotografía de concierto", "Cobertura editorial", "Selección y curaduría", "Revelado y color"],
+    credits: [
+      "Artista — Enjambre",
+      "Fotografía — Hernán Jiménez Herrera",
+      "Cámara — Sony α7 IV",
+      "Ubicación — Estadio GNP Seguros, Ciudad de México",
+    ],
+    featured: true,
+    projectLabel: "Registro documental / Sony α7 IV",
+    status: "Proyecto real",
+    galleryFirst: true,
+    galleryTitle: "Una noche,",
+    galleryEmphasis: "en enjambre",
+    galleryDescription: "La secuencia avanza del público a la presencia escénica y termina en una imagen de comunidad, sin reconstruir la energía del directo.",
+    gallery: [
+      {
+        image: "/UROBOROS/assets/images/book/enjambre/enjambre-gallery-01.jpg",
+        alt: "Asistente sostiene una manta de Enjambre entre el público del Estadio GNP Seguros.",
+        caption: "Pertenencia / Apertura",
+      },
+      {
+        image: "/UROBOROS/assets/images/book/enjambre/enjambre-gallery-02.jpg",
+        alt: "Integrante de Enjambre canta frente a una pantalla cian y magenta durante el concierto.",
+        caption: "Color y gesto / Pulso",
+      },
+      {
+        image: "/UROBOROS/assets/images/book/enjambre/enjambre-gallery-03.jpg",
+        alt: "Vocalista de Enjambre canta bajo un campo de luces en blanco y negro.",
+        caption: "Voz y constelación / Centro",
+      },
+      {
+        image: "/UROBOROS/assets/images/book/enjambre/enjambre-gallery-04.jpg",
+        alt: "Escenario de Enjambre visto en escala amplia bajo luces circulares y humo.",
+        caption: "Escenario / Escala",
+      },
+      {
+        image: "/UROBOROS/assets/images/book/enjambre/enjambre-gallery-05.jpg",
+        alt: "La banda Enjambre comparte el escenario en una imagen panorámica en blanco y negro.",
+        caption: "Banda completa / Encuentro",
+      },
+      {
+        image: "/UROBOROS/assets/images/book/enjambre/enjambre-gallery-06.jpg",
+        alt: "Dos asistentes con trajes de abeja celebran dentro del público del concierto de Enjambre.",
+        caption: "Comunidad / Cierre",
+      },
+    ],
+  },
+  {
     slug: "maria-daniela-y-su-sonido-lasser",
     title: "María Daniela y Su Sonido Lasser",
     node: "studio",

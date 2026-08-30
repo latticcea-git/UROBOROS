@@ -39,6 +39,8 @@ const scenes = [
   { id: "contacto", label: "Hablemos", iso: "—", shutter: "READY", aperture: "09", wb: "CDMX" },
 ] as const;
 
+const featuredStudioProject = bookProjects.find((project) => project.slug === "enjambre-estadio-gnp");
+
 type Simulation = (typeof services)[number];
 
 function whatsappUrl(message: string) {
@@ -250,14 +252,14 @@ export default function StudioExperience() {
               <span className={styles.createFoot}>Cada servicio permanece 7 segundos</span>
             </section>
 
-            <section className={`${styles.panel} ${styles.project}`} id="proyecto" data-studio-panel="proyecto">
-              <div className={styles.projectVisual}><Image src="/UROBOROS/assets/images/book/mdyssl/mdyssl-hero.jpg" alt="María Daniela canta ante el público durante un concierto nocturno." fill sizes="64vw" /><span>01 / Proyecto real</span></div>
+            {featuredStudioProject && <section className={`${styles.panel} ${styles.project}`} id="proyecto" data-studio-panel="proyecto">
+              <div className={styles.projectVisual}><Image src={featuredStudioProject.image} alt={featuredStudioProject.alt} fill sizes="64vw" /><span>01 / Proyecto real</span></div>
               <div className={styles.projectCopy} data-studio-reveal>
-                <p className={styles.eyebrow}>04 / Concierto / Proyecto en foco</p><h2>María Daniela y Su Sonido Lasser</h2><p>Una noche de electropop, luz y respuesta colectiva documentada desde el gesto real con Sony α7 IV.</p>
+                <p className={styles.eyebrow}>04 / Concierto / Proyecto en foco</p><h2>{featuredStudioProject.title}</h2><p>Una noche de concierto, luz y respuesta colectiva documentada desde el gesto real con Sony α7 IV.</p>
                 <dl><div><dt>Registro</dt><dd>Concierto</dd></div><div><dt>Formato</dt><dd>Fotografía</dd></div><div><dt>Cámara</dt><dd>Sony α7 IV</dd></div></dl>
-                <Link href="/book/maria-daniela-y-su-sonido-lasser">Ver proyecto completo <ArrowUpRightIcon /></Link>
+                <Link href={`/book/${featuredStudioProject.slug}`}>Ver proyecto completo <ArrowUpRightIcon /></Link>
               </div>
-            </section>
+            </section>}
 
             <section className={`${styles.panel} ${styles.book}`} id="book" data-studio-panel="book">
               <header className={styles.bookHeader} data-studio-reveal><div><p className={styles.eyebrow}>05 / Book Studio</p><h2>Obra real.<br /><em>Miradas en proceso.</em></h2></div><Link href="/book#studio">Explorar Studio en Book <ArrowUpRightIcon /></Link><span className={styles.bookHint}>Desliza <i aria-hidden="true"><ArrowRightIcon /><ArrowRightIcon /><ArrowRightIcon /></i></span></header>
