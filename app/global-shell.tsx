@@ -14,6 +14,7 @@ const nodes = [
   { label: "Time", href: "/time", node: "time" },
   { label: "Design", href: "/design", node: "design" },
   { label: "Agency", href: "/agency", node: "agency" },
+  { label: "Films", href: "/films", node: "films" },
 ] as const;
 const portalLinks = [
   { label: "Inicio", href: "/usuario" },
@@ -237,7 +238,8 @@ export default function GlobalShell({ children }: { children: ReactNode }) {
   const rawPathname = usePathname();
   const pathname = rawPathname.replace(/^\/UROBOROS(?=\/|$)/, "").replace(/\.html$/, "").replace(/\/$/, "") || "/";
   const isCinema = pathname === "/films/cinema" || pathname.startsWith("/films/cinema/");
+  const isFilmsExperience = pathname === "/films";
   const node = nodes.find((item) => pathname === item.href || pathname.startsWith(`${item.href}/`))?.node;
-  if (isCinema) return <>{children}<ContactPopup /></>;
+  if (isCinema || isFilmsExperience) return <>{children}<ContactPopup /></>;
   return <><GlobalHeader />{children}<SectionNavigator pathname={pathname} /><ContactPopup />{node && <NodeSocialFooter node={node} socials={socialLinksByNode[node]} />}</>;
 }

@@ -20,6 +20,7 @@ const defaultLinks = [
   { label: "STUDIO", href: "/studio" },
   { label: "TIME", href: "/time" },
   { label: "SOUND", href: "/sound" },
+  { label: "FILMS", href: "/films" },
   { label: "BOOK", href: "/book" },
   { label: "BLOG", href: "/blog" },
   { label: "CLIENTES", href: "/clientes" },
@@ -75,7 +76,7 @@ export default function SiteMenu({
           <div className="global-menu-topline"><span>Índice</span><span>LATTICCE / 00</span></div>
           {canonicalLinks.map((link, index) => {
             const isBook = link.label === "BOOK";
-            const nodeId = ["AGENCY", "STUDIO", "SOUND", "DESIGN", "TIME"].includes(link.label)
+            const nodeId = ["AGENCY", "STUDIO", "SOUND", "DESIGN", "TIME", "FILMS"].includes(link.label)
               ? link.label.toLowerCase()
               : undefined;
             const bookPointer = isBook ? {
