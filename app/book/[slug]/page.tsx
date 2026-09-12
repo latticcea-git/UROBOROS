@@ -3,8 +3,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import SiteMenu from "../../site-menu";
-import { bookProjects, getBookNode, getBookProject, getRelatedProjects } from "../book-data";
+import { bookAssetPath, bookProjects, getBookNode, getBookProject, getRelatedProjects } from "../book-data";
 import BookMotion from "../book-motion";
+import GalleryLightbox from "../gallery-lightbox";
 import styles from "../book.module.css";
 
 type ProjectPageProps = {
@@ -23,6 +24,7 @@ export async function generateMetadata({ params }: ProjectPageProps): Promise<Me
   return {
     title: `${project.title} — LATTICCE ${node.name}`,
     description: project.summary,
+    alternates: { canonical: `/book/${project.slug}/` },
     openGraph: { title: project.title, description: project.summary, images: [project.image] },
   };
 }
@@ -46,24 +48,14 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
         <h2 id="gallery-title">{project.galleryTitle ?? "Una imagen,"} <em>{project.galleryEmphasis ?? "seis ritmos"}</em></h2>
         <p>{project.galleryDescription ?? "La fotografía de muestra se repite para probar la narración completa. Cada cuadro puede reemplazarse después de forma independiente."}</p>
       </div>
-      <div className={styles.galleryGrid}>
-        {galleryFrames.map((frame, index) => (
-          <figure key={`${frame.image}-${index}`} data-project-frame>
-            <Image src={frame.image} alt={frame.alt} fill sizes="(max-width: 760px) 100vw, 70vw" />
-            <figcaption>
-              <span>{String(index + 1).padStart(2, "0")} / {String(galleryFrames.length).padStart(2, "0")}</span>
-              <span>{frame.caption}</span>
-            </figcaption>
-          </figure>
-        ))}
-      </div>
+      <GalleryLightbox frames={galleryFrames} />
     </section>
   );
 
   return (
     <main className={styles.projectRoot} data-book-motion-root="project" data-node={project.node}>
       <BookMotion variant="project" />
-      <SiteMenu homeHref="/" logoSrc="/UROBOROS/assets/logos/LTT_LOGO_1920_FX.png" logoAlt="LATTICCE" />
+      <SiteMenu homeHref="/" logoSrc={bookAssetPath("/assets/logos/LTT_LOGO_1920_FX.png")} logoAlt="LATTICCE" />
 
       <section className={styles.projectHero} data-project-hero>
         <Image
@@ -156,7 +148,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
 
       <footer className={styles.projectFooter}>
         <Link href="/book">←︎ Volver al archivo</Link>
-        <Image src="/UROBOROS/assets/logos/LTT_LOGO_1920_FX.png" width={380} height={74} alt="LATTICCE" />
+        <Image src={bookAssetPath("/assets/logos/LTT_LOGO_1920_FX.png")} width={380} height={74} alt="LATTICCE" />
         <Link href="/#contacto">Iniciar un proyecto ↗︎</Link>
       </footer>
     </main>

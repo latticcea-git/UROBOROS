@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import BookExperience from "./book-experience";
+import { bookAssetPath } from "./book-data";
 
 export const metadata: Metadata = {
   title: "LATTICCE BOOK — Archivo creativo",
@@ -8,8 +9,9 @@ export const metadata: Metadata = {
   openGraph: {
     title: "LATTICCE BOOK",
     description: "Un archivo creativo vivo: cinco nodos, una intención.",
-    images: ["/UROBOROS/og.png"],
+    images: [bookAssetPath("/og.png")],
   },
+  alternates: { canonical: "/book/" },
 };
 
 export default function BookPage() {
