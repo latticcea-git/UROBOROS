@@ -17,6 +17,7 @@ export async function generateMetadata({ params }: PageProps<"/films/cinema/[slu
   return {
     title: `${datedTitle} — CINEMA LATTICCE — LATTICCE FILMS`,
     description: work.synopsis,
+    alternates: { canonical: `/films/cinema/${work.slug}/` },
     robots: { index: false, follow: false, nocache: true },
     openGraph: {
       title: `${datedTitle} — CINEMA LATTICCE`,

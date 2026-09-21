@@ -13,7 +13,7 @@ type PlayerState =
 
 const AUTOPLAY_INTERVAL = 7000;
 const WHEEL_LOCK_INTERVAL = 480;
-const CINEMA_BASE_PATH = "/UROBOROS/films/cinema";
+const CINEMA_BASE_PATH = "/films/cinema";
 
 function workOffset(index: number, active: number, length: number) {
   if (index === active || length < 2) return 0;
@@ -213,7 +213,7 @@ export default function CinemaExperience({ initialSlug }: { initialSlug?: string
       <div className={styles.brandRow}>
         <Link className={styles.homeLink} href="/" aria-label="Volver al Home"><span aria-hidden="true">←︎</span> HOME</Link>
         <Link className={styles.filmsLogoLink} href="/films" aria-label="LATTICCE FILMS, página en construcción">
-          <Image className={styles.filmsLogo} src="/UROBOROS/assets/logos/LTT_FILMS_LOGO_1920_FX.png" width={1920} height={503} priority alt="LATTICCE FILMS" />
+          <Image className={styles.filmsLogo} src="/assets/logos/LTT_FILMS_LOGO_1920_FX.png" width={1920} height={503} priority alt="LATTICCE FILMS" />
         </Link>
         <span className={styles.filmsRoute}>LATTICCE / LATTICCE FILMS</span>
       </div>

@@ -27,7 +27,7 @@ export const cinemaWorks: CinemaWork[] = [
     author: "EMMANUEL NIETO FLORES",
     synopsis:
       "Ulises se ve inmerso en la confusión de un tortuoso desprendimiento emocional. Su fuerte determinación de confrontarse y observarse a sí mismo lo mantendrán desnudo ante la verdad.",
-    poster: "/UROBOROS/assets/images/films/cinema/escila-poster-provisional-v1.jpg",
+    poster: "/assets/images/films/cinema/escila-poster-provisional-v1.jpg",
     posterAlt: "Fotograma provisional de ESCILA",
     category: "obra",
     technicalSheet: [
@@ -49,7 +49,7 @@ export const cinemaWorks: CinemaWork[] = [
     author: "EMMANUEL NIETO FLORES",
     synopsis:
       "En el registro y clasificación de la flora se usa el término “Hierba Mala” para generalizar a las plantas que desde el punto de vista estético y funcional no debiesen obtener una nomenclatura. Este tipo de vegetación crece de forma espontánea en casi cualquier lugar, por su alta capacidad de adaptación al entorno y durabilidad. Incluso según el contexto pueden llegar a ser considerada como mal habidas.",
-    poster: "/UROBOROS/assets/images/films/cinema/hierba-mala-poster.jpg",
+    poster: "/assets/images/films/cinema/hierba-mala-poster.jpg",
     posterAlt: "Cartel de HIERBA MALA",
     category: "obra",
     technicalSheet: [
@@ -70,7 +70,7 @@ export const cinemaWorks: CinemaWork[] = [
     author: "LATTICCE FILMS",
     synopsis:
       "Una presencia atraviesa la sala después de la última proyección. La luz permanece unos instantes más, suspendida sobre el espacio vacío.",
-    poster: "/UROBOROS/assets/images/films/cinema/cinema-auditorium-generated-draft-v1.jpg",
+    poster: "/assets/images/films/cinema/cinema-auditorium-generated-draft-v1.jpg",
     posterAlt: "Sala de cine de INTERLUDIO, obra de ejemplo",
     category: "otro",
     technicalSheet: [
@@ -89,7 +89,7 @@ export const cinemaWorks: CinemaWork[] = [
     author: "LOS CHICKLETS",
     synopsis:
       "En los bordes de Coacalco, una despedida se transforma en recorrido. La ciudad, el concreto y la distancia acompañan una canción que busca romper el último vínculo antes de volver a mirar atrás.",
-    poster: "/UROBOROS/assets/images/films/cinema/alejate-instagram-cover.jpg",
+    poster: "/assets/images/films/cinema/alejate-instagram-cover.jpg",
     posterAlt: "Fotograma del videoclip ALEJATE",
     category: "videoclip",
     technicalSheet: [
@@ -113,7 +113,7 @@ export const cinemaWorks: CinemaWork[] = [
     author: "KARELL",
     synopsis:
       "Reforma aparece como una línea encendida que divide la noche. Entre reflejos, tránsito y arquitectura, KARELL avanza dentro de una ciudad que multiplica su presencia y vuelve extraordinario cada gesto cotidiano.",
-    poster: "/UROBOROS/assets/images/films/cinema/peculiar-instagram-cover.jpg",
+    poster: "/assets/images/films/cinema/peculiar-instagram-cover.jpg",
     posterAlt: "Fotograma del videoclip PECULIAR",
     category: "videoclip",
     technicalSheet: [
@@ -137,7 +137,7 @@ export const cinemaWorks: CinemaWork[] = [
     author: "JIMENA @HERMIDA",
     synopsis:
       "El cuerpo responde a la música como si recordara algo que todavía no sucede. La interpretación de Jimena ocupa el espacio con proximidad, pausa y movimiento, construyendo una presencia hecha para un solo instante.",
-    poster: "/UROBOROS/assets/images/films/cinema/hecho-para-ti-instagram-cover.jpg",
+    poster: "/assets/images/films/cinema/hecho-para-ti-instagram-cover.jpg",
     posterAlt: "Fotograma del performance HECHO PARA TI",
     category: "performance",
     technicalSheet: [

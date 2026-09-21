@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useRef } from "react";
 import styles from "./home.module.css";
 
@@ -433,48 +434,55 @@ export function ManifestoLoop({ active }: ActiveVisualProps) {
 
 export function ClassicalStructure() {
   return (
-    <div className={styles.classicalStructure} aria-hidden="true">
-      <svg viewBox="0 0 920 920" role="presentation">
+    <Link
+      className={styles.classicalStructure}
+      href="/films"
+      aria-label="Explorar LATTICCE Films"
+      data-local-interactive="true"
+    >
+      <svg viewBox="0 0 920 920" role="presentation" aria-hidden="true">
         <defs>
           <radialGradient id="temple-light" cx="50%" cy="38%" r="62%">
-            <stop offset="0" stopColor="#f4f6f3" stopOpacity=".38" />
-            <stop offset=".3" stopColor="#aeb5b2" stopOpacity=".14" />
+            <stop offset="0" stopColor="#f4f6f3" stopOpacity=".5" />
+            <stop offset=".3" stopColor="#aeb5b2" stopOpacity=".2" />
             <stop offset="1" stopColor="#020202" stopOpacity="0" />
           </radialGradient>
           <linearGradient id="temple-metal" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0" stopColor="#f1f3ef" stopOpacity=".34" />
-            <stop offset=".46" stopColor="#555b59" stopOpacity=".08" />
-            <stop offset="1" stopColor="#dfe4e0" stopOpacity=".24" />
+            <stop offset="0" stopColor="#f1f3ef" stopOpacity=".64" />
+            <stop offset=".46" stopColor="#8f9793" stopOpacity=".2" />
+            <stop offset="1" stopColor="#dfe4e0" stopOpacity=".48" />
           </linearGradient>
           <filter id="temple-glow" x="-30%" y="-30%" width="160%" height="160%">
-            <feGaussianBlur stdDeviation="7" result="blur" />
+            <feGaussianBlur stdDeviation="10" result="blur" />
             <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
           </filter>
         </defs>
         <ellipse cx="460" cy="446" rx="395" ry="390" fill="url(#temple-light)" />
-        <g className={styles.templeRear} fill="none" stroke="url(#temple-metal)" strokeWidth="2">
+        <g className={styles.templeRear} fill="rgba(215,222,218,.045)" stroke="url(#temple-metal)" strokeWidth="2.4">
           <path d="M108 711H812L752 760H168Z" />
-          <path d="M152 646H768L812 711H108Z" />
-          <path d="M182 274H738L781 324H139Z" />
-          <path d="M215 270L460 105L705 270Z" />
-          <path d="M272 249L460 139L648 249Z" opacity=".48" />
+          <path d="M152 674H768L812 711H108Z" />
+          <path d="M132 242H788L748 332H172Z" filter="url(#temple-glow)" />
+          <path d="M178 214H742L788 242H132Z" />
+          <path d="M172 304H748" opacity=".46" />
         </g>
-        <g className={styles.templeColumns} fill="rgba(160,168,164,.025)" stroke="url(#temple-metal)" strokeWidth="2.2" filter="url(#temple-glow)">
-          {[210, 310, 410, 510, 610, 710].map((x, index) => (
+        <g className={styles.templeColumns} fill="rgba(213,222,217,.055)" stroke="url(#temple-metal)" strokeWidth="2.5" filter="url(#temple-glow)">
+          {[330, 590].map((x, index) => (
             <g key={x} style={{ "--column-delay": `${index * 110}ms` } as React.CSSProperties}>
-              <path d={`M${x - 25} 326H${x + 25}L${x + 19} 352H${x - 19}Z`} />
-              <path d={`M${x - 17} 352H${x + 17}L${x + 13} 624H${x - 13}Z`} />
-              <path d={`M${x - 24} 624H${x + 24}L${x + 31} 646H${x - 31}Z`} />
-              <path d={`M${x - 8} 360V617M${x + 1} 360V617M${x + 9} 360V617`} opacity=".45" />
+              <path d={`M${x - 85} 320H${x + 85}L${x + 68} 354H${x - 68}Z`} />
+              <path d={`M${x - 55} 354H${x + 55}L${x + 45} 640H${x - 45}Z`} />
+              <path d={`M${x - 76} 640H${x + 76}L${x + 98} 674H${x - 98}Z`} />
+              <path d={`M${x - 34} 364L${x - 28} 628M${x - 12} 364L${x - 9} 628M${x + 12} 364L${x + 9} 628M${x + 34} 364L${x + 28} 628`} opacity=".45" />
             </g>
           ))}
         </g>
-        <g className={styles.templeFront} fill="none" stroke="rgba(238,242,239,.34)" strokeWidth="1.2">
-          <path d="M139 324H781" />
-          <path d="M152 337H768" opacity=".45" />
+        <g className={styles.templeFront} fill="none" stroke="rgba(246,249,246,.68)" strokeWidth="1.45">
+          <path d="M132 242H788" />
+          <path d="M172 332H748" />
+          <path d="M245 320H415M505 320H675" opacity=".72" />
+          <path d="M275 354L286 640M385 354L374 640M535 354L546 640M645 354L634 640" opacity=".52" />
           <path d="M108 711H812" />
         </g>
       </svg>
-    </div>
+    </Link>
   );
 }

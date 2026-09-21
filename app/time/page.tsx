@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   title: "LATTICCE Time — Fotografía y video para tu evento",
   description:
     "Fotografía, video y memoria impresa para bodas, XV años y eventos. Coberturas flexibles, cercanas y hechas a la medida.",
+  alternates: { canonical: "/time/" },
 };
 
 export default function TimePage() {

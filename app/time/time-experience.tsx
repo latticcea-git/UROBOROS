@@ -1,12 +1,15 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { FormEvent, PointerEvent, useEffect, useMemo, useRef, useState } from "react";
 import type { CSSProperties } from "react";
+import { bookProjects } from "../book/book-data";
 import SiteMenu from "../site-menu";
 import styles from "./time.module.css";
 
-const heroImage = "/UROBOROS/assets/images/time/wedding-hero-v1.png";
+const heroImage = "/assets/images/time/wedding-hero-v1.png";
+const timeProjects = bookProjects.filter((project) => project.node === "time");
 
 const services = [
   {
@@ -23,7 +26,7 @@ const services = [
     number: "02",
     title: "XV años",
     copy: "Retratos, familia, energía y una noche que habla de quién eres.",
-    image: "/UROBOROS/assets/images/time/gallery/quince-v1.png",
+    image: "/assets/images/time/gallery/quince-v1.png",
     position: "center 34%",
     size: "cover",
     area: "1 / 4 / 4 / 7",
@@ -33,7 +36,7 @@ const services = [
     number: "03",
     title: "Eventos privados",
     copy: "Celebraciones íntimas documentadas con una mirada cercana.",
-    image: "/UROBOROS/assets/images/time/gallery/corporate-event-v1.png",
+    image: "/assets/images/time/gallery/corporate-event-v1.png",
     position: "center 58%",
     size: "cover",
     area: "4 / 4 / 9 / 7",
@@ -43,7 +46,7 @@ const services = [
     number: "04",
     title: "Conciertos",
     copy: "Escenario, público y energía conservados desde dentro.",
-    image: "/UROBOROS/assets/images/time/gallery/services-mosaic-v1.png",
+    image: "/assets/images/time/gallery/services-mosaic-v1.png",
     position: "left top",
     size: "auto 200%",
     area: "1 / 7 / 5 / 10",
@@ -53,7 +56,7 @@ const services = [
     number: "05",
     title: "Sesiones personalizadas",
     copy: "Retratos para cumpleaños, etapas personales y nuevas memorias.",
-    image: "/UROBOROS/assets/images/time/gallery/services-mosaic-v1.png",
+    image: "/assets/images/time/gallery/services-mosaic-v1.png",
     position: "right top",
     size: "200% auto",
     area: "1 / 10 / 4 / 13",
@@ -63,7 +66,7 @@ const services = [
     number: "06",
     title: "Conferencias",
     copy: "Tus logros, ideas y encuentros profesionales también dejan memoria.",
-    image: "/UROBOROS/assets/images/time/gallery/corporate-event-v1.png",
+    image: "/assets/images/time/gallery/corporate-event-v1.png",
     position: "center 48%",
     size: "cover",
     area: "1 / 13 / 4 / 16",
@@ -73,7 +76,7 @@ const services = [
     number: "07",
     title: "Cobertura completa",
     copy: "Fotografía, video, audio y respaldo pensados como un solo relato.",
-    image: "/UROBOROS/assets/images/time/equipment/equipment-panorama-v1.png",
+    image: "/assets/images/time/equipment/equipment-panorama-v1.png",
     position: "95% center",
     size: "500% auto",
     area: "5 / 7 / 9 / 10",
@@ -83,7 +86,7 @@ const services = [
     number: "08",
     title: "Sesiones de pareja",
     copy: "Una memoria propia antes del evento o simplemente porque sí.",
-    image: "/UROBOROS/assets/images/time/gallery/services-mosaic-v1.png",
+    image: "/assets/images/time/gallery/services-mosaic-v1.png",
     position: "left bottom",
     size: "auto 200%",
     area: "4 / 10 / 9 / 13",
@@ -93,7 +96,7 @@ const services = [
     number: "09",
     title: "Invitaciones digitales",
     copy: "Una primera pieza visual para anunciar lo que está por comenzar.",
-    image: "/UROBOROS/assets/images/time/gallery/services-mosaic-v1.png",
+    image: "/assets/images/time/gallery/services-mosaic-v1.png",
     position: "right bottom",
     size: "200% auto",
     area: "4 / 13 / 6 / 16",
@@ -103,7 +106,7 @@ const services = [
     number: "10",
     title: "Preparativos",
     copy: "Los detalles, las manos y la espera antes de abrir las puertas.",
-    image: "/UROBOROS/assets/images/time/gallery/before-triptych-v1.png",
+    image: "/assets/images/time/gallery/before-triptych-v1.png",
     position: "center center",
     size: "300% auto",
     area: "5 / 1 / 7 / 4",
@@ -113,7 +116,7 @@ const services = [
     number: "11",
     title: "Retratos familiares",
     copy: "Las personas que hacen que cada celebración tenga sentido.",
-    image: "/UROBOROS/assets/images/time/gallery/before-triptych-v1.png",
+    image: "/assets/images/time/gallery/before-triptych-v1.png",
     position: "right center",
     size: "300% auto",
     area: "7 / 1 / 9 / 4",
@@ -123,7 +126,7 @@ const services = [
     number: "12",
     title: "Cobertura con dron",
     copy: "La escala del lugar y la celebración observada desde el aire.",
-    image: "/UROBOROS/assets/images/time/equipment/equipment-panorama-v1.png",
+    image: "/assets/images/time/equipment/equipment-panorama-v1.png",
     position: "28% center",
     size: "500% auto",
     area: "6 / 13 / 9 / 16",
@@ -222,73 +225,73 @@ const galleryDetails: Record<string, { eyebrow: string; title: string; copy: str
     eyebrow: "Galería / bodas",
     title: "Todo lo que ocurre alrededor del sí.",
     copy: "Preparación, ceremonia, retratos y celebración narrados como una sola historia.",
-    images: [heroImage, "/UROBOROS/assets/images/time/gallery/before-triptych-v1.png", "/UROBOROS/assets/images/time/gallery/printed-album-v1.png"],
+    images: [heroImage, "/assets/images/time/gallery/before-triptych-v1.png", "/assets/images/time/gallery/printed-album-v1.png"],
   },
   "XV años": {
     eyebrow: "Galería / XV años",
     title: "Una etapa que merece su propia mirada.",
     copy: "Retrato, familia y celebración con una cobertura cercana y contemporánea.",
-    images: ["/UROBOROS/assets/images/time/gallery/quince-v1.png", heroImage, "/UROBOROS/assets/images/time/gallery/before-triptych-v1.png"],
+    images: ["/assets/images/time/gallery/quince-v1.png", heroImage, "/assets/images/time/gallery/before-triptych-v1.png"],
   },
   "Eventos privados": {
     eyebrow: "Galería / eventos privados",
     title: "La celebración también vive en los detalles.",
     copy: "Cumpleaños, aniversarios y encuentros íntimos documentados desde cerca y sin interrumpir lo que ocurre.",
-    images: ["/UROBOROS/assets/images/time/gallery/corporate-event-v1.png", "/UROBOROS/assets/images/time/equipment/equipment-panorama-v1.png", heroImage],
+    images: ["/assets/images/time/gallery/corporate-event-v1.png", "/assets/images/time/equipment/equipment-panorama-v1.png", heroImage],
   },
   "Conciertos": {
     eyebrow: "Galería / conciertos",
     title: "La energía también puede quedarse.",
     copy: "Escenario, público, luces y momentos detrás de la presentación reunidos en una narración viva.",
-    images: ["/UROBOROS/assets/images/time/gallery/services-mosaic-v1.png", "/UROBOROS/assets/images/time/gallery/corporate-event-v1.png", heroImage],
+    images: ["/assets/images/time/gallery/services-mosaic-v1.png", "/assets/images/time/gallery/corporate-event-v1.png", heroImage],
   },
   "Sesiones personalizadas": {
     eyebrow: "Galería / sesiones personalizadas",
     title: "Una sesión construida alrededor de ti.",
     copy: "Cumpleaños, retratos y etapas personales con una dirección cercana, cómoda y pensada para tu manera de ser.",
-    images: ["/UROBOROS/assets/images/time/gallery/services-mosaic-v1.png", "/UROBOROS/assets/images/time/gallery/quince-v1.png", heroImage],
+    images: ["/assets/images/time/gallery/services-mosaic-v1.png", "/assets/images/time/gallery/quince-v1.png", heroImage],
   },
   "Conferencias": {
     eyebrow: "Galería / conferencias",
     title: "Tus logros requieren momentos guardados.",
     copy: "Ponencias, invitados, interacción y resultados documentados con una presencia discreta y profesional.",
-    images: ["/UROBOROS/assets/images/time/gallery/corporate-event-v1.png", "/UROBOROS/assets/images/time/equipment/equipment-panorama-v1.png", "/UROBOROS/assets/images/time/gallery/printed-album-v1.png"],
+    images: ["/assets/images/time/gallery/corporate-event-v1.png", "/assets/images/time/equipment/equipment-panorama-v1.png", "/assets/images/time/gallery/printed-album-v1.png"],
   },
   "Cobertura completa": {
     eyebrow: "Galería / cobertura completa",
     title: "Una sola historia, todas las herramientas necesarias.",
     copy: "Integramos fotografía, video, audio y respaldo para conservar el evento de principio a fin.",
-    images: ["/UROBOROS/assets/images/time/equipment/equipment-panorama-v1.png", heroImage, "/UROBOROS/assets/images/time/gallery/corporate-event-v1.png"],
+    images: ["/assets/images/time/equipment/equipment-panorama-v1.png", heroImage, "/assets/images/time/gallery/corporate-event-v1.png"],
   },
   "Sesiones de pareja": {
     eyebrow: "Galería / sesiones de pareja",
     title: "Una memoria que comienza antes.",
     copy: "Retratos de pareja para invitaciones, save the date o simplemente para conservar esta etapa juntos.",
-    images: ["/UROBOROS/assets/images/time/gallery/services-mosaic-v1.png", heroImage, "/UROBOROS/assets/images/time/gallery/before-triptych-v1.png"],
+    images: ["/assets/images/time/gallery/services-mosaic-v1.png", heroImage, "/assets/images/time/gallery/before-triptych-v1.png"],
   },
   "Invitaciones digitales": {
     eyebrow: "Galería / invitaciones digitales",
     title: "La primera imagen de lo que está por venir.",
     copy: "Diseñamos una invitación digital a partir de la identidad visual, las fotografías y el tono de tu evento.",
-    images: ["/UROBOROS/assets/images/time/gallery/services-mosaic-v1.png", heroImage, "/UROBOROS/assets/images/time/gallery/printed-album-v1.png"],
+    images: ["/assets/images/time/gallery/services-mosaic-v1.png", heroImage, "/assets/images/time/gallery/printed-album-v1.png"],
   },
   "Preparativos": {
     eyebrow: "Galería / preparativos",
     title: "La historia empieza mientras todo toma forma.",
     copy: "Manos, detalles y gestos que construyen el día antes de que comience la celebración.",
-    images: ["/UROBOROS/assets/images/time/gallery/before-triptych-v1.png", "/UROBOROS/assets/images/time/gallery/printed-album-v1.png", heroImage],
+    images: ["/assets/images/time/gallery/before-triptych-v1.png", "/assets/images/time/gallery/printed-album-v1.png", heroImage],
   },
   "Retratos familiares": {
     eyebrow: "Galería / retratos familiares",
     title: "Quienes hacen que el momento tenga sentido.",
     copy: "Las personas que hacen que ese momento tenga sentido, reunidas en una imagen.",
-    images: ["/UROBOROS/assets/images/time/gallery/before-triptych-v1.png", "/UROBOROS/assets/images/time/gallery/quince-v1.png", heroImage],
+    images: ["/assets/images/time/gallery/before-triptych-v1.png", "/assets/images/time/gallery/quince-v1.png", heroImage],
   },
   "Cobertura con dron": {
     eyebrow: "Galería / cobertura con dron",
     title: "El lugar también forma parte de la historia.",
     copy: "Usamos la mirada aérea cuando la escala, el paisaje o la llegada del evento realmente enriquecen la narración.",
-    images: ["/UROBOROS/assets/images/time/equipment/equipment-panorama-v1.png", "/UROBOROS/assets/images/time/gallery/corporate-event-v1.png", heroImage],
+    images: ["/assets/images/time/equipment/equipment-panorama-v1.png", "/assets/images/time/gallery/corporate-event-v1.png", heroImage],
   },
 };
 
@@ -315,6 +318,7 @@ export default function TimeExperience() {
   const [flashing, setFlashing] = useState(false);
   const [interludePaused, setInterludePaused] = useState(false);
   const [activeGallery, setActiveGallery] = useState<string | null>(null);
+  const [activeGalleryImage, setActiveGalleryImage] = useState<number | null>(null);
   const [reelOpen, setReelOpen] = useState(false);
   const [booking, setBooking] = useState(initialBooking);
   const horizontalRef = useRef<HTMLDivElement>(null);
@@ -334,6 +338,10 @@ export default function TimeExperience() {
   useEffect(() => {
     const closeOnEscape = (event: KeyboardEvent) => {
       if (event.key !== "Escape") return;
+      if (activeGalleryImage !== null) {
+        setActiveGalleryImage(null);
+        return;
+      }
       if (introVisible) setIntroVisible(false);
       setActiveGallery(null);
       setReelOpen(false);
@@ -341,7 +349,7 @@ export default function TimeExperience() {
 
     window.addEventListener("keydown", closeOnEscape);
     return () => window.removeEventListener("keydown", closeOnEscape);
-  }, [introVisible]);
+  }, [activeGalleryImage, introVisible]);
 
   useEffect(() => {
     if (!activeGallery && !reelOpen) return;
@@ -521,13 +529,14 @@ export default function TimeExperience() {
 
       <SiteMenu
         homeHref="/"
-        logoSrc="/UROBOROS/assets/logos/LTT_LOGO_NEG_TIME.svg"
+        logoSrc="/assets/logos/LTT_LOGO_NEG_TIME.svg"
         logoAlt="LATTICCE Time"
         variant="light"
         links={[
           { label: "HISTORIAS", href: "#historias" },
           { label: "COBERTURAS", href: "#coberturas" },
           { label: "EQUIPO", href: "#equipo" },
+          { label: "BOOK", href: "#book" },
           { label: "AGENDAR", href: "#agenda" },
         ]}
       />
@@ -600,14 +609,14 @@ export default function TimeExperience() {
                 preload="auto"
                 aria-hidden="true"
               >
-                <source src="/UROBOROS/assets/videos/time/rings-motion-reference-v1.mp4" type="video/mp4" />
+                <source src="/assets/videos/time/rings-motion-reference-v1.mp4" type="video/mp4" />
               </video>
               <div className={styles.interludeCopy}>
                 <p className={styles.eyebrow}>Lo que importa permanece</p>
                 <h2 id="interlude-title">Hagamos eternos<br /><em>tus recuerdos.</em></h2>
                 <Image
                   className={styles.interludeLogo}
-                  src="/UROBOROS/assets/logos/LTT_LOGO_FX_POS_TIME.svg"
+                  src="/assets/logos/LTT_LOGO_FX_POS_TIME.svg"
                   width={700}
                   height={180}
                   alt="LATTICCE Time"
@@ -679,6 +688,25 @@ export default function TimeExperience() {
               </div>
             </section>
 
+            <section className={`${styles.panel} ${styles.bookShowcase}`} id="book" aria-labelledby="time-book-title">
+              <header className={styles.bookIntro}>
+                <p className={styles.eyebrow}>Book Time / Historias completas</p>
+                <h2 id="time-book-title">Memorias que se pueden<br /><em>volver a abrir.</em></h2>
+                <p>Cada muestra conduce al proyecto completo: una galería navegable donde las imágenes recuperan su escala y su secuencia.</p>
+                <Link className={styles.bookArchiveLink} href="/book#time">Ver archivo completo <span aria-hidden="true">↗︎</span></Link>
+              </header>
+              <div className={styles.timeBookGrid}>
+                {timeProjects.map((project) => (
+                  <Link className={styles.timeBookCard} href={`/book/${project.slug}`} key={project.slug}>
+                    <Image src={project.image} alt={project.alt} fill sizes="(max-width: 880px) 72vw, 34vw" />
+                    <span className={styles.timeBookShade} />
+                    <small>{project.category} / {project.year}</small>
+                    <div><h3>{project.title}</h3><b>Abrir proyecto y galería <span aria-hidden="true">↗︎</span></b></div>
+                  </Link>
+                ))}
+              </div>
+            </section>
+
             <section className={`${styles.panel} ${styles.contact}`} id="agenda" aria-labelledby="contact-title">
               <div className={styles.contactIntro}>
                 <p className={styles.eyebrow}>Tu fecha se acerca</p>
@@ -717,15 +745,15 @@ export default function TimeExperience() {
             <span className={styles.focusFrame} aria-hidden="true"><i /><i /><i /><i /><b>+</b></span>
             <span className={styles.capturePrompt}><strong>Haz clic para capturar</strong></span>
             <span className={styles.cameraData} aria-hidden="true">1/125&nbsp;&nbsp; f/2.8&nbsp;&nbsp; ISO 400</span>
-            <Image className={styles.captureLogo} src="/UROBOROS/assets/logos/LTT_LOGO_NEG_TIME.svg" width={380} height={98} alt="LATTICCE Time" priority />
+            <Image className={styles.captureLogo} src="/assets/logos/LTT_LOGO_NEG_TIME.svg" width={380} height={98} alt="LATTICCE Time" priority />
           </button>
           <span className={styles.escapeHint}>Presiona escape</span>
         </section>
       )}
       {activeGallery && galleryDetails[activeGallery] && (
-        <div className={styles.galleryModal} role="dialog" aria-modal="true" aria-labelledby="gallery-modal-title" onClick={() => setActiveGallery(null)}>
+        <div className={styles.galleryModal} role="dialog" aria-modal="true" aria-labelledby="gallery-modal-title" onClick={() => { setActiveGallery(null); setActiveGalleryImage(null); }}>
           <div className={styles.galleryModalFrame} onClick={(event) => event.stopPropagation()}>
-            <button className={styles.modalClose} type="button" onClick={() => setActiveGallery(null)} aria-label="Cerrar galería">×</button>
+            <button className={styles.modalClose} type="button" onClick={() => { setActiveGallery(null); setActiveGalleryImage(null); }} aria-label="Cerrar galería">×</button>
             <div className={styles.galleryModalCopy}>
               <p className={styles.eyebrow}>{galleryDetails[activeGallery].eyebrow}</p>
               <h2 id="gallery-modal-title">{galleryDetails[activeGallery].title}</h2>
@@ -733,10 +761,19 @@ export default function TimeExperience() {
             </div>
             <div className={styles.galleryModalImages}>
               {galleryDetails[activeGallery].images.map((image, index) => (
-                <img src={image} alt={`${activeGallery}, imagen ${index + 1}`} key={`${image}-${index}`} />
+                <button className={styles.galleryImageButton} type="button" onClick={() => setActiveGalleryImage(index)} aria-label={`Ampliar ${activeGallery}, imagen ${index + 1}`} key={`${image}-${index}`}><img src={image} alt={`${activeGallery}, imagen ${index + 1}`} /></button>
               ))}
             </div>
           </div>
+        </div>
+      )}
+      {activeGallery && activeGalleryImage !== null && galleryDetails[activeGallery] && (
+        <div className={styles.imageLightbox} role="dialog" aria-modal="true" aria-label={`Imagen ampliada de ${activeGallery}`} onClick={() => setActiveGalleryImage(null)}>
+          <button className={styles.lightboxClose} type="button" onClick={() => setActiveGalleryImage(null)} aria-label="Cerrar imagen ampliada">×</button>
+          <button className={`${styles.lightboxArrow} ${styles.lightboxPrevious}`} type="button" onClick={(event) => { event.stopPropagation(); setActiveGalleryImage((activeGalleryImage - 1 + galleryDetails[activeGallery].images.length) % galleryDetails[activeGallery].images.length); }} aria-label="Imagen anterior">←</button>
+          <img src={galleryDetails[activeGallery].images[activeGalleryImage]} alt={`${activeGallery}, imagen ampliada ${activeGalleryImage + 1}`} onClick={(event) => event.stopPropagation()} />
+          <span>{String(activeGalleryImage + 1).padStart(2, "0")} / {String(galleryDetails[activeGallery].images.length).padStart(2, "0")}</span>
+          <button className={`${styles.lightboxArrow} ${styles.lightboxNext}`} type="button" onClick={(event) => { event.stopPropagation(); setActiveGalleryImage((activeGalleryImage + 1) % galleryDetails[activeGallery].images.length); }} aria-label="Imagen siguiente">→</button>
         </div>
       )}
       {reelOpen && (
@@ -749,7 +786,7 @@ export default function TimeExperience() {
               <p>Avance visual provisional para integrar el reel final de bodas.</p>
             </div>
             <video className={styles.reelVideo} controls autoPlay muted playsInline poster={heroImage}>
-              <source src="/UROBOROS/assets/videos/time/rings-motion-reference-v1.mp4" type="video/mp4" />
+              <source src="/assets/videos/time/rings-motion-reference-v1.mp4" type="video/mp4" />
             </video>
           </div>
         </div>

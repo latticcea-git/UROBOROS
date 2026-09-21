@@ -300,7 +300,8 @@
   box-shadow: inset 0 0 7rem color-mix(in srgb, var(--node-color) 9%, transparent);
 }
 
-.slide > img { object-fit: cover; }
+.slide > img,
+.slide > :global(.project-motion-media) { object-fit: cover; }
 
 .slideShade {
   position: absolute;
@@ -476,8 +477,8 @@
 
 .nodePreview:hover::after { opacity: .72; }
 
-.nodePreview > img { object-fit: cover; transition: transform 1200ms cubic-bezier(.16, 1, .3, 1); }
-.nodePreview:hover > img { transform: scale(1.025); }
+.nodePreview > img,.nodePreview > :global(.project-motion-media) { object-fit: cover; transition: transform 1200ms cubic-bezier(.16, 1, .3, 1); }
+.nodePreview:hover > img,.nodePreview:hover > :global(.project-motion-media) { transform: scale(1.025); }
 .nodePreviewShade { position: absolute; inset: 0; background: linear-gradient(0deg, rgba(0, 0, 0, .88), transparent 65%); }
 
 .nodePreview > div {
@@ -587,10 +588,10 @@
   background: #111;
 }
 
-.projectImage > img { object-fit: cover; filter: saturate(.76) contrast(1.02); transition: filter 600ms ease, transform 1000ms cubic-bezier(.16, 1, .3, 1); }
+.projectImage > img,.projectImage > :global(.project-motion-media) { object-fit: cover; filter: saturate(.76) contrast(1.02); transition: filter 600ms ease, transform 1000ms cubic-bezier(.16, 1, .3, 1); }
 .projectImage > span { position: absolute; inset: 0; border: 1px solid rgba(255, 255, 255, .1); box-shadow: inset 0 -6rem 8rem rgba(0, 0, 0, .2); transition: border-color 350ms ease, box-shadow 500ms ease; }
 .projectImage > b { position: absolute; right: 1rem; bottom: 1rem; padding: .65rem .9rem; border: 1px solid rgba(255, 255, 255, .45); border-radius: 999px; font-size: .48rem; letter-spacing: .13em; text-transform: uppercase; opacity: 0; transform: translateY(.6rem); transition: opacity 350ms ease, transform 350ms ease; backdrop-filter: blur(10px); }
-.projectCard:hover .projectImage > img { filter: saturate(.95) contrast(1.04); transform: scale(1.025); }
+.projectCard:hover .projectImage > img,.projectCard:hover .projectImage > :global(.project-motion-media) { filter: saturate(.95) contrast(1.04); transform: scale(1.025); }
 .projectCard:hover .projectImage > span { border-color: var(--node-color); box-shadow: inset 0 0 6rem color-mix(in srgb, var(--node-color) 16%, transparent), 0 0 2.6rem var(--node-glow); }
 .projectCard:hover .projectImage > b { opacity: 1; transform: translateY(0); }
 
@@ -648,8 +649,10 @@
   background: #0c0c0c;
 }
 
-.projectHero > img { object-fit: cover; }
 .projectHero > img,
+.projectHero > :global(.project-motion-media) { object-fit: cover; }
+.projectHero > img,
+.projectHero > :global(.project-motion-media),
 .projectHeroCopy { will-change: transform, opacity; }
 .projectHeroShade { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(0, 0, 0, .76), transparent 65%), linear-gradient(0deg, rgba(0, 0, 0, .82), transparent 55%); }
 
@@ -757,11 +760,17 @@
 .galleryGrid figure:nth-child(6n + 4) { grid-column: 6 / span 7; margin-top: 14vw; }
 .galleryGrid figure:nth-child(6n + 5) { grid-column: 1 / span 12; aspect-ratio: 21 / 9; margin-top: 8vw; }
 .galleryGrid figure:nth-child(6n) { grid-column: 4 / span 7; margin-top: 7vw; }
+.galleryGrid figure[data-orientation="portrait"] { grid-column: span 4; aspect-ratio: 3 / 4; margin-top: 6vw; }
+.galleryGrid figure[data-orientation="portrait"]:nth-child(3n + 1) { grid-column: 1 / span 4; }
+.galleryGrid figure[data-orientation="portrait"]:nth-child(3n + 2) { grid-column: 5 / span 4; margin-top: 13vw; }
+.galleryGrid figure[data-orientation="portrait"]:nth-child(3n) { grid-column: 9 / span 4; margin-top: 3vw; }
+.galleryGrid figure[data-orientation="landscape"] { grid-column: 1 / span 12; aspect-ratio: 16 / 9; margin-top: 8vw; }
 .galleryGrid figure > img { object-fit: cover; }
 .galleryGrid figure:nth-child(6n + 2) > img { object-position: center; }
 .galleryGrid figure:nth-child(6n + 3) > img { object-position: center; }
 .galleryGrid figure:nth-child(6n + 4) > img { object-position: center; }
 .galleryGrid figure:nth-child(6n + 5) > img { object-position: center 42%; }
+.galleryGrid figure[data-orientation] > img { object-fit: contain; object-position: center; }
 
 .galleryGrid figcaption {
   position: absolute;
@@ -931,8 +940,8 @@
 .relatedGrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
 .relatedGrid a { min-width: 0; }
 .relatedGrid a > div { position: relative; aspect-ratio: 4 / 3; overflow: hidden; background: #111; }
-.relatedGrid a > div img { object-fit: cover; filter: saturate(.72); transition: transform 800ms ease, filter 500ms ease; }
-.relatedGrid a:hover > div img { filter: saturate(.95); transform: scale(1.035); }
+.relatedGrid a > div img,.relatedGrid a > div :global(.project-motion-media) { object-fit: cover; filter: saturate(.72); transition: transform 800ms ease, filter 500ms ease; }
+.relatedGrid a:hover > div img,.relatedGrid a:hover > div :global(.project-motion-media) { filter: saturate(.95); transform: scale(1.035); }
 .relatedGrid a > span { display: block; margin-top: 1rem; color: #7e807a; font-size: .48rem; letter-spacing: .13em; text-transform: uppercase; }
 .relatedGrid h3 { margin: .55rem 0 0; font: 400 clamp(2rem, 3.5vw, 4rem)/.9 Georgia, serif; letter-spacing: -.05em; }
 

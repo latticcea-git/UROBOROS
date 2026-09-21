@@ -8,6 +8,8 @@ type GalleryFrame = {
   image: string;
   alt: string;
   caption: string;
+  orientation?: "portrait" | "landscape";
+  position?: string;
 };
 
 type GalleryLightboxProps = {
@@ -60,8 +62,8 @@ export default function GalleryLightbox({ frames }: GalleryLightboxProps) {
     <>
       <div className={styles.galleryGrid}>
         {frames.map((frame, index) => (
-          <figure key={`${frame.image}-${index}`} data-project-frame>
-            <Image src={frame.image} alt={frame.alt} fill sizes="(max-width: 760px) 100vw, 70vw" />
+          <figure key={`${frame.image}-${index}`} data-project-frame data-orientation={frame.orientation}>
+            <Image src={frame.image} alt={frame.alt} fill sizes="(max-width: 760px) 100vw, 70vw" style={{ objectPosition: frame.position }} />
             <button
               ref={(element) => { triggerRefs.current[index] = element; }}
               className={styles.galleryTrigger}

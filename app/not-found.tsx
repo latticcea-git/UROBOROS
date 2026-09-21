@@ -17,7 +17,7 @@ export default function NotFound() {
         <Link className={styles.logo} href="/" aria-label="LATTICCE, volver al inicio">
           <span className={styles.logoLight} aria-hidden="true" />
           <Image
-            src="/UROBOROS/assets/logos/LTT_LOGO_NEG.svg"
+            src="/assets/logos/LTT_LOGO_NEG.svg"
             width={246}
             height={47}
             alt="LATTICCE"

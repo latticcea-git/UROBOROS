@@ -66,6 +66,37 @@ a { color: inherit; text-decoration: none; }
 button, input, textarea { font: inherit; }
 button { color: inherit; }
 
+.project-motion-media {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background: #050505;
+}
+
+.project-motion-media::before {
+  position: absolute;
+  inset: -5%;
+  content: "";
+  background: linear-gradient(rgba(0,0,0,.34),rgba(0,0,0,.48)), var(--project-poster) center / cover no-repeat;
+  filter: blur(1.7rem) saturate(.82);
+  transform: scale(1.09);
+}
+
+.project-motion-media video,
+.project-motion-media > img {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+  object-fit: contain;
+}
+
 /* The shared shell owns primary navigation; legacy per-page menus stay mounted
    only as compatibility adapters for the individual experiences. */
 .global-menu-header { display: none !important; }
@@ -99,7 +130,7 @@ button { color: inherit; }
 .contact-popup-backdrop[data-open="true"] { display: grid; }
 .contact-popup { --contact-bright:#fafaf7; --contact-muted:#969791; --contact-light:0; position: relative; isolation: isolate; width: min(66rem,100%); max-height: calc(100svh - 2rem); overflow: auto; padding: clamp(1.65rem,5vw,4.25rem); border: 1px solid rgba(255,255,255,.4); border-radius: clamp(1rem,2vw,1.75rem); background: #050505; box-shadow: 0 0 1rem rgba(255,255,255,.06),0 2rem 8rem #000; transition: border-color 520ms ease,box-shadow 520ms ease; }
 .contact-popup::before { position: absolute; inset: 0; z-index: -1; border-radius: inherit; background: linear-gradient(90deg,rgba(3,3,3,.94) 0 43%,rgba(3,3,3,.67) 61%,rgba(3,3,3,.16) 100%); content: ""; opacity: calc(1 - var(--contact-light) * .16); transition: opacity 420ms ease; }
-.contact-popup::after { position: absolute; inset: 0; z-index: -2; border-radius: inherit; background: url("/UROBOROS/assets/images/latticce/contact-hands-v1.png") center/cover no-repeat; content: ""; opacity: calc(.86 + var(--contact-light) * .12); filter: grayscale(1) brightness(calc(.42 + var(--contact-light) * 1.03)) contrast(calc(1.3 - var(--contact-light) * .27)); transform: scale(calc(1.018 - var(--contact-light) * .018)); transition: opacity 420ms ease,filter 360ms ease,transform 720ms cubic-bezier(.16,1,.3,1); }
+.contact-popup::after { position: absolute; inset: 0; z-index: -2; border-radius: inherit; background: url("/assets/images/latticce/contact-hands-v1.png") center/cover no-repeat; content: ""; opacity: calc(.86 + var(--contact-light) * .12); filter: grayscale(1) brightness(calc(.42 + var(--contact-light) * 1.03)) contrast(calc(1.3 - var(--contact-light) * .27)); transform: scale(calc(1.018 - var(--contact-light) * .018)); transition: opacity 420ms ease,filter 360ms ease,transform 720ms cubic-bezier(.16,1,.3,1); }
 .contact-popup form { max-width: 31rem; padding: 1.15rem 1.25rem 1.35rem; border: 1px solid rgba(255,255,255,.22); border-radius: .85rem; background: rgba(2,2,2,.62); box-shadow: inset 0 1px rgba(255,255,255,.04); backdrop-filter: blur(14px); }
 .contact-popup-close { position: absolute; top: 1.15rem; right: 1.15rem; z-index: 2; display: grid; width: 2.1rem; height: 2.1rem; padding: 0; place-items: center; border: 0; background: transparent; color: #a6a7a2; cursor: pointer; font-size: 1.55rem; line-height: 1; transition: color 180ms ease,text-shadow 180ms ease,transform 180ms ease; }
 .contact-popup-close:hover,.contact-popup-close:focus-visible { color: var(--contact-bright); text-shadow: 0 0 1rem rgba(255,255,255,.7); transform: rotate(90deg); }
@@ -134,6 +165,13 @@ button { color: inherit; }
 .shared-section-links a.active::after { position: absolute; right: 0; bottom: -.45rem; left: 0; height: 1px; background: var(--node-color,var(--paper)); box-shadow: 0 0 1rem var(--node-glow,rgba(255,255,255,.35)); content: ""; }
 .shared-section-progress { height: 1px; overflow: hidden; background: rgba(255,255,255,.2); }
 .shared-section-progress i { display: block; width: 100%; height: 100%; background: var(--node-color,var(--paper)); transform: scaleX(var(--section-progress)); transform-origin: left; transition: transform 280ms ease; }
+
+body:has([role="dialog"][aria-modal="true"]) .shared-header,
+body:has([role="dialog"][aria-modal="true"]) .node-social-footer,
+body:has([role="dialog"][aria-modal="true"]) .shared-section-nav {
+  opacity: 0;
+  pointer-events: none;
+}
 .site-footer .footer-progress { visibility: hidden; }
 body:has([class*="homeRoot"]) [class*="sceneProgress"] { display: none; }
 
@@ -446,7 +484,7 @@ body:has([class*="homeRoot"]) [class*="sceneProgress"] { display: none; }
     radial-gradient(ellipse at 58% 49%, rgba(224, 220, 205, 0.13), transparent 18%),
     linear-gradient(115deg, transparent 19%, rgba(255, 255, 255, 0.07) 19.2%, transparent 19.5%),
     linear-gradient(150deg, transparent 58%, rgba(255, 255, 255, 0.08) 58.2%, transparent 58.5%),
-    url("/UROBOROS/assets/images/studio-hero.png") center / cover no-repeat,
+    url("/assets/images/studio-hero.png") center / cover no-repeat,
     #0b0b0b;
 }
 
@@ -686,7 +724,7 @@ body:has([class*="homeRoot"]) [class*="sceneProgress"] { display: none; }
 .process-heading h2 { margin-top: 1rem; font-size: clamp(3rem, 5vw, 5.5rem); }
 .process-list { border-top: 1px solid var(--line-strong); }
 .process-list article { position: relative; display: grid; grid-template-columns: 4rem 1fr 1.3fr; gap: 1rem; align-items: center; min-height: 8rem; overflow: hidden; border-bottom: 1px solid var(--line); }
-.process-list article:nth-child(2)::after { position: absolute; top: 0; right: 0; bottom: 0; width: 35%; z-index: 0; content: ""; opacity: .28; background: linear-gradient(90deg, var(--black), transparent), url("/UROBOROS/assets/images/studio/planning.png") center / cover no-repeat; }
+.process-list article:nth-child(2)::after { position: absolute; top: 0; right: 0; bottom: 0; width: 35%; z-index: 0; content: ""; opacity: .28; background: linear-gradient(90deg, var(--black), transparent), url("/assets/images/studio/planning.png") center / cover no-repeat; }
 .process-list article > * { position: relative; z-index: 1; }
 .process-list p { margin: 0; color: #777771; font-size: 0.62rem; }
 .process-list h3 { margin: 0; font-family: Georgia, "Times New Roman", serif; font-size: clamp(1.6rem, 2.6vw, 2.7rem); font-weight: 400; }

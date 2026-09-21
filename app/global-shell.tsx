@@ -16,12 +16,6 @@ const nodes = [
   { label: "Agency", href: "/agency", node: "agency" },
   { label: "Films", href: "/films", node: "films" },
 ] as const;
-const portalLinks = [
-  { label: "Inicio", href: "/usuario" },
-  { label: "Clientes", href: "/clientes" },
-  { label: "Colaboradores", href: "/colaboradores" },
-] as const;
-
 export function openContactPopup(): void;
 export function openContactPopup(context: ContactContext): void;
 export function openContactPopup(context: ContactContext = "general") {
@@ -71,8 +65,8 @@ export function NodeSocialFooter({ node, socials = {} }: { node?: string; social
   return <footer className="node-social-footer" data-node={node}>
     <span>{node ? `LATTICCE ${node}` : "LATTICCE"}</span>
     <nav aria-label="Contacto y redes">
-      {links.map((link) => <a key={link.label} href={link.href} target="_blank" rel="noreferrer" aria-label={link.label}><Image src={`/UROBOROS/assets/icons/social/${link.icon}.svg`} width={18} height={18} alt="" /><span>{link.label}</span></a>)}
-      {pending.map((social) => <span className="node-social-pending" key={social} title="Enlace pendiente" aria-label={`${social}, enlace pendiente`}><Image src={`/UROBOROS/assets/icons/social/${social}.svg`} width={18} height={18} alt="" /><span>{social}</span></span>)}
+      {links.map((link) => <a key={link.label} href={link.href} target="_blank" rel="noreferrer" aria-label={link.label}><Image src={`/assets/icons/social/${link.icon}.svg`} width={18} height={18} alt="" /><span>{link.label}</span></a>)}
+      {pending.map((social) => <span className="node-social-pending" key={social} title="Enlace pendiente" aria-label={`${social}, enlace pendiente`}><Image src={`/assets/icons/social/${social}.svg`} width={18} height={18} alt="" /><span>{social}</span></span>)}
     </nav>
   </footer>;
 }
@@ -83,7 +77,7 @@ const routeSections: Array<{ match: (pathname: string) => boolean; items: Sectio
   { match: (path) => path === "/agency", items: [{ id: "inicio", label: "Inicio" }, { id: "servicios", label: "Sistemas" }] },
   { match: (path) => path === "/sound", items: [{ id: "inicio", label: "Inicio" }, { id: "servicios", label: "Capacidades" }, { id: "estudio", label: "Home Studio" }, { id: "postproduccion", label: "Precisión" }, { id: "radio", label: "radio" }, { id: "set", label: "Set" }, { id: "post", label: "Post" }, { id: "musicalizacion", label: "Música" }, { id: "proyectos", label: "Proyectos" }, { id: "contacto", label: "Agenda" }] },
   { match: (path) => path === "/studio", items: [{ id: "inicio", label: "Inicio" }, { id: "mirada", label: "Mirada" }, { id: "crea", label: "+ Crea" }, { id: "proyecto", label: "Proyecto" }, { id: "book", label: "Book" }, { id: "proceso", label: "Proceso" }, { id: "postproduccion", label: "Post" }, { id: "contenido", label: "Redes" }, { id: "contacto", label: "Hablemos" }] },
-  { match: (path) => path === "/time", items: [{ id: "inicio", label: "Inicio" }, { id: "historias", label: "Historias" }, { id: "coberturas", label: "Coberturas" }, { id: "equipo", label: "Equipo" }, { id: "agenda", label: "Agenda" }] },
+  { match: (path) => path === "/time", items: [{ id: "inicio", label: "Inicio" }, { id: "historias", label: "Historias" }, { id: "coberturas", label: "Coberturas" }, { id: "equipo", label: "Equipo" }, { id: "book", label: "Book" }, { id: "agenda", label: "Agenda" }] },
   { match: (path) => path === "/design", items: [{ id: "inicio", label: "Inicio" }, { id: "capacidades", label: "Capacidades" }, { id: "book", label: "Book" }, { id: "anima", label: "αnima" }, { id: "proceso", label: "Proceso" }, { id: "contenido", label: "Redes" }, { id: "aplicaciones", label: "Aplicaciones" }, { id: "contacto", label: "Agenda" }] },
   { match: (path) => path === "/book", items: [{ id: "inicio", label: "Inicio" }, { id: "destacados", label: "Destacados" }, { id: "nodos", label: "Nodos" }, { id: "catalogo", label: "Archivo" }] },
   { match: (path) => path === "/blog", items: [{ id: "inicio", label: "Inicio" }, { id: "archivo", label: "Archivo" }] },
@@ -142,19 +136,15 @@ function SectionNavigator({ pathname }: { pathname: string }) {
 
 function GlobalHeader() {
   return <header className="shared-header">
-    <Link className="shared-header-logo" href="/" aria-label="LATTICCE, ir al inicio"><Image src="/UROBOROS/assets/logos/LTT_LOGO_1920_FX.png" width={246} height={47} alt="LATTICCE" priority /></Link>
-    <a className="shared-header-whatsapp" href={`https://wa.me/${WHATSAPP_NUMBER}`} target="_blank" rel="noreferrer"><Image src="/UROBOROS/assets/icons/social/whatsapp.svg" width={16} height={16} alt="" /> WhatsApp</a>
+    <Link className="shared-header-logo" href="/" aria-label="LATTICCE, ir al inicio"><Image src="/assets/logos/LTT_LOGO_1920_FX.png" width={246} height={47} alt="LATTICCE" priority /></Link>
+    <a className="shared-header-whatsapp" href={`https://wa.me/${WHATSAPP_NUMBER}`} target="_blank" rel="noreferrer"><Image src="/assets/icons/social/whatsapp.svg" width={16} height={16} alt="" /> WhatsApp</a>
     <div className="shared-header-actions">
-      <Link className="shared-header-login" href="/usuario" aria-label="Iniciar sesión">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.25" /><path d="M5.75 19c.7-3.2 2.8-5 6.25-5s5.55 1.8 6.25 5" /></svg>
-      </Link>
       <details className="shared-header-menu">
         <summary className="shared-header-trigger" aria-controls="global-navigation"><span>Menú</span><i aria-hidden="true"><b /><b /><b /></i></summary>
         <nav className="shared-navigation" id="global-navigation" aria-label="Navegación principal">
           <Link href="/">HOME</Link>
           <details className="shared-navigation-group"><summary>NODOS <span>+</span></summary><div>{nodes.map((item) => <Link key={item.node} href={item.href} data-node={item.node}>{item.label}</Link>)}</div></details>
           <Link href="/book">BOOK</Link><Link href="/blog">BLOG</Link><Link href="/films/cinema">CINNEMA</Link>
-          <details className="shared-navigation-group"><summary>PORTAL <span>+</span></summary><div>{portalLinks.map((item) => <Link key={item.label} href={item.href}>{item.label}</Link>)}</div></details>
           <a className="shared-navigation-contact" href="#contacto-global">CONTACTO</a>
           <a className="shared-navigation-whatsapp" href={`https://wa.me/${WHATSAPP_NUMBER}`} target="_blank" rel="noreferrer">WHATSAPP ↗︎</a>
         </nav>
@@ -236,7 +226,7 @@ function ContactPopup() {
 
 export default function GlobalShell({ children }: { children: ReactNode }) {
   const rawPathname = usePathname();
-  const pathname = rawPathname.replace(/^\/UROBOROS(?=\/|$)/, "").replace(/\.html$/, "").replace(/\/$/, "") || "/";
+  const pathname = rawPathname.replace(/\.html$/, "").replace(/\/$/, "") || "/";
   const isCinema = pathname === "/films/cinema" || pathname.startsWith("/films/cinema/");
   const isFilmsExperience = pathname === "/films";
   const node = nodes.find((item) => pathname === item.href || pathname.startsWith(`${item.href}/`))?.node;

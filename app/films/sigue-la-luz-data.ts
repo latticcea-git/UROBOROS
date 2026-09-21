@@ -170,7 +170,7 @@ export const cinematicCopy: CinematicCopy[] = [
   },
 ];
 
-export const FILMS_BASE_PATH = "/UROBOROS";
+export const FILMS_BASE_PATH = "";
 export const FILMS_EXPERIENCE_VERSION = "sigue-la-luz-public-v1.0.0";
 
 export function withFilmsBasePath(path: string) {

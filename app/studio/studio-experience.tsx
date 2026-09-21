@@ -7,17 +7,18 @@ import type { CSSProperties } from "react";
 import { openContactPopup } from "../global-shell";
 import { BlackSea } from "../home-visuals";
 import { bookProjects } from "../book/book-data";
+import ProjectMedia from "../book/project-media";
 import styles from "./studio.module.css";
 
 const WHATSAPP_NUMBER = "525525241137";
 
 const services = [
-  { id: "video", title: "Producción de video", image: "/UROBOROS/assets/images/studio/video-optimized.jpg" },
-  { id: "photo", title: "Sesión fotográfica", image: "/UROBOROS/assets/images/studio/photo-optimized.jpg" },
-  { id: "videoclips", title: "Videoclips", image: "/UROBOROS/assets/images/studio/videoclips-optimized.jpg" },
-  { id: "events", title: "Cobertura de eventos", image: "/UROBOROS/assets/images/studio/events-optimized.jpg" },
-  { id: "food", title: "Food styling", image: "/UROBOROS/assets/images/studio/food-optimized.jpg" },
-  { id: "architecture", title: "Arquitectura", image: "/UROBOROS/assets/images/studio/architecture-optimized.jpg" },
+  { id: "video", title: "Producción de video", image: "/assets/images/studio/video-optimized.jpg" },
+  { id: "photo", title: "Sesión fotográfica", image: "/assets/images/studio/photo-optimized.jpg" },
+  { id: "videoclips", title: "Videoclips", image: "/assets/images/studio/videoclips-optimized.jpg" },
+  { id: "events", title: "Cobertura de eventos", image: "/assets/images/studio/events-optimized.jpg" },
+  { id: "food", title: "Food styling", image: "/assets/images/studio/food-optimized.jpg" },
+  { id: "architecture", title: "Arquitectura", image: "/assets/images/studio/architecture-optimized.jpg" },
 ] as const;
 
 const process = [
@@ -39,7 +40,7 @@ const scenes = [
   { id: "contacto", label: "Hablemos", iso: "—", shutter: "READY", aperture: "09", wb: "CDMX" },
 ] as const;
 
-const featuredStudioProject = bookProjects.find((project) => project.slug === "enjambre-estadio-gnp");
+const featuredStudioProject = bookProjects.find((project) => project.slug === "sofia-stainer-foro-la-paz");
 
 type Simulation = (typeof services)[number];
 
@@ -60,6 +61,14 @@ export default function StudioExperience() {
     () => bookProjects.filter((project) => project.node === "studio"),
     [],
   );
+
+  const moveSimulation = useCallback((direction: -1 | 1) => {
+    setSimulation((current) => {
+      if (!current) return current;
+      const currentIndex = services.findIndex((service) => service.id === current.id);
+      return services[(currentIndex + direction + services.length) % services.length];
+    });
+  }, []);
 
   useEffect(() => {
     const root = journeyRef.current;
@@ -217,13 +226,13 @@ export default function StudioExperience() {
         <div className={styles.sticky} ref={stickyRef}>
           <div className={styles.track} ref={trackRef}>
             <section className={`${styles.panel} ${styles.hero}`} id="inicio" data-studio-panel="inicio">
-              <ResponsivePhoto className={styles.heroImage} desktop="/UROBOROS/assets/images/studio/studio-cdmx-golden-hour-generated-draft-v2-optimized.jpg" mobile="/UROBOROS/assets/images/studio/studio-cdmx-golden-hour-generated-draft-v2-mobile.jpg" alt="Ciudad de México durante una hora dorada, con el Ángel de la Independencia y peatones a contraluz." eager />
+              <ResponsivePhoto className={styles.heroImage} desktop="/assets/images/studio/studio-cdmx-golden-hour-generated-draft-v2-optimized.jpg" mobile="/assets/images/studio/studio-cdmx-golden-hour-generated-draft-v2-mobile.jpg" alt="Ciudad de México durante una hora dorada, con el Ángel de la Independencia y peatones a contraluz." eager />
               <div className={styles.heroShade} />
               <div className={styles.heroContent} data-studio-reveal>
-                <Image className={styles.heroLogo} src="/UROBOROS/assets/logos/LTT_LOGO_NEG_STUDIO.svg" alt="LATTICCE Studio" width={760} height={196} priority />
+                <Image className={styles.heroLogo} src="/assets/logos/LTT_LOGO_NEG_STUDIO.svg" alt="LATTICCE Studio" width={760} height={196} priority />
                 <p className={styles.heroService}>Foto + video comercial.</p>
                 <p className={styles.heroStatement}>Creamos imágenes que conectan, comunican y permanecen.</p>
-                <a className={styles.reelButton} href="/UROBOROS/films/cinema" target="_blank" rel="noreferrer"><span aria-hidden="true"><PlayIcon /></span> Ver reel</a>
+                <a className={styles.reelButton} href="/films/cinema" target="_blank" rel="noreferrer"><span aria-hidden="true"><PlayIcon /></span> Ver reel</a>
                 <a className={styles.heroContact} href="#contacto-global" onClick={() => openContactPopup()}>Cotizar proyecto <ArrowUpRightIcon /></a>
               </div>
               <div className={styles.advanceArrows} aria-hidden="true"><span><ArrowRightIcon /></span><span><ArrowRightIcon /></span><span><ArrowRightIcon /></span></div>
@@ -231,9 +240,9 @@ export default function StudioExperience() {
             </section>
 
             <section className={`${styles.panel} ${styles.statement}`} id="mirada" data-studio-panel="mirada">
-              <ResponsivePhoto className={`${styles.mountain} ${styles.mountainTop}`} desktop="/UROBOROS/assets/images/studio/studio-snow-mountain-generated-draft-v2-optimized.jpg" mobile="/UROBOROS/assets/images/studio/studio-snow-mountain-generated-draft-v2-mobile.jpg" alt="" />
-              <ResponsivePhoto className={`${styles.mountain} ${styles.mountainTopEcho}`} desktop="/UROBOROS/assets/images/studio/studio-snow-mountain-generated-draft-v2-optimized.jpg" mobile="/UROBOROS/assets/images/studio/studio-snow-mountain-generated-draft-v2-mobile.jpg" alt="" />
-              <ResponsivePhoto className={`${styles.mountain} ${styles.mountainBottom}`} desktop="/UROBOROS/assets/images/studio/studio-snow-mountain-generated-draft-v2-optimized.jpg" mobile="/UROBOROS/assets/images/studio/studio-snow-mountain-generated-draft-v2-mobile.jpg" alt="" />
+              <ResponsivePhoto className={`${styles.mountain} ${styles.mountainTop}`} desktop="/assets/images/studio/studio-snow-mountain-generated-draft-v2-optimized.jpg" mobile="/assets/images/studio/studio-snow-mountain-generated-draft-v2-mobile.jpg" alt="" />
+              <ResponsivePhoto className={`${styles.mountain} ${styles.mountainTopEcho}`} desktop="/assets/images/studio/studio-snow-mountain-generated-draft-v2-optimized.jpg" mobile="/assets/images/studio/studio-snow-mountain-generated-draft-v2-mobile.jpg" alt="" />
+              <ResponsivePhoto className={`${styles.mountain} ${styles.mountainBottom}`} desktop="/assets/images/studio/studio-snow-mountain-generated-draft-v2-optimized.jpg" mobile="/assets/images/studio/studio-snow-mountain-generated-draft-v2-mobile.jpg" alt="" />
               <div className={styles.statementShade} />
               <div className={styles.statementContent} data-studio-reveal>
                 <p className={styles.eyebrow}>02 / Lo que hacemos</p>
@@ -253,9 +262,9 @@ export default function StudioExperience() {
             </section>
 
             {featuredStudioProject && <section className={`${styles.panel} ${styles.project}`} id="proyecto" data-studio-panel="proyecto">
-              <div className={styles.projectVisual}><Image src={featuredStudioProject.image} alt={featuredStudioProject.alt} fill sizes="64vw" /><span>01 / Proyecto real</span></div>
+              <div className={styles.projectVisual}><ProjectMedia project={featuredStudioProject} priority sizes="64vw" /><span>01 / Proyecto real</span></div>
               <div className={styles.projectCopy} data-studio-reveal>
-                <p className={styles.eyebrow}>04 / Concierto / Proyecto en foco</p><h2>{featuredStudioProject.title}</h2><p>Una noche de concierto, luz y respuesta colectiva documentada desde el gesto real con Sony α7 IV.</p>
+                <p className={styles.eyebrow}>04 / Concierto / Proyecto en foco</p><h2>{featuredStudioProject.title}</h2><p>Más de diez años de canciones reunidos en una noche de baile, luz y cercanía, documentada con Sony α7 IV.</p>
                 <dl><div><dt>Registro</dt><dd>Concierto</dd></div><div><dt>Formato</dt><dd>Fotografía</dd></div><div><dt>Cámara</dt><dd>Sony α7 IV</dd></div></dl>
                 <Link href={`/book/${featuredStudioProject.slug}`}>Ver proyecto completo <ArrowUpRightIcon /></Link>
               </div>
@@ -264,8 +273,8 @@ export default function StudioExperience() {
             <section className={`${styles.panel} ${styles.book}`} id="book" data-studio-panel="book">
               <header className={styles.bookHeader} data-studio-reveal><div><p className={styles.eyebrow}>05 / Book Studio</p><h2>Obra real.<br /><em>Miradas en proceso.</em></h2></div><Link href="/book#studio">Explorar Studio en Book <ArrowUpRightIcon /></Link><span className={styles.bookHint}>Desliza <i aria-hidden="true"><ArrowRightIcon /><ArrowRightIcon /><ArrowRightIcon /></i></span></header>
               <div className={styles.bookRail}>
-                {realStudioProjects.map((project) => <Link className={styles.bookCard} href={`/book/${project.slug}`} key={project.slug} data-studio-reveal><Image src={project.image} alt={project.alt} fill sizes="32vw" /><span className={styles.bookShade} /><small>Proyecto real / {project.year}</small><div><p>{project.category}</p><h3>{project.title}</h3><b>Ver proyecto <ArrowUpRightIcon /></b></div></Link>)}
-                {services.map((service) => <a className={`${styles.bookCard} ${styles.bookSimulation}`} href={service.image} target="_blank" rel="noreferrer" key={service.id} onClick={(event) => { event.preventDefault(); setSimulation(service); }} data-studio-reveal><Image src={service.image} alt="" fill sizes="32vw" /><span className={styles.bookShade} /><small>Simulación / En producción</small><div><p>Studio / Capacidad</p><h3>{service.title}</h3><b>Abrir vista <ArrowUpRightIcon /></b></div></a>)}
+                {realStudioProjects.map((project) => <Link className={styles.bookCard} href={`/book/${project.slug}`} key={project.slug} data-studio-reveal><ProjectMedia project={project} sizes="32vw" /><span className={styles.bookShade} /><small>Proyecto real / {project.year}</small><div><p>{project.category}</p><h3>{project.title}</h3><b>Ver proyecto <ArrowUpRightIcon /></b></div></Link>)}
+                {services.map((service) => <button className={`${styles.bookCard} ${styles.bookSimulation}`} type="button" key={service.id} onClick={() => setSimulation(service)} aria-label={`Abrir galería de ${service.title}`} data-studio-reveal><Image src={service.image} alt="" fill sizes="32vw" /><span className={styles.bookShade} /><small>Simulación / En producción</small><div><p>Studio / Capacidad</p><h3>{service.title}</h3><b>Abrir galería <ArrowUpRightIcon /></b></div></button>)}
                 <Link className={styles.bookPortal} href="/book" data-studio-reveal aria-label="Abrir el Book completo de LATTICCE">
                   <span className={styles.bookFolder} aria-hidden="true"><BookFolderIcon /></span>
                   <span className={styles.bookPortalMeta}>Archivo completo</span>
@@ -283,8 +292,8 @@ export default function StudioExperience() {
 
             <section className={`${styles.panel} ${styles.post}`} id="postproduccion" data-studio-panel="postproduccion">
               <div className={styles.postReference} data-studio-reveal>
-                <ResponsivePhoto className={styles.postReferenceUi} desktop="/UROBOROS/assets/images/studio/studio-postproduction-davinci-reference-user-v2-optimized.jpg" mobile="/UROBOROS/assets/images/studio/studio-postproduction-davinci-reference-user-v2-mobile.jpg" alt="Interfaz de referencia aportada para representar un flujo profesional de edición y corrección de color." />
-                <div className={styles.postIndustrialFrame}><Image src="/UROBOROS/assets/images/studio/studio-industrial-commercial-generated-draft-v1-optimized.jpg" alt="Operador supervisando una máquina industrial durante un comercial." fill sizes="(max-width: 900px) 74vw, 40vw" /></div>
+                <ResponsivePhoto className={styles.postReferenceUi} desktop="/assets/images/studio/studio-postproduction-davinci-reference-user-v2-optimized.jpg" mobile="/assets/images/studio/studio-postproduction-davinci-reference-user-v2-mobile.jpg" alt="Interfaz de referencia aportada para representar un flujo profesional de edición y corrección de color." />
+                <div className={styles.postIndustrialFrame}><Image src="/assets/images/studio/studio-industrial-commercial-generated-draft-v1-optimized.jpg" alt="Operador supervisando una máquina industrial durante un comercial." fill sizes="(max-width: 900px) 74vw, 40vw" /></div>
                 <div className={styles.postIntegratedCopy}><p className={styles.eyebrow}>07 / Precisión después del rodaje</p><h2>Expertos en<br /><em>postproducción.</em></h2></div>
                 <div className={styles.postServiceBoard}>
                   <div className={styles.postServices}>{["Montaje", "Color grading", "VFX", "Motion graphics", "Retoque", "Edición fotográfica", "Limpieza de audio", "Masters y adaptaciones"].map((item) => <span key={item}>{item}</span>)}</div>
@@ -296,7 +305,7 @@ export default function StudioExperience() {
             <section className={`${styles.panel} ${styles.cta}`} data-studio-panel="cta"><div className={styles.ctaSea} aria-hidden="true"><BlackSea active={activeScene === "postproduccion"} presence={0.3} tempo={0.42} horizon={0.1} /></div><div className={styles.ctaGlow} aria-hidden="true" /><div className={styles.ctaContent} data-studio-reveal><p className={styles.eyebrow}>Tu proyecto puede ser el siguiente</p><h2>Hagamos <strong>visible</strong><br /><em>lo que imaginas.</em></h2><a href={whatsappUrl("Hola LATTICCE Studio, quiero hacer visible un proyecto.")} target="_blank" rel="noreferrer">Construir mi proyecto <ArrowUpRightIcon /></a></div></section>
 
             <section className={`${styles.panel} ${styles.social}`} id="contenido" data-studio-panel="contenido">
-              <ResponsivePhoto className={styles.socialBackground} desktop="/UROBOROS/assets/images/studio/studio-social-dance-generated-draft-v1-optimized.jpg" mobile="/UROBOROS/assets/images/studio/studio-social-dance-generated-draft-v1-mobile.jpg" alt="" /><div className={styles.socialShade} />
+              <ResponsivePhoto className={styles.socialBackground} desktop="/assets/images/studio/studio-social-dance-generated-draft-v1-optimized.jpg" mobile="/assets/images/studio/studio-social-dance-generated-draft-v1-mobile.jpg" alt="" /><div className={styles.socialShade} />
               <div className={styles.socialCopy} data-studio-reveal><p className={styles.eyebrow}>08 / Contenido periódico</p><h2>Tu marca también<br /><em>vive en movimiento.</em></h2><p>Planeamos, producimos y adaptamos contenido para que tus redes mantengan presencia sin perder intención.</p></div>
               <PhoneCamera /><span className={styles.draftLabel}>© LATTICCE — Todos los derechos reservados</span>
             </section>
@@ -307,7 +316,7 @@ export default function StudioExperience() {
       </div>
 
       <div id="studio-reel" className={styles.modalBackdrop} data-open={reelOpen ? "true" : "false"} role="presentation" onMouseDown={(event) => { if (event.currentTarget === event.target) setReelOpen(false); }}><section className={styles.reelModal} role="dialog" aria-modal="true" aria-labelledby="studio-reel-title"><a href="#" onClick={() => setReelOpen(false)} aria-label="Cerrar reel">×</a><span>Reel Studio / 2026</span><h2 id="studio-reel-title">En actualización.</h2><p>Este espacio está listo para integrar el reel oficial.</p></section></div>
-      {simulation && <div className={styles.modalBackdrop} role="presentation" onMouseDown={(event) => { if (event.currentTarget === event.target) setSimulation(null); }}><section className={styles.simulationModal} role="dialog" aria-modal="true" aria-labelledby="studio-simulation-title"><button type="button" onClick={() => setSimulation(null)} aria-label="Cerrar vista">×</button><div><p className={styles.eyebrow}>Simulación / En producción</p><h2 id="studio-simulation-title">{simulation.title}</h2><p>Esta imagen representa una capacidad de Studio y será sustituida por un caso real en Book.</p></div><Image src={simulation.image} alt={`Vista provisional de ${simulation.title}.`} width={1440} height={1080} /></section></div>}
+      {simulation && <div className={styles.modalBackdrop} data-open="true" role="presentation" onMouseDown={(event) => { if (event.currentTarget === event.target) setSimulation(null); }}><section className={styles.simulationModal} role="dialog" aria-modal="true" aria-labelledby="studio-simulation-title"><button type="button" onClick={() => setSimulation(null)} aria-label="Cerrar galería de muestras">×</button><div><p className={styles.eyebrow}>Galería de capacidades / {String(services.findIndex((service) => service.id === simulation.id) + 1).padStart(2, "0")} de {String(services.length).padStart(2, "0")}</p><h2 id="studio-simulation-title">{simulation.title}</h2><p>Recorre las muestras de Studio y entra al BOOK para abrir cada proyecto real con su galería completa.</p><Link className={styles.simulationBookLink} href="/book#studio">Abrir Book Studio <ArrowUpRightIcon /></Link></div><div className={styles.simulationVisual}><Image src={simulation.image} alt={`Vista provisional de ${simulation.title}.`} fill sizes="(max-width: 900px) 100vw, 58vw" /><button className={`${styles.simulationArrow} ${styles.simulationPrevious}`} type="button" onClick={() => moveSimulation(-1)} aria-label="Muestra anterior">←</button><button className={`${styles.simulationArrow} ${styles.simulationNext}`} type="button" onClick={() => moveSimulation(1)} aria-label="Muestra siguiente">→</button></div></section></div>}
     </main>
   );
 }
@@ -317,7 +326,7 @@ function StudioFrame({ sceneIndex, telemetry }: { sceneIndex: number; telemetry:
 }
 
 function PhoneCamera() {
-  return <div className={styles.phone} aria-label="Interfaz conceptual de cámara móvil"><div className={styles.phoneTop}><span>9:41</span><b className={styles.phoneSignal} aria-hidden="true"><i /><i /><i /></b></div><div className={styles.phoneMode}><span>RAW</span><b>CONTENT</b><span className={styles.phoneDots} aria-hidden="true"><i /><i /><i /></span></div><div className={styles.phonePreview}><Image src="/UROBOROS/assets/images/studio/studio-social-dance-generated-draft-v1-mobile.jpg" alt="Creadora de contenido bailando ante una cámara." fill sizes="(max-width: 900px) 48vw, 22vw" /></div><div className={styles.phoneMeter}><span>−2</span><span>−1</span><b>0</b><span>+1</span><span>+2</span></div><div className={styles.phoneSettings}><span>4K<br /><b>RES</b></span><span>24<br /><b>FPS</b></span><span>5200<br /><b>WB</b></span></div><div className={styles.phoneShutter}><i /><button type="button" tabIndex={-1} aria-hidden="true" /><i /></div></div>;
+  return <div className={styles.phone} aria-label="Interfaz conceptual de cámara móvil"><div className={styles.phoneTop}><span>9:41</span><b className={styles.phoneSignal} aria-hidden="true"><i /><i /><i /></b></div><div className={styles.phoneMode}><span>RAW</span><b>CONTENT</b><span className={styles.phoneDots} aria-hidden="true"><i /><i /><i /></span></div><div className={styles.phonePreview}><Image src="/assets/images/studio/studio-social-dance-generated-draft-v1-mobile.jpg" alt="Creadora de contenido bailando ante una cámara." fill sizes="(max-width: 900px) 48vw, 22vw" /></div><div className={styles.phoneMeter}><span>−2</span><span>−1</span><b>0</b><span>+1</span><span>+2</span></div><div className={styles.phoneSettings}><span>4K<br /><b>RES</b></span><span>24<br /><b>FPS</b></span><span>5200<br /><b>WB</b></span></div><div className={styles.phoneShutter}><i /><button type="button" tabIndex={-1} aria-hidden="true" /><i /></div></div>;
 }
 
 function ResponsivePhoto({ className, desktop, mobile, alt, eager = false }: { className: string; desktop: string; mobile: string; alt: string; eager?: boolean }) {

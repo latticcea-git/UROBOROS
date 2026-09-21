@@ -8,8 +8,9 @@ export const metadata: Metadata = {
   openGraph: {
     title: "LATTICCE BLOG",
     description: "Miradas que construyen. Ideas que transforman.",
-    images: ["/UROBOROS/og.png"],
+    images: ["/og.png"],
   },
+  alternates: { canonical: "/blog/" },
 };
 
 export default function BlogPage() {

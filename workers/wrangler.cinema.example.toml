@@ -1,0 +1,9 @@
+name = "latticce-cinema-playback"
+main = "cinema-playback-worker.ts"
+compatibility_date = "2026-08-27"
+
+[vars]
+ALLOWED_ORIGIN = "https://latticce.com"
+
+# Configure CLOUDFLARE_ACCOUNT_ID, CLOUDFLARE_STREAM_API_TOKEN,
+# CLOUDFLARE_STREAM_CUSTOMER_CODE and CINEMA_ESCILA_UID as Worker secrets.

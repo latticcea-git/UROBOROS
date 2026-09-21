@@ -43,7 +43,7 @@ export const servicePages: Record<ServiceSlug, AgencyService> = {
     promise: "Tu marca presente. Tu contenido en movimiento.",
     intro:
       "Convertimos tus redes en un sistema constante de estrategia, producción, publicación, comunidad y aprendizaje mensual.",
-    heroImage: "/UROBOROS/assets/images/agency/services/contenido-rrss-v1.webp",
+    heroImage: "/assets/images/agency/services/contenido-rrss-v1.webp",
     heroAlt:
       "Operador frente a un núcleo físico de señales digitales dentro de una cámara tecnológica oscura.",
     ritual: "OBSERVAR · CREAR · PROGRAMAR · ESCUCHAR · MEDIR",
@@ -95,15 +95,15 @@ export const servicePages: Record<ServiceSlug, AgencyService> = {
     nextTitle: "ECOSISTEMAS DIGITALES (UI–UX)",
     studioLink: true,
     platforms: [
-      { name: "Instagram", icon: "/UROBOROS/assets/icons/social/instagram.svg" },
-      { name: "Facebook", icon: "/UROBOROS/assets/icons/social/facebook.svg" },
-      { name: "TikTok", icon: "/UROBOROS/assets/icons/social/tiktok.svg" },
-      { name: "YouTube", icon: "/UROBOROS/assets/icons/social/youtube.svg" },
-      { name: "LinkedIn", icon: "/UROBOROS/assets/icons/social/linkedin.svg" },
-      { name: "WhatsApp", icon: "/UROBOROS/assets/icons/social/whatsapp.svg" },
-      { name: "X", icon: "/UROBOROS/assets/icons/social/x.svg" },
-      { name: "Pinterest", icon: "/UROBOROS/assets/icons/social/pinterest.svg" },
-      { name: "Threads", icon: "/UROBOROS/assets/icons/social/threads.svg" },
+      { name: "Instagram", icon: "/assets/icons/social/instagram.svg" },
+      { name: "Facebook", icon: "/assets/icons/social/facebook.svg" },
+      { name: "TikTok", icon: "/assets/icons/social/tiktok.svg" },
+      { name: "YouTube", icon: "/assets/icons/social/youtube.svg" },
+      { name: "LinkedIn", icon: "/assets/icons/social/linkedin.svg" },
+      { name: "WhatsApp", icon: "/assets/icons/social/whatsapp.svg" },
+      { name: "X", icon: "/assets/icons/social/x.svg" },
+      { name: "Pinterest", icon: "/assets/icons/social/pinterest.svg" },
+      { name: "Threads", icon: "/assets/icons/social/threads.svg" },
     ],
   },
   "ecosistemas-ui-ux": {
@@ -115,7 +115,7 @@ export const servicePages: Record<ServiceSlug, AgencyService> = {
     promise: "Diseñamos el mundo digital donde tu marca puede crecer.",
     intro:
       "Estrategia, experiencia, interfaz y desarrollo conectados para crear sitios, landings, e-commerce y sistemas que funcionan como un solo organismo.",
-    heroImage: "/UROBOROS/assets/images/agency/services/ecosistemas-digitales-v1.webp",
+    heroImage: "/assets/images/agency/services/ecosistemas-digitales-v1.webp",
     heroAlt:
       "Arquitectos digitales materializando estructuras de cristal y código dentro de un bosque monumental.",
     ritual: "IMAGINAR · ARQUITECTAR · PROGRAMAR · CONECTAR · EVOLUCIONAR",
@@ -206,7 +206,7 @@ export const servicePages: Record<ServiceSlug, AgencyService> = {
     promise: "La señal correcta frente a la audiencia correcta.",
     intro:
       "Impulsamos tu contenido con campañas de Meta Ads y Google Ads diseñadas para alcanzar, aprender y convertir.",
-    heroImage: "/UROBOROS/assets/images/agency/services/distribucion-ads-v1.webp",
+    heroImage: "/assets/images/agency/services/distribucion-ads-v1.webp",
     heroAlt:
       "Operador calibrando una máquina óptica que distribuye haces suaves hacia distintos destinos.",
     ritual: "DEFINIR · SEGMENTAR · ACTIVAR · MEDIR · OPTIMIZAR",

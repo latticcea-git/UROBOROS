@@ -123,7 +123,7 @@ export default function PortalPrototype({ type }: { type: PortalType }) {
         <aside className={styles.sidebar}>
           <Link className={styles.brand} href="/usuario" aria-label="Volver al acceso de usuario">
             <Image
-              src="/UROBOROS/assets/logos/LTT_LOGO_NEG.svg"
+              src="/assets/logos/LTT_LOGO_NEG.svg"
               alt="LATTICCE"
               width={94}
               height={20}
@@ -309,7 +309,7 @@ function MediaCard({ title, meta }: { title: string; meta: string }) {
   return (
     <article className={styles.mediaCard}>
       <Image
-        src="/UROBOROS/assets/images/portal/latticce-liquid-core-v1.png"
+        src="/assets/images/portal/latticce-liquid-core-v1.png"
         alt="Núcleo líquido abstracto de LATTICCE"
         fill
         loading="eager"
@@ -446,7 +446,7 @@ function ToolsHub() {
     <div className={styles.toolsLayout}>
       <article className={styles.toolsIntro}>
         <div><small>HERRAMIENTAS / TABULADOR</small><h2>Calculadoras LATTICCE</h2><p>Accesos a las rutas actuales. Se habilitan cuando exista una URL pública configurada.</p></div>
-        <Image src="/UROBOROS/assets/images/portal/latticce-liquid-core-v1.png" alt="Núcleo líquido abstracto" fill loading="eager" sizes="(max-width: 720px) 100vw, 45vw" />
+        <Image src="/assets/images/portal/latticce-liquid-core-v1.png" alt="Núcleo líquido abstracto" fill loading="eager" sizes="(max-width: 720px) 100vw, 45vw" />
         <span>{tabulatorBase ? "● Conexión disponible" : "○ URL pública pendiente"}</span>
       </article>
       <section className={styles.calculatorGrid}>

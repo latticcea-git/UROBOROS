@@ -696,6 +696,38 @@
   line-height: 1.7;
 }
 
+.caseGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  width: min(76rem, 86vw);
+  margin: clamp(2.5rem, 5vw, 4.5rem) 50% 0;
+  text-align: left;
+  transform: translateX(-50%);
+}
+
+.caseCard {
+  display: grid;
+  min-width: 0;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid rgba(114, 231, 255, .24);
+}
+
+.caseImage {
+  position: relative;
+  display: block;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  margin-bottom: 1rem;
+  background: #07121d;
+}
+
+.caseImage img { object-fit: cover; filter: saturate(.7); transition: filter 420ms ease, transform 700ms cubic-bezier(.16, 1, .3, 1); }
+.caseCard:hover .caseImage img, .caseCard:focus-visible .caseImage img { filter: saturate(1); transform: scale(1.025); }
+.caseMeta { color: rgba(114, 231, 255, .7); font-size: .5rem; letter-spacing: .14em; text-transform: uppercase; }
+.caseCard strong { margin-top: .65rem; font-size: clamp(1.35rem, 2.2vw, 2.35rem); font-weight: 500; letter-spacing: -.04em; line-height: 1; }
+.caseCard i { margin-top: 1rem; color: rgba(236, 248, 252, .62); font-size: .5rem; font-style: normal; letter-spacing: .13em; text-transform: uppercase; }
+
 .contactSection {
   display: grid;
   grid-template-columns: minmax(16rem, .8fr) minmax(0, 1.2fr);
@@ -1000,6 +1032,9 @@
   .contactSection {
     padding-inline: 1rem;
   }
+
+  .casesSection { padding-inline: 1rem; }
+  .caseGrid { grid-template-columns: 1fr; width: 100%; margin-inline: 0; transform: none; }
 
   .statementCopy h2,
   .sectionHeading h2,

@@ -38,7 +38,7 @@ export default function BlogExperience() {
 
   return (
     <main className={styles.blogRoot}>
-      <SiteMenu homeHref="/" logoSrc="/UROBOROS/assets/logos/LTT_LOGO_1920_FX.png" logoAlt="LATTICCE" />
+      <SiteMenu homeHref="/" logoSrc="/assets/logos/LTT_LOGO_1920_FX.png" logoAlt="LATTICCE" />
 
       <section className={styles.hero} id="inicio" aria-labelledby="blog-title">
         <div className={styles.heroTopline}><span>Publicación editorial / 2026</span><span>Ciudad de México</span></div>

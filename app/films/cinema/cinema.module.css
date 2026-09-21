@@ -16,7 +16,7 @@
 
 .auditorium,.vignette { position: absolute; inset: 0; z-index: -3; }
 .auditorium {
-  background: url("/UROBOROS/assets/images/films/cinema/cinema-auditorium-generated-draft-v1.jpg") center/cover no-repeat;
+  background: url("/assets/images/films/cinema/cinema-auditorium-generated-draft-v1.jpg") center/cover no-repeat;
   filter: saturate(.2) contrast(1.12) brightness(.62);
   transform: scale(1.025);
   animation: auditoriumBreath 14s ease-in-out infinite alternate;

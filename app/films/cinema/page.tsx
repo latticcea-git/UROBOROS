@@ -7,6 +7,7 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false, nocache: true },
   openGraph: { images: [] },
   twitter: { images: [] },
+  alternates: { canonical: "/films/cinema/" },
 };
 
 export default function CinemaPage() {

@@ -7,6 +7,7 @@ import { useEffect, useMemo, useState } from "react";
 import SiteMenu from "../site-menu";
 import { bookAssetPath, bookNodes, bookProjects, getBookNode, type NodeId } from "./book-data";
 import BookMotion from "./book-motion";
+import ProjectMedia from "./project-media";
 import styles from "./book.module.css";
 
 const featuredProjects = bookProjects.filter((project) => project.featured);
@@ -99,14 +100,7 @@ export default function BookExperience() {
                   tabIndex={active ? 0 : -1}
                   data-node={project.node}
                 >
-                  <Image
-                    src={project.image}
-                    alt={project.alt}
-                    fill
-                    priority={index === 0}
-                    sizes="100vw"
-                    style={{ objectPosition: project.imagePosition }}
-                  />
+                  <ProjectMedia project={project} priority={index === 0} sizes="100vw" />
                   <span className={styles.slideShade} />
                   <div className={styles.slideIdentity}>
                     <Image src={identity.logo} alt={`LATTICCE ${identity.name}`} width={380} height={96} />
@@ -155,14 +149,7 @@ export default function BookExperience() {
           </div>
 
           <div className={styles.nodePreview} aria-live="polite" data-book-node-preview data-node={previewNode}>
-            <Image
-              src={preview.image}
-              alt={preview.alt}
-              fill
-              loading="eager"
-              sizes="(max-width: 900px) 100vw, 58vw"
-              style={{ objectPosition: preview.imagePosition }}
-            />
+            <ProjectMedia project={preview} priority sizes="(max-width: 900px) 100vw, 58vw" />
             <span className={styles.nodePreviewShade} />
             <div>
               <span>Nodo {previewIdentity.index}</span>
@@ -203,13 +190,7 @@ export default function BookExperience() {
             return (
               <Link className={styles.projectCard} href={`/book/${project.slug}`} key={project.slug} data-book-project-card data-node={project.node}>
                 <div className={styles.projectImage}>
-                  <Image
-                    src={project.image}
-                    alt={project.alt}
-                    fill
-                    sizes="(max-width: 760px) 100vw, 50vw"
-                    style={{ objectPosition: project.imagePosition }}
-                  />
+                  <ProjectMedia project={project} sizes="(max-width: 760px) 100vw, 50vw" />
                   <span aria-hidden="true" />
                   <b aria-hidden="true">Abrir ↗︎</b>
                 </div>

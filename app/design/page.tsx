@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   title: "LATTICCE Design — La idea toma forma",
   description:
     "Branding, dirección de arte, diseño editorial, 3D, animación, packaging y contenido para marcas que quieren tomar forma.",
+  alternates: { canonical: "/design/" },
 };
 
 export default function DesignPage() {

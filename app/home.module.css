@@ -317,15 +317,16 @@
 @keyframes nodeFloat { 0%, 100% { translate: 0 0; } 50% { translate: 0 -.55rem; } }
 @keyframes nodeReveal { 0%, 12%, 100% { opacity: .08; } 20%, 31% { opacity: .56; } 40% { opacity: .12; } }
 .agency { --node-accent: var(--node-agency); }
-.agency::before { background-image: url("/UROBOROS/assets/images/nodes/agency.png"); }
+.agency::before { background-image: url("/assets/images/nodes/agency.png"); }
 .studio { --node-accent: var(--node-studio); }
-.studio::before { background-image: url("/UROBOROS/assets/images/nodes/studio.png"); }
+.studio::before { background-image: url("/assets/images/nodes/studio.png"); }
 .sound { --node-accent: var(--node-sound); }
-.sound::before { background-image: url("/UROBOROS/assets/images/nodes/sound.png"); }
+.sound::before { background-image: url("/assets/images/nodes/sound.png"); }
 .design { --node-accent: var(--node-design); }
-.design::before { background-image: url("/UROBOROS/assets/images/nodes/design.png"); }
+.design::before { background-image: url("/assets/images/nodes/design.png"); }
 .time { --node-accent: var(--node-time); }
-.time::before { background-image: url("/UROBOROS/assets/images/nodes/time.png"); }
+.time::before { background-image: url("/assets/images/nodes/time.png"); }
+.sceneHidden .node::before { background-image: none; }
 .nodeIndex { color: var(--node-accent); font-size: .56rem; letter-spacing: .14em; }
 .nodeName { align-self: center; }
 .nodeName h3 { margin: 0 0 .5rem; font-size: clamp(1.65rem, 2.7vw, 3.5rem); font-weight: 400; letter-spacing: -.055em; line-height: .9; text-transform: uppercase; }
@@ -347,14 +348,15 @@
 
 /* Pilares */
 .scene[id="metodo"] { display: grid; grid-template-columns: minmax(20rem, .9fr) minmax(31rem, 1.1fr); gap: clamp(2rem, 5vw, 7rem); align-items: center; background: radial-gradient(circle at 26% 48%, #141716 0, #060707 34%, #020202 72%); }
-.classicalStructure { position: relative; align-self: center; justify-self: center; width: min(46vw, 43rem); aspect-ratio: 1; opacity: .78; }
+.classicalStructure { position: relative; align-self: center; justify-self: center; width: min(46vw, 43rem); aspect-ratio: 1; opacity: .9; }
+.classicalStructure:focus-visible { outline: 1px solid rgba(242,246,243,.72); outline-offset: .45rem; }
 .classicalStructure::after { position: absolute; right: 11%; bottom: 9%; left: 11%; height: 8%; border-radius: 50%; background: radial-gradient(ellipse, rgba(211,221,216,.17), transparent 70%); content: ""; filter: blur(1rem); }
 .classicalStructure svg { display: block; width: 100%; height: 100%; filter: drop-shadow(0 0 3rem rgba(210,220,215,.08)); }
 .templeRear { animation: templeBreathe 5.8s ease-in-out infinite; }
 .templeColumns g { opacity: .44; animation: columnWake 4.8s ease-in-out var(--column-delay) infinite; }
-.templeFront { opacity: .65; }
-@keyframes templeBreathe { 0%, 100% { opacity: .48; } 50% { opacity: .84; } }
-@keyframes columnWake { 0%, 100% { opacity: .28; } 48% { opacity: .86; } }
+.templeFront { opacity: .84; filter: drop-shadow(0 0 .85rem rgba(233,240,236,.2)); }
+@keyframes templeBreathe { 0%, 100% { opacity: .65; } 50% { opacity: .96; } }
+@keyframes columnWake { 0%, 100% { opacity: .52; } 48% { opacity: .96; } }
 .pillarsCopy { position: relative; z-index: 3; min-width: 0; }
 .pillarsCopy > h2 { margin: .7rem 0 1.6rem; font-size: clamp(3.4rem, 5.9vw, 6.8rem); font-weight: 700; letter-spacing: -.075em; line-height: .83; text-transform: uppercase; }
 .pillarsCopy > h2 em { color: #7f827d; font-family: Georgia, "Times New Roman", serif; font-weight: 400; text-transform: none; }
@@ -367,7 +369,8 @@
 
 /* Comunidad */
 .scene[id="comunidad"] { display: grid; align-items: end; background: #020202; }
-.communityImage { position: absolute; inset: 0; z-index: -2; background: url("/UROBOROS/assets/images/latticce/sinttergia-lattentte-v1.png") center/cover no-repeat; filter: contrast(1.04) brightness(.88); transform: scale(1.015); animation: communityPulse 7s ease-in-out infinite; }
+.communityImage { position: absolute; inset: 0; z-index: -2; background: url("/assets/images/latticce/sinttergia-lattentte-v1.png") center/cover no-repeat; filter: contrast(1.04) brightness(.88); transform: scale(1.015); animation: communityPulse 7s ease-in-out infinite; }
+.sceneHidden .communityImage { background-image: none; }
 .communityShade { position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg,rgba(2,2,2,.88) 0,rgba(2,2,2,.36) 42%,rgba(2,2,2,.16) 67%,rgba(2,2,2,.64)),linear-gradient(0deg,rgba(2,2,2,.94) 0,transparent 53%,rgba(2,2,2,.25)); }
 .communityCopy { position: relative; z-index: 2; width: min(74rem,94vw); padding-bottom: clamp(1.5rem,5vh,4rem); }
 .communityCopy h2 { margin: .8rem 0 1.6rem; font-size: clamp(4.2rem,9.4vw,10.4rem); font-weight: 700; letter-spacing: -.08em; line-height: .78; text-transform: uppercase; }

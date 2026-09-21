@@ -16,6 +16,8 @@ export type BookProject = {
   category: string;
   year: string;
   image: string;
+  video?: string;
+  imageFit?: "cover" | "contain";
   imagePosition?: string;
   alt: string;
   summary: string;
@@ -33,6 +35,8 @@ export type BookProject = {
     image: string;
     alt: string;
     caption: string;
+    orientation?: "portrait" | "landscape";
+    position?: string;
   }>;
 };
 
@@ -98,6 +102,101 @@ export const bookNodes: BookNode[] = [
 ];
 
 export const bookProjects: BookProject[] = [
+  {
+    slug: "sofia-stainer-foro-la-paz",
+    title: "Sofía Stainer",
+    node: "studio",
+    category: "Conciertos",
+    year: "2026",
+    image: bookAssetPath("/assets/images/book/sofia-stainer/sofia-stainer-poster.jpg"),
+    video: bookAssetPath("/assets/videos/book/sofia-stainer-hero.mov"),
+    imagePosition: "center 38%",
+    alt: "Sofía Stainer sonríe y extiende los brazos durante su concierto en Foro La Paz, Ciudad de México.",
+    summary: "Sofía Stainer reunió en Foro La Paz más de diez años de canciones e historias. Su mezcla de pop alternativo, funk, soul, disco y ritmos latinos convirtió el concierto en una celebración cercana, atravesada por el baile y la complicidad con el público.",
+    decision: "Construir el relato desde el cuerpo en movimiento y la cercanía del foro. La secuencia alterna retrato, gesto, banda y audiencia; conserva el verde, el ámbar y el blanco y negro de la noche, sin recortar la presencia escénica de la artista para forzarla a un formato horizontal.",
+    services: ["Fotografía de concierto", "Cobertura audiovisual", "Selección y curaduría", "Revelado y color"],
+    credits: [
+      "Artista — Sofía Stainer",
+      "Fotografía — Hernán Jiménez Herrera",
+      "Cámara — Sony α7 IV (ILCE-7M4)",
+      "Ubicación — Foro La Paz, Ciudad de México",
+      "Fecha — 12 de septiembre de 2026",
+    ],
+    featured: true,
+    projectLabel: "Registro documental / Sony α7 IV",
+    status: "Proyecto real",
+    galleryFirst: true,
+    galleryTitle: "Diez años,",
+    galleryEmphasis: "una noche",
+    galleryDescription: "Treinta imágenes recorren la sonrisa, el baile, la banda y la respuesta del público. Los dos encuadres horizontales abren la escala del escenario; los retratos verticales conservan completo el movimiento de Sofía.",
+    gallery: [
+      ["Presencia / Apertura", "portrait"], ["Retrato / Luz verde", "portrait"], ["Escenario / Blanco y negro", "landscape"],
+      ["Voz / Ámbar", "portrait"], ["Banda / Encuentro", "portrait"], ["Dúo / Escala", "landscape"],
+      ["Gesto / Verde", "portrait"], ["Silueta / Contraluz", "portrait"], ["Cuerpo / Luz", "portrait"],
+      ["Dirección / Público", "portrait"], ["Movimiento / Perfil", "portrait"], ["Vestuario / Detalle", "portrait"],
+      ["Apertura / Escena", "portrait"], ["Espalda / Contraluz", "portrait"], ["Paso / Resplandor", "portrait"],
+      ["Pausa / Escenario", "portrait"], ["Voz / Proximidad", "portrait"], ["Perfil / Ámbar", "portrait"],
+      ["Gesto / Micrófono", "portrait"], ["Canción / Calidez", "portrait"], ["Secuencia / Color", "portrait"],
+      ["Retrato / Ensamble", "portrait"], ["Escena / Ámbar", "portrait"], ["Voz / Azul", "portrait"],
+      ["Secuencia / Blanco y negro", "portrait"], ["Banda / Ritmo", "portrait"], ["Público / Constelación", "portrait"],
+      ["Encuentro / Audiencia", "portrait"], ["Memoria / Recapitulación", "portrait"], ["Baile / Cierre", "portrait"],
+    ].map(([caption, orientation], index) => ({
+      image: bookAssetPath(`/assets/images/book/sofia-stainer/sofia-stainer-gallery-${String(index + 1).padStart(2, "0")}.jpg`),
+      alt: `Sofía Stainer en Foro La Paz, fotografía ${index + 1} de 30.`,
+      caption,
+      orientation: orientation as "portrait" | "landscape",
+      position: "center",
+    })),
+  },
+  {
+    slug: "diana-meril-ambar",
+    title: "Diana Meril",
+    node: "studio",
+    category: "Conciertos",
+    year: "2026",
+    image: bookAssetPath("/assets/images/book/diana-meril/diana-meril-hero.jpg"),
+    imageFit: "contain",
+    imagePosition: "center",
+    alt: "Diana Meril interpreta Ámbar bajo luz verde y ámbar durante su concierto en Foro La Paz.",
+    summary: "Diana Meril presentó Ámbar en Foro La Paz durante su primer concierto estelar en Ciudad de México. Entre pop alternativo, arreglos en vivo y colaboraciones, la noche avanzó de la cercanía del retrato a una celebración compartida con el público.",
+    decision: "Respetar la verticalidad y el movimiento como parte del lenguaje de la noche. La secuencia comienza cerca de Diana, abre el escenario con los encuadres horizontales y termina en banda, colaboraciones y audiencia; ninguna fotografía se recorta para ajustarla por fuerza a otro formato.",
+    services: ["Fotografía de concierto", "Cobertura editorial", "Selección y curaduría", "Revelado y color"],
+    credits: [
+      "Artista — Diana Meril",
+      "Show — Ámbar",
+      "Fotografía — Hernán Jiménez Herrera",
+      "Cámara — Sony α7 IV (ILCE-7M4)",
+      "Ubicación — Foro La Paz, Ciudad de México",
+      "Fecha — 19 de septiembre de 2026",
+    ],
+    featured: true,
+    projectLabel: "Registro documental / Sony α7 IV",
+    status: "Proyecto real",
+    galleryFirst: true,
+    galleryTitle: "Ámbar,",
+    galleryEmphasis: "en escena",
+    galleryDescription: "Treinta y cuatro imágenes recorren voz, movimiento, banda, colaboraciones y público. Los retratos conservan el cuerpo completo y los encuadres horizontales muestran la escena sin perder información en los bordes.",
+    gallery: [
+      ["Ámbar / Apertura", "portrait"], ["Presencia / Escenario", "portrait"], ["Voz / Azul", "portrait"],
+      ["Retrato / Movimiento", "portrait"], ["Encuentro / Reflejo", "portrait"], ["Perfil / Ámbar", "portrait"],
+      ["Voz / Verde", "portrait"], ["Escena / Contraluz", "portrait"], ["Cuerpo / Azul", "portrait"],
+      ["Canción / Resplandor", "portrait"], ["Silueta / Haz de luz", "portrait"], ["Gesto / Escenario", "portrait"],
+      ["Presencia / Apertura", "portrait"], ["Pausa / Escena", "landscape"], ["Movimiento / Suelo", "landscape"],
+      ["Colaboración / Encuentro", "landscape"], ["Voces / Blanco", "landscape"], ["Proximidad / Ámbar", "portrait"],
+      ["Cuerpo / Resplandor", "portrait"], ["Invitado / Verde", "landscape"], ["Diálogo / Escenario", "landscape"],
+      ["Dúo / Escala", "landscape"], ["Banda / Contraluz", "landscape"], ["Público / Comunidad", "landscape"],
+      ["Micrófono / Detalle", "portrait"], ["Dirección / Audiencia", "portrait"], ["Soledad / Escenario", "portrait"],
+      ["Banda / Celebración", "landscape"], ["Transición / Azul", "portrait"], ["Colaboración / Pulso", "landscape"],
+      ["Voces / Cercanía", "landscape"], ["Movimiento / Rojo", "landscape"], ["Banda / Haces", "landscape"],
+      ["Ámbar / Cierre", "landscape"],
+    ].map(([caption, orientation], index) => ({
+      image: bookAssetPath(`/assets/images/book/diana-meril/diana-meril-gallery-${String(index + 1).padStart(2, "0")}.jpg`),
+      alt: `Diana Meril presenta Ámbar en Foro La Paz, fotografía ${index + 1} de 34.`,
+      caption,
+      orientation: orientation as "portrait" | "landscape",
+      position: "center",
+    })),
+  },
   {
     slug: "la-bande-son-imaginaire",
     title: "La Bande-Son Imaginaire",

@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   title: "LATTICCE Agency — Sistemas digitales que crecen",
   description:
     "Contenido, experiencias y distribución para hacer crecer marcas en el mundo digital.",
+  alternates: { canonical: "/agency/" },
 };
 
 export default function AgencyPage() {

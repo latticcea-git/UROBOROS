@@ -2,14 +2,16 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
-import AgencyIntro from "./agency-intro";
-import SoundIntro from "./sound-intro";
 import styles from "./home.module.css";
 import { BlackSea, ClassicalStructure, LightNucleus, ManifestoLoop } from "./home-visuals";
 import SiteMenu from "./site-menu";
 import { openContactPopup } from "./global-shell";
+
+const AgencyIntro = dynamic(() => import("./agency-intro"), { loading: () => null });
+const SoundIntro = dynamic(() => import("./sound-intro"), { loading: () => null });
 
 const nodes = [
   { index: "01", name: "Agency", line: "Ideas que se vuelven sistemas.", tone: "agency", href: "/agency" },
@@ -84,6 +86,15 @@ export default function HomeExperience() {
       if (wheelResetRef.current) window.clearTimeout(wheelResetRef.current);
       if (transitionTimerRef.current) window.clearTimeout(transitionTimerRef.current);
     };
+  }, []);
+
+  useEffect(() => {
+    const warmVisualEntrances = window.setTimeout(() => {
+      void import("./agency-intro");
+      void import("./sound-intro");
+    }, 2200);
+
+    return () => window.clearTimeout(warmVisualEntrances);
   }, []);
 
   useEffect(() => {
@@ -255,19 +266,6 @@ export default function HomeExperience() {
         ]}
       />
 
-      <Link
-        className={styles.userAccess}
-        href="/usuario"
-        data-local-interactive="true"
-        aria-label="Abrir área de usuario"
-      >
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-          <circle cx="12" cy="8" r="3.2" />
-          <path d="M4.8 20c.75-3.35 3.2-5.15 7.2-5.15s6.45 1.8 7.2 5.15" />
-        </svg>
-        <span>Acceso</span>
-      </Link>
-
       <div className={styles.sceneProgress} aria-hidden="true">
         <i style={{ transform: `scaleX(${activeScene / (sceneAnchors.length - 1)})` }} />
       </div>
@@ -293,7 +291,7 @@ export default function HomeExperience() {
         <BlackSea active={activeScene === 0} presence={0.96} tempo={1} horizon={-0.01} />
         <div className={styles.heroShade} aria-hidden="true" />
         <div className={styles.heroObelisk} aria-hidden="true">
-          <Image src="/UROBOROS/assets/images/obelisco.png" width={939} height={1675} alt="" loading="eager" fetchPriority="high" sizes="(max-width: 620px) 54vw, (max-width: 900px) 42vw, 31vw" />
+          <Image src="/assets/images/obelisco.png" width={939} height={1675} alt="" loading="eager" fetchPriority="high" sizes="(max-width: 620px) 54vw, (max-width: 900px) 42vw, 31vw" />
         </div>
         <div className={styles.heroMeta}><span>Creative system</span><span>Mexico · 19.4326° N</span></div>
         <div className={styles.heroCopy}>
@@ -402,7 +400,7 @@ export default function HomeExperience() {
         </div>
         <footer className={styles.contactFooter}>
           <Link href="#inicio" onClick={(event) => { event.preventDefault(); moveTo(0); }} aria-label="Volver al inicio">
-            <Image src="/UROBOROS/assets/logos/LTT_LOGO_FX_POS.svg" width={198} height={38} alt="LATTICCE" />
+            <Image src="/assets/logos/LTT_LOGO_1920_FX.png" width={198} height={38} alt="LATTICCE" />
           </Link>
           <nav aria-label="Explorar LATTICCE"><Link href="/studio">Studio</Link><Link href="/sound">Sound</Link><Link href="/time">Time</Link><Link href="/design">Design</Link><Link href="/agency">Agency</Link><Link href="/book">Book</Link><Link href="/blog">Blog</Link><a href="https://chat.whatsapp.com/GCpJDA5K9quC0RaHCEodRi" target="_blank" rel="noreferrer">Comunidad</a><a href="https://wa.me/525525241137" target="_blank" rel="noreferrer">WhatsApp</a></nav>
           <span>© 2026 LATTICCE</span>

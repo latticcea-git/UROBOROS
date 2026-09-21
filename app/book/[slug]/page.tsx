@@ -6,6 +6,7 @@ import SiteMenu from "../../site-menu";
 import { bookAssetPath, bookProjects, getBookNode, getBookProject, getRelatedProjects } from "../book-data";
 import BookMotion from "../book-motion";
 import GalleryLightbox from "../gallery-lightbox";
+import ProjectMedia from "../project-media";
 import styles from "../book.module.css";
 
 type ProjectPageProps = {
@@ -58,15 +59,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
       <SiteMenu homeHref="/" logoSrc={bookAssetPath("/assets/logos/LTT_LOGO_1920_FX.png")} logoAlt="LATTICCE" />
 
       <section className={styles.projectHero} data-project-hero>
-        <Image
-          src={project.image}
-          alt={project.alt}
-          fill
-          priority
-          sizes="100vw"
-          style={{ objectPosition: project.imagePosition }}
-          data-project-hero-image
-        />
+        <ProjectMedia project={project} priority sizes="100vw" hero />
         <span className={styles.projectHeroShade} />
         <div className={styles.projectBreadcrumb} data-project-breadcrumb>
           <Link href="/book">BOOK</Link><span>/</span><span>{node.name}</span><span>/</span><span>{project.category}</span>
@@ -130,13 +123,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
             return (
               <Link href={`/book/${candidate.slug}`} key={candidate.slug} data-project-related-card data-node={candidate.node}>
                 <div>
-                  <Image
-                    src={candidate.image}
-                    alt={candidate.alt}
-                    fill
-                    sizes="(max-width: 760px) 100vw, 33vw"
-                    style={{ objectPosition: candidate.imagePosition }}
-                  />
+                  <ProjectMedia project={candidate} sizes="(max-width: 760px) 100vw, 33vw" />
                 </div>
                 <span>{candidateNode.name} / {candidate.category}</span>
                 <h3>{candidate.title}</h3>

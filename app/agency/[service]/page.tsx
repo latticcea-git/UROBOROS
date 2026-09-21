@@ -19,6 +19,7 @@ export async function generateMetadata({
   return {
     title: `${page.title} — LATTICCE AGENCY`,
     description: page.intro,
+    alternates: { canonical: `/agency/${service}/` },
   };
 }
 

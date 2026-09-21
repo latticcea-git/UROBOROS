@@ -3,12 +3,15 @@
 import Image from "next/image";
 import Link from "next/link";
 import { FormEvent, useEffect, useRef, useState } from "react";
+import { bookProjects } from "../../book/book-data";
 import type { AgencyService } from "./service-data";
 import styles from "./service.module.css";
 
 type Props = {
   service: AgencyService;
 };
+
+const agencyProjects = bookProjects.filter((project) => project.node === "agency");
 
 export default function AgencyServiceExperience({ service }: Props) {
   const rootRef = useRef<HTMLElement>(null);
@@ -253,6 +256,18 @@ export default function AgencyServiceExperience({ service }: Props) {
           <span>CASOS AUTORIZADOS / EN PREPARACIÓN</span>
           <h2>{service.caseTitle}</h2>
           <p>{service.caseCopy}</p>
+          <div className={styles.caseGrid}>
+            {agencyProjects.map((project) => (
+              <Link className={styles.caseCard} href={`/book/${project.slug}`} key={project.slug}>
+                <span className={styles.caseImage}>
+                  <Image src={project.image} alt={project.alt} fill sizes="(max-width: 620px) 100vw, 38vw" style={{ objectPosition: project.imagePosition }} />
+                </span>
+                <span className={styles.caseMeta}>{project.category} / {project.year}</span>
+                <strong>{project.title}</strong>
+                <i>Abrir proyecto y galería ↗︎</i>
+              </Link>
+            ))}
+          </div>
         </div>
       </section>
 

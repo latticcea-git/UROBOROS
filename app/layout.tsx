@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import DynamicTabTitle from "./dynamic-tab-title";
 import GlobalShell from "./global-shell";
 
 export const metadata: Metadata = {
@@ -16,20 +17,23 @@ export const metadata: Metadata = {
     siteName: "LATTICCE",
     locale: "es_MX",
     type: "website",
-    images: ["/UROBOROS/og.png"],
+    images: ["/og.png"],
   },
   twitter: {
     card: "summary_large_image",
     title: "LATTICCE — Un sistema creativo",
     description: "Ideas que necesitan distintas formas para existir.",
-    images: ["/UROBOROS/og.png"],
+    images: ["/og.png"],
   },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="es" data-scroll-behavior="smooth">
-      <body><GlobalShell>{children}</GlobalShell></body>
+      <body>
+        <DynamicTabTitle />
+        <GlobalShell>{children}</GlobalShell>
+      </body>
     </html>
   );
 }

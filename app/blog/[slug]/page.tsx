@@ -22,6 +22,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: `${post.title} — LATTICCE BLOG`,
     description: post.dek,
+    alternates: { canonical: `/blog/${post.slug}/` },
     openGraph: {
       title: post.title,
       description: post.dek,
@@ -54,7 +55,7 @@ export default async function BlogArticlePage({ params }: Props) {
 
   return (
     <main className={styles.articleRoot} data-node={post.node}>
-      <SiteMenu homeHref="/" logoSrc="/UROBOROS/assets/logos/LTT_LOGO_1920_FX.png" logoAlt="LATTICCE" />
+      <SiteMenu homeHref="/" logoSrc="/assets/logos/LTT_LOGO_1920_FX.png" logoAlt="LATTICCE" />
       <ReadingProgress />
 
       <article>

@@ -39,7 +39,7 @@ const applications = [
     eyebrow: "06 / BRANDING DESIGN",
     title: "Creamos tu universo visual.",
     copy: "Diseñamos el kit que mantiene unido tu universo: identidad, tipografía, color, dirección de arte y aplicaciones.",
-    image: "/UROBOROS/assets/images/design/design-branding-universe-generated-draft-v1.png",
+    image: "/assets/images/design/design-branding-universe-generated-draft-v1.png",
     alt: "Sistema visual de papel, resina negra, metal y piezas naranjas dispuesto sobre una superficie oscura",
     side: "left",
   },
@@ -48,7 +48,7 @@ const applications = [
     eyebrow: "07 / PACKAGING + E-COMMERCE",
     title: "Listo para enviar.",
     copy: "Diseñamos empaques que presentan, protegen y venden desde el primer contacto.",
-    image: "/UROBOROS/assets/images/design/design-packaging-ready-generated-draft-v1.png",
+    image: "/assets/images/design/design-packaging-ready-generated-draft-v1.png",
     alt: "Empaque negro sin marca con estructura de papel y mecanismo interior naranja",
     side: "left",
   },
@@ -57,7 +57,7 @@ const applications = [
     eyebrow: "08 / 3D + VISUALIZACIÓN",
     title: "Modelamos tu mundo.",
     copy: "Construimos objetos, espacios y productos antes de que existan, listos para presentar, probar o animar.",
-    image: "/UROBOROS/assets/images/studio/architecture-optimized.jpg",
+    image: "/assets/images/studio/architecture-optimized.jpg",
     alt: "Render arquitectónico de un interior contemporáneo trabajado dentro de una interfaz de modelado tridimensional",
     side: "right",
   },
@@ -452,13 +452,13 @@ export default function DesignExperience() {
       <div ref={penRef} className={styles.penCursor} data-visible="false" data-active="false" aria-hidden="true"><IllustratorPen /></div>
 
       <section className={styles.hero} id="inicio" aria-labelledby="design-title">
-        <Image className={styles.heroImage} src="/UROBOROS/assets/images/design/design-hero-threshold-generated-draft-v1.png" fill priority sizes="100vw" alt="Escultura monumental de resina negra dividida por una abertura de luz naranja" data-hero-image />
+        <Image className={styles.heroImage} src="/assets/images/design/design-hero-threshold-generated-draft-v1.png" fill priority sizes="100vw" alt="Escultura monumental de resina negra dividida por una abertura de luz naranja" data-hero-image />
         <div className={styles.heroShade} aria-hidden="true" />
         <div className={styles.heroLines} aria-hidden="true"><i /><i /><i /><i /></div>
         <div className={styles.heroMeta}><span>DESIGN / 04</span><span>La idea atraviesa la materia y toma forma</span></div>
         <div className={styles.heroLogoFrame} data-hero-logo data-pen-active>
           <h1 id="design-title" className={styles.srOnly}>LATTICCE Design</h1>
-          <Image src="/UROBOROS/assets/logos/LTT_LOGO_NEG_DESIGN.svg" width={704} height={182} alt="LATTICCE Design" />
+          <Image src="/assets/logos/LTT_LOGO_NEG_DESIGN.svg" width={704} height={182} alt="LATTICCE Design" priority />
           <i className={styles.logoNodeOne} /><i className={styles.logoNodeTwo} /><i className={styles.logoNodeThree} /><i className={styles.logoNodeFour} />
         </div>
         <div className={styles.heroCopy} data-hero-copy>
@@ -529,14 +529,14 @@ export default function DesignExperience() {
           {processSteps.map((step) => <article key={step.index}><span>{step.index}</span><i aria-hidden="true" /><h3>{step.title}</h3><p>{step.copy}</p></article>)}
         </div>
         <div className={styles.processVisual} data-process-visual>
-          <Image src="/UROBOROS/assets/images/design/design-process-panels-generated-draft-v1.png" fill sizes="100vw" alt="Cuatro paneles de vidrio, arcilla, acrílico transparente y acrílico naranja sobre fondo marfil" />
+          <Image src="/assets/images/design/design-process-panels-generated-draft-v1.png" fill sizes="100vw" alt="Cuatro paneles de vidrio, arcilla, acrílico transparente y acrílico naranja sobre fondo marfil" />
         </div>
       </section>
 
       <section className={styles.content} id="contenido" aria-labelledby="content-title" data-social-section>
         <i className={styles.sectionTransition} data-section-transition aria-hidden="true" />
         <div className={styles.contentMedia} data-social-media>
-          <Image className={styles.contentImage} src="/UROBOROS/assets/images/design/design-social-content-generated-draft-v1.png" fill sizes="100vw" alt="Mano sosteniendo un teléfono bajo luz naranja" />
+          <Image className={styles.contentImage} src="/assets/images/design/design-social-content-generated-draft-v1.png" fill sizes="100vw" alt="Mano sosteniendo un teléfono bajo luz naranja" />
           <SocialPhone />
         </div>
         <div className={styles.contentShade} aria-hidden="true" />
@@ -553,7 +553,7 @@ export default function DesignExperience() {
 
       <section className={styles.contact} id="contacto" aria-labelledby="contact-title">
         <i className={styles.sectionTransition} data-section-transition aria-hidden="true" />
-        <Image className={styles.contactImage} src="/UROBOROS/assets/images/design/design-contact-hands-generated-draft-v1.png" fill sizes="100vw" alt="Dos manos desenfocadas acercándose detrás de vidrio esmerilado con luz naranja" />
+        <Image className={styles.contactImage} src="/assets/images/design/design-contact-hands-generated-draft-v1.png" fill sizes="100vw" alt="Dos manos desenfocadas acercándose detrás de vidrio esmerilado con luz naranja" />
         <div className={styles.contactShade} aria-hidden="true" />
         <div className={styles.contactCopy} data-reveal>
           <p className={styles.eyebrow}>09 / HABLEMOS</p>

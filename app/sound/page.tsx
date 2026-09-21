@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   title: "LATTICCE Sound — Lo invisible toma cuerpo",
   description:
     "Grabación, postproducción, sonido directo y musicalización para estudio, set y formatos digitales.",
+  alternates: { canonical: "/sound/" },
 };
 
 export default function SoundPage() {

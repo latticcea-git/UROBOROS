@@ -34,7 +34,7 @@ const equipment = [
     title: "Cada detalle encuentra su lugar.",
     focus: "Asesoría y dirección en grabación de voz",
     copy: "Acompañamos la interpretación, la intención y la técnica desde la toma. Después, edición, limpieza, mezcla y mastering construyen claridad, profundidad y una escucha consistente.",
-    image: "/UROBOROS/assets/images/sound/studio-microphone-exploded-generated-draft-v1-4k-v1.jpg",
+    image: "/assets/images/sound/studio-microphone-exploded-generated-draft-v1-4k-v1.jpg",
     alt: "Micrófono de estudio desarmado mostrando cápsula, tubo y componentes internos",
   },
   {
@@ -44,7 +44,7 @@ const equipment = [
     title: "Capturamos el momento antes de que desaparezca.",
     focus: "Sonido directo",
     copy: "Sonido directo, caña y microfonía de locación preparados para conservar presencia, ambiente y verdad desde la toma.",
-    image: "/UROBOROS/assets/images/sound/shotgun-exploded-generated-draft-v1-4k-v1.jpg",
+    image: "/assets/images/sound/shotgun-exploded-generated-draft-v1-4k-v1.jpg",
     alt: "Micrófono shotgun con caña y deadcat desarmado mostrando sus componentes",
   },
   {
@@ -53,7 +53,7 @@ const equipment = [
     label: "Composición y musicalización",
     title: "La emoción también se diseña.",
     copy: "Música original y selección sonora concebidas para sostener el ritmo, la identidad y la intención narrativa de cada proyecto.",
-    image: "/UROBOROS/assets/images/sound/keyboard-exploded-generated-draft-v1-4k-v1.jpg",
+    image: "/assets/images/sound/keyboard-exploded-generated-draft-v1-4k-v1.jpg",
     alt: "Teclado profesional blanco desarmado mostrando teclas, circuitos y estructura interna",
   },
 ] as const;
@@ -308,7 +308,7 @@ export default function SoundExperience() {
       <section className={styles.hero} id="inicio" aria-labelledby="sound-title">
         <Image
           className={styles.heroImage}
-          src="/UROBOROS/assets/images/sound/headphones-exploded-generated-draft-v1-4k-v1.jpg"
+          src="/assets/images/sound/headphones-exploded-generated-draft-v1-4k-v1.jpg"
           fill
           priority
           sizes="100vw"
@@ -358,7 +358,7 @@ export default function SoundExperience() {
       <section className={styles.studio} id="estudio" aria-labelledby="studio-title" data-studio-scene>
         <Image
           className={styles.studioImage}
-          src="/UROBOROS/assets/images/sound/home-studio-generated-draft-v1-4k-v1.jpg"
+          src="/assets/images/sound/home-studio-generated-draft-v1-4k-v1.jpg"
           fill
           sizes="100vw"
           alt="Estudio profesional de audio con consola, monitores y acentos de luz morada"
@@ -380,7 +380,7 @@ export default function SoundExperience() {
       <section className={styles.radio} id="radio" aria-labelledby="radio-title">
         <Image
           className={styles.radioBackdrop}
-          src="/UROBOROS/assets/images/sound/podcast-silhouettes-generated-draft-v1-4k-v1.jpg"
+          src="/assets/images/sound/podcast-silhouettes-generated-draft-v1-4k-v1.jpg"
           fill
           sizes="100vw"
           alt="Tres personas en silueta grabando un podcast alrededor de micrófonos bajo contraluz violeta"

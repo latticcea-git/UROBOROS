@@ -23,16 +23,13 @@ const defaultLinks = [
   { label: "FILMS", href: "/films" },
   { label: "BOOK", href: "/book" },
   { label: "BLOG", href: "/blog" },
-  { label: "CLIENTES", href: "/clientes" },
-  { label: "COLABORADORES", href: "/colaboradores" },
-  { label: "USUARIO", href: "/usuario" },
 ] as const;
 
 export default function SiteMenu({
   links = [],
   homeHref,
   onNavigate,
-  logoSrc = "/UROBOROS/assets/logos/LTT_LOGO_1920_FX.png",
+  logoSrc = "/assets/logos/LTT_LOGO_1920_FX.png",
   logoAlt = "LATTICCE",
   variant = "dark",
 }: SiteMenuProps) {
@@ -49,7 +46,7 @@ export default function SiteMenu({
 
   return (
     <header className="global-menu-header" data-menu-variant={variant}>
-      {homeHref.startsWith("/UROBOROS/") ? (
+      {homeHref.startsWith("/") ? (
         <a className="global-menu-logo" href={homeHref} onClick={() => close(homeHref)} aria-label="LATTICCE, ir al inicio">
           <Image src={logoSrc} width={246} height={47} alt={logoAlt} loading="eager" fetchPriority="high" />
         </a>
@@ -88,7 +85,7 @@ export default function SiteMenu({
             } : {};
             const content = <><span>{String(index).padStart(2, "0")}</span>{link.label}</>;
 
-            return link.href.startsWith("/UROBOROS/") ? (
+            return link.href.startsWith("/") ? (
               <a href={link.href} onClick={() => close(link.href)} key={link.label} data-book-link={isBook || undefined} data-node={nodeId} {...bookPointer}>
                 {content}
               </a>

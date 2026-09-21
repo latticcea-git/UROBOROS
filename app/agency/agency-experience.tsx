@@ -103,14 +103,14 @@ export default function AgencyExperience() {
     >
       <SiteMenu
         homeHref="/"
-        logoSrc="/UROBOROS/assets/logos/LTT_LOGO_FX_POS_AGENCY.svg"
+        logoSrc="/assets/logos/LTT_LOGO_FX_POS_AGENCY.svg"
         logoAlt="LATTICCE Agency"
         variant="agency"
       />
       <div className={styles.world} aria-hidden="true">
         <Image
           className={styles.worldImage}
-          src="/UROBOROS/assets/images/agency/agency-gateway-v2.png"
+          src="/assets/images/agency/agency-gateway-v2.png"
           alt=""
           fill
           priority
@@ -130,7 +130,7 @@ export default function AgencyExperience() {
           <p className={styles.eyebrow}>NODO 01 / DIGITAL SYSTEMS</p>
           <Image
             className={styles.agencyLogo}
-            src="/UROBOROS/assets/logos/LTT_LOGO_FX_POS_AGENCY.svg"
+            src="/assets/logos/LTT_LOGO_FX_POS_AGENCY.svg"
             width={560}
             height={144}
             alt="LATTICCE Agency"

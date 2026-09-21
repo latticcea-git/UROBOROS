@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   title: "LATTICCE — Un sistema creativo",
   description:
     "LATTICCE articula estrategia, diseño, imagen, sonido, cine y memoria en un solo sistema creativo.",
+  alternates: { canonical: "/" },
 };
 
 export default function HomePage() {
