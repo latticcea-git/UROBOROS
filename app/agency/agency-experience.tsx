@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { MouseEvent as ReactMouseEvent, useEffect, useRef, useState } from "react";
 import SiteMenu from "../site-menu";
+import { publicAsset } from "../public-asset";
 import styles from "./agency.module.css";
 
 const services = [
@@ -103,7 +104,7 @@ export default function AgencyExperience() {
     >
       <SiteMenu
         homeHref="/"
-        logoSrc="/assets/logos/LTT_LOGO_FX_POS_AGENCY.svg"
+        logoSrc={publicAsset("/assets/logos/LTT_LOGO_FX_POS_AGENCY.svg")}
         logoAlt="LATTICCE Agency"
         variant="agency"
       />
@@ -131,7 +132,7 @@ export default function AgencyExperience() {
           <p className={styles.eyebrow}>NODO 01 / DIGITAL SYSTEMS</p>
           <Image
             className={styles.agencyLogo}
-            src="/assets/logos/LTT_LOGO_FX_POS_AGENCY.svg"
+            src={publicAsset("/assets/logos/LTT_LOGO_FX_POS_AGENCY.svg")}
             width={560}
             height={144}
             alt="LATTICCE Agency"

@@ -9,6 +9,7 @@ import { useEffect, useRef, useState } from "react";
 import type { CSSProperties } from "react";
 import { bookProjects } from "../book/book-data";
 import { ContactTrigger } from "../global-shell";
+import { publicAsset } from "../public-asset";
 import styles from "./design.module.css";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
@@ -458,7 +459,7 @@ export default function DesignExperience() {
         <div className={styles.heroMeta}><span>DESIGN / 04</span><span>La idea atraviesa la materia y toma forma</span></div>
         <div className={styles.heroLogoFrame} data-hero-logo data-pen-active>
           <h1 id="design-title" className={styles.srOnly}>LATTICCE Design</h1>
-          <Image src="/assets/logos/LTT_LOGO_NEG_DESIGN.svg" width={704} height={182} alt="LATTICCE Design" priority />
+          <Image src={publicAsset("/assets/logos/LTT_LOGO_NEG_DESIGN.svg")} width={704} height={182} alt="LATTICCE Design" priority />
           <i className={styles.logoNodeOne} /><i className={styles.logoNodeTwo} /><i className={styles.logoNodeThree} /><i className={styles.logoNodeFour} />
         </div>
         <div className={styles.heroCopy} data-hero-copy>

@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import type { CSSProperties } from "react";
 import { openContactPopup } from "../global-shell";
+import { publicAsset } from "../public-asset";
 import { BlackSea } from "../home-visuals";
 import { bookProjects } from "../book/book-data";
 import ProjectMedia from "../book/project-media";
@@ -230,7 +231,7 @@ export default function StudioExperience() {
               <ResponsivePhoto className={styles.heroImage} desktop="/assets/images/studio/studio-cdmx-golden-hour-generated-draft-v2-optimized.jpg" mobile="/assets/images/studio/studio-cdmx-golden-hour-generated-draft-v2-mobile.jpg" alt="Ciudad de México durante una hora dorada, con el Ángel de la Independencia y peatones a contraluz." eager />
               <div className={styles.heroShade} />
               <div className={styles.heroContent} data-studio-reveal>
-                <Image className={styles.heroLogo} src="/assets/logos/LTT_LOGO_NEG_STUDIO.svg" alt="LATTICCE Studio" width={760} height={196} priority />
+                <Image className={styles.heroLogo} src={publicAsset("/assets/logos/LTT_LOGO_NEG_STUDIO.svg")} alt="LATTICCE Studio" width={760} height={196} priority />
                 <p className={styles.heroService}>Foto + video comercial.</p>
                 <p className={styles.heroStatement}>Creamos imágenes que conectan, comunican y permanecen.</p>
                 <a className={styles.reelButton} href="/films/cinema" target="_blank" rel="noreferrer"><span aria-hidden="true"><PlayIcon /></span> Ver reel</a>

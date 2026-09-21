@@ -6,6 +6,7 @@ import { FormEvent, PointerEvent, useEffect, useMemo, useRef, useState } from "r
 import type { CSSProperties } from "react";
 import { bookProjects } from "../book/book-data";
 import SiteMenu from "../site-menu";
+import { publicAsset } from "../public-asset";
 import styles from "./time.module.css";
 
 const heroImage = "/assets/images/time/wedding-hero-v1.png";
@@ -529,7 +530,7 @@ export default function TimeExperience() {
 
       <SiteMenu
         homeHref="/"
-        logoSrc="/assets/logos/LTT_LOGO_NEG_TIME.svg"
+        logoSrc={publicAsset("/assets/logos/LTT_LOGO_NEG_TIME.svg")}
         logoAlt="LATTICCE Time"
         variant="light"
         links={[
@@ -616,7 +617,7 @@ export default function TimeExperience() {
                 <h2 id="interlude-title">Hagamos eternos<br /><em>tus recuerdos.</em></h2>
                 <Image
                   className={styles.interludeLogo}
-                  src="/assets/logos/LTT_LOGO_FX_POS_TIME.svg"
+                  src={publicAsset("/assets/logos/LTT_LOGO_FX_POS_TIME.svg")}
                   width={700}
                   height={180}
                   alt="LATTICCE Time"
@@ -745,7 +746,7 @@ export default function TimeExperience() {
             <span className={styles.focusFrame} aria-hidden="true"><i /><i /><i /><i /><b>+</b></span>
             <span className={styles.capturePrompt}><strong>Haz clic para capturar</strong></span>
             <span className={styles.cameraData} aria-hidden="true">1/125&nbsp;&nbsp; f/2.8&nbsp;&nbsp; ISO 400</span>
-            <Image className={styles.captureLogo} src="/assets/logos/LTT_LOGO_NEG_TIME.svg" width={380} height={98} alt="LATTICCE Time" priority />
+            <Image className={styles.captureLogo} src={publicAsset("/assets/logos/LTT_LOGO_NEG_TIME.svg")} width={380} height={98} alt="LATTICCE Time" priority />
           </button>
           <span className={styles.escapeHint}>Presiona escape</span>
         </section>

@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { CSSProperties, useCallback, useEffect, useMemo, useRef, useState, WheelEvent as ReactWheelEvent } from "react";
 import { CinemaWork, publishedCinemaWorks } from "./cinema-data";
+import { publicAsset } from "../../public-asset";
 import styles from "./cinema.module.css";
 
 type PlayerState =
@@ -213,7 +214,7 @@ export default function CinemaExperience({ initialSlug }: { initialSlug?: string
       <div className={styles.brandRow}>
         <Link className={styles.homeLink} href="/" aria-label="Volver al Home"><span aria-hidden="true">←︎</span> HOME</Link>
         <Link className={styles.filmsLogoLink} href="/films" aria-label="LATTICCE FILMS, página en construcción">
-          <Image className={styles.filmsLogo} src="/assets/logos/LTT_FILMS_LOGO_1920_FX.png" width={1920} height={503} priority alt="LATTICCE FILMS" />
+          <Image className={styles.filmsLogo} src={publicAsset("/assets/logos/LTT_FILMS_LOGO_1920_FX.png")} width={1920} height={503} priority alt="LATTICCE FILMS" />
         </Link>
         <span className={styles.filmsRoute}>LATTICCE / LATTICCE FILMS</span>
       </div>
