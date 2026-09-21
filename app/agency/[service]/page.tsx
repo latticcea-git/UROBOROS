@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import AgencyServiceExperience from "./agency-service-experience";
 import { isServiceSlug, servicePages, serviceSlugs } from "./service-data";
+import { publicUrl, socialImage } from "../../site-metadata";
 
 export const dynamicParams = false;
 
@@ -19,6 +20,12 @@ export async function generateMetadata({
   return {
     title: `${page.title} — LATTICCE AGENCY`,
     description: page.intro,
+    openGraph: {
+      title: `${page.title} — LATTICCE AGENCY`,
+      description: page.intro,
+      images: [socialImage(page.heroImage, page.heroAlt)],
+    },
+    twitter: { card: "summary_large_image", images: [publicUrl(page.heroImage)] },
     alternates: { canonical: `/agency/${service}/` },
   };
 }

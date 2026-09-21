@@ -25,6 +25,12 @@ const defaultLinks = [
   { label: "BLOG", href: "/blog" },
 ] as const;
 
+function publicAsset(src: string) {
+  const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+  if (!src.startsWith("/") || !basePath || src === basePath || src.startsWith(`${basePath}/`)) return src;
+  return `${basePath}${src}`;
+}
+
 export default function SiteMenu({
   links = [],
   homeHref,
@@ -48,11 +54,11 @@ export default function SiteMenu({
     <header className="global-menu-header" data-menu-variant={variant}>
       {homeHref.startsWith("/") ? (
         <a className="global-menu-logo" href={homeHref} onClick={() => close(homeHref)} aria-label="LATTICCE, ir al inicio">
-          <Image src={logoSrc} width={246} height={47} alt={logoAlt} loading="eager" fetchPriority="high" />
+          <Image src={publicAsset(logoSrc)} width={246} height={47} alt={logoAlt} loading="eager" fetchPriority="high" />
         </a>
       ) : (
         <Link className="global-menu-logo" href={homeHref} onClick={() => close(homeHref)} aria-label="LATTICCE, ir al inicio">
-          <Image src={logoSrc} width={246} height={47} alt={logoAlt} loading="eager" fetchPriority="high" />
+          <Image src={publicAsset(logoSrc)} width={246} height={47} alt={logoAlt} loading="eager" fetchPriority="high" />
         </Link>
       )}
       <button

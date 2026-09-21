@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import BlogExperience from "./blog-experience";
+import { publicUrl, socialImage } from "../site-metadata";
 
 export const metadata: Metadata = {
   title: "LATTICCE BLOG — Miradas que construyen",
@@ -8,8 +9,9 @@ export const metadata: Metadata = {
   openGraph: {
     title: "LATTICCE BLOG",
     description: "Miradas que construyen. Ideas que transforman.",
-    images: ["/og.png"],
+    images: [socialImage("/assets/images/book/sofia-stainer/sofia-stainer-poster.jpg", "LATTICCE BLOG")],
   },
+  twitter: { card: "summary_large_image", images: [publicUrl("/assets/images/book/sofia-stainer/sofia-stainer-poster.jpg")] },
   alternates: { canonical: "/blog/" },
 };
 

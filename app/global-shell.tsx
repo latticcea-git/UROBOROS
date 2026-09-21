@@ -7,6 +7,7 @@ import { usePathname } from "next/navigation";
 
 const WHATSAPP_NUMBER = "525525241137";
 const CONTACT_EMAIL = "contacto@latticce.com";
+const publicAsset = (path: string) => `${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}${path}`;
 type ContactContext = "general" | "films";
 const nodes = [
   { label: "Studio", href: "/studio", node: "studio" },
@@ -65,8 +66,8 @@ export function NodeSocialFooter({ node, socials = {} }: { node?: string; social
   return <footer className="node-social-footer" data-node={node}>
     <span>{node ? `LATTICCE ${node}` : "LATTICCE"}</span>
     <nav aria-label="Contacto y redes">
-      {links.map((link) => <a key={link.label} href={link.href} target="_blank" rel="noreferrer" aria-label={link.label}><Image src={`/assets/icons/social/${link.icon}.svg`} width={18} height={18} alt="" /><span>{link.label}</span></a>)}
-      {pending.map((social) => <span className="node-social-pending" key={social} title="Enlace pendiente" aria-label={`${social}, enlace pendiente`}><Image src={`/assets/icons/social/${social}.svg`} width={18} height={18} alt="" /><span>{social}</span></span>)}
+      {links.map((link) => <a key={link.label} href={link.href} target="_blank" rel="noreferrer" aria-label={link.label}><Image src={publicAsset(`/assets/icons/social/${link.icon}.svg`)} width={18} height={18} alt="" /><span>{link.label}</span></a>)}
+      {pending.map((social) => <span className="node-social-pending" key={social} title="Enlace pendiente" aria-label={`${social}, enlace pendiente`}><Image src={publicAsset(`/assets/icons/social/${social}.svg`)} width={18} height={18} alt="" /><span>{social}</span></span>)}
     </nav>
   </footer>;
 }
@@ -136,8 +137,8 @@ function SectionNavigator({ pathname }: { pathname: string }) {
 
 function GlobalHeader() {
   return <header className="shared-header">
-    <Link className="shared-header-logo" href="/" aria-label="LATTICCE, ir al inicio"><Image src="/assets/logos/LTT_LOGO_1920_FX.png" width={246} height={47} alt="LATTICCE" priority /></Link>
-    <a className="shared-header-whatsapp" href={`https://wa.me/${WHATSAPP_NUMBER}`} target="_blank" rel="noreferrer"><Image src="/assets/icons/social/whatsapp.svg" width={16} height={16} alt="" /> WhatsApp</a>
+    <Link className="shared-header-logo" href="/" aria-label="LATTICCE, ir al inicio"><Image src={publicAsset("/assets/logos/LTT_LOGO_1920_FX.png")} width={246} height={47} alt="LATTICCE" priority /></Link>
+    <a className="shared-header-whatsapp" href={`https://wa.me/${WHATSAPP_NUMBER}`} target="_blank" rel="noreferrer"><Image src={publicAsset("/assets/icons/social/whatsapp.svg")} width={16} height={16} alt="" /> WhatsApp</a>
     <div className="shared-header-actions">
       <details className="shared-header-menu">
         <summary className="shared-header-trigger" aria-controls="global-navigation"><span>Menú</span><i aria-hidden="true"><b /><b /><b /></i></summary>

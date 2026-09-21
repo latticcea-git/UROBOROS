@@ -2,9 +2,10 @@ import type { Metadata } from "next";
 import "./globals.css";
 import DynamicTabTitle from "./dynamic-tab-title";
 import GlobalShell from "./global-shell";
+import { metadataBase, publicUrl, socialImage } from "./site-metadata";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://latticce.com"),
+  metadataBase,
   title: {
     default: "LATTICCE — Un sistema creativo",
     template: "%s",
@@ -17,13 +18,13 @@ export const metadata: Metadata = {
     siteName: "LATTICCE",
     locale: "es_MX",
     type: "website",
-    images: ["/og.png"],
+    images: [socialImage("/og.png", "LATTICCE — Un sistema creativo")],
   },
   twitter: {
     card: "summary_large_image",
     title: "LATTICCE — Un sistema creativo",
     description: "Ideas que necesitan distintas formas para existir.",
-    images: ["/og.png"],
+    images: [publicUrl("/og.png")],
   },
 };
 

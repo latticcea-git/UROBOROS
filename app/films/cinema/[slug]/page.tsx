@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import CinemaExperience from "../cinema-experience";
 import { getCinemaWork, publishedCinemaWorks } from "../cinema-data";
+import { publicUrl, socialImage } from "../../../site-metadata";
 
 export const dynamicParams = false;
 
@@ -22,12 +23,13 @@ export async function generateMetadata({ params }: PageProps<"/films/cinema/[slu
     openGraph: {
       title: `${datedTitle} — CINEMA LATTICCE`,
       description: work.synopsis,
-      images: [],
+      images: [socialImage(work.poster, work.posterAlt)],
     },
     twitter: {
       title: `${datedTitle} — CINEMA LATTICCE`,
       description: work.synopsis,
-      images: [],
+      card: "summary_large_image",
+      images: [publicUrl(work.poster)],
     },
   };
 }

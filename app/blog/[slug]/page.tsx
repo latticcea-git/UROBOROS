@@ -8,6 +8,7 @@ import { articleContent } from "../article-content";
 import { blogPosts, getBlogNode, getBlogPost } from "../blog-data";
 import ReadingProgress from "../reading-progress";
 import styles from "../blog.module.css";
+import { publicUrl, socialImage } from "../../site-metadata";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -29,13 +30,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       type: "article",
       publishedTime: post.date,
       authors: [post.author],
-      images: [{ url: post.image, alt: post.alt }],
+      images: [socialImage(post.image, post.alt)],
     },
     twitter: {
       card: "summary_large_image",
       title: post.title,
       description: post.dek,
-      images: [post.image],
+      images: [publicUrl(post.image)],
     },
   };
 }

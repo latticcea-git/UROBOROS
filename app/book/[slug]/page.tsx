@@ -8,6 +8,7 @@ import BookMotion from "../book-motion";
 import GalleryLightbox from "../gallery-lightbox";
 import ProjectMedia from "../project-media";
 import styles from "../book.module.css";
+import { publicUrl, socialImage } from "../../site-metadata";
 
 type ProjectPageProps = {
   params: Promise<{ slug: string }>;
@@ -26,7 +27,8 @@ export async function generateMetadata({ params }: ProjectPageProps): Promise<Me
     title: `${project.title} — LATTICCE ${node.name}`,
     description: project.summary,
     alternates: { canonical: `/book/${project.slug}/` },
-    openGraph: { title: project.title, description: project.summary, images: [project.image] },
+    openGraph: { title: project.title, description: project.summary, images: [socialImage(project.image, project.alt)] },
+    twitter: { card: "summary_large_image", title: project.title, description: project.summary, images: [publicUrl(project.image)] },
   };
 }
 

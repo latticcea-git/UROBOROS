@@ -1,64 +1,53 @@
 "use client";
 
-import { useEffect } from "react";
+import { usePathname } from "next/navigation";
+import { useEffect, useMemo } from "react";
 
-const RETURN_MESSAGES = [
-  "Vuelve a La LATTICCE",
-  "Retoma tu Sesión",
-  "Cotiza tu Video",
-  "Continúa Creando",
-  "Confía en el Sistema",
-  "Hacemos tu Logotipo",
-  "Grabamos tus Voces",
-  "Diseñamos tu Marca",
-  "Creamos tu Identidad",
-  "Construimos tu Universo",
-  "Dale Forma a tu Idea",
-  "Renueva tu Imagen",
-  "Diseñamos tu Campaña",
-  "Creamos tu Sitio Web",
-  "Diseñamos Experiencias",
-  "Creamos Mundos Digitales",
-  "Llevamos tu Marca al 3D",
-  "Animamos tu Identidad",
-  "Creamos tu Dirección de Arte",
-  "Diseñamos tu Presentación",
-  "Producimos tu Comercial",
-  "Filmamos tu Historia",
-  "Dirigimos tu Producción",
-  "Producimos tu Video",
-  "Editamos tu Película",
-  "Creamos tu Cortometraje",
-  "Hacemos Fotografía",
-  "Fotografiamos tu Producto",
-  "Retratamos tu Proyecto",
-  "Documentamos tu Proceso",
-  "Creamos tu Contenido",
-  "Grabamos tu Podcast",
-  "Producimos tu Música",
-  "Diseñamos tu Sonido",
-  "Mezclamos tus Canciones",
-  "Grabamos tu Locución",
-  "Musicalizamos tu Historia",
-  "Creamos tu Identidad Sonora",
-  "Damos Voz a tu Marca",
-  "Convertimos Ideas en Sistemas",
-  "Tu Proyecto Puede Crecer",
-  "Tu Marca Necesita Movimiento",
-  "Tu Historia Merece una Película",
-  "Tu Idea Merece una Identidad",
-  "Haz Visible tu Proyecto",
-  "Construyamos Algo Juntos",
-  "Todo Comienza con una Idea",
-  "Activa tu Próximo Proyecto",
-  "Entra al Sistema Creativo",
-  "Regresa al Sistema",
-  "LATTICCE Sigue Creando",
+const GENERAL_RETURN_MESSAGES = [
+  "Vuelve a LATTICCE",
+  "Retoma tu sesión",
+  "Confía en el sistema",
+  "Todo comienza con una idea",
+  "LATTICCE sigue creando",
+] as const;
+
+const NODE_RETURN_MESSAGES = {
+  agency: ["Tu proyecto puede crecer", "Construimos tu universo", "Diseñamos tu campaña", "Creamos tu sitio web", "Diseñamos experiencias", "Creamos mundos digitales", "Activa tu próximo proyecto"],
+  studio: ["Hacemos fotografía", "Fotografiamos tu producto", "Retratamos tu proyecto", "Creamos tu contenido", "Producimos tu video", "Dirigimos tu producción"],
+  sound: ["Grabamos tus voces", "Grabamos tu podcast", "Producimos tu música", "Diseñamos tu sonido", "Mezclamos tus canciones", "Grabamos tu locución", "Musicalizamos tu historia", "Creamos tu identidad sonora", "Damos voz a tu marca"],
+  design: ["Hacemos tu logotipo", "Diseñamos tu marca", "Creamos tu identidad", "Dale forma a tu idea", "Renueva tu imagen", "Animamos tu identidad", "Diseñamos tu presentación"],
+  time: ["Documentamos tu proceso", "Guardamos tu memoria", "Hacemos visible tu historia"],
+  films: ["Tu historia merece una película", "Producimos tu comercial", "Filmamos tu historia", "Editamos tu película", "Creamos tu cortometraje"],
+} as const;
+
+const HOME_RETURN_MESSAGES = [
+  ...GENERAL_RETURN_MESSAGES,
+  "Tu proyecto puede crecer",
+  "Hacemos fotografía",
+  "Mezclamos tus canciones",
+  "Diseñamos tu marca",
+  "Documentamos tu proceso",
+  "Tu historia merece una película",
 ] as const;
 
 const MESSAGE_INTERVAL_MS = 4000;
 
+function getReturnMessages(pathname: string) {
+  const path = pathname.replace(/\/$/, "") || "/";
+  if (path === "/") return HOME_RETURN_MESSAGES;
+  if (path.startsWith("/agency")) return NODE_RETURN_MESSAGES.agency;
+  if (path.startsWith("/studio")) return NODE_RETURN_MESSAGES.studio;
+  if (path.startsWith("/sound")) return NODE_RETURN_MESSAGES.sound;
+  if (path.startsWith("/design")) return NODE_RETURN_MESSAGES.design;
+  if (path.startsWith("/time")) return NODE_RETURN_MESSAGES.time;
+  if (path.startsWith("/films")) return NODE_RETURN_MESSAGES.films;
+  return GENERAL_RETURN_MESSAGES;
+}
+
 export default function DynamicTabTitle() {
+  const pathname = usePathname();
+  const returnMessages = useMemo(() => getReturnMessages(pathname), [pathname]);
+
   useEffect(() => {
     let visibleTitle = document.title;
     let messageIndex = 0;
@@ -72,8 +61,8 @@ export default function DynamicTabTitle() {
     };
 
     const showNextMessage = () => {
-      document.title = RETURN_MESSAGES[messageIndex];
-      messageIndex = (messageIndex + 1) % RETURN_MESSAGES.length;
+      document.title = returnMessages[messageIndex];
+      messageIndex = (messageIndex + 1) % returnMessages.length;
     };
 
     const handleVisibilityChange = () => {
@@ -96,7 +85,7 @@ export default function DynamicTabTitle() {
       stopRotation();
       document.title = visibleTitle;
     };
-  }, []);
+  }, [returnMessages]);
 
   return null;
 }
