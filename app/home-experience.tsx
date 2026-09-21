@@ -12,6 +12,7 @@ import { openContactPopup } from "./global-shell";
 
 const AgencyIntro = dynamic(() => import("./agency-intro"), { loading: () => null });
 const SoundIntro = dynamic(() => import("./sound-intro"), { loading: () => null });
+const homeAsset = (path: string) => `${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}${path}`;
 
 const nodes = [
   { index: "01", name: "Agency", line: "Ideas que se vuelven sistemas.", tone: "agency", href: "/agency" },
@@ -291,7 +292,7 @@ export default function HomeExperience() {
         <BlackSea active={activeScene === 0} presence={0.96} tempo={1} horizon={-0.01} />
         <div className={styles.heroShade} aria-hidden="true" />
         <div className={styles.heroObelisk} aria-hidden="true">
-          <Image src="/assets/images/obelisco.png" width={939} height={1675} alt="" loading="eager" fetchPriority="high" sizes="(max-width: 620px) 54vw, (max-width: 900px) 42vw, 31vw" />
+          <Image src={homeAsset("/assets/images/obelisco.png")} width={939} height={1675} alt="" loading="eager" fetchPriority="high" sizes="(max-width: 620px) 54vw, (max-width: 900px) 42vw, 31vw" />
         </div>
         <div className={styles.heroMeta}><span>Creative system</span><span>Mexico · 19.4326° N</span></div>
         <div className={styles.heroCopy}>
