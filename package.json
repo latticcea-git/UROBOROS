@@ -9,7 +9,8 @@
     "build": "next build",
     "start": "next start",
     "version:bump": "node scripts/version-cycle.mjs bump",
-    "version:check": "node --test tests/version-cycle.test.mjs"
+    "version:check": "node --test tests/version-cycle.test.mjs",
+    "seo:check": "node --test tests/seo-static-export.test.mjs"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^7.3.1",

@@ -1,14 +1,15 @@
 import type { Metadata } from "next";
 import CinemaExperience from "./cinema-experience";
+import JsonLd from "../../json-ld";
 import { publicUrl, socialImage } from "../../site-metadata";
+import { indexableCinemaWorks } from "./cinema-data";
 
 export const metadata: Metadata = {
-  title: "CINEMA LATTICCE — LATTICCE FILMS",
-  description: "Obras cinematográficas de LATTICCE FILMS.",
-  robots: { index: false, follow: false, nocache: true },
+  title: "Producción cinematográfica, videoclips y obras | Cinema LATTICCE",
+  description: "Cinema LATTICCE reúne obras, videoclips y producción cinematográfica para cineastas, artistas, marcas y proyectos audiovisuales.",
   openGraph: {
-    title: "CINEMA LATTICCE — LATTICCE FILMS",
-    description: "Obras cinematográficas de LATTICCE FILMS.",
+    title: "Cinema LATTICCE — Producción cinematográfica y videoclips",
+    description: "Obras y producción audiovisual de LATTICCE Films.",
     images: [socialImage("/assets/images/films/cinema/cinema-auditorium-generated-draft-v1.jpg", "CINEMA LATTICCE")],
   },
   twitter: { card: "summary_large_image", images: [publicUrl("/assets/images/films/cinema/cinema-auditorium-generated-draft-v1.jpg")] },
@@ -16,5 +17,22 @@ export const metadata: Metadata = {
 };
 
 export default function CinemaPage() {
-  return <CinemaExperience />;
+  const cinemaJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: "Cinema LATTICCE",
+    description: "Obras, videoclips y producción cinematográfica de LATTICCE Films.",
+    url: publicUrl("/films/cinema/"),
+    mainEntity: {
+      "@type": "ItemList",
+      itemListElement: indexableCinemaWorks.map((work, position) => ({
+        "@type": "ListItem",
+        position: position + 1,
+        url: publicUrl(`/films/cinema/${work.slug}/`),
+        name: work.title,
+      })),
+    },
+  };
+
+  return <><JsonLd data={cinemaJsonLd} /><CinemaExperience /></>;
 }

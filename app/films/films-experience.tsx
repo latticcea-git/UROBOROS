@@ -524,13 +524,19 @@ export default function FilmsExperience() {
   }, { scope: rootRef, dependencies: [reducedMotion], revertOnUpdate: true });
 
   if (reducedMotion === null) {
-    return <main className={styles.loadingRoot} aria-label="Cargando LATTICCE FILMS" />;
+    return (
+      <main className={styles.loadingRoot} aria-label="Cargando LATTICCE FILMS">
+        <h1 className="screenReaderOnly">LATTICCE Films: producción cinematográfica y dirección visual.</h1>
+        <p className="screenReaderOnly">Producción audiovisual para cine, videoclips, artistas, marcas y proyectos culturales.</p>
+      </main>
+    );
   }
 
   if (reducedMotion) {
     const reducedFrames = cinematicFrames.filter((item) => reducedMotionFrameIds.includes(item.id as (typeof reducedMotionFrameIds)[number]));
     return (
       <main className={styles.reducedRoot} data-films-version={FILMS_EXPERIENCE_VERSION}>
+        <h1 className="screenReaderOnly">LATTICCE Films: producción cinematográfica y dirección visual.</h1>
         <section className={styles.reducedIntro} aria-label="LATTICCE FILMS">
           <Image src={filmsLogo} priority alt="LATTICCE FILMS" />
         </section>
@@ -628,7 +634,7 @@ export default function FilmsExperience() {
         </div>
 
         <div className={styles.srNarrative}>
-          <h1>LATTICCE FILMS — Sigue la luz</h1>
+          <h1>LATTICCE Films: producción cinematográfica y dirección visual.</h1>
         </div>
 
         <div className={styles.scrollCue} data-scroll-cue>

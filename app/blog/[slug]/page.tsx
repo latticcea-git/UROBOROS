@@ -9,6 +9,7 @@ import { blogPosts, getBlogNode, getBlogPost } from "../blog-data";
 import ReadingProgress from "../reading-progress";
 import styles from "../blog.module.css";
 import { publicUrl, socialImage } from "../../site-metadata";
+import JsonLd from "../../json-ld";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -53,9 +54,23 @@ export default async function BlogArticlePage({ params }: Props) {
     ...blogPosts.filter((candidate) => candidate.node === post.node && candidate.slug !== post.slug),
     ...blogPosts.filter((candidate) => candidate.node !== post.node && candidate.slug !== post.slug),
   ].slice(0, 3);
+  const articleJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: post.title,
+    description: post.dek,
+    datePublished: post.date,
+    url: publicUrl(`/blog/${post.slug}/`),
+    image: publicUrl(post.image),
+    author: { "@type": "Organization", name: post.author },
+    publisher: { "@type": "Organization", name: "LATTICCE" },
+    articleSection: post.category,
+    inLanguage: "es-MX",
+  };
 
   return (
     <main className={styles.articleRoot} data-node={post.node}>
+      <JsonLd data={articleJsonLd} />
       <SiteMenu homeHref="/" logoSrc="/assets/logos/LTT_LOGO_1920_FX.png" logoAlt="LATTICCE" />
       <ReadingProgress />
 
@@ -64,7 +79,7 @@ export default async function BlogArticlePage({ params }: Props) {
           <nav aria-label="Ruta del artículo"><Link href="/blog">BLOG</Link><span>/</span><span>{node.name}</span><span>/</span><span>{post.category}</span></nav>
           <div className={styles.articleIdentity}>
             <Image src={node.logo} width={320} height={82} alt={`LATTICCE ${node.name}`} priority />
-            <span>{node.territory}</span>
+            <Link href={`/${post.node}`} aria-label={`Conocer LATTICCE ${node.name}: ${node.territory}`}>{node.territory}</Link>
           </div>
           <div className={styles.articleMeta}><span>{post.category}</span><span>{post.displayDate}</span><span>{post.readingTime} de lectura</span></div>
           <h1>{post.title}</h1>

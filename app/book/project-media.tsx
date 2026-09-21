@@ -42,7 +42,7 @@ export default function ProjectMedia({ project, sizes, priority = false, classNa
           muted
           loop
           playsInline
-          preload={priority ? "auto" : "metadata"}
+          preload="metadata"
         />
       </span>
     );

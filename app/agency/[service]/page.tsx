@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import AgencyServiceExperience from "./agency-service-experience";
 import { isServiceSlug, servicePages, serviceSlugs } from "./service-data";
 import { publicUrl, socialImage } from "../../site-metadata";
+import JsonLd from "../../json-ld";
 
 export const dynamicParams = false;
 
@@ -34,5 +35,18 @@ export default async function AgencyServicePage({ params }: PageProps<"/agency/[
   const { service } = await params;
   if (!isServiceSlug(service)) notFound();
 
-  return <AgencyServiceExperience service={servicePages[service]} />;
+  const page = servicePages[service];
+  const serviceJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: `${page.title} — LATTICCE Agency`,
+    description: page.intro,
+    url: publicUrl(`/agency/${page.slug}/`),
+    image: publicUrl(page.heroImage),
+    provider: { "@type": "Organization", name: "LATTICCE" },
+    serviceType: page.capabilities,
+    inLanguage: "es-MX",
+  };
+
+  return <><JsonLd data={serviceJsonLd} /><AgencyServiceExperience service={page} /></>;
 }

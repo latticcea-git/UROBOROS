@@ -127,6 +127,7 @@ export default function AgencyExperience() {
         <div className={styles.topline} aria-hidden="true" />
 
         <header className={styles.brandBlock}>
+          <h1 className="screenReaderOnly">LATTICCE Agency: estrategia digital, contenido, experiencias y distribución para marcas.</h1>
           <p className={styles.eyebrow}>NODO 01 / DIGITAL SYSTEMS</p>
           <Image
             className={styles.agencyLogo}

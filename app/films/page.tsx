@@ -3,11 +3,11 @@ import FilmsExperience from "./films-experience";
 import { publicUrl, socialImage } from "../site-metadata";
 
 export const metadata: Metadata = {
-  title: "LATTICCE FILMS — Sigue la luz",
-  description: "Una experiencia cinematográfica interactiva: del logotipo a la arquitectura, del recorrido a la luz.",
+  title: "Producción cinematográfica y dirección visual | LATTICCE Films",
+  description: "LATTICCE Films desarrolla producción cinematográfica, videoclips, dirección visual y experiencias audiovisuales para artistas, marcas y proyectos culturales.",
   openGraph: {
-    title: "LATTICCE FILMS — Sigue la luz",
-    description: "Una experiencia cinematográfica interactiva: del logotipo a la arquitectura, del recorrido a la luz.",
+    title: "LATTICCE Films — Producción cinematográfica y dirección visual",
+    description: "Cine, videoclips y experiencias audiovisuales para artistas, marcas y proyectos culturales.",
     images: [socialImage("/assets/images/films/cinema/cinema-auditorium-generated-draft-v1.jpg", "LATTICCE FILMS")],
   },
   twitter: { card: "summary_large_image", images: [publicUrl("/assets/images/films/cinema/cinema-auditorium-generated-draft-v1.jpg")] },

@@ -9,6 +9,7 @@ import GalleryLightbox from "../gallery-lightbox";
 import ProjectMedia from "../project-media";
 import styles from "../book.module.css";
 import { publicUrl, socialImage } from "../../site-metadata";
+import JsonLd from "../../json-ld";
 
 type ProjectPageProps = {
   params: Promise<{ slug: string }>;
@@ -24,7 +25,7 @@ export async function generateMetadata({ params }: ProjectPageProps): Promise<Me
   if (!project) return {};
   const node = getBookNode(project.node);
   return {
-    title: `${project.title} — LATTICCE ${node.name}`,
+    title: `${project.title} | ${project.category} — LATTICCE ${node.name}`,
     description: project.summary,
     alternates: { canonical: `/book/${project.slug}/` },
     openGraph: { title: project.title, description: project.summary, images: [socialImage(project.image, project.alt)] },
@@ -41,22 +42,36 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
   const related = getRelatedProjects(project);
   const galleryFrames = project.gallery ?? ["01", "02", "03", "04", "05", "06"].map((frame) => ({
     image: project.image,
-    alt: `${project.alt} Encuadre de muestra ${frame}.`,
-    caption: "Imagen de muestra generada",
+    alt: `${project.alt} Encuadre ${frame}.`,
+    caption: project.status ?? "Proyecto demostrativo",
   }));
   const gallery = (
     <section className={styles.projectGallery} id="galeria" aria-labelledby="gallery-title">
       <div className={styles.projectSectionHead} data-book-intro>
         <p><span>{project.galleryFirst ? "01" : "02"}</span> Galería</p>
         <h2 id="gallery-title">{project.galleryTitle ?? "Una imagen,"} <em>{project.galleryEmphasis ?? "seis ritmos"}</em></h2>
-        <p>{project.galleryDescription ?? "La fotografía de muestra se repite para probar la narración completa. Cada cuadro puede reemplazarse después de forma independiente."}</p>
+        <p>{project.galleryDescription ?? "Una secuencia visual que desarrolla el concepto, la atmósfera y los servicios planteados para el proyecto."}</p>
       </div>
       <GalleryLightbox frames={galleryFrames} />
     </section>
   );
+  const projectJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",
+    name: project.title,
+    description: project.summary,
+    url: publicUrl(`/book/${project.slug}/`),
+    image: publicUrl(project.image),
+    genre: project.category,
+    dateCreated: project.year,
+    keywords: project.services.join(", "),
+    creativeWorkStatus: project.status ?? "Proyecto demostrativo",
+    isPartOf: { "@type": "CollectionPage", name: "LATTICCE BOOK", url: publicUrl("/book/") },
+  };
 
   return (
     <main className={styles.projectRoot} data-book-motion-root="project" data-node={project.node}>
+      <JsonLd data={projectJsonLd} />
       <BookMotion variant="project" />
       <SiteMenu homeHref="/" logoSrc={bookAssetPath("/assets/logos/LTT_LOGO_1920_FX.png")} logoAlt="LATTICCE" />
 
@@ -70,7 +85,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
           <Image src={node.logo} alt={`LATTICCE ${node.name}`} width={420} height={106} />
           <p>{project.category} / {project.year}</p>
           <h1>{project.title}</h1>
-          <span>{project.projectLabel ?? "Proyecto conceptual / Imagen generada"}</span>
+          <span>{project.projectLabel ?? project.status ?? "Proyecto demostrativo"}</span>
         </div>
         <a className={styles.projectScroll} href={project.galleryFirst ? "#galeria" : "#proyecto"} data-project-scroll>Descubrir <span aria-hidden="true">↓︎</span></a>
       </section>

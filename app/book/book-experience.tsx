@@ -209,7 +209,7 @@ export default function BookExperience() {
         <p>LATTICCE / BOOK / 2026</p>
         <h2>¿Qué puede llegar a ser <em>tu idea?</em></h2>
         <Link href="/#contacto">Conversemos <span aria-hidden="true">↗︎</span></Link>
-        <Image src={bookAssetPath("/assets/logos/LTT_LOGO_1920_FX.png")} width={460} height={88} alt="LATTICCE" priority />
+        <Image src={bookAssetPath("/assets/logos/LTT_LOGO_1920_FX.png")} width={460} height={88} alt="LATTICCE" />
       </footer>
     </main>
   );

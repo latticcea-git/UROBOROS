@@ -16,6 +16,7 @@ export type CinemaWork = {
   technicalSheet: Array<{ label: string; value: string }>;
   source: CinemaSource;
   published: boolean;
+  indexable: boolean;
   accent?: string;
 };
 
@@ -40,6 +41,7 @@ export const cinemaWorks: CinemaWork[] = [
       url: "https://filmfreeway.com/ESCILA-ShortFilm",
     },
     published: true,
+    indexable: true,
     accent: "210, 229, 234",
   },
   {
@@ -61,6 +63,7 @@ export const cinemaWorks: CinemaWork[] = [
       url: "https://filmfreeway.com/HIERBAMALA-SHORT-FILM",
     },
     published: true,
+    indexable: true,
     accent: "78, 255, 111",
   },
   {
@@ -80,6 +83,7 @@ export const cinemaWorks: CinemaWork[] = [
     ],
     source: { kind: "privateStream", playbackKey: "interludio" },
     published: true,
+    indexable: false,
     accent: "222, 204, 171",
   },
   {
@@ -104,6 +108,7 @@ export const cinemaWorks: CinemaWork[] = [
       externalUrl: "https://www.instagram.com/reel/DUtvY1-ieH8/",
     },
     published: true,
+    indexable: true,
     accent: "255, 218, 72",
   },
   {
@@ -128,6 +133,7 @@ export const cinemaWorks: CinemaWork[] = [
       externalUrl: "https://www.instagram.com/reel/DQaSzpfiYfJ/",
     },
     published: true,
+    indexable: true,
     accent: "255, 73, 73",
   },
   {
@@ -151,11 +157,13 @@ export const cinemaWorks: CinemaWork[] = [
       externalUrl: "https://www.instagram.com/reel/DOr0hRJiWgr/",
     },
     published: true,
+    indexable: true,
     accent: "25, 94, 62",
   },
 ];
 
 export const publishedCinemaWorks = cinemaWorks.filter((work) => work.published);
+export const indexableCinemaWorks = publishedCinemaWorks.filter((work) => work.indexable);
 
 export function getCinemaWork(slug: string) {
   return publishedCinemaWorks.find((work) => work.slug === slug);

@@ -220,6 +220,7 @@ export default function StudioExperience() {
 
   return (
     <main className={`${styles.root} studio-page-root`}>
+      <h1 className="screenReaderOnly">LATTICCE Studio: fotografía, video comercial, postproducción y contenido para marcas y artistas.</h1>
       <div className={styles.journey} ref={journeyRef}>
         <StudioFrame sceneIndex={Math.max(0, sceneIndex)} telemetry={telemetry} />
 

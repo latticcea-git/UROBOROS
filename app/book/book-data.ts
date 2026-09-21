@@ -358,7 +358,7 @@ export const bookProjects: BookProject[] = [
     summary: "Una plataforma cultural convertida en campaña, archivo editorial y conversación pública.",
     decision: "Hacer visible la investigación antes que la publicidad: cada pieza funciona como fragmento de un archivo en expansión.",
     services: ["Estrategia de campaña", "Dirección creativa", "Sistema de contenidos", "Producción editorial"],
-    credits: ["Dirección creativa — LATTICCE Agency", "Imagen conceptual generada para BOOK", "Proyecto demostrativo"],
+    credits: ["Dirección creativa — LATTICCE Agency", "Proyecto demostrativo"],
     featured: true,
   },
   {
@@ -372,7 +372,7 @@ export const bookProjects: BookProject[] = [
     summary: "Un ecosistema digital que reúne contenido, campaña y medición bajo una sola lógica visual.",
     decision: "Sustituir la suma de canales por una sala de mando clara: una intención, múltiples superficies y una lectura común.",
     services: ["Arquitectura digital", "Campaña integrada", "Dirección de arte", "Sistema de medición"],
-    credits: ["Estrategia — LATTICCE Agency", "Imagen conceptual generada para BOOK", "Proyecto demostrativo"],
+    credits: ["Estrategia — LATTICCE Agency", "Proyecto demostrativo"],
     featured: true,
   },
   {
@@ -386,7 +386,7 @@ export const bookProjects: BookProject[] = [
     summary: "Un videoclip construido desde arquitectura, cuerpo y una interrupción mínima de color.",
     decision: "Reducir el relato a un cuerpo atravesando espacios de presión; la luz funciona como montaje dentro del plano.",
     services: ["Dirección", "Cinematografía", "Diseño de producción", "Postproducción"],
-    credits: ["Producción — LATTICCE Studio", "Imagen conceptual generada para BOOK", "Proyecto demostrativo"],
+    credits: ["Producción — LATTICCE Studio", "Proyecto demostrativo"],
     featured: true,
   },
   {
@@ -400,7 +400,7 @@ export const bookProjects: BookProject[] = [
     summary: "Registro en vivo que conserva la fuerza física del concierto y el silencio alrededor del gesto.",
     decision: "Fotografiar la escala antes que el espectáculo: el escenario se convierte en arquitectura y el intérprete en foco humano.",
     services: ["Cobertura multicámara", "Fotografía fija", "Edición", "Piezas de lanzamiento"],
-    credits: ["Producción — LATTICCE Studio", "Imagen conceptual generada para BOOK", "Proyecto demostrativo"],
+    credits: ["Producción — LATTICCE Studio", "Proyecto demostrativo"],
     featured: true,
   },
   {
@@ -414,7 +414,7 @@ export const bookProjects: BookProject[] = [
     summary: "Una instalación espacial donde la vibración recorre un campo de altavoces suspendidos.",
     decision: "Dar peso y dirección al sonido: cada fuente ocupa una altura y convierte la escucha en recorrido físico.",
     services: ["Diseño sonoro", "Mezcla espacial", "Montaje técnico", "Dirección de experiencia"],
-    credits: ["Diseño sonoro — LATTICCE Sound", "Imagen conceptual generada para BOOK", "Proyecto demostrativo"],
+    credits: ["Diseño sonoro — LATTICCE Sound", "Proyecto demostrativo"],
     featured: true,
   },
   {
@@ -428,7 +428,7 @@ export const bookProjects: BookProject[] = [
     summary: "Una sesión de estudio centrada en la respiración, la proximidad y la textura real de la voz.",
     decision: "Mantener la interpretación al frente y hacer que la producción acompañe sus imperfecciones sin pulirlas de más.",
     services: ["Producción musical", "Grabación", "Mezcla", "Mastering"],
-    credits: ["Producción — LATTICCE Sound", "Imagen conceptual generada para BOOK", "Proyecto demostrativo"],
+    credits: ["Producción — LATTICCE Sound", "Proyecto demostrativo"],
     featured: false,
   },
   {
@@ -442,7 +442,7 @@ export const bookProjects: BookProject[] = [
     summary: "Una identidad modular que existe como impresión, objeto, volumen y superficie digital.",
     decision: "Diseñar desde la materia antes que desde una aplicación: cada textura se convierte en una regla del sistema.",
     services: ["Estrategia de identidad", "Dirección de arte", "Sistema editorial", "Objetos 3D"],
-    credits: ["Diseño — LATTICCE Design", "Imagen conceptual generada para BOOK", "Proyecto demostrativo"],
+    credits: ["Diseño — LATTICCE Design", "Proyecto demostrativo"],
     featured: true,
   },
   {
@@ -456,7 +456,7 @@ export const bookProjects: BookProject[] = [
     summary: "Una publicación que organiza proceso, memoria y variación mediante capas físicas.",
     decision: "Usar la transparencia como edición: cada página conserva lo anterior y prepara una lectura nueva.",
     services: ["Concepto editorial", "Diseño de publicación", "Dirección de arte", "Producción impresa"],
-    credits: ["Diseño — LATTICCE Design", "Imagen conceptual generada para BOOK", "Proyecto demostrativo"],
+    credits: ["Diseño — LATTICCE Design", "Proyecto demostrativo"],
     featured: true,
   },
   {
@@ -470,7 +470,7 @@ export const bookProjects: BookProject[] = [
     summary: "Una memoria de boda observada desde la distancia justa: íntima, sobria y profundamente física.",
     decision: "Dejar que el espacio contenga a la pareja; la emoción aparece en el gesto pequeño y no en la pose.",
     services: ["Fotografía", "Video", "Edición narrativa", "Álbum impreso"],
-    credits: ["Memoria — LATTICCE Time", "Imagen conceptual generada para BOOK", "Proyecto demostrativo"],
+    credits: ["Memoria — LATTICCE Time", "Proyecto demostrativo"],
     featured: true,
   },
   {
@@ -484,7 +484,7 @@ export const bookProjects: BookProject[] = [
     summary: "Retrato y celebración construidos como una secuencia de presencia, familia y espacio.",
     decision: "Evitar el código visual de fiesta y concentrar la memoria en luz natural, arquitectura y carácter.",
     services: ["Retrato", "Cobertura de evento", "Video", "Selección editorial"],
-    credits: ["Memoria — LATTICCE Time", "Imagen conceptual generada para BOOK", "Proyecto demostrativo"],
+    credits: ["Memoria — LATTICCE Time", "Proyecto demostrativo"],
     featured: false,
   },
 ];

@@ -606,7 +606,7 @@ export default function TimeExperience() {
                 loop
                 muted
                 playsInline
-                preload="auto"
+                preload="metadata"
                 aria-hidden="true"
               >
                 <source src="/assets/videos/time/rings-motion-reference-v1.mp4" type="video/mp4" />
