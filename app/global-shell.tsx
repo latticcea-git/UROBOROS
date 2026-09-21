@@ -153,6 +153,12 @@ function GlobalHeader() {
   </header>;
 }
 
+function HomeBeacon() {
+  return <Link className="global-home-beacon" href="/" aria-label="Volver al Home de LATTICCE">
+    <span aria-hidden="true">TT</span>
+  </Link>;
+}
+
 function ContactPopup() {
   const [open, setOpen] = useState(false);
   const [context, setContext] = useState<ContactContext>("general");
@@ -230,6 +236,7 @@ export default function GlobalShell({ children }: { children: ReactNode }) {
   const isCinema = pathname === "/films/cinema" || pathname.startsWith("/films/cinema/");
   const isFilmsExperience = pathname === "/films";
   const node = nodes.find((item) => pathname === item.href || pathname.startsWith(`${item.href}/`))?.node;
-  if (isCinema || isFilmsExperience) return <>{children}<ContactPopup /></>;
-  return <><GlobalHeader />{children}<SectionNavigator pathname={pathname} /><ContactPopup />{node && <NodeSocialFooter node={node} socials={socialLinksByNode[node]} />}</>;
+  const homeBeacon = pathname === "/" ? null : <HomeBeacon />;
+  if (isCinema || isFilmsExperience) return <>{children}{homeBeacon}<ContactPopup /></>;
+  return <><GlobalHeader />{children}<SectionNavigator pathname={pathname} />{homeBeacon}<ContactPopup />{node && <NodeSocialFooter node={node} socials={socialLinksByNode[node]} />}</>;
 }
