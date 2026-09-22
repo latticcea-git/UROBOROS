@@ -89,7 +89,7 @@ export default async function BlogArticlePage({ params }: Props) {
 
         <figure className={styles.articleHero}>
           <Image src={post.image} alt={post.alt} fill priority sizes="100vw" style={{ objectPosition: post.imagePosition }} />
-          <figcaption>{post.category} / Imagen conceptual para prototipo editorial</figcaption>
+          <figcaption>{post.category} / {post.imageCredit}</figcaption>
         </figure>
 
         <div className={styles.articleBody}>

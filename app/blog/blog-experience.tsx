@@ -41,20 +41,60 @@ export default function BlogExperience() {
       <SiteMenu homeHref="/" logoSrc="/assets/logos/LTT_LOGO_1920_FX.png" logoAlt="LATTICCE" />
 
       <section className={styles.hero} id="inicio" aria-labelledby="blog-title">
-        <div className={styles.heroTopline}><span>Publicación editorial / 2026</span><span>Ciudad de México</span></div>
-        <div className={styles.orbit} aria-hidden="true"><i /><i /><i /></div>
-        <div className={styles.heroTitle}>
-          <span>01</span>
-          <h1 id="blog-title">BLOG</h1>
-          <p>Miradas que construyen.<br />Ideas que transforman.</p>
+        <div className={styles.museumGrid} aria-hidden="true"><i /><i /><i /><i /><i /></div>
+        <div className={styles.heroTopline}>
+          <span>Archivo editorial / 2026</span>
+          <span>Ideas · Procesos · Oficio · Cultura</span>
         </div>
-        <a className={styles.heroEnter} href="#archivo">Entrar al archivo <span aria-hidden="true">↓︎</span></a>
+
+        <div className={styles.heroStage}>
+          <div className={styles.museumHalo} aria-hidden="true" />
+          <div className={styles.heroArtifact} aria-hidden="true">
+            <Image
+              src="/assets/images/latticce/sinttergia-lattentte-v1.png"
+              alt=""
+              fill
+              priority
+              sizes="(max-width: 640px) 92vw, 64vw"
+            />
+          </div>
+          <div className={styles.heroTitle}>
+            <span>Sala de consulta</span>
+            <h1 id="blog-title">BLOG</h1>
+            <p>Los textos de nuestros <em>Transductores</em></p>
+          </div>
+        </div>
+
+        <div className={styles.heroFooter}>
+          <p>Una colección viva de pensamiento aplicado.</p>
+          <a className={styles.heroEnter} href="#archivo">Entrar al archivo <span aria-hidden="true">↓︎</span></a>
+        </div>
+      </section>
+
+      <section className={styles.museumStatement} aria-labelledby="museum-statement-title">
+        <div className={styles.statementIndex}>
+          <span>01 / Umbral</span>
+          <i aria-hidden="true" />
+          <span>LATTICCE BLOG</span>
+        </div>
+        <div className={styles.statementCopy}>
+          <p className={styles.statementKicker}>Un archivo para entrar, detenerse y volver a mirar.</p>
+          <h2 id="museum-statement-title">Lo más profundo de nuestro archivo no siempre termina en una imagen.</h2>
+          <div className={styles.statementBody}>
+            <p>Este blog reúne las capas menos visibles del trabajo de LATTICCE: las ideas que aparecen antes de una producción, las decisiones que sostienen una pieza y las preguntas que permanecen cuando el proyecto ya terminó. Es una sala de consulta abierta donde nuestros Transductores escriben desde la experiencia, el oficio y la observación.</p>
+            <p>Aquí encontrarás ensayos, manifiestos, referencias y conversaciones sobre cine, fotografía, sonido, diseño, estrategia, cultura visual y memoria. También encontrarás guías técnicas, herramientas, métodos de trabajo y consejos concretos para comprender mejor cada proceso: desde preparar un rodaje o grabar una voz hasta construir una identidad, editar un archivo o diseñar una experiencia digital.</p>
+            <p>No es un escaparate de respuestas definitivas. Es un archivo vivo de pruebas, aprendizajes y relaciones entre disciplinas. Un lugar para compartir lo que normalmente queda detrás de la obra: el razonamiento, los errores, las influencias y los pequeños descubrimientos que transforman la manera en que observamos, construimos y recordamos.</p>
+          </div>
+          <div className={styles.statementLegend} aria-label="Contenido del archivo">
+            <span>Ideas</span><span>Técnica</span><span>Procesos</span><span>Referencias</span><span>Archivo</span>
+          </div>
+        </div>
       </section>
 
       <section className={styles.archive} id="archivo" aria-labelledby="archive-title">
         <header className={styles.archiveHead}>
           <div>
-            <span>Archivo visual / Edición conceptual</span>
+            <span>Archivo visual / Edición continua</span>
             <h2 id="archive-title">Pensamiento <em>en proceso</em></h2>
           </div>
           <p>Una sola publicación. Seis nodos. Distintas herramientas para observar, construir y recordar.</p>

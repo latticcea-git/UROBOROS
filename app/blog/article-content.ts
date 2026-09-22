@@ -13,236 +13,652 @@ export type ArticleContent = {
 };
 
 export const articleContent: Record<string, ArticleContent> = {
-  "el-cine-existe-antes-de-la-camara": {
-    intro: "Antes de elegir una óptica, una relación de aspecto o una distancia focal, ya existe una película posible. Está en la forma de mirar un espacio, en aquello que decidimos omitir y en el tiempo que concedemos a un gesto.",
+  "el-espacio-tambien-dirige": {
+    intro: "Antes de decidir dónde colocar la cámara conviene comprender qué fuerzas ya existen en el lugar. Una plataforma, una distancia imposible de cruzar, una fuente de luz o una multitud pueden ordenar la escena con más precisión que un movimiento añadido.",
     sections: [
       {
-        eyebrow: "01 / La intención",
-        title: "La imagen comienza con una pregunta",
+        eyebrow: "01 / Lectura",
+        title: "El lugar no es un fondo",
         paragraphs: [
-          "La cámara no produce una mirada por sí sola. Apenas vuelve visible una serie de decisiones anteriores: dónde se sitúa el cuerpo, qué distancia mantiene respecto al mundo y qué información considera necesaria.",
-          "Cuando esas decisiones no existen, la técnica intenta compensarlas. Aparecen movimientos sin dirección, luces que describen todo y encuadres que acumulan información. La imagen puede ser correcta y, aun así, no decir nada.",
+          "Todo espacio propone relaciones. Tiene zonas de tránsito y de espera, líneas que conducen la mirada, límites que aíslan y profundidades que revelan escala. La dirección comienza al reconocerlas, no al intentar ocultarlas.",
+          "En un escenario de gran formato, por ejemplo, el vacío alrededor de una figura puede decir tanto como su gesto. Abrir el encuadre no es alejarse de la emoción: es mostrar contra qué dimensión está ocurriendo.",
         ],
       },
       {
-        eyebrow: "02 / El espacio",
-        title: "Dirigir también es decidir qué permanece fuera",
+        eyebrow: "02 / Decisión",
+        title: "Mover sólo cuando cambia el sentido",
         paragraphs: [
-          "Un espacio cinematográfico no es solamente una locación. Es una estructura de fuerzas: entradas, obstáculos, profundidades, silencios y zonas que todavía no conocemos. El encuadre no lo reduce; organiza la relación entre esas fuerzas.",
-          "Por eso la puesta en escena precede al dispositivo. La posición de una persona, la duración de una espera o el recorrido de una sombra pueden contener más dirección que una operación de cámara compleja.",
+          "Una cámara fija permite que cuerpos, luz y arquitectura transformen el plano desde dentro. Un desplazamiento se vuelve necesario cuando descubre una relación que antes no existía: una distancia, una ausencia o un cambio de poder.",
+          "La pregunta útil no es qué movimiento se ve mejor, sino qué información emocional aparece gracias a él. Cuando la respuesta no es clara, sostener el punto de vista suele ser la decisión más fuerte.",
         ],
       },
       {
-        eyebrow: "03 / La herramienta",
-        title: "La técnica llega para sostener la mirada",
+        eyebrow: "03 / Continuidad",
+        title: "La escala debe sobrevivir al montaje",
         paragraphs: [
-          "Elegir cámara, luz y movimiento importa. Pero importa después de comprender qué sensación debe sobrevivir al rodaje. La herramienta adecuada es la que protege esa intención con la menor cantidad de ruido.",
-          "El cine comienza antes de la cámara y continúa después de ella. En montaje, color y sonido volvemos a formular la misma pregunta: qué necesita permanecer para que la experiencia conserve su forma.",
+          "Alternar planos abiertos y próximos no basta. Cada corte necesita conservar la geografía sensible de la escena: dónde está cada cuerpo, qué distancia los separa y qué presión ejerce el espacio sobre ellos.",
+          "La continuidad más importante no siempre es física. Es la permanencia de una tensión. Si esa tensión llega intacta al siguiente plano, el espacio continúa dirigiendo incluso después del corte.",
         ],
       },
     ],
-    quote: "EL EQUIPO NO CONSTRUYE LA MIRADA. LA HACE POSIBLE.",
+    quote: "EL ESPACIO NO CONTIENE LA ESCENA. PARTICIPA EN ELLA.",
     notes: [
       { label: "Territorio", value: "Narrativa visual" },
-      { label: "Herramientas", value: "Puesta en escena / cámara / montaje" },
-      { label: "Principio", value: "Intención antes que complejidad" },
+      { label: "Variables", value: "Escala / vacío / profundidad" },
+      { label: "Principio", value: "Leer antes de intervenir" },
     ],
-    bookProjectSlug: "fase-roja",
+    bookProjectSlug: "enjambre-estadio-gnp",
   },
-  "la-luz-no-ilumina-revela": {
-    intro: "Iluminar no consiste en hacer visible cada superficie. Consiste en decidir qué información aparece, cuál espera y cómo se mueve la atención dentro del plano.",
+  "exponer-para-la-luz-que-cambia": {
+    intro: "La luz de un concierto puede cambiar de dirección, color e intensidad en segundos. Cubrirla no consiste en perseguir cada variación, sino en establecer un margen técnico que proteja el gesto sin eliminar la atmósfera real de la escena.",
     sections: [
       {
-        eyebrow: "01 / Contraste",
-        title: "La oscuridad también trabaja",
+        eyebrow: "01 / Prioridad",
+        title: "Decidir qué no debe perderse",
         paragraphs: [
-          "Una fuente cobra sentido por aquello que deja sin tocar. Cuando eliminamos el miedo a la sombra, el espacio gana profundidad y la mirada encuentra una dirección.",
-          "Antes de sumar luminarias conviene observar las fuentes existentes, bloquear rebotes involuntarios y construir una relación clara entre sujeto y fondo.",
+          "Cuando el rango dinámico es limitado, la exposición necesita una prioridad. En retrato escénico suele ser la piel iluminada; en una silueta puede ser el contorno; en un plano general, la relación entre escenario y público.",
+          "Medir sobre el punto más brillante que todavía necesita textura ayuda a conservar margen. Las pantallas y luminarias pueden recortarse si no contienen información, pero un rostro sobreexpuesto rara vez se recupera con naturalidad.",
         ],
       },
       {
         eyebrow: "02 / Método",
-        title: "Una fuente, una función",
+        title: "Preparar familias de exposición",
         paragraphs: [
-          "Cada luz debe resolver una tarea concreta: separar, revelar textura, sostener un gesto o dibujar arquitectura. Si no podemos nombrar su función, probablemente todavía no la necesitamos.",
-          "La precisión reduce equipo, acelera el set y deja más tiempo para mirar lo que realmente ocurre frente a cámara.",
+          "En lugar de corregir parámetro por parámetro durante cada cambio, conviene anticipar dos o tres situaciones: luz frontal intensa, contraluz y ambiente bajo. Un ajuste memorizado o una práctica clara reduce la fricción cuando la escena acelera.",
+          "La velocidad protege el gesto; la apertura define cuánto contexto permanece; el ISO absorbe la variación final. El orden puede cambiar, pero la intención debe mantenerse: registrar movimiento real sin convertir la noche en una superficie uniforme.",
+        ],
+      },
+      {
+        eyebrow: "03 / Color",
+        title: "No neutralizar lo que pertenece a la escena",
+        paragraphs: [
+          "Una dominante verde, ámbar o azul puede ser una decisión de iluminación, no un error de balance. Corregirla por completo borra la identidad del momento.",
+          "El revelado funciona mejor cuando recupera separación y piel sin desactivar la mezcla original. La consistencia de una serie no exige que todas las imágenes tengan el mismo color; exige que compartan un criterio.",
         ],
       },
     ],
-    quote: "ILUMINAR ES EDITAR EL ESPACIO ANTES DEL MONTAJE.",
+    quote: "EXPONER ES ELEGIR QUÉ INFORMACIÓN MERECE SOBREVIVIR AL CAMBIO.",
     notes: [
-      { label: "Territorio", value: "Iluminación" },
-      { label: "Método", value: "Bloquear / observar / sumar" },
-      { label: "Objetivo", value: "Profundidad y atención" },
+      { label: "Territorio", value: "Fotografía de concierto" },
+      { label: "Prioridad", value: "Gesto / atmósfera / continuidad" },
+      { label: "Método", value: "Anticipar antes de corregir" },
     ],
-    bookProjectSlug: "ritual-de-luz",
+    bookProjectSlug: "diana-meril-ambar",
   },
-  "cuando-el-sonido-ocupa-el-espacio": {
-    intro: "El sonido no llega al cuerpo como una línea plana. Se desplaza, rebota, pierde energía y modifica la percepción del lugar que habitamos.",
+  "la-mezcla-empieza-en-la-distancia": {
+    intro: "Un micrófono no escucha desde ninguna parte: escucha desde un punto preciso del espacio. Antes de ecualizar o comprimir, la distancia ya decidió cuánto cuerpo, aire, sala y fuga entrarán en la señal.",
     sections: [
       {
-        eyebrow: "01 / Escucha",
-        title: "Diseñar desde la posición del cuerpo",
+        eyebrow: "01 / Fuente",
+        title: "Acercarse cambia más que el volumen",
         paragraphs: [
-          "Antes de mezclar una experiencia espacial necesitamos saber dónde estará quien escucha y qué trayecto puede recorrer. Cada cambio de posición transforma la relación entre fuentes.",
-          "La dirección, la distancia y el tiempo de llegada son materiales compositivos tanto como el timbre o el volumen.",
+          "Al aproximar el micrófono aumenta la relación entre sonido directo y ambiente. También cambian el detalle, los transitorios y, según el patrón polar, la respuesta en graves. No es una solución universal: es una elección de perspectiva.",
+          "Alejarlo integra instrumento y sala, pero expone reflexiones, ruido y otras fuentes. La distancia correcta es la que captura la proporción que la mezcla necesitará, no la que produce la señal más grande.",
         ],
       },
       {
-        eyebrow: "02 / Materia",
-        title: "La vibración vuelve visible la arquitectura",
+        eyebrow: "02 / Relación",
+        title: "Escuchar el conjunto antes de aislarlo",
         paragraphs: [
-          "Una sala responde. Sus superficies absorben, reflejan y prolongan. Diseñar con ella exige medir, pero también escuchar cómo altera la emoción del contenido.",
-          "La experiencia aparece cuando sistema técnico, composición y espacio dejan de competir y se convierten en una sola estructura.",
+          "Dos instrumentos próximos pueden compartir aire, fase y energía. Intentar separarlos por completo puede quitar la relación que vuelve convincente la interpretación.",
+          "Conviene escuchar primero desde el lugar donde el conjunto ya se equilibra y usar esa referencia para colocar cada captura. La técnica deja entonces de corregir una escena y comienza a describirla.",
+        ],
+      },
+      {
+        eyebrow: "03 / Prueba",
+        title: "Mover centímetros antes que sumar procesos",
+        paragraphs: [
+          "Una pequeña variación de altura o ángulo puede reducir dureza, recuperar cuerpo o evitar una reflexión temprana. Es una decisión reversible, rápida y normalmente más limpia que una cadena de reparación.",
+          "Grabar una comparación breve y nivelada permite elegir por escucha, no por costumbre. Si la fuente llega con intención, la mezcla conserva margen para construir profundidad en lugar de resolver problemas.",
         ],
       },
     ],
-    quote: "EL SONIDO NO ACOMPAÑA EL ESPACIO. LO CONSTRUYE.",
+    quote: "LA POSICIÓN DEL MICRÓFONO YA ES UNA PRIMERA MEZCLA.",
     notes: [
-      { label: "Territorio", value: "Diseño sonoro" },
-      { label: "Variables", value: "Dirección / distancia / tiempo" },
-      { label: "Escala", value: "Cuerpo y arquitectura" },
+      { label: "Territorio", value: "Grabación" },
+      { label: "Variables", value: "Fuente / aire / sala" },
+      { label: "Práctica", value: "Mover / comparar / decidir" },
     ],
-    bookProjectSlug: "frecuencia-mineral",
+    bookProjectSlug: "surfistas-del-sistema",
   },
-  "disenar-desde-la-materia": {
-    intro: "Una identidad puede comenzar antes del logotipo: en el peso de un papel, el reflejo de un metal o la manera en que una superficie cambia al tocarla.",
+  "el-color-como-sistema-de-orientacion": {
+    intro: "El color puede hacer más que identificar una marca. Puede separar niveles de información, señalar cambios de estado, construir recorridos y preparar una transición antes de que el contenido la explique.",
     sections: [
       {
-        eyebrow: "01 / Origen",
-        title: "La forma nace de una condición real",
+        eyebrow: "01 / Función",
+        title: "Asignar una tarea antes de elegir un tono",
         paragraphs: [
-          "Trabajar con materia obliga a tomar decisiones que la pantalla suele aplazar. Hay espesor, fricción, costo, luz y límites de producción.",
-          "Esas condiciones no reducen el sistema. Le dan una lógica capaz de sostener múltiples aplicaciones sin depender de un recurso decorativo.",
+          "Una paleta se vuelve sistema cuando cada familia cromática tiene una función reconocible. Puede distinguir categorías, indicar prioridad, activar una acción o separar una voz editorial de otra.",
+          "Si todos los colores pueden hacer todo, ninguno orienta. Limitar sus usos crea memoria y permite que una excepción tenga verdadero peso.",
         ],
       },
       {
-        eyebrow: "02 / Sistema",
-        title: "Traducir, no imitar",
+        eyebrow: "02 / Relación",
+        title: "El contraste no depende sólo del matiz",
         paragraphs: [
-          "Cuando el lenguaje pasa a digital no necesita simular literalmente el objeto físico. Debe conservar sus relaciones: opacidad, ritmo, tensión y transformación.",
-          "La coherencia aparece en las reglas compartidas, no en repetir una misma composición sobre todas las superficies.",
+          "Valor, saturación y superficie determinan cuánto se separan dos elementos. Un azul y un verde diferentes pueden resultar casi idénticos a distancia si comparten luminosidad.",
+          "Probar la composición en escala de grises, en pantallas pequeñas y bajo distintas condiciones de luz revela si la jerarquía sigue funcionando cuando el color pierde intensidad.",
+        ],
+      },
+      {
+        eyebrow: "03 / Ritmo",
+        title: "Diseñar transiciones, no muestras aisladas",
+        paragraphs: [
+          "En una secuencia editorial o digital, el color prepara lo que viene. Una acumulación puede aumentar tensión; una reducción puede abrir una pausa; un cambio brusco puede marcar un capítulo.",
+          "El sistema debe describir cómo se pasa de un estado a otro. Ahí aparece su capacidad narrativa: ya no colorea piezas, organiza una experiencia.",
         ],
       },
     ],
-    quote: "LA MATERIA NO DECORA EL SISTEMA. LE ENSEÑA CÓMO COMPORTARSE.",
+    quote: "EL COLOR ORIENTA CUANDO CADA APARICIÓN TIENE UNA RAZÓN.",
     notes: [
       { label: "Territorio", value: "Diseño gráfico" },
-      { label: "Materiales", value: "Papel / metal / resina" },
-      { label: "Traducción", value: "Físico →︎ digital" },
+      { label: "Variables", value: "Valor / saturación / superficie" },
+      { label: "Objetivo", value: "Jerarquía y recorrido" },
     ],
-    bookProjectSlug: "materia-01",
+    bookProjectSlug: "enjambre-estadio-gnp",
   },
-  "una-marca-es-una-forma-de-decidir": {
-    intro: "Una marca útil no intenta decirlo todo. Establece una postura y convierte esa postura en criterios para elegir, renunciar y actuar de forma consistente.",
+  "la-atencion-no-se-compra-se-construye": {
+    intro: "Una impresión puede comprarse. La atención sostenida no. Se construye cuando la promesa, la experiencia y la forma de regresar mantienen una relación clara a lo largo del tiempo.",
+    sections: [
+      {
+        eyebrow: "01 / Promesa",
+        title: "Dar una razón específica para quedarse",
+        paragraphs: [
+          "El alcance aumenta visibilidad, pero no resuelve relevancia. Una audiencia necesita reconocer qué obtiene: una idea útil, una emoción precisa, una perspectiva difícil de encontrar o una pertenencia real.",
+          "La promesa debe poder expresarse sin depender del formato de moda. Si sólo funciona como anuncio, todavía no organiza la experiencia de marca.",
+        ],
+      },
+      {
+        eyebrow: "02 / Consistencia",
+        title: "Repetir un criterio, no una fórmula",
+        paragraphs: [
+          "La familiaridad aparece cuando una marca toma decisiones compatibles en momentos distintos. Eso no significa publicar la misma pieza, sino sostener una mirada reconocible sobre temas, tono y calidad.",
+          "La repetición vacía produce hábito sin vínculo. Un criterio consistente permite variar y, aun así, seguir siendo identificable.",
+        ],
+      },
+      {
+        eyebrow: "03 / Comunidad",
+        title: "Observar qué devuelve la audiencia",
+        paragraphs: [
+          "Comentarios, preguntas, respuestas y usos imprevistos contienen más información que una cifra aislada. Muestran qué parte de la propuesta fue comprendida y cuál necesita claridad.",
+          "La estrategia madura cuando esa devolución modifica la siguiente decisión sin convertir cada reacción en mandato. Escuchar no es obedecer todo; es reconocer patrones con criterio.",
+        ],
+      },
+    ],
+    quote: "LA ATENCIÓN DURA CUANDO LA EXPERIENCIA CONFIRMA LA PROMESA.",
+    notes: [
+      { label: "Territorio", value: "Estrategia" },
+      { label: "Secuencia", value: "Promesa / experiencia / regreso" },
+      { label: "Medida", value: "Calidad del vínculo" },
+    ],
+    bookProjectSlug: "maria-daniela-y-su-sonido-lasser",
+  },
+  "una-noche-no-cabe-en-una-imagen": {
+    intro: "Una fotografía puede condensar un instante, pero una experiencia cambia de escala, velocidad y temperatura. Para conservarla necesitamos una secuencia que permita entrar, acercarse, respirar y salir.",
+    sections: [
+      {
+        eyebrow: "01 / Cobertura",
+        title: "Fotografiar también los enlaces",
+        paragraphs: [
+          "Los momentos culminantes son necesarios, pero no explican por sí solos cómo se llegó a ellos. Un desplazamiento, una espera o una mirada hacia el público conectan escenas y devuelven duración al archivo.",
+          "Registrar planos abiertos, retratos, detalles y transiciones no es completar una lista. Es reunir escalas capaces de conversar durante la edición.",
+        ],
+      },
+      {
+        eyebrow: "02 / Secuencia",
+        title: "Editar una curva, no una cronología",
+        paragraphs: [
+          "El orden temporal sirve como referencia, pero la memoria trabaja mediante asociaciones. Un color puede llamar a otro; un gesto puede responder varias páginas después; un silencio puede separar dos intensidades.",
+          "Una buena secuencia conserva orientación mientras modifica el ritmo. Sabemos dónde estamos, aunque la edición no intente narrar cada minuto.",
+        ],
+      },
+      {
+        eyebrow: "03 / Permanencia",
+        title: "Dejar espacio para volver",
+        paragraphs: [
+          "Un archivo saturado de clímax agota su propia intensidad. Las imágenes de transición permiten que las más fuertes recuperen escala y que la lectura tenga pausas.",
+          "Conservar una noche no significa fijarla. Significa construir una forma abierta que pueda ser recorrida después sin perder su temperatura.",
+        ],
+      },
+    ],
+    quote: "LA MEMORIA NO RESUME EL TIEMPO. LE DA UNA FORMA PARA REGRESAR.",
+    notes: [
+      { label: "Territorio", value: "Archivo" },
+      { label: "Escalas", value: "Apertura / gesto / transición" },
+      { label: "Salida", value: "Secuencia editorial" },
+    ],
+    bookProjectSlug: "sofia-stainer-foro-la-paz",
+  },
+  "poner-en-escena-es-construir-relaciones": {
+    intro: "La puesta en escena no consiste en llenar el cuadro. Consiste en tensar la relación entre cuerpos, objetos, arquitectura, luz y tiempo hasta que cada elemento afecte la lectura de los demás.",
+    sections: [
+      {
+        eyebrow: "01 / Cuerpo",
+        title: "La posición ya contiene una intención",
+        paragraphs: [
+          "Un cuerpo frontal afirma; un perfil retiene información; una espalda puede producir distancia o vulnerabilidad. Antes de pedir una acción conviene observar qué expresa la posición inicial.",
+          "El gesto gana potencia cuando responde a una fuerza concreta: otro cuerpo, un límite arquitectónico, una fuente de luz o algo que permanece fuera de campo.",
+        ],
+      },
+      {
+        eyebrow: "02 / Arquitectura",
+        title: "La escena necesita resistencia",
+        paragraphs: [
+          "Pasillos, desniveles, marcos y vacíos pueden oponerse al movimiento o dirigirlo. Esa resistencia vuelve visible el esfuerzo y evita que el espacio sea intercambiable.",
+          "En lugar de decorar una locación, es más útil encontrar su regla: qué permite, qué niega y qué distancia obliga a recorrer.",
+        ],
+      },
+      {
+        eyebrow: "03 / Tiempo",
+        title: "Dejar que la relación se transforme",
+        paragraphs: [
+          "Una composición no tiene que permanecer estable. Puede abrirse, comprimirse o romperse mientras cambia el vínculo entre sus elementos.",
+          "La duración correcta es la que permite percibir esa transformación. Cortar antes la convierte en información; sostenerla con precisión la vuelve experiencia.",
+        ],
+      },
+    ],
+    quote: "DIRIGIR ES HACER VISIBLE LA FUERZA ENTRE LAS COSAS.",
+    notes: [
+      { label: "Territorio", value: "Dirección" },
+      { label: "Elementos", value: "Cuerpo / espacio / tiempo" },
+      { label: "Objetivo", value: "Tensión legible" },
+    ],
+    bookProjectSlug: "la-bande-son-imaginaire",
+  },
+  "cubrir-un-concierto-sin-borrar-al-publico": {
+    intro: "El escenario concentra la acción, pero la audiencia revela su escala y su efecto. Una cobertura completa registra ambas direcciones: lo que se emite y lo que vuelve transformado desde la sala.",
     sections: [
       {
         eyebrow: "01 / Posición",
-        title: "La claridad empieza por una renuncia",
+        title: "Buscar puntos que contengan relación",
         paragraphs: [
-          "Posicionarse significa aceptar que no todas las personas, formatos o conversaciones tienen el mismo valor estratégico. La definición aparece cuando también sabemos qué no perseguir.",
-          "Sin esa decisión, la comunicación acumula mensajes y cada campaña vuelve a comenzar desde cero.",
+          "Desde el foso es fácil producir una serie de retratos sin contexto. Alternar laterales, fondo de sala y posiciones elevadas permite integrar cuerpos, luz, arquitectura y respuesta colectiva.",
+          "Cada desplazamiento debe responder a una imagen que falta. Moverse por ansiedad consume atención; moverse para cambiar de escala construye relato.",
         ],
       },
       {
-        eyebrow: "02 / Operación",
-        title: "La estrategia debe poder usarse",
+        eyebrow: "02 / Respeto",
+        title: "Documentar sin convertir al público en obstáculo",
         paragraphs: [
-          "Una estrategia no termina en una presentación. Debe traducirse en tono, prioridades, decisiones de contenido y reglas que un equipo pueda aplicar bajo presión.",
-          "La marca se fortalece cuando la misma intención organiza desde una conversación comercial hasta la forma de entregar el trabajo.",
+          "La cobertura comparte el espacio con quienes asistieron. Trabajar con discreción, anticipar rutas y reducir bloqueos protege la experiencia y también produce imágenes más honestas.",
+          "Los teléfonos, manos y siluetas no siempre son contaminación. Pueden funcionar como primer plano, medida de distancia o señal de una atención compartida.",
+        ],
+      },
+      {
+        eyebrow: "03 / Entrega",
+        title: "Editar la respuesta además del espectáculo",
+        paragraphs: [
+          "Una selección dominada por primeros planos puede describir al artista, pero no la noche. Incorporar entradas, coros, pausas y reacciones devuelve el carácter colectivo del evento.",
+          "La proporción depende del encargo, aunque el principio se mantiene: si la audiencia cambió lo ocurrido, necesita existir en el relato final.",
         ],
       },
     ],
-    quote: "UNA MARCA SE RECONOCE EN LAS DECISIONES QUE REPITE.",
+    quote: "EL PÚBLICO NO RODEA EL ACONTECIMIENTO. FORMA PARTE DE ÉL.",
     notes: [
-      { label: "Territorio", value: "Estrategia" },
-      { label: "Acción", value: "Elegir / renunciar / sostener" },
-      { label: "Salida", value: "Criterios operables" },
+      { label: "Territorio", value: "Producción" },
+      { label: "Cobertura", value: "Escenario / sala / relación" },
+      { label: "Criterio", value: "Moverse con propósito" },
+    ],
+    bookProjectSlug: "diana-meril-ambar",
+  },
+  "lo-que-el-publico-devuelve-al-escenario": {
+    intro: "Una sala no es un recipiente pasivo. Absorbe, refleja y responde. El público modifica la dinámica del concierto con su presencia física, sus coros y la forma en que llena o deja respirar cada pausa.",
+    sections: [
+      {
+        eyebrow: "01 / Ambiente",
+        title: "Registrar el lugar además de la fuente",
+        paragraphs: [
+          "Una señal cercana ofrece definición, pero no explica por sí sola la escala del evento. Un par de ambiente bien ubicado conserva cola, profundidad y reacción sin depender del micrófono de una cámara.",
+          "La posición debe evitar una masa indistinta y buscar una imagen estéreo estable. La sala necesita sentirse amplia sin desplazar el centro musical.",
+        ],
+      },
+      {
+        eyebrow: "02 / Dinámica",
+        title: "Dejar que la respuesta tenga forma",
+        paragraphs: [
+          "El aplauso no tiene un único nivel. Comienza, se propaga, encuentra un máximo y cae. Comprimirlo en exceso elimina la percepción de escala que intentábamos conservar.",
+          "Automatizar el ambiente por secciones permite acompañar esa curva. No se trata de subir al público todo el tiempo, sino de abrir la sala cuando la música lo necesita.",
+        ],
+      },
+      {
+        eyebrow: "03 / Montaje",
+        title: "Usar la escucha para enlazar momentos",
+        paragraphs: [
+          "Una respiración colectiva o un coro pueden comenzar antes del cambio de imagen y prolongarse después. Ese puente sonoro mantiene continuidad aunque el montaje salte de escala.",
+          "La audiencia devuelve contexto, tiempo y temperatura. Integrarla con precisión evita que el registro se convierta en una interpretación aislada dentro de un vacío artificial.",
+        ],
+      },
+    ],
+    quote: "LA SALA TAMBIÉN INTERPRETA: RESPONDE, PROLONGA Y TRANSFORMA.",
+    notes: [
+      { label: "Territorio", value: "Diseño sonoro" },
+      { label: "Fuentes", value: "Directo / ambiente / respuesta" },
+      { label: "Objetivo", value: "Conservar escala" },
+    ],
+    bookProjectSlug: "la-bande-son-imaginaire",
+  },
+  "disenar-una-secuencia-no-una-coleccion": {
+    intro: "Una serie no mejora por acumular imágenes fuertes. Necesita relaciones: una entrada, cambios de distancia, contrastes, pausas y una salida que transforme la lectura de lo anterior.",
+    sections: [
+      {
+        eyebrow: "01 / Selección",
+        title: "Elegir por función, no sólo por impacto",
+        paragraphs: [
+          "Dos fotografías excelentes pueden cumplir la misma tarea. Si ambas permanecen, compiten y reducen el ritmo. La edición pregunta qué aporta cada imagen que ninguna otra ofrece.",
+          "Conviene asignar funciones provisionales: apertura, contexto, retrato, transición, detalle, clímax o cierre. Las etiquetas no dictan el orden, pero revelan repeticiones y ausencias.",
+        ],
+      },
+      {
+        eyebrow: "02 / Montaje",
+        title: "Construir relaciones entre páginas",
+        paragraphs: [
+          "Dirección de mirada, temperatura, forma y escala pueden enlazar dos imágenes o producir una ruptura deliberada. El intervalo entre ellas también comunica.",
+          "Una secuencia funciona cuando cada imagen modifica a la siguiente. El diseño no rellena una retícula: administra anticipación, eco y contraste.",
+        ],
+      },
+      {
+        eyebrow: "03 / Prueba",
+        title: "Leer a velocidad real",
+        paragraphs: [
+          "Reducir las imágenes a miniaturas ayuda a ver ritmo; ampliarlas permite comprobar detalle y permanencia. Ambas lecturas son necesarias.",
+          "Imprimir una maqueta o recorrer el prototipo sin detenerse revela acumulaciones que el tablero de selección oculta. Editar también es quitar hasta que la secuencia pueda respirar.",
+        ],
+      },
+    ],
+    quote: "UNA SECUENCIA NO SUMA IMÁGENES. CONSTRUYE TIEMPO ENTRE ELLAS.",
+    notes: [
+      { label: "Territorio", value: "Diseño editorial" },
+      { label: "Herramientas", value: "Selección / montaje / ritmo" },
+      { label: "Principio", value: "Cada imagen cumple una función" },
+    ],
+    bookProjectSlug: "sofia-stainer-foro-la-paz",
+  },
+  "una-idea-debe-sobrevivir-al-formato": {
+    intro: "Una campaña no es un archivo adaptado a muchas medidas. Es una idea capaz de mantener su sentido al convertirse en anuncio, pieza editorial, experiencia, conversación o seguimiento.",
+    sections: [
+      {
+        eyebrow: "01 / Núcleo",
+        title: "Definir lo que no puede cambiar",
+        paragraphs: [
+          "Antes de producir formatos conviene escribir el principio en una frase operable. Debe indicar qué queremos que la audiencia comprenda o sienta, sin depender de una imagen o plataforma específica.",
+          "Ese núcleo no es necesariamente el eslogan. Es la decisión que permite evaluar si cada ejecución pertenece al mismo sistema.",
+        ],
+      },
+      {
+        eyebrow: "02 / Traducción",
+        title: "Adaptar la función, no encoger la pieza",
+        paragraphs: [
+          "Una valla necesita reconocimiento inmediato; un artículo puede desarrollar argumento; una historia breve puede activar curiosidad. Repetir toda la información en cada soporte ignora cómo se usa.",
+          "La coherencia aparece cuando cada formato cumple una parte distinta de la misma idea. La campaña se vuelve una red de experiencias, no una colección de recortes.",
+        ],
+      },
+      {
+        eyebrow: "03 / Control",
+        title: "Probar el sistema en sus extremos",
+        paragraphs: [
+          "Antes de escalar producción, conviene ensayar el formato más pequeño, el más lento y el más físico. Si la idea sólo sobrevive en la pieza principal, todavía depende demasiado de una ejecución.",
+          "Un sistema resistente define jerarquías, tono, reglas visuales y márgenes de variación. Así puede crecer sin convertirse en ruido uniforme.",
+        ],
+      },
+    ],
+    quote: "LA COHERENCIA NO REPITE UNA PIEZA. TRADUCE UNA MISMA DECISIÓN.",
+    notes: [
+      { label: "Territorio", value: "Branding" },
+      { label: "Ruta", value: "Núcleo / traducción / prueba" },
+      { label: "Objetivo", value: "Consistencia multiformato" },
+    ],
+    bookProjectSlug: "maria-daniela-y-su-sonido-lasser",
+  },
+  "editar-memoria-es-conservar-relaciones": {
+    intro: "Un archivo útil no conserva sólo archivos digitales. Conserva procedencia, intención, vínculos y decisiones para que una imagen pueda volver a leerse sin quedar separada de aquello que la hizo significativa.",
+    sections: [
+      {
+        eyebrow: "01 / Contexto",
+        title: "Nombrar más allá de la fecha",
+        paragraphs: [
+          "La fecha de captura es necesaria, pero insuficiente. Proyecto, personas, lugar, autoría, versión y condiciones de uso convierten una imagen almacenada en un documento recuperable.",
+          "Registrar estos datos al ingresar el material cuesta menos que reconstruirlos meses después. El contexto también es parte del activo.",
+        ],
+      },
+      {
+        eyebrow: "02 / Relación",
+        title: "Conservar series, no archivos aislados",
+        paragraphs: [
+          "Una fotografía puede pertenecer a una secuencia, una entrega, una publicación y un proyecto mayor al mismo tiempo. El archivo necesita representar esos vínculos sin duplicar el original.",
+          "Colecciones, etiquetas controladas y referencias cruzadas permiten regresar desde distintos caminos. Buscar deja de depender de recordar un nombre exacto.",
+        ],
+      },
+      {
+        eyebrow: "03 / Cuidado",
+        title: "Separar originales, trabajo y salida",
+        paragraphs: [
+          "El original debe permanecer intacto; las decisiones de edición necesitan versiones identificables; las exportaciones requieren un destino y una vigencia. Mezclar las tres capas produce pérdidas y usos incorrectos.",
+          "Respaldar no es archivar si no podemos verificar integridad ni recuperar una versión. La memoria se sostiene con redundancia, criterios de acceso y revisiones periódicas.",
+        ],
+      },
+    ],
+    quote: "ARCHIVAR ES CONSERVAR EL CAMINO QUE LE DEVUELVE SENTIDO A UNA IMAGEN.",
+    notes: [
+      { label: "Territorio", value: "Oficio y creatividad" },
+      { label: "Capas", value: "Original / edición / entrega" },
+      { label: "Objetivo", value: "Memoria recuperable" },
+    ],
+    bookProjectSlug: "surfistas-del-sistema",
+  },
+  "conocias-esta-tecnica-linograbado-reduccion": {
+    intro: "El linograbado por reducción permite imprimir una imagen de varios colores utilizando una sola matriz. Después de cada tiraje se talla una nueva zona del bloque: lo que se elimina ya no puede recuperarse, por eso cada capa exige registro, orden y una decisión irreversible.",
+    sections: [
+      {
+        eyebrow: "01 / La lógica",
+        title: "Imprimir primero lo que debe permanecer",
+        paragraphs: [
+          "El proceso suele avanzar de los tonos más claros a los más oscuros. Se talla la primera reserva, se entinta la matriz y se imprime toda la edición. Después se retira del bloque aquello que conservará ese color antes de aplicar el siguiente.",
+          "Como la matriz se destruye poco a poco, no es posible regresar a una etapa anterior para producir copias adicionales. Definir el tamaño final de la edición y guardar pruebas de estado resulta indispensable.",
+        ],
+      },
+      {
+        eyebrow: "02 / El registro",
+        title: "La precisión comienza fuera de la imagen",
+        paragraphs: [
+          "Una guía en forma de L, topes fijos o un sistema de pines mantiene el papel en la misma posición durante todas las capas. Antes del tiraje conviene probar el grosor del papel y marcar siempre el mismo borde de alimentación.",
+          "Los pequeños desplazamientos pueden ser parte del lenguaje, pero deben ser controlados. La diferencia entre vibración expresiva y error accidental está en que el sistema permite repetir el resultado.",
+        ],
+      },
+      {
+        eyebrow: "03 / La tinta",
+        title: "Cada capa modifica a las anteriores",
+        paragraphs: [
+          "La opacidad, la presión y el tiempo de secado cambian el color final. Una tinta transparente mezcla ópticamente las capas; una más cubriente reemplaza parte de lo impreso. Las pruebas deben realizarse sobre el mismo papel de la edición.",
+          "Planear tres o cuatro valores claros produce mejores decisiones que perseguir una paleta demasiado extensa. La fuerza del método aparece en la relación entre límite material, textura y secuencia.",
+        ],
+      },
+    ],
+    quote: "EN EL LINOGRABADO POR REDUCCIÓN, CADA COLOR ES TAMBIÉN UNA DECISIÓN DE NO REGRESO.",
+    notes: [
+      { label: "Técnica", value: "Linograbado por reducción" },
+      { label: "Herramientas", value: "Gubias / rodillo / guía de registro" },
+      { label: "Orden", value: "Claro → medio → oscuro" },
+    ],
+    bookProjectSlug: "materia-01",
+  },
+  "conecta-mejor-el-secreto-de-un-buen-ecommerce": {
+    intro: "El secreto de un buen ecommerce no es una animación espectacular ni un botón más brillante. Es la continuidad entre lo que la marca promete, la información que ayuda a decidir y una operación capaz de cumplir sin fricción.",
+    sections: [
+      {
+        eyebrow: "01 / Decisión",
+        title: "Responder dudas antes de pedir la compra",
+        paragraphs: [
+          "Una ficha útil explica qué es el producto, para quién funciona, qué incluye, cuándo llega y qué ocurre si no cumple la expectativa. Fotografías consistentes, medidas comparables y costos visibles reducen incertidumbre.",
+          "La conversión no mejora ocultando información hasta el último paso. Mejora cuando cada pantalla permite tomar la siguiente decisión con confianza.",
+        ],
+      },
+      {
+        eyebrow: "02 / Recorrido",
+        title: "Conservar contexto hasta el checkout",
+        paragraphs: [
+          "Categorías comprensibles, búsqueda tolerante y filtros relevantes ayudan a explorar. Una vez elegido el producto, el carrito debe conservar variantes, cantidades, disponibilidad y fecha estimada sin sorpresas.",
+          "En móvil conviene probar el recorrido con una mano, conexión lenta y datos reales. Cada campo innecesario y cada salto de contexto compiten contra la intención de compra.",
+        ],
+      },
+      {
+        eyebrow: "03 / Operación",
+        title: "La experiencia continúa después del pago",
+        paragraphs: [
+          "Inventario, preparación, empaque, seguimiento y devoluciones forman parte del producto digital. Una interfaz impecable no compensa un pedido equivocado o una comunicación ausente.",
+          "Las mejores mejoras surgen al conectar métricas con causas: búsquedas sin resultados, abandono por costo de envío, entregas tardías o consultas repetidas. El ecommerce crece cuando diseño y operación comparten el mismo diagnóstico.",
+        ],
+      },
+    ],
+    quote: "UNA TIENDA CONVIERTE CUANDO LA PROMESA, LA DECISIÓN Y LA ENTREGA CUENTAN LA MISMA HISTORIA.",
+    notes: [
+      { label: "Ruta", value: "Descubrir / decidir / recibir" },
+      { label: "Prioridad", value: "Claridad antes que persuasión" },
+      { label: "Medición", value: "Fricción y cumplimiento" },
     ],
     bookProjectSlug: "archivo-nocturno",
   },
-  "la-memoria-no-es-un-resumen": {
-    intro: "Una memoria no necesita contener cada instante. Necesita conservar las relaciones que hicieron que un momento se sintiera irrepetible.",
+  "antes-de-pedir-presupuesto-audiovisual": {
+    intro: "Pedir cuánto cuesta un video sin definir para qué servirá produce cifras difíciles de comparar. Un presupuesto serio depende de alcance, condiciones de producción, derechos y entregables; preparar esa información ahorra rondas y evita que lo importante aparezca como un costo imprevisto.",
     sections: [
       {
-        eyebrow: "01 / Distancia",
-        title: "Observar sin interrumpir",
+        eyebrow: "01 / Objetivo",
+        title: "Define el problema antes que la duración",
         paragraphs: [
-          "La intimidad rara vez aparece frente a una instrucción. Aparece entre acciones, cuando las personas vuelven a reconocerse y el fotógrafo sabe mantener la distancia justa.",
-          "Trabajar así exige anticipación y confianza: leer el espacio antes de ocuparlo y permitir que el tiempo real organice parte de la imagen.",
+          "Explica qué debe cambiar en la audiencia, dónde verá la pieza y cuál es la acción esperada. Un video de treinta segundos para pauta, una pieza institucional y un retrato documental pueden durar lo mismo y exigir producciones completamente distintas.",
+          "Incluye referencias por cualidad concreta: ritmo, escala, luz, tratamiento sonoro o tipo de interpretación. Una referencia no es una orden de copiar; es una forma de hacer visible la expectativa.",
         ],
       },
       {
-        eyebrow: "02 / Edición",
-        title: "Recordar también es relacionar",
+        eyebrow: "02 / Alcance",
+        title: "Nombra las piezas que realmente necesitas",
         paragraphs: [
-          "La selección no debe resumir cronológicamente un evento. Debe encontrar respiraciones, ecos y contrastes capaces de devolver su temperatura.",
-          "Una imagen individual conserva un gesto. Una secuencia bien editada conserva una forma de estar juntos.",
+          "Indica duración aproximada, formatos verticales u horizontales, idiomas, subtítulos, versiones, fotografías derivadas y fecha de entrega. Cada variante afecta rodaje, encuadre, montaje y revisión.",
+          "También aclara qué ya existe: guion, locación, talento, producto, permisos, música o identidad. Lo disponible reduce incertidumbre sólo cuando puede revisarse antes de cotizar.",
+        ],
+      },
+      {
+        eyebrow: "03 / Condiciones",
+        title: "El presupuesto también compra viabilidad",
+        paragraphs: [
+          "Ciudad, jornadas, horarios, accesos, traslados, número de participantes y restricciones técnicas modifican el equipo necesario. Una visita de locación puede revelar energía, ruido, seguridad y tiempos de montaje que ninguna fotografía explica.",
+          "Comparar propuestas exige revisar inclusiones, rondas, licencias, vigencia y forma de pago, no sólo el total. Si todavía no hay presupuesto objetivo, compartir un rango permite diseñar una solución posible en lugar de adivinar una escala.",
         ],
       },
     ],
-    quote: "LA MEMORIA PERMANECE EN LOS DETALLES QUE NO PEDIMOS.",
+    quote: "UN BUEN PRESUPUESTO NO ADIVINA LA PRODUCCIÓN: LA HACE VISIBLE ANTES DE FILMAR.",
     notes: [
-      { label: "Territorio", value: "Memoria" },
-      { label: "Método", value: "Observación y distancia" },
-      { label: "Salida", value: "Secuencia editorial" },
+      { label: "Define", value: "Objetivo / audiencia / canal" },
+      { label: "Entrega", value: "Piezas / formatos / versiones" },
+      { label: "Confirma", value: "Derechos / tiempos / revisiones" },
+    ],
+    bookProjectSlug: "enjambre-estadio-gnp",
+  },
+  "como-grabar-una-voz": {
+    intro: "Una voz bien grabada no necesita sonar terminada desde el primer minuto. Necesita conservar interpretación, claridad y margen suficiente para que la mezcla decida después cuánto cuerpo, proximidad y ambiente necesita.",
+    sections: [
+      {
+        eyebrow: "01 / Espacio",
+        title: "Controla reflexiones antes de elegir micrófono",
+        paragraphs: [
+          "Escucha la sala con palmas y voz hablada. Las reflexiones cortas, el ruido de ventilación y las superficies paralelas quedan más expuestos cuando comprimimos. Coloca absorción detrás y a los lados de la persona sin encerrar por completo la voz.",
+          "Un clóset lleno de ropa puede controlar agudos, pero también producir un sonido opaco. Busca equilibrio: menos rebote problemático sin borrar toda sensación de aire.",
+        ],
+      },
+      {
+        eyebrow: "02 / Posición",
+        title: "Empieza a quince o veinte centímetros",
+        paragraphs: [
+          "Usa un filtro antipop y coloca la cápsula ligeramente por encima o fuera del eje directo si las consonantes son agresivas. Acercarse aumenta detalle y efecto de proximidad; alejarse integra más sala y estabiliza cambios de volumen.",
+          "El patrón cardioide requiere atención a la parte frontal y al rechazo posterior. Orientar esa zona de rechazo hacia el ruido más constante suele ser más efectivo que intentar retirarlo después.",
+        ],
+      },
+      {
+        eyebrow: "03 / Nivel",
+        title: "Graba interpretación, no una forma de onda grande",
+        paragraphs: [
+          "Ajusta la ganancia con el fragmento más intenso y conserva margen. Picos alrededor de −12 a −6 dBFS son una referencia práctica, no una meta rígida. Evita limitación o compresión irreversible si no responde a una intención clara.",
+          "Haz una toma corta, escúchala en audífonos y corrige distancia, ruido o comodidad antes de continuar. Una persona que puede respirar y moverse de forma consistente produce una señal más útil que cualquier ajuste extremo.",
+        ],
+      },
+    ],
+    quote: "LA MEJOR CADENA DE VOZ COMIENZA CON UNA PERSONA CÓMODA EN UN ESPACIO QUE ESCUCHA BIEN.",
+    notes: [
+      { label: "Inicio", value: "15–20 cm con filtro antipop" },
+      { label: "Margen", value: "Picos aproximados de −12 a −6 dBFS" },
+      { label: "Orden", value: "Sala / posición / ganancia" },
+    ],
+    bookProjectSlug: "maria-daniela-y-su-sonido-lasser",
+  },
+  "como-editar-un-piano": {
+    intro: "Editar piano exige escuchar más que las notas. El ataque, la resonancia, el pedal y el ruido mecánico forman una continuidad; un corte limpio en pantalla puede sentirse imposible cuando rompe esa respiración.",
+    sections: [
+      {
+        eyebrow: "01 / Preparación",
+        title: "Alinea tomas antes de elegir fragmentos",
+        paragraphs: [
+          "Confirma que las tomas usan la misma afinación, posición de micrófonos y ganancia. Si hay varios micrófonos, agrúpalos para que cada corte preserve sus relaciones de fase.",
+          "Crea una pista de referencia con marcas de estructura, tempo y comentarios de interpretación. El objetivo del comping no es fabricar perfección nota por nota, sino reunir frases compatibles.",
+        ],
+      },
+      {
+        eyebrow: "02 / Corte",
+        title: "Busca respiraciones y decaimientos compatibles",
+        paragraphs: [
+          "Los mejores puntos suelen aparecer antes de un ataque claro o durante una zona estable de resonancia. Evita cortar en medio de un cambio de pedal: la cola armónica revelará inmediatamente la unión.",
+          "Aplica fundidos cruzados suficientemente largos para conservar la sala, pero revisa que no dupliquen ataques. Escucha en mono para detectar pérdidas de fase y a volumen bajo para percibir saltos de ambiente.",
+        ],
+      },
+      {
+        eyebrow: "03 / Tiempo",
+        title: "Corrige el pulso sin cuadrar la interpretación",
+        paragraphs: [
+          "Antes de cuantizar, identifica qué notas sostienen el ritmo y cuáles anticipan o retrasan con intención. Mover grupos completos suele conservar mejor la relación entre manos que desplazar eventos aislados.",
+          "Deja el ajuste elástico para problemas puntuales y verifica transitorios, colas y fase después de cada cambio. Si la edición llama la atención sobre sí misma, probablemente ha corregido más de lo necesario.",
+        ],
+      },
+    ],
+    quote: "EDITAR PIANO ES CONSERVAR LA FRASE MIENTRAS HACEMOS INVISIBLE LA UNIÓN.",
+    notes: [
+      { label: "Agrupa", value: "Todos los micrófonos de la toma" },
+      { label: "Protege", value: "Ataque / pedal / resonancia" },
+      { label: "Verifica", value: "Fase / mono / volumen bajo" },
+    ],
+    bookProjectSlug: "surfistas-del-sistema",
+  },
+  "cinco-wedding-planners-mexico": {
+    intro: "No existe un wedding planner universalmente mejor: la elección depende de destino, número de invitados, nivel de producción, idioma, presupuesto y forma de trabajar. Esta selección reúne cinco estudios activos con enfoques distintos para iniciar una comparación informada.",
+    sections: [
+      {
+        eyebrow: "01 / Centro y Bajío",
+        title: "Penzi Weddings y González + Helfon",
+        paragraphs: [
+          "Penzi Weddings trabaja desde San Miguel de Allende y presenta un servicio integral que reúne planeación, diseño, decoración, gastronomía y logística. Es una referencia pertinente para celebraciones de destino que necesitan conocimiento local y una experiencia completa alrededor de la ciudad.",
+          "González + Helfon se presenta como firma de planeación de eventos con alcance internacional. Su portafolio resulta útil para observar producciones de gran escala y una dirección estética especialmente cuidada.",
+        ],
+      },
+      {
+        eyebrow: "02 / Los Cabos",
+        title: "Karla Casillas & Co.",
+        paragraphs: [
+          "Karla Casillas & Co. opera como casa de diseño y planeación en Los Cabos. Integra producción, flores, renta y logística desde un mismo equipo, una ventaja cuando la celebración exige coordinar múltiples jornadas y proveedores.",
+          "Su propuesta conviene a parejas que buscan una producción de destino altamente integrada. Antes de decidir, vale la pena confirmar disponibilidad, inversión mínima, alcance de viajes y qué componentes se resuelven internamente.",
+        ],
+      },
+      {
+        eyebrow: "03 / Caribe y destinos múltiples",
+        title: "Sora Weddings y Sparks Weddings",
+        paragraphs: [
+          "Sora Weddings es un estudio boutique radicado en Tulum que ofrece planeación, diseño y dirección creativa con conocimiento de Riviera Maya. Trabaja con un número limitado de parejas, un modelo relevante para quien prioriza acompañamiento cercano.",
+          "Sparks Weddings produce bodas de destino en regiones como Los Cabos, Tulum y Punta Mita. Su enfoque combina negociación de venues, curaduría de proveedores, logística y ejecución. En cualquiera de las cinco opciones, compara procesos, honorarios, exclusiones, referencias recientes y compatibilidad personal antes de contratar.",
+        ],
+      },
+    ],
+    quote: "EL MEJOR EQUIPO NO ES EL MÁS VISIBLE: ES EL QUE ENTIENDE TU ESCALA, TU DESTINO Y TU FORMA DE DECIDIR.",
+    notes: [
+      { label: "Criterio", value: "Región / escala / integración" },
+      { label: "Verificación", value: "Sitios oficiales consultados en septiembre de 2026" },
+      { label: "Antes de firmar", value: "Alcance / honorarios / referencias" },
     ],
     bookProjectSlug: "mariana-y-leo",
-  },
-  "dirigir-es-organizar-la-atencion": {
-    intro: "Toda escena contiene más información de la que una audiencia puede procesar al mismo tiempo. Dirigir es construir la ruta sensible por la que esa atención se desplaza.",
-    sections: [
-      {
-        eyebrow: "01 / Jerarquía",
-        title: "Cada plano necesita una fuerza dominante",
-        paragraphs: [
-          "La atención puede comenzar en un rostro, una ausencia o un movimiento fuera de campo. Lo importante es decidir qué fuerza organiza a las demás.",
-          "Cuando todos los elementos reclaman protagonismo, la escena se vuelve legible pero indiferente.",
-        ],
-      },
-      {
-        eyebrow: "02 / Tiempo",
-        title: "La mirada necesita llegar, no ser empujada",
-        paragraphs: [
-          "La duración permite descubrir relaciones que un corte rápido sólo enuncia. Sostener un plano también es una forma de confiar en la puesta en escena.",
-          "El movimiento funciona cuando modifica el sentido, no cuando intenta demostrar que la cámara puede moverse.",
-        ],
-      },
-    ],
-    quote: "DIRIGIR NO ES MOSTRAR MÁS. ES HACER QUE ALGO IMPORTE.",
-    notes: [
-      { label: "Territorio", value: "Dirección" },
-      { label: "Variables", value: "Jerarquía / tiempo / movimiento" },
-      { label: "Objetivo", value: "Atención con sentido" },
-    ],
-    bookProjectSlug: "sistema-cero",
-  },
-  "el-archivo-como-herramienta-viva": {
-    intro: "Un archivo no cobra valor por la cantidad de elementos que conserva, sino por la calidad de las relaciones que permite construir entre ellos.",
-    sections: [
-      {
-        eyebrow: "01 / Criterio",
-        title: "Guardar es apenas el comienzo",
-        paragraphs: [
-          "Sin taxonomía, contexto y una regla de selección, la acumulación vuelve invisible aquello que intentaba proteger. Encontrar deja de ser un acto de descubrimiento y se convierte en fricción.",
-          "Un archivo vivo registra procedencia, decisiones y vínculos, no solamente nombres de archivo.",
-        ],
-      },
-      {
-        eyebrow: "02 / Reuso",
-        title: "La memoria debe poder producir algo nuevo",
-        paragraphs: [
-          "El sistema funciona cuando una referencia antigua puede activar una conversación actual sin perder su contexto original.",
-          "Diseñar el archivo es diseñar una interfaz entre pasado y futuro: una estructura para recordar, comparar y volver a crear.",
-        ],
-      },
-    ],
-    quote: "UN ARCHIVO VIVO NO TERMINA DE ORDENARSE. APRENDE A RELACIONAR.",
-    notes: [
-      { label: "Territorio", value: "Recursos" },
-      { label: "Estructura", value: "Contexto / taxonomía / relaciones" },
-      { label: "Objetivo", value: "Memoria reutilizable" },
-    ],
-    bookProjectSlug: "archivo-naranja",
   },
 };
