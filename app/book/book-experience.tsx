@@ -5,13 +5,16 @@ import Link from "next/link";
 import dynamic from "next/dynamic";
 import { useEffect, useMemo, useState } from "react";
 import SiteMenu from "../site-menu";
-import { bookAssetPath, bookNodes, bookProjects, getBookNode, type NodeId } from "./book-data";
+import { bookAssetPath, bookNodes, bookProjects, getBookNode, prioritizeRealProjects, projectBelongsToNode, type NodeId } from "./book-data";
 import BookMotion from "./book-motion";
 import ProjectMedia from "./project-media";
 import styles from "./book.module.css";
 
-const featuredProjects = bookProjects.filter((project) => project.featured);
+const featuredProjects = bookProjects.filter((project) => project.featured && project.status === "Proyecto real");
 const Antigravity = dynamic(() => import("./antigravity"), { ssr: false });
+
+const projectEntry = (project: (typeof bookProjects)[number], node: NodeId | "all") =>
+  node === "all" ? undefined : project.nodeEntries?.[node];
 
 export default function BookExperience() {
   const [slide, setSlide] = useState(0);
@@ -30,16 +33,17 @@ export default function BookExperience() {
 
   const categories = useMemo(() => {
     if (activeNode === "all") return ["Todo"];
-    return ["Todo", ...new Set(bookProjects.filter((project) => project.node === activeNode).map((project) => project.category))];
+    return ["Todo", ...new Set(bookProjects.filter((project) => projectBelongsToNode(project, activeNode)).map((project) => projectEntry(project, activeNode)?.category ?? project.category))];
   }, [activeNode]);
 
-  const visibleProjects = useMemo(() => bookProjects.filter((project) => {
-    const inNode = activeNode === "all" || project.node === activeNode;
-    const inCategory = activeCategory === "Todo" || project.category === activeCategory;
+  const visibleProjects = useMemo(() => prioritizeRealProjects(bookProjects.filter((project) => {
+    const inNode = activeNode === "all" || projectBelongsToNode(project, activeNode);
+    const category = projectEntry(project, activeNode)?.category ?? project.category;
+    const inCategory = activeCategory === "Todo" || category === activeCategory;
     return inNode && inCategory;
-  }), [activeCategory, activeNode]);
+  })), [activeCategory, activeNode]);
 
-  const preview = bookProjects.find((project) => project.node === previewNode) ?? bookProjects[0];
+  const preview = bookProjects.find((project) => project.status === "Proyecto real" && projectBelongsToNode(project, previewNode)) ?? bookProjects.find((project) => projectBelongsToNode(project, previewNode)) ?? bookProjects[0];
   const previewIdentity = getBookNode(previewNode);
 
   const selectNode = (node: NodeId | "all") => {
@@ -186,9 +190,12 @@ export default function BookExperience() {
 
         <div className={styles.projectGrid} data-book-project-track>
           {visibleProjects.map((project, index) => {
-            const identity = getBookNode(project.node);
+            const entry = projectEntry(project, activeNode);
+            const displayNode = activeNode !== "all" && projectBelongsToNode(project, activeNode) ? activeNode : project.node;
+            const identity = getBookNode(displayNode);
+            const href = `/book/${project.slug}${entry?.anchor ? `#${entry.anchor}` : ""}`;
             return (
-              <Link className={styles.projectCard} href={`/book/${project.slug}`} key={project.slug} data-book-project-card data-node={project.node}>
+              <Link className={styles.projectCard} href={href} key={project.slug} data-book-project-card data-node={displayNode}>
                 <div className={styles.projectImage}>
                   <ProjectMedia project={project} sizes="(max-width: 760px) 100vw, 50vw" />
                   <span aria-hidden="true" />
@@ -196,7 +203,7 @@ export default function BookExperience() {
                 </div>
                 <div className={styles.projectMeta}>
                   <span>{String(index + 1).padStart(2, "0")}</span>
-                  <div><h3>{project.title}</h3><p>{project.category} / {project.year}</p></div>
+                  <div><h3>{project.title}</h3><p>{entry?.category ?? project.category} / {project.year}</p></div>
                   <Image src={identity.logo} alt={`LATTICCE ${identity.name}`} width={220} height={56} />
                 </div>
               </Link>

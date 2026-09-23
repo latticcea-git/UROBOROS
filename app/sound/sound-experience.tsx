@@ -7,14 +7,14 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useEffect, useRef, useState } from "react";
-import { bookProjects } from "../book/book-data";
+import { bookProjects, prioritizeRealProjects, projectBelongsToNode } from "../book/book-data";
 import styles from "./sound.module.css";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 ScrollTrigger.config({ ignoreMobileResize: true });
 
 const Antigravity = dynamic(() => import("../book/antigravity"), { ssr: false });
-const completedProjects = bookProjects.filter((project) => project.node === "sound");
+const completedProjects = prioritizeRealProjects(bookProjects.filter((project) => projectBelongsToNode(project, "sound")));
 
 const services = [
   "Grabación en estudio",

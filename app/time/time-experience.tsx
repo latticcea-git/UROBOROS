@@ -4,13 +4,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { FormEvent, PointerEvent, useEffect, useMemo, useRef, useState } from "react";
 import type { CSSProperties } from "react";
-import { bookProjects } from "../book/book-data";
+import { bookProjects, prioritizeRealProjects, projectBelongsToNode } from "../book/book-data";
 import SiteMenu from "../site-menu";
 import { publicAsset } from "../public-asset";
 import styles from "./time.module.css";
 
 const heroImage = "/assets/images/time/wedding-hero-v1.png";
-const timeProjects = bookProjects.filter((project) => project.node === "time");
+const timeProjects = prioritizeRealProjects(bookProjects.filter((project) => projectBelongsToNode(project, "time")));
 
 const services = [
   {

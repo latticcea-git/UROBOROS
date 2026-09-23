@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { FormEvent, useEffect, useRef, useState } from "react";
-import { bookProjects } from "../../book/book-data";
+import { bookProjects, prioritizeRealProjects, projectBelongsToNode } from "../../book/book-data";
 import type { AgencyService } from "./service-data";
 import styles from "./service.module.css";
 
@@ -11,7 +11,7 @@ type Props = {
   service: AgencyService;
 };
 
-const agencyProjects = bookProjects.filter((project) => project.node === "agency");
+const agencyProjects = prioritizeRealProjects(bookProjects.filter((project) => projectBelongsToNode(project, "agency")));
 
 export default function AgencyServiceExperience({ service }: Props) {
   const rootRef = useRef<HTMLElement>(null);

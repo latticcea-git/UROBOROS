@@ -166,6 +166,10 @@ export default function AgencyExperience() {
           ))}
         </nav>
 
+        <Link className={styles.bookRoute} href="/book#agency">
+          BOOK / CASOS REALES <span aria-hidden="true">↗︎</span>
+        </Link>
+
         <div className={styles.status} aria-hidden="true">
           <span>SELECT A SYSTEM</span>
           <i />

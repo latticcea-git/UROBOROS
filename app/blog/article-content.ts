@@ -155,7 +155,7 @@ export const articleContent: Record<string, ArticleContent> = {
       { label: "Variables", value: "Valor / saturación / superficie" },
       { label: "Objetivo", value: "Jerarquía y recorrido" },
     ],
-    bookProjectSlug: "enjambre-estadio-gnp",
+    bookProjectSlug: "frutisa-branding-sitio-web",
   },
   "la-atencion-no-se-compra-se-construye": {
     intro: "Una impresión puede comprarse. La atención sostenida no. Se construye cuando la promesa, la experiencia y la forma de regresar mantienen una relación clara a lo largo del tiempo.",
@@ -191,7 +191,7 @@ export const articleContent: Record<string, ArticleContent> = {
       { label: "Secuencia", value: "Promesa / experiencia / regreso" },
       { label: "Medida", value: "Calidad del vínculo" },
     ],
-    bookProjectSlug: "maria-daniela-y-su-sonido-lasser",
+    bookProjectSlug: "ingles-con-jeremy-sitio-web",
   },
   "una-noche-no-cabe-en-una-imagen": {
     intro: "Una fotografía puede condensar un instante, pero una experiencia cambia de escala, velocidad y temperatura. Para conservarla necesitamos una secuencia que permita entrar, acercarse, respirar y salir.",
@@ -407,7 +407,7 @@ export const articleContent: Record<string, ArticleContent> = {
       { label: "Ruta", value: "Núcleo / traducción / prueba" },
       { label: "Objetivo", value: "Consistencia multiformato" },
     ],
-    bookProjectSlug: "maria-daniela-y-su-sonido-lasser",
+    bookProjectSlug: "okame",
   },
   "editar-memoria-es-conservar-relaciones": {
     intro: "Un archivo útil no conserva sólo archivos digitales. Conserva procedencia, intención, vínculos y decisiones para que una imagen pueda volver a leerse sin quedar separada de aquello que la hizo significativa.",
@@ -479,7 +479,7 @@ export const articleContent: Record<string, ArticleContent> = {
       { label: "Herramientas", value: "Gubias / rodillo / guía de registro" },
       { label: "Orden", value: "Claro → medio → oscuro" },
     ],
-    bookProjectSlug: "materia-01",
+    bookProjectSlug: "okame",
   },
   "conecta-mejor-el-secreto-de-un-buen-ecommerce": {
     intro: "El secreto de un buen ecommerce no es una animación espectacular ni un botón más brillante. Es la continuidad entre lo que la marca promete, la información que ayuda a decidir y una operación capaz de cumplir sin fricción.",
@@ -515,7 +515,7 @@ export const articleContent: Record<string, ArticleContent> = {
       { label: "Prioridad", value: "Claridad antes que persuasión" },
       { label: "Medición", value: "Fricción y cumplimiento" },
     ],
-    bookProjectSlug: "archivo-nocturno",
+    bookProjectSlug: "frutisa-branding-sitio-web",
   },
   "antes-de-pedir-presupuesto-audiovisual": {
     intro: "Pedir cuánto cuesta un video sin definir para qué servirá produce cifras difíciles de comparar. Un presupuesto serio depende de alcance, condiciones de producción, derechos y entregables; preparar esa información ahorra rondas y evita que lo importante aparezca como un costo imprevisto.",
@@ -658,6 +658,222 @@ export const articleContent: Record<string, ArticleContent> = {
       { label: "Criterio", value: "Región / escala / integración" },
       { label: "Verificación", value: "Sitios oficiales consultados en septiembre de 2026" },
       { label: "Antes de firmar", value: "Alcance / honorarios / referencias" },
+    ],
+    bookProjectSlug: "mariana-y-leo",
+  },
+  "como-preparar-un-scouting-de-locacion-cinematografica": {
+    intro: "Un scouting no es una excursión para encontrar una postal. Es la primera conversación real entre el guion, la producción y un lugar. Lo que aparece en esa visita —una ruta de carga, un rebote inesperado, una restricción de horario o un silencio útil— cambia las decisiones antes de que sean costosas.",
+    sections: [
+      {
+        eyebrow: "01 / Lectura",
+        title: "Llegar con preguntas, no con una lista de planos",
+        paragraphs: [
+          "Antes de visitar, define qué necesita ocurrir en cada escena: quién entra, quién espera, qué debe sentirse grande, qué debe permanecer oculto y qué distancia existe entre los cuerpos. Así el lugar puede responder a una necesidad narrativa en lugar de convertirse en una colección de referencias bonitas.",
+          "Camina primero sin cámara. Detecta direcciones de luz, alturas, ejes, texturas, fondos y cambios de escala. Después registra ángulos posibles, pero también las zonas que no funcionan. Un scouting valioso documenta límites con la misma atención que oportunidades.",
+        ],
+      },
+      {
+        eyebrow: "02 / Condición",
+        title: "Medir el espacio que la imagen no muestra",
+        paragraphs: [
+          "La fotografía de una locación rara vez revela ruido, reverberación, estacionamiento, ascensores, accesos, baños, seguridad o capacidad eléctrica. Revisa esos elementos con la persona responsable y toma nota de horarios, permisos, rutas de equipo y restricciones de montaje.",
+          "Observa el lugar en la franja horaria en que se pretende filmar. La posición del sol, el flujo de gente y el sonido de la calle pueden transformar por completo una arquitectura. Si no es posible volver, registra una referencia de orientación y pregunta qué cambia durante el día.",
+        ],
+      },
+      {
+        eyebrow: "03 / Decisión",
+        title: "Salir con una hipótesis de rodaje",
+        paragraphs: [
+          "La visita debe terminar con decisiones accionables: qué áreas se usan, qué se debe controlar, qué plano exige permiso adicional, qué equipo cabe y qué alternativa existe si cambia el clima o el acceso. Una planta simple con recorridos y fotografías señaladas suele ser más útil que una carpeta extensa sin jerarquía.",
+          "No se trata de resolver toda la puesta en escena de antemano. Se trata de llegar al rodaje con el lenguaje del lugar ya leído, para que el equipo pueda concentrarse en los cuerpos, el tiempo y la escena.",
+        ],
+      },
+    ],
+    quote: "UNA LOCACIÓN NO SE ELIGE SÓLO POR LO QUE MUESTRA: SE ELIGE POR LO QUE HACE POSIBLE.",
+    notes: [
+      { label: "Lleva", value: "Guion / plano / registro de foto y audio" },
+      { label: "Confirma", value: "Acceso / energía / horarios / permisos" },
+      { label: "Entrega", value: "Rutas, riesgos y alternativas" },
+    ],
+    bookProjectSlug: "enjambre-estadio-gnp",
+  },
+  "como-dirigir-a-una-persona-que-no-es-modelo": {
+    intro: "La mayoría de las personas no necesita aprender a posar para producir un buen retrato. Necesita entender qué está ocurriendo, disponer de una acción concreta y sentir que no será evaluada por no parecerse a una referencia. La dirección comienza antes de levantar la cámara.",
+    sections: [
+      {
+        eyebrow: "01 / Confianza",
+        title: "Explicar la situación antes de pedir un gesto",
+        paragraphs: [
+          "Cuenta qué estás buscando, cuánto tiempo tomará y qué parte de su experiencia importa para la imagen. Una instrucción como “haz algo natural” deja a la persona sola frente a una expectativa imposible; una acción como “muéstrame cómo preparas esta pieza” le devuelve un punto de apoyo real.",
+          "Evita corregir cada movimiento. Deja que la primera toma sirva para encontrar ritmo, luz y distancia. Nombrar lo que funciona —la forma de sostener una herramienta, una pausa, una dirección de mirada— es más útil que repetir “relájate”.",
+        ],
+      },
+      {
+        eyebrow: "02 / Acción",
+        title: "Dar algo que hacer con las manos y la atención",
+        paragraphs: [
+          "Las manos se sienten incómodas cuando no tienen una función. Propón acciones pertenecientes a su oficio: ordenar una mesa, revisar una impresión, caminar una ruta conocida, explicar un objeto. La acción produce variaciones pequeñas que la cámara puede esperar sin fabricar una pose.",
+          "Si el retrato requiere quietud, llega a ella después de una actividad. Una pausa entre tareas conserva respiración y presencia. La quietud elegida suele verse más viva que una postura sostenida desde el inicio.",
+        ],
+      },
+      {
+        eyebrow: "03 / Encuadre",
+        title: "Construir con la persona, no a costa de ella",
+        paragraphs: [
+          "Comparte algunas imágenes durante la sesión, sobre todo si hay una duda de vestuario, luz o contexto. Ver el resultado reduce incertidumbre y permite que la persona proponga algo que tú no habías considerado. La colaboración mejora tanto la precisión como la confianza.",
+          "Dirigir no significa borrar el nervio. Significa convertirlo en una condición legible: una mirada breve, una concentración sobre el trabajo, una respiración antes de hablar. El retrato se vuelve creíble cuando aún conserva a quien estaba ahí.",
+        ],
+      },
+    ],
+    quote: "LA DIRECCIÓN NO PIDE UNA ACTUACIÓN. CREA LAS CONDICIONES PARA QUE ALGUIEN PUEDA ESTAR PRESENTE.",
+    notes: [
+      { label: "Primero", value: "Contexto y duración clara" },
+      { label: "Después", value: "Acción propia del oficio" },
+      { label: "Criterio", value: "Presencia antes que pose" },
+    ],
+    bookProjectSlug: "sofia-stainer-foro-la-paz",
+  },
+  "como-grabar-una-entrevista-en-una-locacion-dificil": {
+    intro: "Una entrevista puede suceder junto a una avenida, dentro de una cocina o en una fábrica que no se detiene. En esos casos, buscar silencio absoluto suele ser una pérdida de tiempo. El objetivo es proteger la voz, entender el ambiente y elegir una solución que no rompa la situación que queremos registrar.",
+    sections: [
+      {
+        eyebrow: "01 / Escucha",
+        title: "Detectar el ruido antes de instalar",
+        paragraphs: [
+          "Llega con tiempo para escuchar sin conversación. Identifica qué fuentes son continuas —ventilación, refrigeradores, tráfico— y cuáles aparecen por ciclos —licuadoras, puertas, trenes, avisos. Pregunta si pueden pausarse durante algunos minutos o si existe una franja más estable.",
+          "No todo sonido debe desaparecer. Un ambiente propio del lugar puede ayudar a situar la entrevista, siempre que la voz mantenga inteligibilidad. Graba un minuto de atmósfera sin diálogo: será útil para el montaje y para revisar cualquier corte posterior.",
+        ],
+      },
+      {
+        eyebrow: "02 / Proximidad",
+        title: "Acercar el micrófono sin invadir la conversación",
+        paragraphs: [
+          "Un lavalier bien colocado o un boom cercano y fuera de cuadro gana más claridad que cualquier reducción de ruido aplicada después. Elige la herramienta según el encuadre, el vestuario y el movimiento; no por apariencia. Revisa roce de tela, joyería, pelo y delantal antes de comenzar.",
+          "Busca una orientación que aleje el punto de máxima captación de la fuente más agresiva. Si hay superficies duras muy cercanas, un panel portátil, una tela gruesa fuera de cuadro o una pequeña variación de posición puede reducir reflexión sin convertir la locación en un estudio falso.",
+        ],
+      },
+      {
+        eyebrow: "03 / Cobertura",
+        title: "Registrar una segunda oportunidad",
+        paragraphs: [
+          "Monitorea con audífonos cerrados durante respuestas importantes y graba una pista de respaldo cuando el equipo lo permita. Si una interrupción cubre una idea clave, pide repetir sólo esa frase cuando termine el ruido, sin reconstruir toda la conversación.",
+          "Al finalizar, registra frases de enlace, silencios y acciones de la locación. En edición, esas piezas permiten conservar el ritmo sin limpiar la entrevista hasta volverla ajena al lugar donde ocurrió.",
+        ],
+      },
+    ],
+    quote: "EL SONIDO DE UNA LOCACIÓN DIFÍCIL NO SE GANA EN POSPRODUCCIÓN: SE DECIDE AL ESCUCHAR Y POSICIONAR.",
+    notes: [
+      { label: "Antes", value: "Escucha y graba ambiente" },
+      { label: "Protege", value: "Voz cercana y ropa sin roce" },
+      { label: "Respalda", value: "Pista extra y frases de enlace" },
+    ],
+    bookProjectSlug: "la-bande-son-imaginaire",
+  },
+  "conocias-esta-tecnica-risografia": {
+    intro: "La risografía es un sistema de impresión por capas que usa masters y tambores de tinta para producir tirajes ágiles, con colores intensos y pequeñas variaciones de registro. No intenta imitar la perfección de la impresión offset: hace visibles el papel, la superposición y el paso de cada color.",
+    sections: [
+      {
+        eyebrow: "01 / Capas",
+        title: "Diseñar cada tinta como una decisión independiente",
+        paragraphs: [
+          "Una imagen a dos o tres tintas no es una ilustración a todo color convertida al final. Se construye separando masas, texturas y transparencias desde el inicio. Cada color recibe un archivo propio y una función: fondo, forma, sombra, detalle o mezcla óptica.",
+          "Cuando dos tintas transparentes se superponen, aparece un tercer tono. Anticipar esas mezclas permite trabajar con una paleta económica y expresiva. Las pruebas de sobreimpresión son indispensables porque el resultado depende del papel y la densidad real de cada tinta.",
+        ],
+      },
+      {
+        eyebrow: "02 / Registro",
+        title: "Aceptar la vibración sin perder el control",
+        paragraphs: [
+          "Cada pasada de papel puede desplazarse ligeramente. En vez de tratar ese margen como un defecto automático, el diseño puede aprovecharlo con bordes amplios, texturas, tramas y formas que soporten una pequeña variación. El registro es parte de la composición, no sólo una corrección técnica.",
+          "Aun así, hay que planearlo. Mantén áreas críticas alejadas de recortes mínimos, prueba el orden de las tintas y revisa cómo se comporta el papel entre pasadas. La libertad material funciona mejor cuando el sistema sabe dónde puede ceder.",
+        ],
+      },
+      {
+        eyebrow: "03 / Tiraje",
+        title: "Editar para el objeto que llegará a las manos",
+        paragraphs: [
+          "La risografía es especialmente potente en pósters, publicaciones cortas, invitaciones y pequeñas ediciones: formatos donde textura, reverso y tacto también comunican. Elegir un papel absorbente, una tinta dominante y un orden de lectura claro importa tanto como el archivo digital.",
+          "Conserva pruebas y anota la combinación de papel, color y orden de impresión. Ese registro transforma un experimento aislado en una práctica que puede repetirse, ajustarse y convertirse en sistema editorial.",
+        ],
+      },
+    ],
+    quote: "EN RISOGRAFÍA, LA VARIACIÓN NO ES UN ACCIDENTE: ES PARTE DE LA FIRMA MATERIAL DE LA IMAGEN.",
+    notes: [
+      { label: "Piensa", value: "Una capa por cada tinta" },
+      { label: "Prueba", value: "Papel / orden / sobreimpresión" },
+      { label: "Conserva", value: "Pruebas y receta del tiraje" },
+    ],
+    bookProjectSlug: "shakti-yoga-estudio",
+  },
+  "la-pagina-de-inicio-no-tiene-que-contarlo-todo": {
+    intro: "La página de inicio suele recibir una misión imposible: explicar toda la empresa, mostrar todos los servicios, probar toda la credibilidad y convertir a cada visitante. Cuando intenta hacerlo de una vez, termina por no orientar a nadie. Su función es más precisa: abrir una ruta clara hacia lo que importa.",
+    sections: [
+      {
+        eyebrow: "01 / Promesa",
+        title: "Decir para quién existe y por qué importa",
+        paragraphs: [
+          "La primera pantalla necesita responder una pregunta esencial: qué cambio puede esperar la persona que llegó aquí. No hace falta resumir toda la historia de la marca; hace falta elegir la idea que permite reconocer si el sitio es relevante para ella.",
+          "Una promesa clara combina problema, enfoque y consecuencia. Si esa frase sólo podría pertenecer a cualquier competidor, todavía no está lista. La especificidad no viene de enumerar servicios, sino de nombrar la decisión que los conecta.",
+        ],
+      },
+      {
+        eyebrow: "02 / Ruta",
+        title: "Convertir la navegación en una secuencia",
+        paragraphs: [
+          "Después de la entrada, cada bloque debe responder a una objeción o abrir una siguiente pregunta: cómo trabajan, qué han hecho, para quién es, qué ocurre después. Organizar la página como una secuencia evita que los módulos compitan por la misma atención.",
+          "Los llamados a la acción no necesitan repetirse por ansiedad. Cada uno debe nombrar una acción real: ver casos, comprender un servicio, iniciar una conversación o conocer al equipo. La claridad del verbo reduce la fricción mejor que una urgencia artificial.",
+        ],
+      },
+      {
+        eyebrow: "03 / Prueba",
+        title: "Dejar que el resto del sitio complete el argumento",
+        paragraphs: [
+          "Una homepage no debe cargar con todas las pruebas. Los casos de estudio, las páginas de servicio, la sección de equipo y las respuestas a preguntas frecuentes existen para desarrollar lo que la entrada anuncia. Enlazarlas en el momento correcto hace que el sitio respire.",
+          "Revisa la página con una intención concreta y en una pantalla pequeña. Si una persona no puede identificar el siguiente paso sin leerlo todo, falta jerarquía. Si entiende el camino aunque no recorra cada módulo, la página ya está cumpliendo su trabajo.",
+        ],
+      },
+    ],
+    quote: "UNA PÁGINA DE INICIO NO ES EL SITIO ENTERO. ES LA PRIMERA DECISIÓN QUE ORDENA EL RECORRIDO.",
+    notes: [
+      { label: "Primero", value: "Promesa específica" },
+      { label: "Después", value: "Ruta y siguiente acción" },
+      { label: "Comprueba", value: "Jerarquía en móvil" },
+    ],
+    bookProjectSlug: "ingles-con-jeremy-sitio-web",
+  },
+  "cinco-fotografos-de-boda-mexicanos": {
+    intro: "No hay una sola forma correcta de fotografiar una boda. Hay miradas que privilegian la observación, otras que construyen una atmósfera más editorial y otras que trabajan el destino como parte del relato. Esta selección no ordena a nadie del mejor al peor: reúne cinco referencias mexicanas para reconocer qué tipo de memoria te interesa construir.",
+    sections: [
+      {
+        eyebrow: "01 / Narrativa de destino",
+        title: "Wedding Media y FM Weddings",
+        paragraphs: [
+          "Wedding Media trabaja celebraciones en distintos destinos de México, con presencia en ciudades y regiones como Ciudad de México, Los Cabos, Riviera Maya y Oaxaca. Sus imágenes son una referencia útil para observar cómo paisaje, arquitectura y grupos grandes pueden pertenecer a una misma secuencia.",
+          "FM Weddings, dirigido por Fernanda, propone una mirada natural, mínima y elegante desde Ciudad de México, con trabajo también en el Bajío. Vale la pena estudiarlo si buscas una relación contenida entre retrato, luz disponible y detalles que no interrumpen la experiencia de la celebración.",
+        ],
+      },
+      {
+        eyebrow: "02 / Documento y cercanía",
+        title: "Pastrana Estudio y Christian Macías",
+        paragraphs: [
+          "Pastrana Estudio se presenta desde Chihuahua y trabaja bodas de destino en diferentes regiones del país. Su portafolio permite leer una combinación entre observación documental y construcción creativa de escenas, especialmente útil para quien quiere conservar contexto sin renunciar a una imagen pensada.",
+          "Christian Macías, desde Guadalajara, describe su práctica desde la fotografía documental de bodas. Su trabajo recuerda que una cobertura puede encontrar fuerza en gestos pequeños, relaciones familiares y momentos que aparecen una sola vez, sin forzar una coreografía para cada imagen.",
+        ],
+      },
+      {
+        eyebrow: "03 / Mirada sostenida",
+        title: "Say González y la pregunta correcta",
+        paragraphs: [
+          "Say González trabaja desde Guadalajara con un enfoque documental. Más que buscar una copia de su estilo, conviene mirar cómo usa proximidad, ritmo y distancia: qué deja fuera, cuándo se acerca y cómo permite que las personas tengan espacio dentro del encuadre.",
+          "Antes de elegir, revisa una boda completa en lugar de sólo una selección de redes. Pregunta cuántas personas cubren el día, cómo se entrega la edición, qué sucede con traslados y derechos de uso, y si el lenguaje del fotógrafo tiene lugar para la forma en que ustedes realmente celebran. La referencia correcta no impone una memoria: ayuda a que la memoria conserve su propia voz.",
+        ],
+      },
+    ],
+    quote: "ELEGIR FOTÓGRAFO NO ES ESCOGER UNA POSE: ES DECIDIR CÓMO QUIERES VOLVER A UN MOMENTO.",
+    notes: [
+      { label: "Selección", value: "Cinco portafolios mexicanos" },
+      { label: "Criterio", value: "Narrativa / cercanía / destino" },
+      { label: "Antes de contratar", value: "Revisar una boda completa" },
     ],
     bookProjectSlug: "mariana-y-leo",
   },

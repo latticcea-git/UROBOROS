@@ -7,7 +7,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useEffect, useRef, useState } from "react";
 import type { CSSProperties } from "react";
-import { bookProjects } from "../book/book-data";
+import { bookProjects, prioritizeRealProjects, projectBelongsToNode } from "../book/book-data";
 import { ContactTrigger } from "../global-shell";
 import { publicAsset } from "../public-asset";
 import styles from "./design.module.css";
@@ -15,7 +15,7 @@ import styles from "./design.module.css";
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 ScrollTrigger.config({ ignoreMobileResize: true });
 
-const designProjects = bookProjects.filter((project) => project.node === "design");
+const designProjects = prioritizeRealProjects(bookProjects.filter((project) => projectBelongsToNode(project, "design")));
 
 const capabilities = [
   "Branding e identidad",
@@ -495,12 +495,12 @@ export default function DesignExperience() {
               <div data-reveal>
                 <p className={styles.eyebrow}>02 / BOOK SELECCIONADO</p>
                 <h2 id="book-title">El proceso también<br /><em>forma parte de la obra.</em></h2>
-                <p>Dos proyectos abiertos como archivos de trabajo. Entra a cada ventana para conocer el caso completo.</p>
+                <p>Casos reales abiertos como archivos de trabajo. Entra a cada ventana para conocer el proyecto completo y los nodos que participaron.</p>
               </div>
               <span className={styles.bookDirection}>Desplaza para abrir archivos <DrawnArrow direction="right" /></span>
             </div>
             {designProjects.map((project, index) => <AdobeWindow project={project} index={index} key={project.slug} />)}
-            <div className={styles.bookEnd} aria-hidden="true"><span>BOOK</span><i>02 / 02</i></div>
+            <div className={styles.bookEnd} aria-hidden="true"><span>BOOK</span><i>{String(designProjects.length).padStart(2, "0")} / {String(designProjects.length).padStart(2, "0")}</i></div>
           </div>
         </div>
       </section>
